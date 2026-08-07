@@ -1,0 +1,27 @@
+name: SEO Stage 1 Patch
+on:
+  push:
+    branches: [seo-stage1]
+permissions:
+  contents: write
+jobs:
+  patch:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: seo-stage1
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Apply SEO patch
+        run: python .github/scripts/seo_patch.py
+      - name: Commit patched files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add . ':!.github/scripts/seo_patch.py' ':!.github/workflows/seo-stage1.yml'
+          git diff --cached --quiet && exit 0
+          git commit -m "Restore technical SEO stage 1"
+          git push origin seo-stage1
