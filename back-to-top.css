@@ -1,0 +1,35 @@
+.catalog-grid .guide-card:nth-child(3n + 1) { background: #f5bd4c; }
+.catalog-grid .guide-card:nth-child(3n + 2) { background: var(--paper-2); }
+.catalog-grid .guide-card:nth-child(3n) { background: #ddc49f; }
+
+.back-to-top {
+  position: fixed;
+  right: 24px;
+  bottom: 24px;
+  z-index: 50;
+  border: 3px solid var(--ink);
+  background: var(--ochre);
+  color: var(--ink);
+  box-shadow: 4px 4px 0 var(--ink);
+  cursor: pointer;
+  padding: 11px 15px;
+  font: 900 14px/1 "Segoe Print", "Comic Sans MS", cursive;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(16px) rotate(-1deg);
+  transition: opacity .2s, visibility .2s, transform .2s;
+}
+
+.back-to-top.is-visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0) rotate(-1deg);
+}
+
+.back-to-top:hover { background: var(--paper-2); transform: translateY(-2px) rotate(.5deg); }
+.back-to-top:focus-visible { outline: 3px solid var(--navy); outline-offset: 4px; }
+
+@media (max-width: 480px) {
+  .back-to-top { right: 14px; bottom: 14px; width: 46px; height: 46px; padding: 0; font-size: 0; }
+  .back-to-top .back-to-top-arrow { font-size: 24px; }
+}
