@@ -1,5 +1,4 @@
-User-Agent: *
+User-agent: *
 Allow: /
 
-Host: https://srumyantsev.ru
 Sitemap: https://srumyantsev.ru/sitemap.xml
