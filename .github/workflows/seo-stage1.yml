@@ -19,11 +19,12 @@ jobs:
         run: |
           sed -i "s/assert 'codex-preview' not in s, fn/assert '<meta name=\"codex-preview\"' not in s, fn/" .github/scripts/seo_patch.py
           python .github/scripts/seo_patch.py
+          python .github/scripts/seo_fixup.py
       - name: Commit patched files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add . ':!.github/scripts/seo_patch.py' ':!.github/workflows/seo-stage1.yml' ':!.seo-trigger'
+          git add . ':!.github/scripts/seo_patch.py' ':!.github/scripts/seo_fixup.py' ':!.github/workflows/seo-stage1.yml' ':!.seo-trigger'
           git diff --cached --quiet && exit 0
           git commit -m "Restore technical SEO stage 1"
           git push origin seo-stage1
