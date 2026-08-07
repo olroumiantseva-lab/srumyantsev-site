@@ -1,0 +1,27 @@
+name: Install Yandex Metrika
+on:
+  push:
+    branches: [metrika-stage]
+permissions:
+  contents: write
+jobs:
+  install:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: metrika-stage
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - name: Install counter in all HTML files
+        run: python .github/scripts/install-metrika.py
+      - name: Commit HTML changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add '*.html' '**/*.html'
+          git diff --cached --quiet && exit 0
+          git commit -m "Install Yandex Metrika counter 111385663"
+          git push origin metrika-stage
