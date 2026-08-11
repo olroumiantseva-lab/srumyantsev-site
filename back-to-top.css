@@ -3,7 +3,8 @@
 .catalog-grid .guide-card:nth-child(3n) { background: #ddc49f; }
 
 /* Handwritten subheadings inside guide and practicum sections. */
-.seo-page .numbered-section > h3:not(.prompt-title) {
+.seo-page .numbered-section > h3:not(.prompt-title),
+.seo-page .seo-body > h3:not(.prompt-title) {
   margin: 28px 0 12px;
   font-family: "Segoe Print", "Comic Sans MS", cursive;
   font-size: clamp(21px, 2.6vw, 28px);
