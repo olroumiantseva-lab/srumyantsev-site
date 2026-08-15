@@ -1,0 +1,27 @@
+name: SEO sycophancy update
+on:
+  push:
+    branches: [seo-sycophancy]
+    paths:
+      - scripts/seo-sycophancy.py
+      - .github/workflows/seo-sycophancy.yml
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: seo-sycophancy
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+      - run: python scripts/seo-sycophancy.py
+      - run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add pochemu-neyroset-daet-skuchnye-otvety/index.html
+          git diff --cached --quiet && exit 0
+          git commit -m "Усилить SEO гайда о качестве ответов"
+          git push
