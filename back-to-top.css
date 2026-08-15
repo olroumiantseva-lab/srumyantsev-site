@@ -32,6 +32,18 @@
   clear: both;
 }
 
+/* SEO CTA can sit outside .seo-body; reserve space for its rotation and shadow. */
+.seo-page > .seo-cta {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 72px;
+}
+
+.seo-page > .seo-cta + section {
+  clear: both;
+  margin-top: 0;
+}
+
 @media (max-width: 480px) {
   .seo-page .seo-body blockquote + h2,
   .seo-page .seo-body blockquote + h3,
@@ -39,6 +51,10 @@
   .seo-page .seo-body .main-principle + h3,
   .seo-page .seo-body .main-principle + .numbered-section {
     margin-top: 36px;
+  }
+
+  .seo-page > .seo-cta {
+    margin-bottom: 52px;
   }
 }
 
