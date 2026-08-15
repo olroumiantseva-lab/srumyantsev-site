@@ -13,6 +13,35 @@
   letter-spacing: -.02em;
 }
 
+/* Keep decorative yellow callouts and their shadows clear of the next heading. */
+.seo-page .seo-body blockquote,
+.seo-page .seo-body .main-principle {
+  position: relative;
+  z-index: 1;
+}
+
+.seo-page .seo-body blockquote + h2,
+.seo-page .seo-body blockquote + h3,
+.seo-page .seo-body .main-principle + h2,
+.seo-page .seo-body .main-principle + h3,
+.seo-page .seo-body .main-principle + .numbered-section {
+  margin-top: 44px;
+}
+
+.seo-page .seo-body > .numbered-section {
+  clear: both;
+}
+
+@media (max-width: 480px) {
+  .seo-page .seo-body blockquote + h2,
+  .seo-page .seo-body blockquote + h3,
+  .seo-page .seo-body .main-principle + h2,
+  .seo-page .seo-body .main-principle + h3,
+  .seo-page .seo-body .main-principle + .numbered-section {
+    margin-top: 36px;
+  }
+}
+
 .back-to-top {
   position: fixed;
   right: 24px;
