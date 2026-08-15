@@ -16,7 +16,9 @@ jobs:
         with:
           python-version: '3.x'
       - name: Apply query-led SEO update
-        run: python .github/scripts/seo-letter-query-patch.py
+        run: |
+          sed -i "s#marker = '</div></article>'#marker = '</article>'#" .github/scripts/seo-letter-query-patch.py
+          python .github/scripts/seo-letter-query-patch.py
       - name: Commit updated guide
         run: |
           git config user.name "github-actions[bot]"
