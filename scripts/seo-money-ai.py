@@ -28,9 +28,10 @@ s = s.replace(visible, visible_new, 1)
 
 schema = '"mainEntity":[{'
 schema_new = '"mainEntity":[{"@type":"Question","name":"Можно ли верить ИИ при расчёте коммунальных услуг?","acceptedAnswer":{"@type":"Answer","text":"Использовать ИИ для промежуточного расчёта можно, но итог нужно сверить по действующему тарифу, показаниям, формуле из квитанции и обычному калькулятору. Правильность начисления подтверждает поставщик или управляющая организация."}},{'
-# only FAQPage has mainEntity in this file; Article uses mainEntityOfPage
 if schema not in s:
     raise SystemExit('missing FAQ schema marker')
 s = s.replace(schema, schema_new, 1)
 
 p.write_text(s, encoding='utf-8')
+
+# trigger
