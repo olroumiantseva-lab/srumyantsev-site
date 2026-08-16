@@ -31,6 +31,8 @@ try {
   desktop.on("pageerror", (error) => errors.push(error.message));
   await desktop.goto("http://127.0.0.1:4173/guides/", { waitUntil: "networkidle" });
   if (await desktop.locator("[data-guide-card]").count() !== 33) throw new Error("Desktop does not contain 33 cards");
+  const levelZeroColor = await desktop.locator(".level-picker article").first().evaluate((card) => getComputedStyle(card).backgroundColor);
+  if (levelZeroColor !== "rgb(245, 189, 76)") throw new Error(`Level 0 card is not yellow: ${levelZeroColor}`);
   await desktop.getByRole("button", { name: "Для жизни", exact: true }).click();
   const lifeVisible = await desktop.locator("[data-guide-card]:visible").count();
   if (lifeVisible !== expectedLifeGuides) throw new Error(`Expected ${expectedLifeGuides} life guides, found ${lifeVisible}`);
