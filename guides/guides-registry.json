@@ -1,0 +1,474 @@
+[
+  {
+    "originalOrder": 26,
+    "duration": "14 минут",
+    "title": "Какую нейросеть выбрать в 2026 году и как начать за 10 минут",
+    "description": "Алиса AI, GigaChat или DeepSeek: что открыть без лишних настроек и как сразу проверить на своей задаче.",
+    "url": "/kakuyu-neyroset-vybrat-2026/",
+    "cta": "Как выбрать нейросеть",
+    "LEVEL": 0,
+    "TYPE": "route",
+    "CATEGORY": "Начать с ИИ",
+    "ROUTE_POSITION": 1,
+    "PREVIOUS_GUIDE": null,
+    "NEXT_GUIDE": "/10-zadach-dlya-chatgpt-na-kazhdyy-den/"
+  },
+  {
+    "originalOrder": 28,
+    "duration": "18 минут",
+    "title": "10 задач, которые можно отдать ChatGPT уже сегодня",
+    "description": "Десять способов использовать ИИ в повседневных и рабочих задачах без сложных промптов.",
+    "url": "/10-zadach-dlya-chatgpt-na-kazhdyy-den/",
+    "cta": "10 задач для ChatGPT",
+    "LEVEL": 0,
+    "TYPE": "route",
+    "CATEGORY": "Начать с ИИ",
+    "ROUTE_POSITION": 2,
+    "PREVIOUS_GUIDE": "/kakuyu-neyroset-vybrat-2026/",
+    "NEXT_GUIDE": "/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/"
+  },
+  {
+    "originalOrder": 29,
+    "duration": "11 минут",
+    "title": "Как разговаривать с ИИ, чтобы он не нёс ерунду",
+    "description": "Три приёма, которые помогают получать от нейросети более точные и полезные ответы.",
+    "url": "/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/",
+    "cta": "Как задавать вопросы",
+    "LEVEL": 0,
+    "TYPE": "route",
+    "CATEGORY": "Начать с ИИ",
+    "ROUTE_POSITION": 3,
+    "PREVIOUS_GUIDE": "/10-zadach-dlya-chatgpt-na-kazhdyy-den/",
+    "NEXT_GUIDE": "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/"
+  },
+  {
+    "originalOrder": 30,
+    "duration": "15 минут",
+    "title": "Как пользоваться ИИ с телефона: голосом и фотографией",
+    "description": "Не надо печатать: задавайте вопросы голосом, фотографируйте документы и разбирайте непонятное прямо на ходу.",
+    "url": "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
+    "cta": "Открыть гайд",
+    "LEVEL": 0,
+    "TYPE": "route",
+    "CATEGORY": "Начать с ИИ",
+    "ROUTE_POSITION": 4,
+    "PREVIOUS_GUIDE": "/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/",
+    "NEXT_GUIDE": "/kak-proverit-ne-sovrala-li-neyroset/"
+  },
+  {
+    "originalOrder": 25,
+    "duration": "12 минут",
+    "title": "Как проверить, не соврала ли нейросеть",
+    "description": "Пять быстрых способов проверить цифры, даты, ссылки и другие факты без экспертных знаний.",
+    "url": "/kak-proverit-ne-sovrala-li-neyroset/",
+    "cta": "Проверить ответ",
+    "LEVEL": 0,
+    "TYPE": "route",
+    "CATEGORY": "Проверка и безопасность",
+    "ROUTE_POSITION": 5,
+    "PREVIOUS_GUIDE": "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
+    "NEXT_GUIDE": "/chto-nelzya-doveryat-neyroseti/"
+  },
+  {
+    "originalOrder": 18,
+    "duration": "14 минут",
+    "title": "Что нельзя доверять нейросети",
+    "description": "Пять ситуаций, где ИИ не должен решать за человека, и четыре признака лишнего доверия.",
+    "url": "/chto-nelzya-doveryat-neyroseti/",
+    "cta": "Где нельзя доверять ИИ",
+    "LEVEL": 0,
+    "TYPE": "route",
+    "CATEGORY": "Проверка и безопасность",
+    "ROUTE_POSITION": 6,
+    "PREVIOUS_GUIDE": "/kak-proverit-ne-sovrala-li-neyroset/",
+    "NEXT_GUIDE": null
+  },
+  {
+    "originalOrder": 27,
+    "duration": "12 минут",
+    "title": "Как объяснить непонятное письмо с помощью ИИ",
+    "description": "Разбираем письмо из банка, ведомства или сервиса: готовые промпты, безопасность и проверка ответа.",
+    "url": "/kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/",
+    "cta": "Понять документ",
+    "LEVEL": 0,
+    "TYPE": "practical",
+    "CATEGORY": "Документы и информация",
+    "RELATED_GUIDES": [
+      "/dlinnye-dokumenty-dogovor-otchet-kniga/",
+      "/kak-proverit-ne-sovrala-li-neyroset/"
+    ]
+  },
+  {
+    "originalOrder": 21,
+    "duration": "19 минут",
+    "title": "Как разобраться с деньгами: тарифы, кредиты, коммуналка",
+    "description": "Разбираем квитанции и условия кредита, ищем регулярные списания и проверяем расчёты.",
+    "url": "/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/",
+    "cta": "Как проверить расходы",
+    "LEVEL": 0,
+    "TYPE": "practical",
+    "CATEGORY": "Работа и деньги",
+    "RELATED_GUIDES": [
+      "/tablitsy-i-tsifry-neyroset/",
+      "/kak-proverit-ne-sovrala-li-neyroset/"
+    ]
+  },
+  {
+    "originalOrder": 22,
+    "duration": "16 минут",
+    "title": "Как понять результаты анализов и заключение врача",
+    "description": "Переводим медицинские термины, защищаем личные данные и готовим вопросы к приёму.",
+    "url": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/",
+    "cta": "Как подготовиться к врачу",
+    "LEVEL": 0,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "RELATED_GUIDES": [
+      "/kak-proverit-ne-sovrala-li-neyroset/",
+      "/chto-nelzya-doveryat-neyroseti/"
+    ]
+  },
+  {
+    "originalOrder": 23,
+    "duration": "18 минут",
+    "title": "Резюме и собеседование после 45",
+    "description": "Как превратить обязанности в результаты, адаптировать резюме под вакансию и отрепетировать собеседование.",
+    "url": "/rezyume-i-sobesedovanie-posle-45/",
+    "cta": "Переписать опыт",
+    "LEVEL": 0,
+    "TYPE": "practical",
+    "CATEGORY": "Работа и деньги",
+    "RELATED_GUIDES": [
+      "/neyroset-v-rabote-gde-ekonomit-chasy/",
+      "/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/"
+    ]
+  },
+  {
+    "originalOrder": 20,
+    "duration": "10 минут",
+    "title": "Картинки нейросетью: открытки, поздравления и аватарка",
+    "description": "Делаем открытку по описанию, добавляем надпись и разбираем частые ошибки генерации.",
+    "url": "/kartinki-neyrosetyu-otkrytki-avatarka/",
+    "cta": "Как сделать открытку",
+    "LEVEL": 0,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "RELATED_GUIDES": [
+      "/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/"
+    ]
+  },
+  {
+    "originalOrder": 24,
+    "duration": "17 минут",
+    "title": "Мошенники и дипфейки: как распознать подделку",
+    "description": "Как проверить голос близкого, тревожный звонок и письмо — и что заранее настроить в семье.",
+    "url": "/moshenniki-dipfeyki-golos-rodstvennika/",
+    "cta": "Проверить тревожный звонок",
+    "LEVEL": 0,
+    "TYPE": "practical",
+    "CATEGORY": "Проверка и безопасность",
+    "RELATED_GUIDES": [
+      "/kak-proverit-ne-sovrala-li-neyroset/",
+      "/chto-nelzya-doveryat-neyroseti/"
+    ]
+  },
+  {
+    "originalOrder": 15,
+    "duration": "17 минут",
+    "title": "Голос и расшифровка: наговорил, получил текст",
+    "description": "Как превратить голосовое, встречу, лекцию или собственную надиктовку в полезный текст.",
+    "url": "/rasshifrovka-audio-neyrosetyu/",
+    "cta": "Открыть гайд",
+    "LEVEL": 1,
+    "TYPE": "route",
+    "CATEGORY": "Документы и информация",
+    "ROUTE_POSITION": 1,
+    "PREVIOUS_GUIDE": null,
+    "NEXT_GUIDE": "/dlinnye-dokumenty-dogovor-otchet-kniga/"
+  },
+  {
+    "originalOrder": 16,
+    "duration": "16 минут",
+    "title": "Длинные документы: договор, отчёт, книга",
+    "description": "Карта документа, разбор по частям и три проверки, которые показывают, прочитала ли нейросеть весь файл.",
+    "url": "/dlinnye-dokumenty-dogovor-otchet-kniga/",
+    "cta": "Как работать с PDF",
+    "LEVEL": 1,
+    "TYPE": "route",
+    "CATEGORY": "Документы и информация",
+    "ROUTE_POSITION": 2,
+    "PREVIOUS_GUIDE": "/rasshifrovka-audio-neyrosetyu/",
+    "NEXT_GUIDE": "/tablitsy-i-tsifry-neyroset/"
+  },
+  {
+    "originalOrder": 14,
+    "duration": "15 минут",
+    "title": "Таблицы и цифры: где ИИ помогает, а где уверенно врёт",
+    "description": "Как получать формулы для Excel, переносить данные в таблицу и проверять расчёты.",
+    "url": "/tablitsy-i-tsifry-neyroset/",
+    "cta": "Проверить формулу",
+    "LEVEL": 1,
+    "TYPE": "route",
+    "CATEGORY": "Работа и деньги",
+    "ROUTE_POSITION": 3,
+    "PREVIOUS_GUIDE": "/dlinnye-dokumenty-dogovor-otchet-kniga/",
+    "NEXT_GUIDE": "/dve-neyroseti-v-pare-vtoroe-mnenie/"
+  },
+  {
+    "originalOrder": 13,
+    "duration": "14 минут",
+    "title": "Второе мнение: две нейросети в паре",
+    "description": "Как независимо получить второй ответ, сравнить версии и проверить спорное утверждение по источнику.",
+    "url": "/dve-neyroseti-v-pare-vtoroe-mnenie/",
+    "cta": "Сравнить ответы",
+    "LEVEL": 1,
+    "TYPE": "route",
+    "CATEGORY": "Проверка и безопасность",
+    "ROUTE_POSITION": 4,
+    "PREVIOUS_GUIDE": "/tablitsy-i-tsifry-neyroset/",
+    "NEXT_GUIDE": "/pochemu-neyroset-otkazyvaetsya-otvechat/"
+  },
+  {
+    "originalOrder": 12,
+    "duration": "14 минут",
+    "title": "Когда нейросеть отказывается отвечать",
+    "description": "Как понять причину отказа, уточнить законную задачу и вовремя принять обоснованное ограничение.",
+    "url": "/pochemu-neyroset-otkazyvaetsya-otvechat/",
+    "cta": "Как уточнить запрос",
+    "LEVEL": 1,
+    "TYPE": "route",
+    "CATEGORY": "Начать с ИИ",
+    "ROUTE_POSITION": 5,
+    "PREVIOUS_GUIDE": "/dve-neyroseti-v-pare-vtoroe-mnenie/",
+    "NEXT_GUIDE": "/pochemu-neyroset-daet-skuchnye-otvety/"
+  },
+  {
+    "originalOrder": 17,
+    "duration": "13 минут",
+    "title": "Почему ответы стали скучными",
+    "description": "Шесть приёмов для тех, кто пользуется нейросетью пару месяцев и чувствует, что топчется на месте.",
+    "url": "/pochemu-neyroset-daet-skuchnye-otvety/",
+    "cta": "Как улучшить ответ",
+    "LEVEL": 1,
+    "TYPE": "route",
+    "CATEGORY": "Начать с ИИ",
+    "ROUTE_POSITION": 6,
+    "PREVIOUS_GUIDE": "/pochemu-neyroset-otkazyvaetsya-otvechat/",
+    "NEXT_GUIDE": "/kak-ne-poteryat-perepiski-s-ii/"
+  },
+  {
+    "originalOrder": 19,
+    "duration": "12 минут",
+    "title": "Как не потерять переписки с ИИ",
+    "description": "Наводим порядок в чатах, сохраняем удачные промпты и разбираемся с памятью ассистента.",
+    "url": "/kak-ne-poteryat-perepiski-s-ii/",
+    "cta": "Как сохранить переписки",
+    "LEVEL": 1,
+    "TYPE": "route",
+    "CATEGORY": "Система работы",
+    "ROUTE_POSITION": 7,
+    "PREVIOUS_GUIDE": "/pochemu-neyroset-daet-skuchnye-otvety/",
+    "NEXT_GUIDE": null
+  },
+  {
+    "originalOrder": 11,
+    "duration": "15 минут",
+    "title": "ИИ в поездке",
+    "description": "Как перевести меню и вывеску, объясниться с местными, перестроить маршрут и подготовиться к работе без связи.",
+    "url": "/ii-v-poezdke-perevod-menyu-marshrut/",
+    "cta": "Подготовиться к поездке",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "RELATED_GUIDES": [
+      "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
+      "/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/"
+    ]
+  },
+  {
+    "originalOrder": 7,
+    "duration": "15 минут",
+    "title": "Как научить родителей пользоваться нейросетью",
+    "description": "Спокойное первое занятие: одна знакомая задача, телефон в руках ученика и короткая памятка после встречи.",
+    "url": "/kak-nauchit-blizkogo-polzovatsya-neyrosetyu/",
+    "cta": "Показать без давления",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Учёба и семья",
+    "RELATED_GUIDES": [
+      "/ii-kak-domashniy-repetitor-dlya-rebenka/",
+      "/kakuyu-neyroset-vybrat-2026/"
+    ]
+  },
+  {
+    "originalOrder": 8,
+    "duration": "15 минут",
+    "title": "ИИ как домашний репетитор",
+    "description": "Как объяснить ребёнку физику или историю, проверить понимание, закрепить материал и сверить факты.",
+    "url": "/ii-kak-domashniy-repetitor-dlya-rebenka/",
+    "cta": "Провести занятие",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Учёба и семья",
+    "RELATED_GUIDES": [
+      "/kak-nauchit-blizkogo-polzovatsya-neyrosetyu/",
+      "/kak-proverit-ne-sovrala-li-neyroset/"
+    ]
+  },
+  {
+    "originalOrder": 9,
+    "duration": "16 минут",
+    "title": "Смета на ремонт без сложных таблиц",
+    "description": "Как собрать расходы из заметок и чеков, разделить план и факт, найти пропуски и проверить итог.",
+    "url": "/smeta-na-remont-s-pomoshchyu-ii/",
+    "cta": "Собрать смету",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "RELATED_GUIDES": [
+      "/tablitsy-i-tsifry-neyroset/",
+      "/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/"
+    ]
+  },
+  {
+    "originalOrder": 10,
+    "duration": "14 минут",
+    "title": "Краткий пересказ видео YouTube",
+    "description": "Как получить выжимку из длинного ролика, найти нужный фрагмент и проверить важные утверждения.",
+    "url": "/kratkiy-pereskaz-video-youtube-neyrosetyu/",
+    "cta": "Разобрать видео",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Документы и информация",
+    "RELATED_GUIDES": [
+      "/dlinnye-dokumenty-dogovor-otchet-kniga/",
+      "/rasshifrovka-audio-neyrosetyu/"
+    ]
+  },
+  {
+    "originalOrder": 6,
+    "duration": "14 минут",
+    "title": "Как подобрать фильм или книгу с помощью нейросети",
+    "description": "Пять элементов точного запроса, готовые промпты и способы исправить неудачную подборку.",
+    "url": "/kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/",
+    "cta": "Подобрать на вечер",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "RELATED_GUIDES": [
+      "/kak-podobrat-podarok-s-pomoshchyu-neyroseti/"
+    ]
+  },
+  {
+    "originalOrder": 5,
+    "duration": "13 минут",
+    "title": "Как вспомнить забытое слово с помощью нейросети",
+    "description": "Поиск термина, предмета или фильма по контексту, признакам и исключениям.",
+    "url": "/kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/",
+    "cta": "Вспомнить название",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "RELATED_GUIDES": [
+      "/kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/"
+    ]
+  },
+  {
+    "originalOrder": 4,
+    "duration": "14 минут",
+    "title": "Как подобрать подарок с помощью нейросети",
+    "description": "Как учесть человека, бюджет и ограничения и проверить риск промаха.",
+    "url": "/kak-podobrat-podarok-s-pomoshchyu-neyroseti/",
+    "cta": "Найти идею",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "RELATED_GUIDES": [
+      "/kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/"
+    ]
+  },
+  {
+    "originalOrder": 3,
+    "duration": "14 минут",
+    "title": "Режимы и модели: что означают все эти переключатели",
+    "description": "Быстрый ответ, рассуждение, поиск и исследование: как выбрать режим под задачу.",
+    "url": "/rezhimy-i-modeli-neyroseti/",
+    "cta": "Открыть гайд",
+    "LEVEL": 2,
+    "TYPE": "route",
+    "CATEGORY": "Система работы",
+    "ROUTE_POSITION": 1,
+    "PREVIOUS_GUIDE": null,
+    "NEXT_GUIDE": "/svoya-biblioteka-promptov/"
+  },
+  {
+    "originalOrder": 6,
+    "duration": "18 минут",
+    "title": "Своя библиотека промптов",
+    "description": "Как собрать проверенные шаблоны под свои повторяющиеся задачи и хранить их в одной заметке.",
+    "url": "/svoya-biblioteka-promptov/",
+    "cta": "Собрать библиотеку",
+    "LEVEL": 2,
+    "TYPE": "route",
+    "CATEGORY": "Система работы",
+    "ROUTE_POSITION": 2,
+    "PREVIOUS_GUIDE": "/rezhimy-i-modeli-neyroseti/",
+    "NEXT_GUIDE": "/lichnaya-sistema-doveriya-neyroseti/"
+  },
+  {
+    "originalOrder": 4,
+    "duration": "16 минут",
+    "title": "Личная система доверия",
+    "description": "Что проверять в ответах ИИ всегда, где хватит быстрой сверки и когда отдельная проверка не нужна.",
+    "url": "/lichnaya-sistema-doveriya-neyroseti/",
+    "cta": "Выбрать уровень проверки",
+    "LEVEL": 2,
+    "TYPE": "route",
+    "CATEGORY": "Система работы",
+    "ROUTE_POSITION": 3,
+    "PREVIOUS_GUIDE": "/svoya-biblioteka-promptov/",
+    "NEXT_GUIDE": "/svoy-arhiv-dokumentov-neyroset/"
+  },
+  {
+    "originalOrder": 2,
+    "duration": "15 минут",
+    "title": "Свой архив документов",
+    "description": "Что оцифровать, как назвать файлы и как потом быстро найти нужную копию.",
+    "url": "/svoy-arhiv-dokumentov-neyroset/",
+    "cta": "Навести порядок",
+    "LEVEL": 2,
+    "TYPE": "route",
+    "CATEGORY": "Система работы",
+    "ROUTE_POSITION": 4,
+    "PREVIOUS_GUIDE": "/lichnaya-sistema-doveriya-neyroseti/",
+    "NEXT_GUIDE": "/neyroset-v-rabote-gde-ekonomit-chasy/"
+  },
+  {
+    "originalOrder": 5,
+    "duration": "17 минут",
+    "title": "Нейросеть в работе",
+    "description": "Где ИИ действительно экономит время, где создаёт лишнюю работу и какие данные нельзя отдавать без разрешения.",
+    "url": "/neyroset-v-rabote-gde-ekonomit-chasy/",
+    "cta": "Проверить рабочие задачи",
+    "LEVEL": 2,
+    "TYPE": "route",
+    "CATEGORY": "Система работы",
+    "ROUTE_POSITION": 5,
+    "PREVIOUS_GUIDE": "/svoy-arhiv-dokumentov-neyroset/",
+    "NEXT_GUIDE": "/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/"
+  },
+  {
+    "originalOrder": 1,
+    "duration": "17 минут",
+    "title": "Учиться с ИИ: язык, профессия, техника",
+    "description": "Как получать понимание вместо готовых ответов и проверять, что знание осталось у вас.",
+    "url": "/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/",
+    "cta": "Начать учиться",
+    "LEVEL": 2,
+    "TYPE": "route",
+    "CATEGORY": "Учёба и семья",
+    "ROUTE_POSITION": 6,
+    "PREVIOUS_GUIDE": "/neyroset-v-rabote-gde-ekonomit-chasy/",
+    "NEXT_GUIDE": null
+  }
+]
