@@ -486,5 +486,21 @@
       "/rasshifrovka-audio-neyrosetyu/",
       "/svoy-arhiv-dokumentov-neyroset/"
     ]
+  },
+  {
+    "originalOrder": 35,
+    "duration": "18 минут",
+    "title": "Наставничество: как учить других и превратить это в подработку",
+    "description": "Пригодится, если вы уже помогали кому-то освоиться и подумываете сделать это регулярным делом.",
+    "url": "/nastavnichestvo-uchit-drugih-podrabotka/",
+    "cta": "Начать с первого ученика",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Работа и деньги",
+    "META_LABEL": "Практический гайд",
+    "RELATED_GUIDES": [
+      "/kak-nauchit-blizkogo-polzovatsya-neyrosetyu/",
+      "/moshenniki-dipfeyki-golos-rodstvennika/"
+    ]
   }
 ]
