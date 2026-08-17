@@ -470,5 +470,21 @@
     "ROUTE_POSITION": 6,
     "PREVIOUS_GUIDE": "/neyroset-v-rabote-gde-ekonomit-chasy/",
     "NEXT_GUIDE": null
+  },
+  {
+    "originalOrder": 34,
+    "duration": "18 минут",
+    "title": "Семейный архив: письма, фотографии, книга воспоминаний",
+    "description": "Пригодится, если хочется не просто задавать нейросети вопросы, а собрать с её помощью большой личный проект — семейный архив или книгу воспоминаний.",
+    "url": "/semeynyy-arhiv-vospominaniya-neyroset/",
+    "cta": "Сохранить семейную историю",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Учёба и семья",
+    "META_LABEL": "Ступень 2 · Практический гайд",
+    "RELATED_GUIDES": [
+      "/rasshifrovka-audio-neyrosetyu/",
+      "/svoy-arhiv-dokumentov-neyroset/"
+    ]
   }
 ]

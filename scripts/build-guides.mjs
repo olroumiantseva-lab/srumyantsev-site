@@ -127,6 +127,7 @@ ${suffix}`;
 }
 
 function metaLabel(guide) {
+  if (guide.META_LABEL) return guide.META_LABEL;
   if (guide.TYPE === "route") return `Ступень ${guide.LEVEL} · Шаг ${guide.ROUTE_POSITION} из ${routeFor(guide.LEVEL).length}`;
   return `Ступень ${guide.LEVEL} · ${guide.CATEGORY}`;
 }
