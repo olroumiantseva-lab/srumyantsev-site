@@ -502,5 +502,21 @@
       "/kak-nauchit-blizkogo-polzovatsya-neyrosetyu/",
       "/moshenniki-dipfeyki-golos-rodstvennika/"
     ]
+  },
+  {
+    "originalOrder": 36,
+    "duration": "17 минут",
+    "title": "Своё дело после 50 с нейросетями",
+    "description": "Пригодится, если идея для своего дела уже мелькает в голове и хочется трезво понять, во что это выльется.",
+    "url": "/svoe-delo-posle-50-s-neyrosetyami/",
+    "cta": "Проверить идею",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Работа и деньги",
+    "META_LABEL": "Ступень 2 · Практический гайд",
+    "RELATED_GUIDES": [
+      "/nastavnichestvo-uchit-drugih-podrabotka/",
+      "/neyroset-v-rabote-gde-ekonomit-chasy/"
+    ]
   }
 ]

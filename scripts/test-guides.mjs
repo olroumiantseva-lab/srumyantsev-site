@@ -6,10 +6,10 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 const registry = JSON.parse(fs.readFileSync(path.join(root, "guides", "guides-registry.json"), "utf8"));
 const expectedCategories = new Set(["Начать с ИИ", "Для жизни", "Документы и информация", "Работа и деньги", "Учёба и семья", "Проверка и безопасность", "Система работы"]);
-const expectedCounts = { "0-route": 6, "0-practical": 6, "1-route": 7, "1-practical": 8, "2-route": 6, "2-practical": 2 };
+const expectedCounts = { "0-route": 6, "0-practical": 6, "1-route": 7, "1-practical": 8, "2-route": 6, "2-practical": 3 };
 
-assert.equal(registry.length, 35, "Registry must contain 35 guides");
-assert.equal(new Set(registry.map((guide) => guide.url)).size, 35, "Guide URLs must be unique");
+assert.equal(registry.length, 36, "Registry must contain 36 guides");
+assert.equal(new Set(registry.map((guide) => guide.url)).size, 36, "Guide URLs must be unique");
 
 for (const guide of registry) {
   assert.ok([0, 1, 2].includes(guide.LEVEL), `Invalid level: ${guide.url}`);
@@ -32,10 +32,10 @@ assert.deepEqual([chats.LEVEL, chats.TYPE, chats.ROUTE_POSITION], [1, "route", 7
 
 const catalog = fs.readFileSync(path.join(root, "guides", "index.html"), "utf8");
 const catalogCards = [...catalog.matchAll(/<article class="guide-card" data-guide-card[\s\S]*?<\/article>/g)];
-assert.equal(catalogCards.length, 35, "Catalog HTML must contain 35 cards without JavaScript");
+assert.equal(catalogCards.length, 36, "Catalog HTML must contain 36 cards without JavaScript");
 assert.ok(catalogCards.every((match) => !/\shidden(?:[=\s>])/.test(match[0])), "A catalog card is hidden in source HTML");
 const catalogUrls = catalogCards.map((match) => match[0].match(/<h3><a href="([^"]+)"/)?.[1]);
-assert.equal(new Set(catalogUrls).size, 35, "Catalog HTML URLs must be unique");
+assert.equal(new Set(catalogUrls).size, 36, "Catalog HTML URLs must be unique");
 assert.deepEqual(new Set(catalogUrls), new Set(registry.map((guide) => guide.url)), "Catalog and registry URLs differ");
 
 function gitHead(file) {
@@ -72,4 +72,4 @@ for (const documentPath of documents) {
   }
 }
 
-console.log("PASS: 35 guides, routes 6/7/6, practical 6/8/2, canonicals and links intact");
+console.log("PASS: 36 guides, routes 6/7/6, practical 6/8/3, canonicals and links intact");
