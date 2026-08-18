@@ -534,5 +534,21 @@
       "/kak-proverit-ne-sovrala-li-neyroset/",
       "/lichnaya-sistema-doveriya-neyroseti/"
     ]
+  },
+  {
+    "originalOrder": 38,
+    "duration": "20 минут",
+    "title": "Как разобраться в инструкции к технике с помощью ИИ",
+    "description": "Как найти нужный раздел, перевести технический язык на понятный и отделить безопасные действия от работы для специалиста.",
+    "url": "/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/",
+    "cta": "Разобраться в инструкции",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Документы и информация",
+    "RELATED_GUIDES": [
+      "/dlinnye-dokumenty-dogovor-otchet-kniga/",
+      "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
+      "/kak-proverit-ne-sovrala-li-neyroset/"
+    ]
   }
 ]
