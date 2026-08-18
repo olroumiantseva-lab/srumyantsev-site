@@ -518,5 +518,21 @@
       "/nastavnichestvo-uchit-drugih-podrabotka/",
       "/neyroset-v-rabote-gde-ekonomit-chasy/"
     ]
+  },
+  {
+    "originalOrder": 37,
+    "duration": "17 минут",
+    "title": "Как сравнить два товара с помощью нейросети",
+    "description": "Как убрать рекламный шум, сравнить характеристики под свой сценарий и понять, стоит ли переплачивать.",
+    "url": "/kak-sravnit-tovary-s-pomoshchyu-neyroseti/",
+    "cta": "Сравнить товары",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "RELATED_GUIDES": [
+      "/10-zadach-dlya-chatgpt-na-kazhdyy-den/",
+      "/kak-proverit-ne-sovrala-li-neyroset/",
+      "/lichnaya-sistema-doveriya-neyroseti/"
+    ]
   }
 ]
