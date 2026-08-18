@@ -550,5 +550,23 @@
       "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
       "/kak-proverit-ne-sovrala-li-neyroset/"
     ]
+  },
+  {
+    "originalOrder": 39,
+    "duration": "22 минуты",
+    "title": "Как вести большой проект с помощью нейросети",
+    "description": "Как держать цель, этапы, ограничения и решения в порядке и каждую неделю понимать, что делать дальше.",
+    "url": "/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/",
+    "cta": "Собрать проект",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Система работы",
+    "META_LABEL": "Ступень 2 · Система работы",
+    "RELATED_GUIDES": [
+      "/svoya-biblioteka-promptov/",
+      "/kak-ne-poteryat-perepiski-s-ii/",
+      "/lichnaya-sistema-doveriya-neyroseti/",
+      "/smeta-na-remont-s-pomoshchyu-ii/"
+    ]
   }
 ]
