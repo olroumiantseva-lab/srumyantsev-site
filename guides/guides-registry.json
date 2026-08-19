@@ -568,5 +568,21 @@
       "/lichnaya-sistema-doveriya-neyroseti/",
       "/smeta-na-remont-s-pomoshchyu-ii/"
     ]
+  },
+  {
+    "originalOrder": 40,
+    "duration": "9 минут",
+    "title": "Что нельзя загружать в нейросеть",
+    "description": "Пароли, данные карты, документы и чужая информация: что не отправлять в чат и как оставить только нужный фрагмент.",
+    "url": "/chto-nelzya-zagruzhat-v-neyroset/",
+    "cta": "Проверить данные перед загрузкой",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Проверка и безопасность",
+    "RELATED_GUIDES": [
+      "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
+      "/kak-ponyat-analizy-i-zaklyuchenie-vracha/",
+      "/lichnaya-sistema-doveriya-neyroseti/"
+    ]
   }
 ]
