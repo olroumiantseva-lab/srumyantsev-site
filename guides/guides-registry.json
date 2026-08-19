@@ -584,5 +584,21 @@
       "/kak-ponyat-analizy-i-zaklyuchenie-vracha/",
       "/lichnaya-sistema-doveriya-neyroseti/"
     ]
+  },
+  {
+    "originalOrder": 41,
+    "duration": "12 минут",
+    "title": "Как сделать нейросеть личным помощником",
+    "description": "Как собрать постоянные правила, формат и примеры под одну повторяющуюся задачу и улучшать помощника после ошибок.",
+    "url": "/kak-sdelat-neyroset-lichnym-pomoshchnikom/",
+    "cta": "Собрать личного помощника",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Система работы",
+    "RELATED_GUIDES": [
+      "/svoya-biblioteka-promptov/",
+      "/kak-ne-poteryat-perepiski-s-ii/",
+      "/rezhimy-i-modeli-neyroseti/"
+    ]
   }
 ]
