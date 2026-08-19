@@ -600,5 +600,21 @@
       "/kak-ne-poteryat-perepiski-s-ii/",
       "/rezhimy-i-modeli-neyroseti/"
     ]
+  },
+  {
+    "originalOrder": 42,
+    "duration": "16 минут",
+    "title": "Как учить иностранный язык после 45 с помощью нейросети",
+    "description": "Разговорная практика, повторение слов, подсказки и разбор ошибок: готовая схема короткого занятия с нейросетью.",
+    "url": "/kak-uchit-inostrannyy-yazyk-s-pomoshchyu-neyroseti/",
+    "cta": "Начать занятие",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Учёба и семья",
+    "RELATED_GUIDES": [
+      "/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/",
+      "/ii-v-poezdke-perevod-menyu-marshrut/",
+      "/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/"
+    ]
   }
 ]
