@@ -1,0 +1,31 @@
+{
+  "id": "03-letter-no-action",
+  "title": "Информационное письмо без действий",
+  "fixture": "../fixtures/03-letter-no-action.txt",
+  "document_type": "letter",
+  "must_find": [
+    "Новый график действует с 1 ноября 2026 года",
+    "Ответ не требуется",
+    "Старые билеты действуют"
+  ],
+  "must_not_infer": [
+    "Нужно заменить читательский билет",
+    "Библиотека закрывается"
+  ],
+  "uncertainties": [
+    "Год окончания действия графика не указан"
+  ],
+  "critical_failures": [
+    "Придумать обязательное действие",
+    "Перепутать часы работы"
+  ],
+  "expected_dates": [
+    {
+      "date": "2026-11-01",
+      "label": "начало нового графика"
+    }
+  ],
+  "expected_amounts": [],
+  "expected_obligations": [],
+  "document_date": null
+}

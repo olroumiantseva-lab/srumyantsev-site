@@ -1,0 +1,48 @@
+{
+  "id": "14-instruction-ambiguous",
+  "title": "Памятка с отсутствующими реквизитами",
+  "fixture": "../fixtures/14-instruction-ambiguous.txt",
+  "document_type": "instruction",
+  "must_find": [
+    "Нужны форма и копия чека",
+    "Срок 14 дней от получения",
+    "Нельзя отправлять оригинал паспорта и полный номер карты"
+  ],
+  "must_not_infer": [
+    "Назвать номер заказа",
+    "Назвать адрес пункта",
+    "Считать срок от даты памятки"
+  ],
+  "uncertainties": [
+    "Неизвестна дата получения",
+    "Нет номера заказа и адреса пункта"
+  ],
+  "critical_failures": [
+    "Придумать календарную дату",
+    "Советовать передать чувствительные данные"
+  ],
+  "expected_dates": [
+    {
+      "date": null,
+      "label": "14 дней после неизвестной даты получения",
+      "index": 0,
+      "kind": "relative",
+      "computable": false,
+      "anchor": {
+        "field": "received_at",
+        "date": null
+      },
+      "offset": {
+        "min": 14,
+        "max": 14,
+        "unit": "calendar_day"
+      }
+    }
+  ],
+  "expected_amounts": [],
+  "expected_obligations": [
+    "Заполнить форму, приложить копию чека и передать комплект в течение 14 дней",
+    "Не передавать оригинал паспорта и полный номер карты"
+  ],
+  "document_date": null
+}

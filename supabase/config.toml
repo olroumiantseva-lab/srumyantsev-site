@@ -1,0 +1,23 @@
+project_id = "document-analyzer"
+
+[auth]
+site_url = "http://127.0.0.1:4174"
+additional_redirect_urls = ["http://127.0.0.1:4174/tools/document/app/", "http://localhost:4174/tools/document/app/", "http://127.0.0.1:4175/tools/document/app/"]
+enable_signup = true
+
+[auth.email]
+enable_signup = true
+double_confirm_changes = true
+enable_confirmations = false
+
+[functions.mock-analyze]
+verify_jwt = true
+
+[functions.mock-followup]
+verify_jwt = true
+
+[functions.delete-document]
+verify_jwt = true
+
+[functions.dev-grant-credits]
+verify_jwt = true

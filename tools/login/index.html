@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Вход в сервис разбора документов по электронной почте.">
+  <title>Вход — Разобрать документ</title>
+  <link rel="stylesheet" href="/tools/assets/document.css">
+</head>
+<body data-page="login">
+  <header class="site-header"><div class="shell header-inner"><a class="brand" href="/tools/document/"><span class="brand-mark" aria-hidden="true">＊</span><span>РАЗОБРАТЬ<br>ДОКУМЕНТ</span></a><span class="prototype-label">Локальный прототип</span></div></header>
+  <main>
+    <div class="narrow">
+      <div class="login-card">
+        <p class="section-kicker">Вход без пароля</p>
+        <h1 style="font-size:clamp(36px,7vw,58px)">Войдите по электронной почте</h1>
+        <p>Мы пришлём одноразовую ссылку. Пароль придумывать и запоминать не нужно.</p>
+        <form id="login-form" novalidate>
+          <label class="field-label" for="email">Введите email</label>
+          <input class="input" id="email" name="email" type="email" autocomplete="email" required placeholder="primer@mail.ru">
+          <p class="error" id="login-error" aria-live="polite"></p>
+          <button class="button button-full" type="submit">Получить ссылку для входа</button>
+          <p class="small muted" style="margin:16px 0 0">Это прототип: письмо не отправляется и адрес нигде не сохраняется.</p>
+        </form>
+        <div class="success hidden" id="login-success" tabindex="-1">
+          <h2 style="font-size:26px">Экран письма показан</h2>
+          <p>В рабочей версии здесь появится сообщение: «Проверьте почту и откройте ссылку для входа».</p>
+          <a class="button" href="/tools/document/app/">Продолжить в прототипе</a>
+        </div>
+      </div>
+      <a class="text-link" href="/tools/document/">← Вернуться к описанию</a>
+    </div>
+  </main>
+  <script src="/tools/assets/runtime-config.js"></script>
+  <script src="/tools/assets/document.js" defer></script>
+  <script src="/tools/assets/supabase-app.js" defer></script>
+</body>
+</html>

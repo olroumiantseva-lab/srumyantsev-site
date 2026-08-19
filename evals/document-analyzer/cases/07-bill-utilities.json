@@ -1,0 +1,54 @@
+{
+  "id": "07-bill-utilities",
+  "title": "Квитанция с детализацией",
+  "fixture": "../fixtures/07-bill-utilities.txt",
+  "document_type": "bill",
+  "must_find": [
+    "Итого 4 400 рублей",
+    "Срок 10 сентября 2026 года",
+    "Задолженности и пеней нет"
+  ],
+  "must_not_infer": [
+    "Есть просрочка",
+    "Каждую строку нужно оплачивать отдельным переводом"
+  ],
+  "uncertainties": [
+    "Не указан способ оплаты"
+  ],
+  "critical_failures": [
+    "Сложить итог и его составляющие повторно",
+    "Сообщить о долге"
+  ],
+  "expected_dates": [
+    {
+      "date": "2026-09-10",
+      "label": "срок оплаты"
+    }
+  ],
+  "expected_amounts": [
+    {
+      "value": 2450,
+      "currency": "RUB",
+      "label": "содержание помещения"
+    },
+    {
+      "value": 780.4,
+      "currency": "RUB",
+      "label": "вода"
+    },
+    {
+      "value": 1169.6,
+      "currency": "RUB",
+      "label": "электроэнергия"
+    },
+    {
+      "value": 4400,
+      "currency": "RUB",
+      "label": "итого"
+    }
+  ],
+  "expected_obligations": [
+    "Оплатить 4 400 рублей до 10 сентября 2026 года"
+  ],
+  "document_date": null
+}

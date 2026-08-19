@@ -1,0 +1,48 @@
+{
+  "id": "06-contract-termination",
+  "title": "Условие расторжения без даты",
+  "fixture": "../fixtures/06-contract-termination.txt",
+  "document_type": "contract",
+  "must_find": [
+    "Для отказа нужно письменное предупреждение минимум за 14 календарных дней",
+    "Фактические услуги оплачиваются по отдельному акту",
+    "Штраф не установлен"
+  ],
+  "must_not_infer": [
+    "Отказ происходит немедленно",
+    "Фактические услуги бесплатны",
+    "Назвать сумму оплаты"
+  ],
+  "uncertainties": [
+    "Нет даты подписания",
+    "Нет стоимости и данных акта"
+  ],
+  "critical_failures": [
+    "Придумать штраф",
+    "Пропустить обязанность оплатить оказанные услуги"
+  ],
+  "expected_dates": [
+    {
+      "date": null,
+      "label": "не менее 14 календарных дней до отказа",
+      "index": 0,
+      "kind": "relative",
+      "computable": false,
+      "anchor": {
+        "field": "termination_effective_at",
+        "date": null
+      },
+      "offset": {
+        "min": -14,
+        "max": -14,
+        "unit": "calendar_day"
+      }
+    }
+  ],
+  "expected_amounts": [],
+  "expected_obligations": [
+    "Письменно предупредить другую сторону минимум за 14 календарных дней",
+    "Оплатить фактически оказанные услуги по акту"
+  ],
+  "document_date": null
+}

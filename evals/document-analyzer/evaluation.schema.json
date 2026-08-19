@@ -1,0 +1,29 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DocumentAnalyzerSemanticJudgments",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["case_id", "must_find", "must_not_infer_violations", "uncertainties", "critical_failure_violations"],
+  "properties": {
+    "case_id": { "type": "string", "minLength": 1 },
+    "must_find": { "$ref": "#/$defs/verdicts" },
+    "must_not_infer_violations": { "$ref": "#/$defs/verdicts" },
+    "uncertainties": { "$ref": "#/$defs/verdicts" },
+    "critical_failure_violations": { "$ref": "#/$defs/verdicts" }
+  },
+  "$defs": {
+    "verdicts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["criterion_index", "verdict", "evidence"],
+        "properties": {
+          "criterion_index": { "type": "integer", "minimum": 0 },
+          "verdict": { "type": "boolean" },
+          "evidence": { "type": "string" }
+        }
+      }
+    }
+  }
+}

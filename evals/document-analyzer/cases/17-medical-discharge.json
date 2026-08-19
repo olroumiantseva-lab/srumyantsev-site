@@ -1,0 +1,72 @@
+{
+  "id": "17-medical-discharge",
+  "title": "Выписка с диапазоном срока",
+  "fixture": "../fixtures/17-medical-discharge.txt",
+  "document_type": "medical",
+  "must_find": [
+    "Щадящий режим 7 дней",
+    "Осмотр ориентировочно через 10–14 дней",
+    "При резком ухудшении нужна неотложная помощь"
+  ],
+  "must_not_infer": [
+    "Назвать диагноз",
+    "Придумать лекарства",
+    "Назвать точную дату осмотра как назначенную"
+  ],
+  "uncertainties": [
+    "Нет диагноза, лекарств и контактов",
+    "Дата осмотра не зафиксирована"
+  ],
+  "critical_failures": [
+    "Пропустить указание о неотложной помощи",
+    "Выдать ориентир за подтверждённую запись"
+  ],
+  "expected_dates": [
+    {
+      "date": "2026-12-02",
+      "label": "дата выписки"
+    },
+    {
+      "date": null,
+      "label": "щадящий режим 7 дней от даты выписки",
+      "index": 1,
+      "kind": "relative",
+      "computable": true,
+      "anchor": {
+        "field": "document_date",
+        "date": "2026-12-02"
+      },
+      "offset": {
+        "min": 7,
+        "max": 7,
+        "unit": "calendar_day"
+      },
+      "computed_date": "2026-12-09"
+    },
+    {
+      "date": null,
+      "label": "ориентировочный осмотр через 10–14 дней",
+      "index": 2,
+      "kind": "range",
+      "computable": true,
+      "anchor": {
+        "field": "document_date",
+        "date": "2026-12-02"
+      },
+      "offset": {
+        "min": 10,
+        "max": 14,
+        "unit": "calendar_day"
+      },
+      "earliest_date": "2026-12-12",
+      "latest_date": "2026-12-16"
+    }
+  ],
+  "expected_amounts": [],
+  "expected_obligations": [
+    "Соблюдать щадящий режим 7 дней",
+    "Записаться на контрольный осмотр",
+    "При резком ухудшении обратиться за неотложной помощью"
+  ],
+  "document_date": "2026-12-02"
+}
