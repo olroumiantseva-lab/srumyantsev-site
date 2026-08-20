@@ -30,14 +30,14 @@ try {
   const errors = [];
   desktop.on("pageerror", (error) => errors.push(error.message));
   await desktop.goto("http://127.0.0.1:4173/guides/", { waitUntil: "networkidle" });
-  if (await desktop.locator("[data-guide-card]").count() !== 33) throw new Error("Desktop does not contain 33 cards");
+  if (await desktop.locator("[data-guide-card]").count() !== 45) throw new Error("Desktop does not contain 45 cards");
   const levelZeroColor = await desktop.locator(".level-picker article").first().evaluate((card) => getComputedStyle(card).backgroundColor);
   if (levelZeroColor !== "rgb(245, 189, 76)") throw new Error(`Level 0 card is not yellow: ${levelZeroColor}`);
   await desktop.getByRole("button", { name: "Для жизни", exact: true }).click();
   const lifeVisible = await desktop.locator("[data-guide-card]:visible").count();
   if (lifeVisible !== expectedLifeGuides) throw new Error(`Expected ${expectedLifeGuides} life guides, found ${lifeVisible}`);
   await desktop.getByRole("button", { name: "Все", exact: true }).click();
-  if (await desktop.locator("[data-guide-card]:visible").count() !== 33) throw new Error("All filter did not restore 33 cards");
+  if (await desktop.locator("[data-guide-card]:visible").count() !== 45) throw new Error("All filter did not restore 45 cards");
   if (errors.length) throw new Error(`Browser errors: ${errors.join("; ")}`);
   await desktop.screenshot({ path: path.join(artifacts, "guides-desktop.png"), fullPage: true });
 
@@ -51,7 +51,7 @@ try {
   const noJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const noJsPage = await noJs.newPage();
   await noJsPage.goto("http://127.0.0.1:4173/guides/", { waitUntil: "load" });
-  if (await noJsPage.locator("[data-guide-card]:visible").count() !== 33) throw new Error("Cards are not all available without JavaScript");
+  if (await noJsPage.locator("[data-guide-card]:visible").count() !== 45) throw new Error("Cards are not all available without JavaScript");
   await noJs.close();
   console.log(`PASS: filters, no JS, desktop/mobile; screenshots in ${artifacts}`);
 } finally {
