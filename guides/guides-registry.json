@@ -616,5 +616,22 @@
       "/ii-v-poezdke-perevod-menyu-marshrut/",
       "/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/"
     ]
+  },
+  {
+    "originalOrder": 43,
+    "duration": "24 минуты",
+    "title": "Как разобрать договор перед покупкой или услугой с помощью нейросети",
+    "description": "Как собрать платежи, сроки, обязанности, штрафы и условия расторжения и проверить выводы по оригиналу договора.",
+    "url": "/kak-razobrat-dogovor-s-pomoshchyu-neyroseti/",
+    "cta": "Проверить договор",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Документы и информация",
+    "RELATED_GUIDES": [
+      "/dlinnye-dokumenty-dogovor-otchet-kniga/",
+      "/chto-nelzya-zagruzhat-v-neyroset/",
+      "/kak-proverit-ne-sovrala-li-neyroset/",
+      "/lichnaya-sistema-doveriya-neyroseti/"
+    ]
   }
 ]
