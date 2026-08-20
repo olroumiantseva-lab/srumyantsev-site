@@ -633,5 +633,22 @@
       "/kak-proverit-ne-sovrala-li-neyroset/",
       "/lichnaya-sistema-doveriya-neyroseti/"
     ]
+  },
+  {
+    "originalOrder": 44,
+    "duration": "25 минут",
+    "title": "Как передать нейросети свой стиль и получать тексты, похожие на ваши",
+    "description": "Как выбрать свои тексты, собрать голосовой профиль, задать запреты и улучшать стиль точечными правками.",
+    "url": "/kak-nauchit-neyroset-pisat-v-svoem-stile/",
+    "cta": "Собрать голосовой профиль",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Система работы",
+    "RELATED_GUIDES": [
+      "/svoya-biblioteka-promptov/",
+      "/kak-sdelat-neyroset-lichnym-pomoshchnikom/",
+      "/pochemu-neyroset-daet-skuchnye-otvety/",
+      "/kak-ne-poteryat-perepiski-s-ii/"
+    ]
   }
 ]

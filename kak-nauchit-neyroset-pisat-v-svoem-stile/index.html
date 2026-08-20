@@ -1,0 +1,132 @@
+<!doctype html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Как передать нейросети свой стиль и получать тексты, похожие на ваши</title>
+<meta name="description" content="Как научить нейросеть писать в вашем стиле: выбрать примеры, собрать голосовой профиль, задать запреты и улучшать результат точечными правками.">
+<meta name="author" content="Сергей Румянцев"><meta name="robots" content="index, follow"><link rel="canonical" href="https://srumyantsev.ru/kak-nauchit-neyroset-pisat-v-svoem-stile/">
+<meta property="og:type" content="article"><meta property="og:locale" content="ru_RU"><meta property="og:site_name" content="Дед попался в нейросети"><meta property="og:title" content="Как передать нейросети свой стиль и получать тексты, похожие на ваши"><meta property="og:description" content="Примеры, правила, запреты и обратная связь: собираем голосовой профиль, который помогает нейросети писать ближе к вам."><meta property="og:url" content="https://srumyantsev.ru/kak-nauchit-neyroset-pisat-v-svoem-stile/"><meta property="og:image" content="https://srumyantsev.ru/kak-nauchit-neyroset-pisat-v-svoem-stile/primery-v-golosovoy-profil.webp">
+<meta property="article:published_time" content="2026-08-20"><meta property="article:modified_time" content="2026-08-20"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="Как научить нейросеть писать в вашем стиле"><meta name="twitter:description" content="Как собрать голосовой профиль по своим текстам и постепенно улучшать его по реальным правкам."><meta name="twitter:image" content="https://srumyantsev.ru/kak-nauchit-neyroset-pisat-v-svoem-stile/primery-v-golosovoy-profil.webp">
+<link rel="manifest" href="/manifest.webmanifest"><link rel="icon" href="/favicon.svg"><link rel="stylesheet" href="/_next/static/chunks/0d8c_t_b4bnrr.css"><link rel="stylesheet" href="/back-to-top.css"><link rel="stylesheet" href="/series-meta.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Как передать нейросети свой стиль и получать тексты, похожие на ваши","description":"Как научить нейросеть писать в вашем стиле: выбрать примеры, собрать голосовой профиль, задать запреты и улучшать результат точечными правками.","datePublished":"2026-08-20","dateModified":"2026-08-20","inLanguage":"ru-RU","author":{"@type":"Person","name":"Сергей Румянцев","url":"https://srumyantsev.ru/#author"},"mainEntityOfPage":"https://srumyantsev.ru/kak-nauchit-neyroset-pisat-v-svoem-stile/","image":"https://srumyantsev.ru/kak-nauchit-neyroset-pisat-v-svoem-stile/primery-v-golosovoy-profil.webp"}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Главная","item":"https://srumyantsev.ru/"},{"@type":"ListItem","position":2,"name":"Гайды","item":"https://srumyantsev.ru/guides/"},{"@type":"ListItem","position":3,"name":"Как научить нейросеть писать в своём стиле","item":"https://srumyantsev.ru/kak-nauchit-neyroset-pisat-v-svoem-stile/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Сколько своих текстов нужно показать нейросети?","acceptedAnswer":{"@type":"Answer","text":"Начните с пяти-шести разных хороших примеров: коротких и длинных, спокойных и более эмоциональных. Затем проверьте, какие признаки нейросеть посчитала постоянными."}},{"@type":"Question","name":"Где хранить голосовой профиль?","acceptedAnswer":{"@type":"Answer","text":"Храните его отдельно от конкретного чата: в заметке, документе или своей библиотеке промптов. Так профиль не потеряется при смене сервиса."}},{"@type":"Question","name":"Нужно ли сохранять в профиле старые ошибки?","acceptedAnswer":{"@type":"Answer","text":"Нет. Голос можно сохранить, а опечатки, лишние повторы и тяжёлые конструкции исправлять. Стиль не обязан повторять каждую слабость старых текстов."}}]}</script></head>
+<body><main><header class="site-header shell"><a class="brand" href="/" aria-label="На главную"><img class="brand-logo" src="/logo.png" alt="" aria-hidden="true"><span>ДЕД ПОПАЛСЯ<br>В НЕЙРОСЕТИ</span></a><nav aria-label="Главное меню"><a href="/guides/">Гайды</a><a href="/praktikumy/">Практикумы</a><a href="/#author">Об авторе</a></nav><div class="header-socials"><a class="button button-small" href="https://t.me/ded_popalsya" rel="noopener">Telegram ↗</a><a class="button button-small button-max" href="https://max.ru/join/D6iTBUffMFp98WsB6lSodWuDk2LDzMGjj2C2SwNKSqg" rel="noopener">MAX ↗</a></div></header>
+<article class="seo-page shell"><nav class="breadcrumbs" aria-label="Хлебные крошки"><a href="/">Главная</a><span>→</span><a href="/guides/">Гайды</a></nav><header><p class="section-kicker">Гайд · 25 минут</p><h1>Как передать нейросети свой стиль и получать тексты, похожие на ваши</h1><p class="seo-lead">Собираем голосовой профиль из настоящих текстов, правил, запретов и ваших правок.</p><div class="guide-meta-panel"><p class="guide-level-card"><em><span class="guide-level-index">Ступень 2 · Система работы</span><span class="guide-level-note">Как выбрать свои тексты, собрать голосовой профиль, задать запреты и улучшать стиль точечными правками.</span></em></p><div class="guide-date-card"><small>Опубликовано: 20 августа 2026</small></div></div></header><div class="seo-body">
+<section><p>Есть простой способ понять, что текст писала нейросеть. Он вроде нормальный: грамотный, ровный и логичный. И совершенно не похож на человека, от имени которого написан.</p><p>Особенно это заметно, если вы давно пишете сами. У вас есть свои слова, длина фраз, привычные переходы, шутки и вещи, которые вы никогда не скажете.</p><p>Нейросеть по умолчанию всё это сглаживает. Получается текст «как надо», только не ваш.</p><p>Стиль можно передать. Не одной командой «пиши как я», а через примеры, правила и несколько нормальных правок.</p></section>
+<section class="numbered-section" id="korotko"><p class="section-label">Коротко</p><h2>Четыре части голосового профиля</h2><ol><li>несколько ваших настоящих текстов;</li><li>список характерных приёмов;</li><li>список того, чего вы не любите;</li><li>обратная связь на первые попытки.</li></ol><p>Лучше всего работает не команда «Пиши как я», а просьба сначала найти, что в вашем стиле повторяется.</p></section>
+<section class="numbered-section" id="primery"><p class="section-label">01 · Примеры</p><h2>Один текст ещё не показывает стиль</h2><p>Если дать нейросети один пост, она может скопировать случайную особенность. В том тексте было много коротких фраз, и помощник решит, что вы всегда так пишете. В другом вы были раздражены, и этот тон переедет в спокойную тему.</p><p>Начните с пяти-шести разных материалов: объясняющего, бытового, серьёзного, короткого и длинного. Так проще отделить устойчивые привычки от настроения одного дня.</p></section>
+<section class="numbered-section" id="razbor"><p class="section-label">02 · Разбор</p><h2>Не просите сразу писать новый текст</h2><p>Сначала пусть нейросеть разберёт примеры.</p><div class="prompt-box"><h3 class="prompt-title">Анализ своего стиля</h3><blockquote>Ниже несколько моих текстов.
+
+Пока ничего нового не пиши.
+
+Проанализируй мой стиль и выдели:
+1. Как я обычно начинаю.
+2. Какой длины у меня предложения.
+3. Какие слова и обороты повторяются.
+4. Как я объясняю сложное.
+5. Как использую примеры.
+6. Есть ли юмор и какой.
+7. Насколько формальный тон.
+8. Какие переходы между блоками характерны.
+9. Как я заканчиваю текст.
+10. Что в моём стиле точно не стоит заменять на «более красивое».
+
+Отдельно выпиши 10 правил, по которым можно узнать мой текст.</blockquote><button class="copy-prompt" type="button" aria-live="polite"><span aria-hidden="true">⧉</span>Скопировать</button></div><figure class="article-image"><img src="/kak-nauchit-neyroset-pisat-v-svoem-stile/primery-v-golosovoy-profil.webp" alt="Несколько авторских текстов превращаются в короткий голосовой профиль" width="1536" height="1024" fetchpriority="high"><figcaption>Несколько разных примеров помогают увидеть повторяющиеся признаки, а не случайный тон одного текста</figcaption></figure></section>
+<section class="numbered-section" id="uznat-sebya"><p class="section-label">03 · Проверка</p><h2>Узнаёте ли вы себя в описании?</h2><p>Нейросеть может написать: «Ваш стиль энергичный, экспертный и вдохновляющий». Звучит красиво, но ни о чём.</p><p>Нужны наблюдаемые признаки: часто начинаете с бытовой ситуации, не используете длинные вступления, объясняете через конкретный пример, после сложного блока даёте короткий вывод, не любите пафосные обещания.</p><p>Если описание не похоже на вас, поправьте его до первой попытки написать новый текст.</p></section>
+<section class="numbered-section" id="tak-ne-pishu"><p class="section-label">04 · Запреты</p><h2>Составьте список «Так не пишу»</h2><p>Иногда запреты работают даже лучше пожеланий.</p><blockquote>Я не пишу:
+- «в современном мире»;
+- «уникальная возможность»;
+- «давайте разберёмся»;
+- «важно понимать» в каждом втором абзаце;
+- длинные вступления;
+- рекламные обещания;
+- фразы без конкретного смысла.</blockquote><p>Можете попросить нейросеть найти выражения, которые часто встречаются в типичных AI-текстах, но почти отсутствуют у вас. Потом оставьте только те запреты, с которыми согласны.</p></section>
+<section class="numbered-section" id="profil"><p class="section-label">05 · Памятка</p><h2>Сделайте короткий голосовой профиль</h2><p>Не надо хранить двадцать страниц анализа. Достаточно одной рабочей памятки.</p><blockquote>Пишу от первого лица.
+Тон спокойный, разговорный.
+Не изображаю учителя.
+Сначала бытовая проблема, потом решение.
+Короткие абзацы.
+Конкретные примеры важнее общих объяснений.
+Юмор лёгкий, без шуток ради шуток.
+Не обещаю чудес.
+Если есть риск, называю его прямо.
+Финал короткий и практический.</blockquote><p>Такой профиль удобно сохранить в <a href="/svoya-biblioteka-promptov/">своей библиотеке промптов</a> и использовать в повторяющихся задачах.</p></section>
+<section class="numbered-section" id="horosho-ploho"><p class="section-label">06 · Граница</p><h2>Покажите хороший и плохой пример</h2><p>Дайте два фрагмента: «Вот это похоже на меня» и «А вот так я бы не написал». Затем попросите сравнить их по тону, ритму, словам и структуре.</p><p>Так нейросеть лучше понимает не только цель, но и границу, за которую уходить не нужно.</p><figure class="article-image"><img src="/kak-nauchit-neyroset-pisat-v-svoem-stile/chuzhoy-i-svoy-tekst.webp" alt="Сравнение безличного текста нейросети и текста в узнаваемом авторском стиле" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Хороший и плохой пример объясняют границу точнее, чем пожелание «сделай живее»</figcaption></figure></section>
+<section class="numbered-section" id="konkretno"><p class="section-label">07 · Правки</p><h2>Не просите «сделать живее»</h2><p>Для одной нейросети «живее» означает добавить вопросы, для другой вставить шутку, для третьей раздробить всё на обрывки.</p><p>Давайте конкретную правку: убрать канцелярит, сократить абзацы, заменить общие слова бытовыми примерами, не использовать риторические вопросы чаще одного раза на раздел, убрать рекламные фразы.</p><p>Так стиль настраивается гораздо точнее.</p></section>
+<section class="numbered-section" id="smysl-potom-stil"><p class="section-label">08 · Два этапа</p><h2>Сначала содержание, потом стиль</h2><p>Если задача сложная, я бы разделял работу. Сначала: «Собери факты и структуру». Потом: «Теперь перепиши по моему стилевому профилю».</p><p>Когда одновременно просишь изучить тему, проверить факты, придумать структуру и попасть в ваш голос, помощнику легче потерять одно из требований. Сначала смысл, потом форма.</p></section>
+<section class="numbered-section" id="perepisat"><p class="section-label">09 · Готовый запрос</p><h2>Универсальный запрос для переписывания</h2><div class="prompt-box"><h3 class="prompt-title">Переписать в моём стиле</h3><blockquote>Ниже черновик текста.
+
+Перепиши его в моём стиле.
+
+Мой стиль:
+[короткий профиль].
+
+Обязательно сохрани:
+- факты;
+- смысл;
+- структуру аргументов.
+
+Измени:
+- ритм;
+- лексику;
+- длину предложений;
+- переходы;
+- примеры.
+
+Не добавляй:
+- пафос;
+- рекламные обещания;
+- клише;
+- новые факты.
+
+После текста перечисли 5 мест, где ты сознательно изменил формулировку, чтобы приблизить её к моему стилю.</blockquote><button class="copy-prompt" type="button" aria-live="polite"><span aria-hidden="true">⧉</span>Скопировать</button></div><p>Последняя часть показывает, где именно нейросеть применила профиль, и помогает быстрее проверить результат.</p></section>
+<section class="numbered-section" id="tochno"><p class="section-label">10 · Первая версия</p><h2>Имитируйте, потом редактируйте точечно</h2><p>Первая версия редко попадает идеально. Вместо «Не нравится, перепиши» покажите три места, которые звучат не как вы. Попросите объяснить расхождение и переписать только их.</p><p>Так помощник получает понятную обратную связь, а удачные части текста не исчезают при полном переписывании.</p></section>
+<section class="numbered-section" id="oshibki"><p class="section-label">11 · Повторы</p><h2>Собирайте повторяющиеся ошибки</h2><p>Через несколько текстов станет видно, где нейросеть постоянно промахивается: слишком часто пишет «важно», делает вывод в каждом абзаце, любит пары «не X, а Y», добавляет ненужную эмоциональность или заканчивает слишком красиво.</p><p>Добавляйте такие наблюдения в профиль как конкретные правила. Это уже не разовая правка, а настройка системы.</p></section>
+<section class="numbered-section" id="struktura"><p class="section-label">12 · Каркас</p><h2>Стиль состоит не только из слов</h2><p>Есть ещё структура. Один автор строит текст как «ситуация → объяснение → пример → вывод», другой как «тезис → аргументы → список → рекомендация», третий как «история → наблюдение → практический совет».</p><p>Запишите в профиль привычный каркас. Например: «Обычно я начинаю с реальной ситуации, потом объясняю принцип и только после этого даю инструкцию».</p></section>
+<section class="numbered-section" id="abzacy"><p class="section-label">13 · Ритм</p><h2>Важна даже длина абзацев</h2><p>Если вы пишете по два-три предложения в абзаце, а нейросеть выдаёт огромные полотна, текст уже выглядит чужим.</p><p>Можно зафиксировать: «Абзацы по 1–3 предложения». Или наоборот: «Не дробить каждую фразу на отдельный абзац». Ритм читается не хуже слов.</p></section>
+<section class="numbered-section" id="ne-kopirovat-oshibki"><p class="section-label">14 · Чистка</p><h2>Не копируйте старые ошибки</h2><p>«Писать как я» не означает сохранять лишние повторы, устаревшие формулировки, опечатки и тяжёлые абзацы.</p><p>Скажите прямо: «Сохраняй мой голос, но исправляй очевидные повторы, ошибки и тяжёлые конструкции».</p><p>Стиль не музей.</p></section>
+<section class="numbered-section" id="rezhimy"><p class="section-label">15 · Форматы</p><h2>Отделяйте голос от темы</h2><p>Один человек по-разному пишет пост, инструкцию, письмо, серьёзный разбор и поздравление. Поэтому полезно иметь базовый голос и несколько режимов.</p><ul><li><strong>Базовый стиль:</strong> разговорный, конкретный, без пафоса.</li><li><strong>Для гайда:</strong> больше структуры, шагов и примеров.</li><li><strong>Для поста:</strong> короче, сильнее начало, меньше деталей.</li><li><strong>Для письма:</strong> спокойнее, без шуток, максимально ясно.</li></ul><p>Так голос остаётся вашим, а форма подстраивается под задачу. Эти режимы можно включить в правила <a href="/kak-sdelat-neyroset-lichnym-pomoshchnikom/">личного помощника</a>.</p></section>
+<section class="numbered-section" id="primer-post"><p class="section-label">16 · Пример</p><h2>Один смысл, разный голос</h2><p>Исходный текст:</p><blockquote>Искусственный интеллект может существенно упростить процесс выбора товаров благодаря способности анализировать большое количество параметров.</blockquote><p>После стилевой правки:</p><blockquote>Два часа сравнивать характеристики пылесосов — сомнительное удовольствие. Нейросеть может быстро показать, чем две модели отличаются именно для вашей квартиры.</blockquote><p>Смысл почти тот же, но голос уже другой.</p></section>
+<section class="numbered-section" id="udalit"><p class="section-label">17 · Лишнее</p><h2>Найдите фразы, которые можно удалить</h2><p>Фраза «В современном мире технологии стремительно развиваются, открывая перед нами новые возможности» исчезает почти без потери смысла.</p><div class="prompt-box"><h3 class="prompt-title">Убрать синтетический налёт</h3><blockquote>Найди в тексте фразы, после удаления которых смысл не изменится. Удали их.</blockquote><button class="copy-prompt" type="button" aria-live="polite"><span aria-hidden="true">⧉</span>Скопировать</button></div><p>Ещё больше способов дожать слабый ответ собрано в гайде <a href="/pochemu-neyroset-daet-skuchnye-otvety/">«Почему ответы стали скучными»</a>.</p></section>
+<section class="numbered-section" id="krasivo"><p class="section-label">18 · Фильтр</p><h2>Просите найти «слишком красивое»</h2><div class="prompt-box"><h3 class="prompt-title">Упростить гладкие фразы</h3><blockquote>Найди предложения, которые звучат слишком гладко, пафосно или как рекламный текст. Перепиши их проще.</blockquote><button class="copy-prompt" type="button" aria-live="polite"><span aria-hidden="true">⧉</span>Скопировать</button></div><p>Нейросети нравятся законченные красивые формулировки. В живом тексте важнее точность и узнаваемость, чем идеальная гладкость.</p></section>
+<section class="numbered-section" id="lichnoe"><p class="section-label">19 · Граница</p><h2>Не надо копировать всю личность</h2><p>Помощнику нужны особенности текста. Не обязательно давать ему всю личную переписку, дневники, приватные сообщения и чужие разговоры.</p><p>Для стилевого профиля хватает опубликованных или специально выбранных материалов. Чем чище примеры, тем проще понять, что вы действительно хотите сохранить.</p></section>
+<section class="numbered-section" id="proverit"><p class="section-label">20 · Самопроверка</p><h2>Пять вопросов к готовому тексту</h2><ol><li>Я бы действительно употребил эти слова?</li><li>Есть ли фразы, которые звучат слишком правильно?</li><li>Много ли общих слов без примеров?</li><li>Не стал ли тон более важным и экспертным, чем у меня обычно?</li><li>Если убрать имя автора, знакомый человек узнал бы меня по тексту?</li></ol><p>Последний вопрос особенно полезный.</p></section>
+<section class="numbered-section" id="samoproverka"><p class="section-label">21 · Финальный проход</p><h2>Попросите нейросеть проверить себя</h2><div class="prompt-box"><h3 class="prompt-title">Найти расхождения с голосом</h3><blockquote>Сравни этот текст с моим стилевым профилем.
+
+Не переписывай пока.
+
+Найди 7 мест, которые меньше всего похожи на мой голос.
+
+Для каждого объясни:
+- что не так;
+- какое правило нарушено;
+- как можно исправить.
+
+Не хвали текст. Ищи только расхождения.</blockquote><button class="copy-prompt" type="button" aria-live="polite"><span aria-hidden="true">⧉</span>Скопировать</button></div><p>Это хороший финальный фильтр перед ручной проверкой.</p></section>
+<section class="numbered-section" id="obnovlenie"><p class="section-label">22 · Обновление</p><h2>Профиль меняется вместе с вами</h2><p>Со временем вы можете писать короче, отказаться от старых оборотов или чаще объяснять через примеры. Поэтому периодически давайте нейросети свежие тексты и спрашивайте, что изменилось по сравнению со старым профилем.</p><p>Не обязательно переписывать всё. Иногда достаточно добавить два новых правила и удалить одно старое.</p><figure class="article-image"><img src="/kak-nauchit-neyroset-pisat-v-svoem-stile/cikl-pravok-profilya.webp" alt="Цикл улучшения текста: черновик, правка, новое правило и обновлённый результат" width="1536" height="1024" loading="lazy" decoding="async"><figcaption>Повторяющаяся правка превращается в новое правило, а профиль постепенно становится точнее</figcaption></figure></section>
+<section class="numbered-section" id="shablon"><p class="section-label">23 · Шаблон</p><h2>Универсальный профиль для начала</h2><div class="prompt-box"><h3 class="prompt-title">Постоянный стилевой профиль</h3><blockquote>Это мой постоянный стилевой профиль.
+
+Пиши:
+- простым разговорным языком;
+- конкретно;
+- короткими абзацами;
+- с бытовыми примерами;
+- без демонстрации «экспертности ради экспертности».
+
+Обычно структура:
+реальная ситуация → объяснение → практическое действие → короткий вывод.
+
+Избегай:
+- канцелярита;
+- пафоса;
+- рекламных обещаний;
+- очевидных вступлений;
+- слов вроде «уникальный», «революционный», «в современном мире»;
+- длинных обобщений без примера.
+
+Не придумывай личные истории от моего имени.
+
+Если исходный текст звучит неестественно, упрощай.
+
+Если не уверен, соответствует ли фраза моему голосу, выбирай более простой вариант.</blockquote><button class="copy-prompt" type="button" aria-live="polite"><span aria-hidden="true">⧉</span>Скопировать</button></div><p>Это отправная точка. Дальше профиль нужно допилить под свои настоящие тексты.</p></section>
+<section class="numbered-section" id="itog"><p class="section-label">Итог</p><h2>Стиль настраивается по работе</h2><blockquote><strong>Примеры → разбор → правила → запреты → первая версия → правки → обновлённый профиль.</strong></blockquote><p>Чем дольше вы используете такой профиль, тем реже приходится писать: «Нет, я так никогда не говорю».</p><p>Тогда нейросеть помогает писать быстрее, а не просто быстрее производит чужой текст. Сам профиль и лучшие версии текстов храните отдельно от чата по системе из гайда <a href="/kak-ne-poteryat-perepiski-s-ii/">«Как не потерять переписки с ИИ»</a>.</p></section>
+<section class="numbered-section faq-section" id="faq"><p class="section-label">FAQ</p><h2>Частые вопросы</h2><details><summary>Сколько своих текстов нужно показать нейросети?</summary><p>Начните с пяти-шести разных хороших примеров: коротких и длинных, спокойных и более эмоциональных. Затем проверьте, какие признаки нейросеть посчитала постоянными.</p></details><details><summary>Где хранить голосовой профиль?</summary><p>Храните его отдельно от конкретного чата: в заметке, документе или своей библиотеке промптов. Так профиль не потеряется при смене сервиса.</p></details><details><summary>Нужно ли сохранять в профиле старые ошибки?</summary><p>Нет. Голос можно сохранить, а опечатки, лишние повторы и тяжёлые конструкции исправлять. Стиль не обязан повторять каждую слабость старых текстов.</p></details></section>
+</div><section class="guide-followup" aria-labelledby="guide-followup-title"><p class="section-kicker">Продолжить</p><h2 id="guide-followup-title">Что дальше</h2><div class="guide-followup-links"><a href="/svoya-biblioteka-promptov/"><strong>Своя библиотека промптов</strong><span>Как собрать проверенные шаблоны под свои повторяющиеся задачи и хранить их в одной заметке.</span></a><a href="/kak-sdelat-neyroset-lichnym-pomoshchnikom/"><strong>Как сделать нейросеть личным помощником</strong><span>Как собрать постоянные правила, формат и примеры под одну повторяющуюся задачу и улучшать помощника после ошибок.</span></a><a href="/pochemu-neyroset-daet-skuchnye-otvety/"><strong>Почему ответы стали скучными</strong><span>Шесть приёмов для тех, кто пользуется нейросетью пару месяцев и чувствует, что топчется на месте.</span></a><a href="/kak-ne-poteryat-perepiski-s-ii/"><strong>Как не потерять переписки с ИИ</strong><span>Наводим порядок в чатах, сохраняем удачные промпты и разбираемся с памятью ассистента.</span></a></div></section><aside class="seo-cta"><h2>Соберите профиль по своим текстам</h2><p>Начните с нескольких примеров и десяти наблюдаемых правил. В Telegram и MAX показываю, как настраивать ИИ без технического тумана.</p><div class="next-actions"><a class="button" href="https://t.me/ded_popalsya" rel="noopener">Перейти в Telegram ↗</a><a class="button button-max" href="https://max.ru/join/D6iTBUffMFp98WsB6lSodWuDk2LDzMGjj2C2SwNKSqg" rel="noopener">MAX ↗</a></div></aside></article></main><script src="/copy-prompts.js" defer></script><button class="back-to-top" type="button" aria-label="Вернуться наверх" title="Наверх" tabindex="-1"><span class="back-to-top-arrow" aria-hidden="true">↑</span><span class="back-to-top-label"> Наверх</span></button><script src="/back-to-top.js" defer></script><!-- Yandex.Metrika counter 111385663 --><script type="text/javascript">(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};m[i].l=1*new Date();for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})(window,document,'script','https://mc.yandex.ru/metrika/tag.js?id=111385663','ym');ym(111385663,'init',{ssr:true,webvisor:true,clickmap:true,ecommerce:'dataLayer',referrer:document.referrer,url:location.href,accurateTrackBounce:true,trackLinks:true});</script><noscript><div><img src="https://mc.yandex.ru/watch/111385663" style="position:absolute;left:-9999px" alt=""></div></noscript><!-- /Yandex.Metrika counter --></body></html>
