@@ -7,6 +7,11 @@ const root = path.resolve(import.meta.dirname, "..");
 const registry = JSON.parse(fs.readFileSync(path.join(root, "guides", "guides-registry.json"), "utf8"));
 const expectedCategories = new Set(["Начать с ИИ", "Для жизни", "Документы и информация", "Работа и деньги", "Учёба и семья", "Проверка и безопасность", "Система работы"]);
 const expectedCounts = { "0-route": 6, "0-practical": 6, "1-route": 7, "1-practical": 13, "2-route": 6, "2-practical": 7 };
+const practicumUrls = [
+  "/neyroseti-posle-45-pervyy-rezultat/",
+  "/razbor-neponyatnogo-dokumenta/",
+  "/telefon-vmesto-klaviatury/",
+];
 
 assert.equal(registry.length, 45, "Registry must contain 45 guides");
 assert.equal(new Set(registry.map((guide) => guide.url)).size, 45, "Guide URLs must be unique");
@@ -37,6 +42,30 @@ assert.ok(catalogCards.every((match) => !/\shidden(?:[=\s>])/.test(match[0])), "
 const catalogUrls = catalogCards.map((match) => match[0].match(/<h3><a href="([^"]+)"/)?.[1]);
 assert.equal(new Set(catalogUrls).size, 45, "Catalog HTML URLs must be unique");
 assert.deepEqual(new Set(catalogUrls), new Set(registry.map((guide) => guide.url)), "Catalog and registry URLs differ");
+for (const url of practicumUrls) {
+  assert.ok(catalog.includes(`<a href="${url}">`), `Catalog is missing practicum link: ${url}`);
+}
+
+const phoneGuide = fs.readFileSync(path.join(root, "kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey", "index.html"), "utf8");
+const phonePracticum = fs.readFileSync(path.join(root, "telefon-vmesto-klaviatury", "index.html"), "utf8");
+assert.ok(phoneGuide.includes('<a href="/telefon-vmesto-klaviatury/">пройти практикум и попробовать три задания на телефоне</a>'), "Phone guide must link to practicum");
+assert.ok(phonePracticum.includes('<a href="/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/">полный гайд по голосу, фотографиям и работе с ИИ с телефона</a>'), "Phone practicum must link to guide");
+assert.match(phonePracticum, /<title>Практикум: как пользоваться ИИ с телефона без клавиатуры<\/title>/, "Practicum title must target the practical intent");
+assert.match(phonePracticum, /<h1>Телефон вместо клавиатуры: 3 задания за 20 минут<\/h1>/, "Practicum H1 must target the practical intent");
+assert.equal((phoneGuide.match(/<h1\b/g) ?? []).length, 1, "Phone guide must have one H1");
+assert.equal((phonePracticum.match(/<h1\b/g) ?? []).length, 1, "Phone practicum must have one H1");
+
+const conversationGuide = fs.readFileSync(path.join(root, "kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety", "index.html"), "utf8");
+assert.ok(conversationGuide.includes('<meta name="robots" content="index, follow"'), "Conversation guide must have explicit index, follow robots meta");
+
+const legacyRedirect = fs.readFileSync(path.join(root, "kakuyu-neyroset-vybrat-v-2026-godu", "index.html"), "utf8");
+assert.ok(legacyRedirect.includes('http-equiv="refresh"'), "Legacy URL must be a redirect page");
+assert.ok(legacyRedirect.includes('location.replace'), "Legacy redirect must replace browser history");
+assert.ok(!legacyRedirect.includes('<article class="seo-page shell">'), "Legacy URL must not serve the duplicate article");
+
+const notFound = fs.readFileSync(path.join(root, "404.html"), "utf8");
+assert.ok(notFound.includes('name="robots" content="noindex, nofollow"'), "404 page must remain noindex, nofollow");
+assert.ok(!fs.existsSync(path.join(root, "404", "index.html")), "/404/ must fall through to the GitHub Pages 404 response");
 
 function gitHead(file) {
   try {

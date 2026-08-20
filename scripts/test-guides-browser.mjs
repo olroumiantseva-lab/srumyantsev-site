@@ -7,6 +7,11 @@ const root = path.resolve(import.meta.dirname, "..");
 const artifacts = path.join(root, "artifacts");
 const registry = JSON.parse(fs.readFileSync(path.join(root, "guides", "guides-registry.json"), "utf8"));
 const expectedLifeGuides = registry.filter((guide) => guide.CATEGORY === "Для жизни").length;
+const practicumUrls = [
+  "/neyroseti-posle-45-pervyy-rezultat/",
+  "/razbor-neponyatnogo-dokumenta/",
+  "/telefon-vmesto-klaviatury/",
+];
 fs.mkdirSync(artifacts, { recursive: true });
 
 const types = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".json": "application/json; charset=utf-8", ".png": "image/png", ".webp": "image/webp" };
@@ -39,6 +44,9 @@ try {
   await desktop.getByRole("button", { name: "Все", exact: true }).click();
   if (await desktop.locator("[data-guide-card]:visible").count() !== 45) throw new Error("All filter did not restore 45 cards");
   if (errors.length) throw new Error(`Browser errors: ${errors.join("; ")}`);
+  for (const url of practicumUrls) {
+    if (await desktop.locator(`a[href="${url}"]`).count() === 0) throw new Error(`Desktop is missing practicum link ${url}`);
+  }
   await desktop.screenshot({ path: path.join(artifacts, "guides-desktop.png"), fullPage: true });
 
   const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
@@ -52,6 +60,9 @@ try {
   const noJsPage = await noJs.newPage();
   await noJsPage.goto("http://127.0.0.1:4173/guides/", { waitUntil: "load" });
   if (await noJsPage.locator("[data-guide-card]:visible").count() !== 45) throw new Error("Cards are not all available without JavaScript");
+  for (const url of practicumUrls) {
+    if (await noJsPage.locator(`a[href="${url}"]:visible`).count() === 0) throw new Error(`No-JS catalog is missing practicum link ${url}`);
+  }
   await noJs.close();
   console.log(`PASS: filters, no JS, desktop/mobile; screenshots in ${artifacts}`);
 } finally {

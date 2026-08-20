@@ -36,6 +36,32 @@ const categories = [
   "Начать с ИИ",
 ];
 
+const practicums = [
+  { url: "/neyroseti-posle-45-pervyy-rezultat/", title: "Нейросети после 45: первый результат", description: "Первый практикум: выбрать сервис и решить рабочую задачу за 20 минут." },
+  { url: "/razbor-neponyatnogo-dokumenta/", title: "Разбор непонятного документа", description: "Практикум по разбору письма, договора или квитанции без лишних догадок." },
+  { url: "/telefon-vmesto-klaviatury/", title: "Телефон вместо клавиатуры", description: "Настроить телефон и выполнить три задания голосом и камерой за 20 минут." },
+];
+
+const indexationLinks = {
+  "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/": "Если на фото инструкция или длинное видео, пригодятся гайды о том, <a href=\"/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/\">как разобраться в инструкции к технике</a> и <a href=\"/kratkiy-pereskaz-video-youtube-neyrosetyu/\">как получить краткий пересказ видео</a>.",
+  "/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/": "Тот же принцип вопросов работает, когда ИИ становится <a href=\"/ii-kak-domashniy-repetitor-dlya-rebenka/\">домашним репетитором для ребёнка</a> или помогает <a href=\"/kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/\">вспомнить забытое слово</a>.",
+  "/kak-proverit-ne-sovrala-li-neyroset/": "Особенно внимательно проверяйте ответы, если просите ИИ <a href=\"/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/\">объяснить инструкцию к технике</a> или используете его как <a href=\"/ii-kak-domashniy-repetitor-dlya-rebenka/\">домашнего репетитора</a>.",
+  "/rezyume-i-sobesedovanie-posle-45/": "Если новая должность требует переобучения, начните с гайда о том, <a href=\"/kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/\">как проверить новую профессию после 45</a>. Опыт, который хочется передавать другим, можно проверить через <a href=\"/nastavnichestvo-uchit-drugih-podrabotka/\">первые шаги в наставничестве</a>.",
+  "/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/": "Эту схему можно применить к трём конкретным задачам: <a href=\"/kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/\">проверить новую профессию</a>, превратить ИИ в <a href=\"/ii-kak-domashniy-repetitor-dlya-rebenka/\">домашнего репетитора</a> или <a href=\"/kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/\">вспомнить слово через уточняющие вопросы</a>.",
+  "/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/": "Для разовой покупки используйте схему, которая помогает <a href=\"/kak-sravnit-tovary-s-pomoshchyu-neyroseti/\">сравнить товары без маркетингового шума</a>. Если расходы связаны с ремонтом, отдельно разберите <a href=\"/smeta-na-remont-s-pomoshchyu-ii/\">смету с помощью ИИ</a>.",
+  "/tablitsy-i-tsifry-neyroset/": "Таблица особенно полезна, когда нужно <a href=\"/kak-sravnit-tovary-s-pomoshchyu-neyroseti/\">сравнить несколько товаров по своим критериям</a> или <a href=\"/smeta-na-remont-s-pomoshchyu-ii/\">проверить смету на ремонт</a>.",
+  "/ii-v-poezdke-perevod-menyu-marshrut/": "Перед поездкой ИИ может помочь <a href=\"/kak-sravnit-tovary-s-pomoshchyu-neyroseti/\">сравнить нужные в дороге товары</a> и <a href=\"/kak-podobrat-podarok-s-pomoshchyu-neyroseti/\">подобрать подарок под конкретного человека</a>.",
+  "/kak-sdelat-neyroset-lichnym-pomoshchnikom/": "Если задача длится не один день, переходите от отдельного помощника к схеме, которая помогает <a href=\"/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/\">вести большой проект с ИИ</a>.",
+  "/svoya-biblioteka-promptov/": "Для задачи на несколько недель одних шаблонов мало: нужен журнал решений и следующий шаг. Это разобрано в гайде о том, <a href=\"/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/\">как вести большой проект с помощью нейросети</a>.",
+  "/neyroset-v-rabote-gde-ekonomit-chasy/": "Следующий уровень — применить ИИ к большой задаче: <a href=\"/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/\">вести проект от идеи до результата</a>, <a href=\"/kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/\">проверить новую профессию после 45</a>, <a href=\"/svoe-delo-posle-50-s-neyrosetyami/\">проверить идею своего дела</a> или <a href=\"/nastavnichestvo-uchit-drugih-podrabotka/\">упаковать опыт в наставничество</a>.",
+  "/rasshifrovka-audio-neyrosetyu/": "Если запись опубликована на YouTube, отдельная схема поможет <a href=\"/kratkiy-pereskaz-video-youtube-neyrosetyu/\">получить краткий пересказ видео и проверить главное</a>.",
+  "/dlinnye-dokumenty-dogovor-otchet-kniga/": "Тот же подход к большим объёмам пригодится, чтобы <a href=\"/kratkiy-pereskaz-video-youtube-neyrosetyu/\">разобрать длинное видео</a>, <a href=\"/semeynyy-arhiv-vospominaniya-neyroset/\">собрать семейный архив воспоминаний</a> или <a href=\"/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/\">найти нужный шаг в инструкции к технике</a>.",
+  "/svoy-arhiv-dokumentov-neyroset/": "Отдельный вид личного архива — семейные истории. Начать его поможет гайд о том, <a href=\"/semeynyy-arhiv-vospominaniya-neyroset/\">как записать и собрать воспоминания близких</a>.",
+  "/kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/": "По похожей схеме можно <a href=\"/kak-podobrat-podarok-s-pomoshchyu-neyroseti/\">подобрать небанальный подарок</a> или <a href=\"/kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/\">найти слово, которое вертится на языке</a>.",
+  "/svoe-delo-posle-50-s-neyrosetyami/": "Если ваше дело строится на накопленном опыте, проверьте более узкий первый шаг — <a href=\"/nastavnichestvo-uchit-drugih-podrabotka/\">начать наставничество и найти первых учеников</a>.",
+  "/nastavnichestvo-uchit-drugih-podrabotka/": "Наставничество может остаться подработкой или стать основой проекта. Второй вариант разобран в гайде <a href=\"/svoe-delo-posle-50-s-neyrosetyami/\">«Своё дело после 50 с нейросетями»</a>.",
+};
+
 const escapeHtml = (value) => String(value)
   .replaceAll("&", "&amp;")
   .replaceAll("<", "&lt;")
@@ -123,6 +149,10 @@ function buildCatalog() {
   <p class="filter-status" aria-live="polite">Показаны все ${registry.length} гайдов</p>
 </section>
 <div class="guide-catalog" data-guide-catalog>${[0, 1, 2].map(levelSection).join("\n")}</div>
+<section class="practicum-catalog shell" aria-labelledby="practicum-catalog-title">
+  <header><p class="section-kicker">Сделать самому</p><h2 id="practicum-catalog-title">Практикумы</h2><p>Короткие занятия с конкретным результатом. Выберите задачу и пройдите её по шагам.</p></header>
+  <div class="practicum-grid">${practicums.map((item) => `<article><h3><a href="${item.url}">${item.title}</a></h3><p>${item.description}</p><a class="text-link" href="${item.url}">Открыть практикум →</a></article>`).join("\n")}</div>
+</section>
 ${suffix}`;
   fs.writeFileSync(catalogPath, (head + body).replace(/[ \t]+$/gm, ""));
 }
@@ -149,6 +179,11 @@ function followup(guide) {
   return `<section class="guide-followup guide-followup-note" aria-labelledby="guide-followup-title"><p class="section-kicker">Продолжение</p><h2 id="guide-followup-title">Другие гайды ступени 2 будут добавляться</h2><p>А пока можно выбрать следующую задачу в общем каталоге.</p><a class="text-link" href="/guides/#tasks">Найти другой гайд →</a></section>`;
 }
 
+function indexationLinkBlock(guide) {
+  const content = indexationLinks[guide.url];
+  return content ? `<section class="template-section indexation-links"><h2>Связанная задача</h2><p>${content}</p></section>` : "";
+}
+
 function updateGuidePages() {
   for (const guide of registry) {
     const pagePath = path.join(root, guide.url.slice(1), "index.html");
@@ -167,10 +202,11 @@ function updateGuidePages() {
     }
 
     html = html.replace(/<section class="guide-followup(?: [^"]*)?"[\s\S]*?<\/section>/g, "");
+    html = html.replace(/<section class="template-section indexation-links">[\s\S]*?<\/section>/g, "");
     if (html.includes('<aside class="seo-cta">')) {
-      html = html.replace('<aside class="seo-cta">', `${followup(guide)}<aside class="seo-cta">`);
+      html = html.replace('<aside class="seo-cta">', `${indexationLinkBlock(guide)}${followup(guide)}<aside class="seo-cta">`);
     } else if (html.includes('<footer class="article-footer">')) {
-      html = html.replace('<footer class="article-footer">', `${followup(guide)}<footer class="article-footer">`);
+      html = html.replace('<footer class="article-footer">', `${indexationLinkBlock(guide)}${followup(guide)}<footer class="article-footer">`);
     } else {
       throw new Error(`Follow-up insertion point not found in ${guide.url}`);
     }
