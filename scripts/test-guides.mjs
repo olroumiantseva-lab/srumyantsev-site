@@ -6,7 +6,7 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 const registry = JSON.parse(fs.readFileSync(path.join(root, "guides", "guides-registry.json"), "utf8"));
 const expectedCategories = new Set(["Начать с ИИ", "Для жизни", "Документы и информация", "Работа и деньги", "Учёба и семья", "Проверка и безопасность", "Система работы"]);
-const expectedCounts = { "0-route": 6, "0-practical": 6, "1-route": 7, "1-practical": 13, "2-route": 6, "2-practical": 6 };
+const expectedCounts = { "0-route": 6, "0-practical": 6, "1-route": 7, "1-practical": 13, "2-route": 6, "2-practical": 7 };
 
 assert.ok(registry.length > 0, "Registry must not be empty");
 assert.equal(new Set(registry.map((guide) => guide.url)).size, registry.length, "Guide URLs must be unique");
@@ -72,4 +72,4 @@ for (const documentPath of documents) {
   }
 }
 
-console.log(`PASS: ${registry.length} guides, routes 6/7/6, practical 6/13/6, canonicals and links intact`);
+console.log(`PASS: ${registry.length} guides, routes 6/7/6, practical 6/13/7, canonicals and links intact`);

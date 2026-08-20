@@ -650,5 +650,22 @@
       "/pochemu-neyroset-daet-skuchnye-otvety/",
       "/kak-ne-poteryat-perepiski-s-ii/"
     ]
+  },
+  {
+    "originalOrder": 45,
+    "duration": "27 минут",
+    "title": "Как подготовиться к новой профессии после 45 с помощью нейросети",
+    "description": "Как разобрать прежний опыт, сравнить навыки с вакансиями, составить план обучения и проверить новую роль на практике.",
+    "url": "/kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/",
+    "cta": "Проверить новую профессию",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Работа и деньги",
+    "RELATED_GUIDES": [
+      "/rezyume-i-sobesedovanie-posle-45/",
+      "/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/",
+      "/neyroset-v-rabote-gde-ekonomit-chasy/",
+      "/svoya-biblioteka-promptov/"
+    ]
   }
 ]
