@@ -685,5 +685,24 @@
       "/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/",
       "/kak-sdelat-neyroset-lichnym-pomoshchnikom/"
     ]
+  },
+  {
+    "originalOrder": 47,
+    "duration": "19 минут",
+    "title": "Как превратить свой опыт в консультацию, курс или небольшой продукт с помощью нейросети",
+    "description": "Как разобрать профессиональный опыт, выбрать повторяющуюся проблему и собрать консультацию, чек-лист или небольшой продукт.",
+    "url": "/kak-prevratit-opyt-v-konsultatsiyu-ili-produkt-s-pomoshchyu-ii/",
+    "cta": "Упаковать свой опыт",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Работа и деньги",
+    "META_LABEL": "Ступень 2 · Работа и деньги",
+    "RELATED_GUIDES": [
+      "/rezyume-i-sobesedovanie-posle-45/",
+      "/kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/",
+      "/neyroset-v-rabote-gde-ekonomit-chasy/",
+      "/nastavnichestvo-uchit-drugih-podrabotka/",
+      "/svoe-delo-posle-50-s-neyrosetyami/"
+    ]
   }
 ]
