@@ -6,6 +6,7 @@ import { chromium } from "playwright";
 const root = path.resolve(import.meta.dirname, "..");
 const artifacts = path.join(root, "artifacts");
 const registry = JSON.parse(fs.readFileSync(path.join(root, "guides", "guides-registry.json"), "utf8"));
+const expectedGuideCount = registry.length;
 const expectedLifeGuides = registry.filter((guide) => guide.CATEGORY === "Для жизни").length;
 const practicumUrls = [
   "/neyroseti-posle-45-pervyy-rezultat/",
@@ -35,14 +36,14 @@ try {
   const errors = [];
   desktop.on("pageerror", (error) => errors.push(error.message));
   await desktop.goto("http://127.0.0.1:4173/guides/", { waitUntil: "networkidle" });
-  if (await desktop.locator("[data-guide-card]").count() !== 45) throw new Error("Desktop does not contain 45 cards");
+  if (await desktop.locator("[data-guide-card]").count() !== expectedGuideCount) throw new Error(`Desktop does not contain ${expectedGuideCount} cards`);
   const levelZeroColor = await desktop.locator(".level-picker article").first().evaluate((card) => getComputedStyle(card).backgroundColor);
   if (levelZeroColor !== "rgb(245, 189, 76)") throw new Error(`Level 0 card is not yellow: ${levelZeroColor}`);
   await desktop.getByRole("button", { name: "Для жизни", exact: true }).click();
   const lifeVisible = await desktop.locator("[data-guide-card]:visible").count();
   if (lifeVisible !== expectedLifeGuides) throw new Error(`Expected ${expectedLifeGuides} life guides, found ${lifeVisible}`);
   await desktop.getByRole("button", { name: "Все", exact: true }).click();
-  if (await desktop.locator("[data-guide-card]:visible").count() !== 45) throw new Error("All filter did not restore 45 cards");
+  if (await desktop.locator("[data-guide-card]:visible").count() !== expectedGuideCount) throw new Error(`All filter did not restore ${expectedGuideCount} cards`);
   if (errors.length) throw new Error(`Browser errors: ${errors.join("; ")}`);
   for (const url of practicumUrls) {
     if (await desktop.locator(`a[href="${url}"]`).count() === 0) throw new Error(`Desktop is missing practicum link ${url}`);
@@ -59,7 +60,7 @@ try {
   const noJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
   const noJsPage = await noJs.newPage();
   await noJsPage.goto("http://127.0.0.1:4173/guides/", { waitUntil: "load" });
-  if (await noJsPage.locator("[data-guide-card]:visible").count() !== 45) throw new Error("Cards are not all available without JavaScript");
+  if (await noJsPage.locator("[data-guide-card]:visible").count() !== expectedGuideCount) throw new Error(`All ${expectedGuideCount} cards are not available without JavaScript`);
   for (const url of practicumUrls) {
     if (await noJsPage.locator(`a[href="${url}"]:visible`).count() === 0) throw new Error(`No-JS catalog is missing practicum link ${url}`);
   }
