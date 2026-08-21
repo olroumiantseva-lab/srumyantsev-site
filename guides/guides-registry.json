@@ -704,5 +704,22 @@
       "/nastavnichestvo-uchit-drugih-podrabotka/",
       "/svoe-delo-posle-50-s-neyrosetyami/"
     ]
+  },
+  {
+    "originalOrder": 48,
+    "duration": "16 минут",
+    "title": "Как найти причину бытовой неисправности по фотографии и описанию с помощью ИИ",
+    "description": "Как описать симптом, показать фотографию, получить несколько гипотез и отделить безопасную проверку от ремонта.",
+    "url": "/kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/",
+    "cta": "Разобраться с неисправностью",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "META_LABEL": "Ступень 1 · Для жизни",
+    "RELATED_GUIDES": [
+      "/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/",
+      "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
+      "/kak-proverit-ne-sovrala-li-neyroset/"
+    ]
   }
 ]

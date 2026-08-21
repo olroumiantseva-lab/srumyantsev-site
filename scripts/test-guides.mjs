@@ -6,15 +6,15 @@ import path from "node:path";
 const root = path.resolve(import.meta.dirname, "..");
 const registry = JSON.parse(fs.readFileSync(path.join(root, "guides", "guides-registry.json"), "utf8"));
 const expectedCategories = new Set(["Начать с ИИ", "Для жизни", "Документы и информация", "Работа и деньги", "Учёба и семья", "Проверка и безопасность", "Система работы"]);
-const expectedCounts = { "0-route": 6, "0-practical": 6, "1-route": 7, "1-practical": 13, "2-route": 6, "2-practical": 9 };
+const expectedCounts = { "0-route": 6, "0-practical": 6, "1-route": 7, "1-practical": 14, "2-route": 6, "2-practical": 9 };
 const practicumUrls = [
   "/neyroseti-posle-45-pervyy-rezultat/",
   "/razbor-neponyatnogo-dokumenta/",
   "/telefon-vmesto-klaviatury/",
 ];
 
-assert.equal(registry.length, 47, "Registry must contain 47 guides");
-assert.equal(new Set(registry.map((guide) => guide.url)).size, 47, "Guide URLs must be unique");
+assert.equal(registry.length, 48, "Registry must contain 48 guides");
+assert.equal(new Set(registry.map((guide) => guide.url)).size, 48, "Guide URLs must be unique");
 
 for (const guide of registry) {
   assert.ok([0, 1, 2].includes(guide.LEVEL), `Invalid level: ${guide.url}`);
@@ -37,10 +37,10 @@ assert.deepEqual([chats.LEVEL, chats.TYPE, chats.ROUTE_POSITION], [1, "route", 7
 
 const catalog = fs.readFileSync(path.join(root, "guides", "index.html"), "utf8");
 const catalogCards = [...catalog.matchAll(/<article class="guide-card" data-guide-card[\s\S]*?<\/article>/g)];
-assert.equal(catalogCards.length, 47, "Catalog HTML must contain 47 cards without JavaScript");
+assert.equal(catalogCards.length, 48, "Catalog HTML must contain 48 cards without JavaScript");
 assert.ok(catalogCards.every((match) => !/\shidden(?:[=\s>])/.test(match[0])), "A catalog card is hidden in source HTML");
 const catalogUrls = catalogCards.map((match) => match[0].match(/<h3><a href="([^"]+)"/)?.[1]);
-assert.equal(new Set(catalogUrls).size, 47, "Catalog HTML URLs must be unique");
+assert.equal(new Set(catalogUrls).size, 48, "Catalog HTML URLs must be unique");
 assert.deepEqual(new Set(catalogUrls), new Set(registry.map((guide) => guide.url)), "Catalog and registry URLs differ");
 for (const url of practicumUrls) {
   assert.ok(catalog.includes(`<a href="${url}">`), `Catalog is missing practicum link: ${url}`);
@@ -101,4 +101,4 @@ for (const documentPath of documents) {
   }
 }
 
-console.log("PASS: 47 guides, routes 6/7/6, practical 6/13/9, canonicals and links intact");
+console.log("PASS: 48 guides, routes 6/7/6, practical 6/14/9, canonicals and links intact");
