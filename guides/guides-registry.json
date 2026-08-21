@@ -667,5 +667,23 @@
       "/neyroset-v-rabote-gde-ekonomit-chasy/",
       "/svoya-biblioteka-promptov/"
     ]
+  },
+  {
+    "originalOrder": 46,
+    "duration": "18 минут",
+    "title": "Как провести ревизию своей жизни с помощью ИИ: дела, документы, деньги, планы",
+    "description": "Как выгрузить всё из головы, разобрать документы, регулярные расходы и личные планы и выбрать семь ближайших действий.",
+    "url": "/kak-provesti-reviziyu-zhizni-s-pomoshchyu-ii/",
+    "cta": "Навести порядок в делах",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Система работы",
+    "META_LABEL": "Ступень 2 · Система работы",
+    "RELATED_GUIDES": [
+      "/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/",
+      "/svoy-arhiv-dokumentov-neyroset/",
+      "/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/",
+      "/kak-sdelat-neyroset-lichnym-pomoshchnikom/"
+    ]
   }
 ]
