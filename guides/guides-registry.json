@@ -739,5 +739,23 @@
       "/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/",
       "/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/"
     ]
+  },
+  {
+    "originalOrder": 50,
+    "duration": "18 минут",
+    "title": "Как сравнить тарифы с помощью нейросети и не переплачивать",
+    "description": "Как привести условия связи, интернета, страховок и подписок к одной таблице, посчитать полную стоимость и проверить ограничения.",
+    "url": "/kak-sravnit-tarify-s-pomoshchyu-neyroseti/",
+    "cta": "Сравнить тарифы",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Работа и деньги",
+    "META_LABEL": "Ступень 1 · Работа и деньги",
+    "RELATED_GUIDES": [
+      "/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/",
+      "/tablitsy-i-tsifry-neyroset/",
+      "/kak-sravnit-tovary-s-pomoshchyu-neyroseti/",
+      "/kak-proverit-ne-sovrala-li-neyroset/"
+    ]
   }
 ]
