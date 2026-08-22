@@ -721,5 +721,23 @@
       "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
       "/kak-proverit-ne-sovrala-li-neyroset/"
     ]
+  },
+  {
+    "originalOrder": 49,
+    "duration": "20 минут",
+    "title": "Как спланировать ремонт комнаты с помощью нейросети",
+    "description": "Как собрать размеры и ограничения, проверить планировку, список работ, материалы и бюджет до начала ремонта.",
+    "url": "/kak-splanirovat-remont-komnaty-s-pomoshchyu-neyroseti/",
+    "cta": "Спланировать комнату",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "META_LABEL": "Ступень 1 · Для жизни",
+    "RELATED_GUIDES": [
+      "/smeta-na-remont-s-pomoshchyu-ii/",
+      "/kak-sravnit-tovary-s-pomoshchyu-neyroseti/",
+      "/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/",
+      "/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/"
+    ]
   }
 ]
