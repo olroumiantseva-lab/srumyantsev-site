@@ -757,5 +757,22 @@
       "/kak-sravnit-tovary-s-pomoshchyu-neyroseti/",
       "/kak-proverit-ne-sovrala-li-neyroset/"
     ]
+  },
+  {
+    "originalOrder": 51,
+    "duration": "20 минут",
+    "title": "Как составить маршрут поездки на несколько дней с помощью ИИ",
+    "description": "Как собрать места по районам, учесть темп, проверить билеты и транспорт и подготовить запасной план.",
+    "url": "/kak-sostavit-marshrut-poezdki-s-pomoshchyu-ii/",
+    "cta": "Составить маршрут",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "META_LABEL": "Ступень 1 · Для жизни",
+    "RELATED_GUIDES": [
+      "/ii-v-poezdke-perevod-menyu-marshrut/",
+      "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
+      "/kak-proverit-ne-sovrala-li-neyroset/"
+    ]
   }
 ]

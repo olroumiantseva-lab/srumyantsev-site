@@ -5,6 +5,15 @@ const root = path.resolve(import.meta.dirname, "..");
 const registryPath = path.join(root, "guides", "guides-registry.json");
 const registry = JSON.parse(fs.readFileSync(registryPath, "utf8"));
 
+function guideCountLabel(count) {
+  const lastTwo = count % 100;
+  const last = count % 10;
+  if (lastTwo >= 11 && lastTwo <= 14) return "гайдов";
+  if (last === 1) return "гайд";
+  if (last >= 2 && last <= 4) return "гайда";
+  return "гайдов";
+}
+
 const levels = {
   0: {
     title: "Ступень 0 — Начать",
@@ -149,7 +158,7 @@ function buildCatalog() {
     <button type="button" data-filter="all" aria-pressed="true">Все</button>
     ${categories.map((category) => `<button type="button" data-filter="${escapeHtml(category)}" aria-pressed="false">${category}</button>`).join("\n    ")}
   </div>
-  <p class="filter-status" aria-live="polite">Показаны все ${registry.length} гайдов</p>
+  <p class="filter-status" aria-live="polite">Показаны все ${registry.length} ${guideCountLabel(registry.length)}</p>
 </section>
 <div class="guide-catalog" data-guide-catalog>${[0, 1, 2].map(levelSection).join("\n")}</div>
 <section class="practicum-catalog shell" aria-labelledby="practicum-catalog-title">
