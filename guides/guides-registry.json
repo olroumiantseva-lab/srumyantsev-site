@@ -810,5 +810,22 @@
       "/kak-ne-poteryat-perepiski-s-ii/",
       "/kak-provesti-reviziyu-zhizni-s-pomoshchyu-ii/"
     ]
+  },
+  {
+    "originalOrder": 54,
+    "duration": "16 минут",
+    "title": "Как помочь родителям разобраться со смартфоном с помощью нейросети",
+    "description": "Как объяснить значок, настройку или сообщение на смартфоне по снимку экрана и пройти один безопасный шаг за раз.",
+    "url": "/kak-pomoch-roditelyam-razobratsya-so-smartfonom-s-pomoshchyu-neyroseti/",
+    "cta": "Разобраться со смартфоном",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Учёба и семья",
+    "META_LABEL": "Ступень 1 · Учёба и семья",
+    "RELATED_GUIDES": [
+      "/kak-nauchit-blizkogo-polzovatsya-neyrosetyu/",
+      "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
+      "/moshenniki-dipfeyki-golos-rodstvennika/"
+    ]
   }
 ]
