@@ -844,5 +844,22 @@
       "/ii-v-poezdke-perevod-menyu-marshrut/",
       "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/"
     ]
+  },
+  {
+    "originalOrder": 56,
+    "duration": "17 минут",
+    "title": "Как помочь ребёнку подготовиться к контрольной, не делая за него домашнюю работу",
+    "description": "Как найти пробелы, составить план повторения, получить тренировочные вопросы и проверить понимание без готовых ответов.",
+    "url": "/kak-pomoch-rebenku-podgotovitsya-k-kontrolnoy-s-pomoshchyu-ii/",
+    "cta": "Подготовиться к контрольной",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Учёба и семья",
+    "META_LABEL": "Ступень 1 · Учёба и семья",
+    "RELATED_GUIDES": [
+      "/ii-kak-domashniy-repetitor-dlya-rebenka/",
+      "/kak-proverit-ne-sovrala-li-neyroset/",
+      "/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/"
+    ]
   }
 ]
