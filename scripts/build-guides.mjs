@@ -176,19 +176,32 @@ function metaLabel(guide) {
 }
 
 function followup(guide) {
-  if (guide.TYPE === "practical") {
-    const links = guide.RELATED_GUIDES.map((url) => registry.find((item) => item.url === url));
-    return `<section class="guide-followup" aria-labelledby="guide-followup-title"><p class="section-kicker">Продолжить</p><h2 id="guide-followup-title">Что дальше</h2><div class="guide-followup-links">${links.map((item) => `<a href="${item.url}"><strong>${item.title}</strong><span>${item.description}</span></a>`).join("")}</div></section>`;
+  const preferredUrls = [
+    ...(guide.RELATED_GUIDES ?? []),
+    guide.NEXT_GUIDE,
+    guide.PREVIOUS_GUIDE,
+  ].filter(Boolean);
+  const candidates = registry
+    .filter((item) => item.url !== guide.url)
+    .sort((a, b) => {
+      const score = (item) =>
+        (preferredUrls.includes(item.url) ? 100 : 0)
+        + (item.CATEGORY === guide.CATEGORY ? 30 : 0)
+        + (item.LEVEL === guide.LEVEL ? 10 : 0)
+        + (item.TYPE === guide.TYPE ? 3 : 0);
+      return score(b) - score(a) || a.originalOrder - b.originalOrder;
+    });
+  const links = [];
+  for (const url of preferredUrls) {
+    if (links.length === 3) break;
+    const item = registry.find((candidate) => candidate.url === url);
+    if (item && !links.includes(item)) links.push(item);
   }
-  if (guide.NEXT_GUIDE) {
-    const next = registry.find((item) => item.url === guide.NEXT_GUIDE);
-    return `<section class="guide-followup" aria-labelledby="guide-followup-title"><p class="section-kicker">Маршрут</p><h2 id="guide-followup-title">Следующий шаг</h2><a class="guide-next-step" href="${next.url}"><span>Шаг ${next.ROUTE_POSITION} из ${routeFor(guide.LEVEL).length}</span><strong>${next.title}</strong></a></section>`;
+  for (const item of candidates) {
+    if (links.length === 3) break;
+    if (!links.includes(item)) links.push(item);
   }
-  if (guide.LEVEL < 2) {
-    const next = routeFor(guide.LEVEL + 1)[0];
-    return `<section class="guide-followup" aria-labelledby="guide-followup-title"><p class="section-kicker">Маршрут</p><h2 id="guide-followup-title">Перейти к следующей ступени</h2><a class="guide-next-step" href="${next.url}"><span>Ступень ${next.LEVEL} · Шаг 1 из ${routeFor(next.LEVEL).length}</span><strong>${next.title}</strong></a></section>`;
-  }
-  return `<section class="guide-followup guide-followup-note" aria-labelledby="guide-followup-title"><p class="section-kicker">Продолжение</p><h2 id="guide-followup-title">Другие гайды ступени 2 будут добавляться</h2><p>А пока можно выбрать следующую задачу в общем каталоге.</p><a class="text-link" href="/guides/#tasks">Найти другой гайд →</a></section>`;
+  return `<section class="guide-followup" aria-labelledby="guide-followup-title"><p class="section-kicker">По теме</p><h2 id="guide-followup-title">Читайте дальше</h2><div class="guide-followup-links">${links.map((item) => `<a href="${item.url}"><strong>${item.title}</strong><span>${item.description}</span></a>`).join("")}</div></section>`;
 }
 
 function indexationLinkBlock(guide) {
