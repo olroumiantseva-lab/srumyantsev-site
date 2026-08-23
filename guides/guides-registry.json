@@ -792,5 +792,23 @@
       "/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/",
       "/lichnaya-sistema-doveriya-neyroseti/"
     ]
+  },
+  {
+    "originalOrder": 53,
+    "duration": "18 минут",
+    "title": "Семейная цифровая инструкция: документы, контакты и важная информация для близких",
+    "description": "Как оставить семье понятный план действий, контакты и ориентиры, не записывая пароли и секретные данные на открытом листе.",
+    "url": "/semeynaya-tsifrovaya-instruktsiya-s-pomoshchyu-neyroseti/",
+    "cta": "Составить инструкцию",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Учёба и семья",
+    "META_LABEL": "Ступень 2 · Учёба и семья",
+    "RELATED_GUIDES": [
+      "/svoy-arhiv-dokumentov-neyroset/",
+      "/chto-nelzya-zagruzhat-v-neyroset/",
+      "/kak-ne-poteryat-perepiski-s-ii/",
+      "/kak-provesti-reviziyu-zhizni-s-pomoshchyu-ii/"
+    ]
   }
 ]
