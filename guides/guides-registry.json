@@ -827,5 +827,22 @@
       "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
       "/moshenniki-dipfeyki-golos-rodstvennika/"
     ]
+  },
+  {
+    "originalOrder": 55,
+    "duration": "18 минут",
+    "title": "Как спланировать семейную поездку с детьми, родителями и пожилыми родственниками с помощью ИИ",
+    "description": "Как согласовать разный темп, отдых, транспорт и интересы нескольких поколений и подготовить запасной план.",
+    "url": "/kak-splanirovat-semeynuyu-poezdku-s-pomoshchyu-ii/",
+    "cta": "Спланировать поездку",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "META_LABEL": "Ступень 1 · Для жизни",
+    "RELATED_GUIDES": [
+      "/kak-sostavit-marshrut-poezdki-s-pomoshchyu-ii/",
+      "/ii-v-poezdke-perevod-menyu-marshrut/",
+      "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/"
+    ]
   }
 ]
