@@ -774,5 +774,23 @@
       "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/",
       "/kak-proverit-ne-sovrala-li-neyroset/"
     ]
+  },
+  {
+    "originalOrder": 52,
+    "duration": "19 минут",
+    "title": "Как собрать личную базу знаний с помощью нейросети",
+    "description": "Как превратить заметки, статьи, источники и собственные решения в систему, где нужное действительно находится.",
+    "url": "/kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/",
+    "cta": "Собрать базу знаний",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Система работы",
+    "META_LABEL": "Ступень 2 · Система работы",
+    "RELATED_GUIDES": [
+      "/svoy-arhiv-dokumentov-neyroset/",
+      "/svoya-biblioteka-promptov/",
+      "/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/",
+      "/lichnaya-sistema-doveriya-neyroseti/"
+    ]
   }
 ]
