@@ -83,6 +83,12 @@ for (const guide of registry) {
   assert.equal(canonical(current), `https://srumyantsev.ru${guide.url}`, `Wrong canonical: ${guide.url}`);
   if (before) assert.equal(canonical(current), canonical(before), `Canonical changed: ${guide.url}`);
   assert.ok(current.includes("guide-followup"), `Missing follow-up block: ${guide.url}`);
+  assert.ok(current.includes('<h2 id="guide-followup-title">Читайте дальше</h2>'), `Wrong follow-up heading: ${guide.url}`);
+  const followup = current.match(/<section class="guide-followup"[\s\S]*?<\/section>/)?.[0] ?? "";
+  const followupUrls = [...followup.matchAll(/<a href="([^"]+)"/g)].map((match) => match[1]);
+  assert.ok(followupUrls.length >= 3 && followupUrls.length <= 4, `Follow-up must contain 3–4 links: ${guide.url}`);
+  assert.equal(new Set(followupUrls).size, followupUrls.length, `Duplicate follow-up link: ${guide.url}`);
+  assert.ok(!followupUrls.includes(guide.url), `Follow-up links to itself: ${guide.url}`);
   for (const script of current.matchAll(/<script type="application\/ld\+json">([\s\S]*?)<\/script>/g)) JSON.parse(script[1]);
 }
 
