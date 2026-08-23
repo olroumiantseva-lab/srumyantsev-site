@@ -861,5 +861,23 @@
       "/kak-proverit-ne-sovrala-li-neyroset/",
       "/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/"
     ]
+  },
+  {
+    "originalOrder": 57,
+    "duration": "20 минут",
+    "title": "Как проверить совет нейросети перед покупкой, лечением или финансовым решением",
+    "description": "Пошаговый протокол перед важным действием: уровни риска, первоисточники, красные флаги и вопросы ответственному человеку.",
+    "url": "/kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/",
+    "cta": "Проверить совет",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Проверка и безопасность",
+    "META_LABEL": "Ступень 2 · Проверка и безопасность",
+    "RELATED_GUIDES": [
+      "/lichnaya-sistema-doveriya-neyroseti/",
+      "/kak-proverit-ne-sovrala-li-neyroset/",
+      "/chto-nelzya-doveryat-neyroseti/",
+      "/chto-nelzya-zagruzhat-v-neyroset/"
+    ]
   }
 ]
