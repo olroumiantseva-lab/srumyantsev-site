@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "document-analyzer-result.schema.json",
+  "title": "DocumentAnalyzerResult",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["document_type", "summary", "what_it_means", "required_actions", "deadlines", "amounts", "important_points", "potential_risks", "next_steps", "questions_for_specialist", "uncertainties"],
+  "properties": {
+    "document_type": { "type": "string", "enum": ["letter", "contract", "bill", "notice", "instruction", "medical", "bank", "other", "unknown"] },
+    "summary": { "type": "string", "minLength": 1 },
+    "what_it_means": { "type": "string", "minLength": 1 },
+    "required_actions": { "$ref": "#/$defs/stringList" },
+    "deadlines": { "$ref": "#/$defs/dateList" },
+    "amounts": { "$ref": "#/$defs/amountList" },
+    "important_points": { "$ref": "#/$defs/stringList" },
+    "potential_risks": { "$ref": "#/$defs/stringList" },
+    "next_steps": { "$ref": "#/$defs/stringList" },
+    "questions_for_specialist": { "$ref": "#/$defs/stringList" },
+    "uncertainties": { "$ref": "#/$defs/stringList" }
+  },
+  "$defs": {
+    "stringList": { "type": "array", "items": { "type": "string", "minLength": 1 } },
+    "dateList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["date", "label", "is_exact"],
+        "properties": {
+          "date": { "type": ["string", "null"], "pattern": "^\\d{4}-\\d{2}-\\d{2}$" },
+          "label": { "type": "string", "minLength": 1 },
+          "is_exact": { "type": "boolean" }
+        }
+      }
+    },
+    "amountList": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["value", "currency", "label", "is_exact"],
+        "properties": {
+          "value": { "type": ["number", "null"] },
+          "currency": { "type": ["string", "null"], "enum": ["RUB", "USD", "EUR", null] },
+          "label": { "type": "string", "minLength": 1 },
+          "is_exact": { "type": "boolean" }
+        }
+      }
+    }
+  }
+}

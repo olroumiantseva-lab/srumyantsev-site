@@ -10,6 +10,11 @@ function allowedOrigins(): Set<string> {
   return new Set([...localOrigins, ...configured]);
 }
 
+export function originAllowed(request: Request): boolean {
+  const origin = request.headers.get("origin");
+  return !origin || allowedOrigins().has(origin);
+}
+
 export function corsHeaders(request: Request): Record<string, string> {
   const origin = request.headers.get("origin") ?? "";
   const allowed = allowedOrigins();

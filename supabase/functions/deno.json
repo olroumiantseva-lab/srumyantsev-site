@@ -4,6 +4,7 @@
   },
   "nodeModulesDir": "auto",
   "imports": {
-    "@supabase/supabase-js": "npm:@supabase/supabase-js@2"
+    "@supabase/supabase-js": "npm:@supabase/supabase-js@2",
+    "ajv/2020": "npm:ajv@8.17.1/dist/2020.js"
   }
 }
