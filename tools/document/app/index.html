@@ -56,7 +56,27 @@
         </section>
 
         <section class="panel">
-          <label class="field-label" for="source-text">3. Вставьте текст документа</label>
+          <h2 class="field-label" id="document-source-title">3. Добавьте документ</h2>
+          <p class="muted">Выберите PDF, DOCX или TXT либо вставьте текст ниже. Файл обрабатывается только в этом браузере и никуда не загружается.</p>
+          <div class="file-drop" id="file-drop" tabindex="0" role="button" aria-labelledby="file-drop-title" aria-describedby="file-drop-help">
+            <strong id="file-drop-title">Перетащите файл сюда</strong>
+            <span id="file-drop-help">или выберите файл до 8 МБ</span>
+            <label class="button button-secondary" for="document-file">Выбрать файл</label>
+            <input class="visually-hidden" id="document-file" type="file" accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain">
+          </div>
+          <p class="file-status" id="file-status" aria-live="polite"></p>
+          <p class="error" id="file-error" aria-live="assertive"></p>
+          <section class="file-summary hidden" id="file-summary" aria-labelledby="file-summary-title">
+            <div class="file-summary-head">
+              <div><h3 id="file-summary-title">Файл готов</h3><p class="file-name" id="file-name"></p></div>
+              <button class="button button-secondary file-remove" id="file-remove" type="button">Убрать файл</button>
+            </div>
+            <dl class="file-facts"><div><dt>Тип</dt><dd id="file-type"></dd></div><div><dt>Объём текста</dt><dd id="file-text-size"></dd></div></dl>
+            <p class="small muted">Короткий предпросмотр</p>
+            <p class="file-preview" id="file-preview"></p>
+          </section>
+          <div class="source-divider" aria-hidden="true"><span>или</span></div>
+          <label class="field-label" for="source-text">Вставьте текст документа</label>
           <textarea class="textarea" id="source-text" maxlength="31000" placeholder="Скопируйте сюда текст письма, уведомления, договора или другого документа."></textarea>
           <div class="field-meta"><span>Можно вставить до 30 000 символов</span><span id="source-count">0 / 30 000</span></div>
           <div class="privacy-note">Не вставляйте пароли, данные банковских карт и другую информацию, которую не хотите передавать для обработки.</div>
@@ -76,6 +96,8 @@
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><p>Сервис разбора документов</p><a href="/tools/login/" data-logout>Выйти</a></div></footer>
   <script src="/tools/assets/runtime-config.js"></script>
+  <script src="/tools/vendor/mammoth.browser.min.js" defer></script>
+  <script src="/tools/assets/document-file.js" type="module"></script>
   <script src="/tools/assets/document.js" defer></script>
   <script src="/tools/assets/supabase-app.js" defer></script>
 </body>

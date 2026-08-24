@@ -4,10 +4,16 @@
   "private": true,
   "scripts": {
     "test:document:browser": "node scripts/test-document-prototype-browser.mjs",
+    "test:document:files": "node scripts/test-document-file-browser.mjs",
     "test:document:remote": "node scripts/test-document-backend-e2e.mjs"
   },
   "devDependencies": {
+    "jszip": "3.10.1",
     "playwright": "1.62.1",
     "supabase": "2.115.0"
+  },
+  "dependencies": {
+    "mammoth": "1.12.1",
+    "pdfjs-dist": "6.2.108"
   }
 }

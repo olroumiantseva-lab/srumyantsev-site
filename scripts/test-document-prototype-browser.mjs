@@ -14,7 +14,7 @@ const routes = [
   "/tools/document/result/",
   "/tools/document/history/",
 ];
-const types = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8" };
+const types = { ".html": "text/html; charset=utf-8", ".css": "text/css; charset=utf-8", ".js": "text/javascript; charset=utf-8", ".mjs": "text/javascript; charset=utf-8" };
 const server = http.createServer((request, response) => {
   const pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
   let file = path.join(root, pathname);
@@ -37,7 +37,7 @@ async function inspectRoute(page, route, label) {
   if (await page.locator("h1").count() !== 1) throw new Error(`${route}: expected exactly one h1`);
   const overflow = await page.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
   if (overflow) throw new Error(`${route}: horizontal overflow at ${label}`);
-  const smallControls = await page.locator("button, .button, input:not([type=radio]):not([type=checkbox]), textarea").evaluateAll((nodes) =>
+  const smallControls = await page.locator("button, .button, input:not([type=radio]):not([type=checkbox]):not([type=file]), textarea").evaluateAll((nodes) =>
     nodes.filter((node) => {
       const rect = node.getBoundingClientRect();
       return rect.width > 0 && rect.height > 0 && rect.height < 48;
@@ -79,7 +79,7 @@ try {
   if (await flow.getByText("Что делать дальше", { exact: true }).count()) throw new Error("App still contains duplicate 'Что делать дальше' goal");
   await flow.getByRole("button", { name: "Разобрать документ" }).click();
   if (!await flow.getByText("Вставьте текст документа.").isVisible()) throw new Error("Empty document validation missing");
-  await flow.getByLabel("3. Вставьте текст документа").fill("Просим предоставить ответ не позднее 25 августа. При отсутствии ответа обращение будет рассмотрено по имеющимся материалам.");
+  await flow.locator("#source-text").fill("Просим предоставить ответ не позднее 25 августа. При отсутствии ответа обращение будет рассмотрено по имеющимся материалам.");
   await flow.getByRole("button", { name: "Разобрать документ" }).click();
   await flow.waitForURL("**/tools/document/result/");
   for (const heading of ["Коротко", "Что от вас хотят", "Сроки", "Что делать дальше", "Возможные риски"]) {
