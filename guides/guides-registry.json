@@ -910,5 +910,23 @@
       "/svoy-arhiv-dokumentov-neyroset/",
       "/chto-nelzya-zagruzhat-v-neyroset/"
     ]
+  },
+  {
+    "originalOrder": 59,
+    "duration": "17 минут",
+    "title": "Как составить объявление и безопасно продать ненужную вещь с помощью нейросети",
+    "description": "Как оценить состояние вещи, сделать фотографии, выбрать цену, написать честное объявление и безопасно провести сделку.",
+    "url": "/kak-sostavit-obyavlenie-i-prodat-veshch-s-pomoshchyu-neyroseti/",
+    "cta": "Подготовить объявление",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "META_LABEL": "Ступень 1 · Для жизни",
+    "RELATED_GUIDES": [
+      "/kak-sravnit-tovary-s-pomoshchyu-neyroseti/",
+      "/kartinki-neyrosetyu-otkrytki-avatarka/",
+      "/moshenniki-dipfeyki-golos-rodstvennika/",
+      "/chto-nelzya-zagruzhat-v-neyroset/"
+    ]
   }
 ]
