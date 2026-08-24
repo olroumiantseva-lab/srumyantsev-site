@@ -892,5 +892,23 @@
       "/chto-nelzya-doveryat-neyroseti/",
       "/chto-nelzya-zagruzhat-v-neyroset/"
     ]
+  },
+  {
+    "originalOrder": 58,
+    "duration": "18 минут",
+    "title": "Как подготовиться к обращению в банк, ведомство или сервис с помощью ИИ",
+    "description": "Как собрать факты, хронологию, документы и вопросы до звонка, визита или письменного обращения.",
+    "url": "/kak-podgotovitsya-k-obrashcheniyu-v-bank-ili-vedomstvo-s-pomoshchyu-ii/",
+    "cta": "Подготовить обращение",
+    "LEVEL": 1,
+    "TYPE": "practical",
+    "CATEGORY": "Документы и информация",
+    "META_LABEL": "Ступень 1 · Документы и информация",
+    "RELATED_GUIDES": [
+      "/kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/",
+      "/kak-razobrat-dogovor-s-pomoshchyu-neyroseti/",
+      "/svoy-arhiv-dokumentov-neyroset/",
+      "/chto-nelzya-zagruzhat-v-neyroset/"
+    ]
   }
 ]
