@@ -45,11 +45,6 @@ async function magicLink(email) {
   return data.properties.action_link;
 }
 
-async function grant(userId, reference) {
-  const { error } = await admin.rpc("dev_grant_credits", { p_user_id: userId, p_amount: 10, p_reference_id: reference });
-  if (error) throw error;
-}
-
 async function browserSession(page) {
   const values = await page.evaluate(() => Object.values(localStorage));
   for (const value of values) {
@@ -72,18 +67,24 @@ await new Promise((resolve) => server.listen(4175, "127.0.0.1", resolve));
 const browser = await chromium.launch({ headless: true, args: ["--disable-gpu"] });
 try {
   const userA = await createUser(emails.a); const userB = await createUser(emails.b); const userC = await createUser(emails.c);
-  await grant(userA.id, `e2e-${stamp}-a`); await grant(userB.id, `e2e-${stamp}-b`);
+
+  const initialCredit = await admin.from("credit_transactions").select("amount,type,reference_id").eq("user_id", userC.id).eq("type", "signup_grant");
+  if (initialCredit.error || initialCredit.data.length !== 1 || initialCredit.data[0].amount !== 1) throw new Error("New user did not receive exactly one signup credit");
+  const { error: repeatAuthError } = await admin.auth.admin.updateUserById(userC.id, { email: emails.c });
+  if (repeatAuthError) throw repeatAuthError;
+  const repeatedCredit = await admin.from("credit_transactions").select("amount").eq("user_id", userC.id).eq("type", "signup_grant");
+  if (repeatedCredit.error || repeatedCredit.data.length !== 1 || repeatedCredit.data[0].amount !== 1) throw new Error("Repeated registration changed signup credit");
 
   const pageA = await browser.newPage({ viewport: { width: 390, height: 844 } });
   await pageA.goto(await magicLink(emails.a), { waitUntil: "domcontentloaded" });
   await pageA.waitForURL("**/tools/document/app/**");
-  await pageA.getByText("Осталось разборов: 10").waitFor({ state: "visible" });
+  await pageA.getByText("Осталось разборов: 1").waitFor({ state: "visible" });
   await pageA.getByLabel("3. Вставьте текст документа").fill(`E2E-CANARY-${stamp}: просим ответить до пятницы.`);
   await pageA.getByRole("button", { name: "Разобрать документ" }).click();
   await pageA.waitForURL("**/tools/document/result/**");
   const sessionId = new URL(pageA.url()).searchParams.get("id");
   if (!sessionId) throw new Error("Analysis session ID missing");
-  await pageA.getByText("Осталось разборов: 9").waitFor({ state: "visible" });
+  await pageA.getByText("Осталось разборов: 0").waitFor({ state: "visible" });
   for (const [index, question] of ["Первый вопрос", "Второй вопрос", "Третий вопрос"].entries()) {
     await pageA.getByLabel("Ваш вопрос").fill(question);
     await pageA.getByRole("button", { name: "Спросить" }).click();
@@ -99,14 +100,14 @@ try {
   await pageA.waitForURL("**/tools/login/");
   await pageA.goto(await magicLink(emails.a), { waitUntil: "domcontentloaded" });
   await pageA.waitForURL("**/tools/document/app/**");
-  await pageA.getByText("Осталось разборов: 9").waitFor({ state: "visible" });
+  await pageA.getByText("Осталось разборов: 0").waitFor({ state: "visible" });
   await pageA.goto("http://127.0.0.1:4175/tools/document/history/");
   await pageA.getByRole("link", { name: "Открыть" }).first().waitFor({ state: "visible" });
 
   const pageB = await browser.newPage({ viewport: { width: 1440, height: 1000 } });
   await pageB.goto(await magicLink(emails.b), { waitUntil: "domcontentloaded" });
   await pageB.waitForURL("**/tools/document/app/**");
-  await pageB.getByText("Осталось разборов: 10").waitFor({ state: "visible" });
+  await pageB.getByText("Осталось разборов: 1").waitFor({ state: "visible" });
   const sessionB = await browserSession(pageB); const clientB = await userClient(sessionB);
   const { data: foreignRows } = await clientB.from("document_sessions").select("id").eq("id", sessionId);
   if (foreignRows?.length) throw new Error("RLS leak: user B can read user A session");
@@ -125,12 +126,16 @@ try {
   const clientC = createClient(url, publishableKey, { auth: { persistSession: false } });
   const { error: verifyError } = await clientC.auth.verifyOtp({ token_hash: cLink.properties.hashed_token, type: "magiclink" });
   if (verifyError) throw verifyError;
+  const firstAttempt = await clientC.functions.invoke("mock-analyze", { body: {
+    request_id: crypto.randomUUID(), document_type: "letter", goals: ["plain"], source_text: "consume signup credit", user_context: "",
+  }});
+  if (firstAttempt.error || !firstAttempt.data?.session_id) throw new Error("Signup credit could not be used");
   const zeroAttempt = await clientC.functions.invoke("mock-analyze", { body: {
     request_id: crypto.randomUUID(), document_type: "letter", goals: ["plain"], source_text: "zero balance", user_context: "",
   }});
   if (!zeroAttempt.error) throw new Error("Zero-balance analysis unexpectedly succeeded");
   const { data: cSessions } = await admin.from("document_sessions").select("id").eq("user_id", userC.id);
-  if (cSessions.length) throw new Error("Zero-balance user received a session");
+  if (cSessions.length !== 1) throw new Error("Zero-balance attempt created an extra session");
 
   await pageA.goto("http://127.0.0.1:4175/tools/document/history/");
   pageA.once("dialog", (dialog) => dialog.accept());
@@ -145,9 +150,14 @@ try {
   const expiredPage = await browser.newPage();
   await expiredPage.goto("http://127.0.0.1:4175/tools/login/#error=access_denied&error_description=expired");
   await expiredPage.getByText("Ссылка устарела или уже использована.", { exact: false }).waitFor({ state: "visible" });
-  console.log("PASS: magic link, analysis/debit, 3 follow-ups, persistence, delete, A/B RLS, server error and zero balance");
+  console.log("PASS: magic link, one idempotent signup credit, analysis/debit, 3 follow-ups, persistence, delete, A/B RLS, server error and zero balance");
 } finally {
   await browser.close();
   await new Promise((resolve) => server.close(resolve));
-  for (const id of createdUsers) await admin.auth.admin.deleteUser(id);
+  const cleanupErrors = [];
+  for (const id of createdUsers) {
+    const { error } = await admin.auth.admin.deleteUser(id);
+    if (error) cleanupErrors.push(error.message);
+  }
+  if (cleanupErrors.length) throw new Error(`E2E user cleanup failed (${cleanupErrors.length})`);
 }

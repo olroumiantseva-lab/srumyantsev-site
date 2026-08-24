@@ -1,0 +1,13 @@
+{
+  "name": "srumyantsev-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "test:document:browser": "node scripts/test-document-prototype-browser.mjs",
+    "test:document:remote": "node scripts/test-document-backend-e2e.mjs"
+  },
+  "devDependencies": {
+    "playwright": "1.62.1",
+    "supabase": "2.115.0"
+  }
+}
