@@ -928,5 +928,23 @@
       "/moshenniki-dipfeyki-golos-rodstvennika/",
       "/chto-nelzya-zagruzhat-v-neyroset/"
     ]
+  },
+  {
+    "originalOrder": 60,
+    "duration": "22 минуты",
+    "title": "Как сравнить предложения мастеров и выбрать подрядчика с помощью ИИ",
+    "description": "Как привести сметы к одной структуре, найти пропуски, проверить исполнителя и подготовить вопросы до выбора.",
+    "url": "/kak-sravnit-predlozheniya-masterov-i-vybrat-podryadchika-s-pomoshchyu-ii/",
+    "cta": "Сравнить подрядчиков",
+    "LEVEL": 2,
+    "TYPE": "practical",
+    "CATEGORY": "Для жизни",
+    "META_LABEL": "Ступень 2 · Для жизни",
+    "RELATED_GUIDES": [
+      "/smeta-na-remont-s-pomoshchyu-ii/",
+      "/kak-splanirovat-remont-komnaty-s-pomoshchyu-neyroseti/",
+      "/kak-razobrat-dogovor-s-pomoshchyu-neyroseti/",
+      "/kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/"
+    ]
   }
 ]
