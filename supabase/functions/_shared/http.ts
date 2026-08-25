@@ -67,6 +67,8 @@ export function safeError(request: Request, error: unknown): Response {
   if (error instanceof HttpError) return json(request, { error: error.code, message: error.message }, error.status);
   const message = error instanceof Error ? error.message : "";
   if (message.includes("NO_CREDITS")) return json(request, { error: "NO_CREDITS", message: "Разборы закончились. Добавьте кредиты, чтобы продолжить." }, 409);
+  if (message.includes("REQUEST_CONFLICT")) return json(request, { error: "REQUEST_CONFLICT", message: "Этот идентификатор запроса уже использован для другого документа." }, 409);
+  if (message.includes("STALE_LEASE")) return json(request, { error: "ANALYSIS_SUPERSEDED", message: "Этот запуск уже обрабатывается другим запросом." }, 409);
   if (message.includes("FOLLOWUP_LIMIT")) return json(request, { error: "FOLLOWUP_LIMIT", message: "Для этого документа использованы все 3 уточнения." }, 409);
   if (message.includes("SESSION_NOT_FOUND")) return json(request, { error: "NOT_FOUND", message: "Разбор не найден." }, 404);
   return json(request, { error: "SERVER_ERROR", message: "Не удалось выполнить запрос. Попробуйте ещё раз." }, 500);

@@ -15,6 +15,7 @@
   const text = (node, value) => { if (node) node.textContent = value; };
   const byId = (id) => document.getElementById(id);
   const errorMessage = (error, fallback) => error?.context?.json?.message || error?.message || fallback;
+  const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
 
   async function start() {
     await loadSdk();
@@ -98,6 +99,9 @@
     const context = byId('user-context');
     const errorNode = byId('analysis-error');
     const button = form.querySelector('button[type="submit"]');
+    const analysisFunction = config.analysisFunction || 'analyze-document';
+    let activeRequestId = null;
+    let activePayloadFingerprint = '';
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
       if (!source.value.trim()) { text(errorNode, 'Вставьте текст документа.'); source.focus(); return; }
@@ -106,13 +110,30 @@
       button.disabled = true;
       text(button, 'Разбираем…');
       text(errorNode, '');
-      const { data, error } = await client.functions.invoke('mock-analyze', { body: {
-        request_id: crypto.randomUUID(),
+      const payload = {
         document_type: form.elements['document-type'].value,
         goals: selectedGoals(), source_text: source.value, user_context: context.value,
-      }});
-      if (error || !data?.session_id) {
-        text(errorNode, errorMessage(error, 'Не удалось разобрать документ. Попробуйте ещё раз. Разбор не списан.'));
+      };
+      const fingerprint = JSON.stringify(payload);
+      if (!activeRequestId || activePayloadFingerprint !== fingerprint) {
+        activeRequestId = crypto.randomUUID();
+        activePayloadFingerprint = fingerprint;
+      }
+      const requestBody = { request_id: activeRequestId, ...payload };
+      let response = await client.functions.invoke(analysisFunction, { body: requestBody });
+      for (let poll = 0; !response.error && response.data?.status === 'processing' && poll < 20; poll += 1) {
+        text(button, 'Разбор ещё выполняется…');
+        await wait(1500);
+        response = await client.functions.invoke(analysisFunction, { body: requestBody });
+      }
+      const { data, error } = response;
+      if (error || !data?.session_id || ['processing', 'recovery_required'].includes(data.status)) {
+        const fallback = data?.status === 'processing'
+          ? 'Разбор ещё выполняется. Повторите проверку через минуту — новый запуск не создастся.'
+          : data?.status === 'recovery_required'
+          ? 'Запуск требует безопасного восстановления. Новый анализ автоматически не начнётся.'
+          : 'Не удалось разобрать документ. Попробуйте ещё раз. Разбор не списан.';
+        text(errorNode, errorMessage(error, fallback));
         button.disabled = false;
         text(button, 'Разобрать документ');
         await refreshBalance(client);

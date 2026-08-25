@@ -68,9 +68,11 @@ function dependencies(
   fetchStub: typeof fetch,
   logs: unknown[] = [],
   timeoutMs = 100,
+  overrides: Parameters<typeof createAnalyzeDocumentHandler>[0] = {},
 ) {
   return {
-    authenticate: async () => ({ user: { id: "test-user" } }),
+    authenticate: async () =>
+      ({ user: { id: "test-user" }, admin: {} }) as never,
     fetch: fetchStub,
     getEnv: (name: string) =>
       name === "OPENAI_API_KEY"
@@ -82,6 +84,17 @@ function dependencies(
       value.headers.get("origin") === allowedOrigin,
     log: (entry: unknown) => logs.push(entry),
     timeoutMs,
+    reserve: async () => ({
+      session_id: "22222222-2222-4222-8222-222222222222",
+      request_status: "acquired" as const,
+      lease_generation: 1,
+    }),
+    markInflight: async () => {},
+    stage: async () => {},
+    complete: async () => "22222222-2222-4222-8222-222222222222",
+    abort: async () => {},
+    sleep: async () => {},
+    ...overrides,
   };
 }
 
@@ -126,39 +139,429 @@ Deno.test("successful response uses configured model, store false and returns us
   );
 });
 
-Deno.test("invalid JSON retries once then returns safe error", async () => {
+Deno.test("completed idempotent request returns session without OpenAI", async () => {
+  let openAICalls = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        openAICalls += 1;
+        return openAIResponse(JSON.stringify(validResult));
+      },
+      [],
+      100,
+      {
+        reserve: async () => ({
+          session_id: "22222222-2222-4222-8222-222222222222",
+          request_status: "completed",
+          lease_generation: 1,
+        }),
+      },
+    ),
+  );
+  const response = await handler(request(basePayload()));
+  const body = await response.json();
+  assert(
+    response.status === 200 && body.status === "completed",
+    "Completed request must be reused",
+  );
+  assert(openAICalls === 0, "Completed request must not call OpenAI again");
+});
+
+Deno.test("active reserved request returns safe 202 without OpenAI", async () => {
+  let openAICalls = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        openAICalls += 1;
+        return openAIResponse(JSON.stringify(validResult));
+      },
+      [],
+      100,
+      {
+        reserve: async () => ({
+          session_id: "22222222-2222-4222-8222-222222222222",
+          request_status: "reserved",
+          lease_generation: 4,
+        }),
+      },
+    ),
+  );
+  const response = await handler(request(basePayload()));
+  const body = await response.json();
+  assert(
+    response.status === 202 && body.status === "processing",
+    "Processing request must return 202",
+  );
+  assert(
+    body.request_id === requestId && body.session_id,
+    "202 status must contain safe identifiers",
+  );
+  assert(openAICalls === 0, "Parallel request must not call OpenAI");
+});
+
+Deno.test("expired reserved takeover may start exactly one OpenAI call", async () => {
+  let openAICalls = 0;
+  let inflightMarks = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        openAICalls += 1;
+        return openAIResponse(JSON.stringify(validResult));
+      },
+      [],
+      100,
+      {
+        reserve: async () => ({
+          session_id: "22222222-2222-4222-8222-222222222222",
+          request_status: "acquired",
+          lease_generation: 2,
+        }),
+        markInflight: async () => {
+          inflightMarks += 1;
+        },
+      },
+    ),
+  );
+  const response = await handler(request(basePayload()));
+  assert(response.status === 200, "Expired reserved takeover must complete");
+  assert(
+    inflightMarks === 1 && openAICalls === 1,
+    "Takeover must cross inflight fence before one OpenAI call",
+  );
+});
+
+Deno.test("expired openai_inflight returns recovery_required without OpenAI", async () => {
+  let openAICalls = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        openAICalls += 1;
+        return openAIResponse(JSON.stringify(validResult));
+      },
+      [],
+      100,
+      {
+        reserve: async () => ({
+          session_id: "22222222-2222-4222-8222-222222222222",
+          request_status: "recovery_required",
+          lease_generation: 1,
+        }),
+      },
+    ),
+  );
+  const response = await handler(request(basePayload()));
+  const body = await response.json();
+  assert(
+    response.status === 202 && body.status === "recovery_required",
+    "Inflight recovery status mismatch",
+  );
+  assert(openAICalls === 0, "Expired inflight request must not call OpenAI");
+});
+
+Deno.test("crash after valid OpenAI before stage forbids repeated OpenAI", async () => {
+  let openAICalls = 0;
+  let reserveCalls = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        openAICalls += 1;
+        return openAIResponse(JSON.stringify(validResult));
+      },
+      [],
+      100,
+      {
+        reserve: async () => {
+          reserveCalls += 1;
+          return {
+            session_id: "22222222-2222-4222-8222-222222222222",
+            request_status: reserveCalls === 1
+              ? "acquired"
+              : "recovery_required",
+            lease_generation: 1,
+          };
+        },
+        stage: async () => {
+          throw new Error("stage network failure");
+        },
+      },
+    ),
+  );
+  const first = await handler(request(basePayload()));
+  assert(
+    first.status === 503 &&
+      (await first.json()).error === "PERSISTENCE_PENDING",
+    "Stage failure must be controlled",
+  );
+  const second = await handler(request(basePayload()));
+  assert(
+    second.status === 202 &&
+      (await second.json()).status === "recovery_required",
+    "Inflight retry must require recovery",
+  );
+  assert(openAICalls === 1, "Crash before stage must never repeat OpenAI");
+});
+
+Deno.test("persistence_pending retries only complete", async () => {
+  let openAICalls = 0;
+  let completes = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        openAICalls += 1;
+        return openAIResponse(JSON.stringify(validResult));
+      },
+      [],
+      100,
+      {
+        reserve: async () => ({
+          session_id: "22222222-2222-4222-8222-222222222222",
+          request_status: "persistence_pending",
+          lease_generation: 3,
+        }),
+        complete: async () => {
+          completes += 1;
+          return "22222222-2222-4222-8222-222222222222";
+        },
+      },
+    ),
+  );
+  const response = await handler(request(basePayload()));
+  assert(response.status === 200, "Persistence recovery must complete");
+  assert(
+    completes === 1 && openAICalls === 0,
+    "Persistence recovery must only call complete",
+  );
+});
+
+Deno.test("lost stage response retries stage idempotently without repeating OpenAI", async () => {
+  let openAICalls = 0;
+  let stages = 0;
+  let completes = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        openAICalls += 1;
+        return openAIResponse(JSON.stringify(validResult));
+      },
+      [],
+      100,
+      {
+        stage: async () => {
+          stages += 1;
+          if (stages === 1) throw new Error("lost stage response");
+        },
+        complete: async () => {
+          completes += 1;
+          return "22222222-2222-4222-8222-222222222222";
+        },
+      },
+    ),
+  );
+  const response = await handler(request(basePayload()));
+  assert(response.status === 200, "Idempotent stage retry must recover");
+  assert(
+    openAICalls === 1 && stages === 2 && completes === 1,
+    "Only stage may repeat after lost stage response",
+  );
+});
+
+Deno.test("payload hash conflict is rejected before OpenAI", async () => {
+  let openAICalls = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        openAICalls += 1;
+        return openAIResponse(JSON.stringify(validResult));
+      },
+      [],
+      100,
+      {
+        reserve: async () => {
+          throw new Error("REQUEST_CONFLICT");
+        },
+      },
+    ),
+  );
+  const response = await handler(request(basePayload()));
+  assert(response.status === 409, "Payload conflict must return 409");
+  assert(
+    (await response.json()).error === "REQUEST_CONFLICT",
+    "Payload conflict code mismatch",
+  );
+  assert(openAICalls === 0, "Payload conflict must not call OpenAI");
+});
+
+Deno.test("valid result retries only complete and never repeats OpenAI", async () => {
+  let openAICalls = 0;
+  let completes = 0;
+  let aborts = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        openAICalls += 1;
+        return openAIResponse(JSON.stringify(validResult));
+      },
+      [],
+      100,
+      {
+        complete: async () => {
+          completes += 1;
+          if (completes < 3) throw new Error("temporary database error");
+          return "22222222-2222-4222-8222-222222222222";
+        },
+        abort: async () => {
+          aborts += 1;
+        },
+      },
+    ),
+  );
+  const response = await handler(request(basePayload()));
+  assert(response.status === 200, "Completion retry must recover");
+  assert(openAICalls === 1, "Completion retry must not repeat OpenAI");
+  assert(completes === 3, "Complete must use bounded retries");
+  assert(aborts === 0, "Valid result must never be aborted");
+});
+
+Deno.test("exhausted complete leaves processing and does not abort or repeat OpenAI", async () => {
+  let openAICalls = 0;
+  let completes = 0;
+  let aborts = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        openAICalls += 1;
+        return openAIResponse(JSON.stringify(validResult));
+      },
+      [],
+      100,
+      {
+        complete: async () => {
+          completes += 1;
+          throw new Error("temporary database error");
+        },
+        abort: async () => {
+          aborts += 1;
+        },
+      },
+    ),
+  );
+  const response = await handler(request(basePayload()));
+  const body = await response.json();
+  assert(
+    response.status === 503 && body.error === "PERSISTENCE_PENDING",
+    "Completion exhaustion must be controlled",
+  );
+  assert(openAICalls === 1, "Completion failure must not repeat OpenAI");
+  assert(completes === 3, "Completion retry count must be bounded");
+  assert(aborts === 0, "Valid result with DB failure must remain processing");
+});
+
+Deno.test("expired persistence_pending retry completes with one total OpenAI call", async () => {
+  let openAICalls = 0;
+  let reserveCalls = 0;
+  let completeCalls = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        openAICalls += 1;
+        return openAIResponse(JSON.stringify(validResult));
+      },
+      [],
+      100,
+      {
+        reserve: async () => {
+          reserveCalls += 1;
+          return {
+            session_id: "22222222-2222-4222-8222-222222222222",
+            request_status: reserveCalls === 1
+              ? "acquired" as const
+              : "persistence_pending" as const,
+            lease_generation: 1,
+          };
+        },
+        complete: async () => {
+          completeCalls += 1;
+          if (completeCalls <= 3) throw new Error("temporary database error");
+          return "22222222-2222-4222-8222-222222222222";
+        },
+      },
+    ),
+  );
+  const first = await handler(request(basePayload()));
+  assert(
+    first.status === 503 &&
+      (await first.json()).error === "PERSISTENCE_PENDING",
+    "First request must expose persistence pending",
+  );
+  const second = await handler(request(basePayload()));
+  assert(second.status === 200, "Persistence retry must complete");
+  assert(
+    openAICalls === 1,
+    "Expired persistence pending must not repeat OpenAI",
+  );
+  assert(completeCalls === 4, "Second request must retry only complete");
+});
+
+Deno.test("invalid JSON aborts without a repeated OpenAI call", async () => {
   let calls = 0;
-  const handler = createAnalyzeDocumentHandler(dependencies(async () => {
-    calls += 1;
-    return openAIResponse("not-json-sensitive");
-  }));
+  let aborts = 0;
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        calls += 1;
+        return openAIResponse("not-json-sensitive");
+      },
+      [],
+      100,
+      {
+        abort: async () => {
+          aborts += 1;
+        },
+      },
+    ),
+  );
   const response = await handler(request(basePayload()));
   const text = await response.text();
   assert(response.status === 502, "Invalid JSON must return 502");
-  assert(calls === 2, "Invalid JSON must retry exactly once");
+  assert(calls === 1, "Invalid JSON must not repeat OpenAI");
+  assert(aborts === 1, "Invalid JSON must abort reservation");
   assert(
     !text.includes("not-json-sensitive"),
     "Raw model output leaked in error",
   );
 });
 
-Deno.test("schema violation retries once then fails", async () => {
+Deno.test("schema violation aborts without a repeated OpenAI call", async () => {
   let calls = 0;
+  let aborts = 0;
   const invalid = JSON.stringify({ ...validResult, summary: "" });
-  const handler = createAnalyzeDocumentHandler(dependencies(async () => {
-    calls += 1;
-    return openAIResponse(invalid);
-  }));
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(
+      async () => {
+        calls += 1;
+        return openAIResponse(invalid);
+      },
+      [],
+      100,
+      {
+        abort: async () => {
+          aborts += 1;
+        },
+      },
+    ),
+  );
   const response = await handler(request(basePayload()));
   const body = await response.json();
   assert(
     response.status === 502 && body.error === "INVALID_MODEL_OUTPUT",
     "Schema violation must be rejected",
   );
-  assert(calls === 2, "Schema violation must retry at most once");
+  assert(calls === 1, "Schema violation must not repeat OpenAI");
+  assert(aborts === 1, "Schema violation must abort reservation");
 });
 
-Deno.test("timeout aborts OpenAI and returns 504", async () => {
+Deno.test("timeout leaves openai_inflight fenced and returns 504", async () => {
+  let aborts = 0;
   const fetchStub: typeof fetch = (_input, init) =>
     new Promise((_resolve, reject) => {
       init?.signal?.addEventListener(
@@ -168,10 +571,20 @@ Deno.test("timeout aborts OpenAI and returns 504", async () => {
         { once: true },
       );
     });
-  const handler = createAnalyzeDocumentHandler(dependencies(fetchStub, [], 5));
+  const handler = createAnalyzeDocumentHandler(
+    dependencies(fetchStub, [], 5, {
+      abort: async () => {
+        aborts += 1;
+      },
+    }),
+  );
   const response = await handler(request(basePayload()));
   const text = await response.text();
   assert(response.status === 504, "Timeout must return 504");
+  assert(
+    aborts === 0,
+    "Ambiguous timeout must remain fenced for explicit recovery",
+  );
   assert(!text.includes("sensitive timeout detail"), "Timeout detail leaked");
 });
 
@@ -221,17 +634,30 @@ Deno.test("source text over 30000 characters is rejected", async () => {
 });
 
 Deno.test("OpenAI HTTP error returns safe response", async () => {
+  let aborts = 0;
   const handler = createAnalyzeDocumentHandler(
-    dependencies(async () =>
-      new Response(
-        JSON.stringify({ error: { message: "sensitive upstream response" } }),
-        { status: 500 },
-      )
+    dependencies(
+      async () =>
+        new Response(
+          JSON.stringify({ error: { message: "sensitive upstream response" } }),
+          { status: 500 },
+        ),
+      [],
+      100,
+      {
+        abort: async () => {
+          aborts += 1;
+        },
+      },
     ),
   );
   const response = await handler(request(basePayload()));
   const text = await response.text();
   assert(response.status === 502, "OpenAI failure must return 502");
+  assert(
+    aborts === 1,
+    "OpenAI failure before valid result must abort reservation",
+  );
   assert(
     !text.includes("sensitive upstream response"),
     "OpenAI error content leaked",

@@ -22,7 +22,7 @@ const server = http.createServer((request, response) => {
   const pathname = decodeURIComponent(new URL(request.url, "http://localhost").pathname);
   if (pathname === "/tools/assets/runtime-config.js") {
     response.writeHead(200, { "content-type": types[".js"], "cache-control": "no-store" });
-    response.end(`window.__SUPABASE_CONFIG__=${JSON.stringify({ url, publishableKey })};`);
+    response.end(`window.__SUPABASE_CONFIG__=${JSON.stringify({ url, publishableKey, analysisFunction: "mock-analyze" })};`);
     return;
   }
   let file = path.join(root, pathname);
