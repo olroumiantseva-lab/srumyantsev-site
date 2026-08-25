@@ -1,0 +1,19 @@
+{
+  "http_status": 200,
+  "elapsed_ms": 8349,
+  "request_id": "eefe029c-5625-4aa1-a4e2-c15e4016f71b",
+  "schema_valid": true,
+  "semantic_smoke_pass": true,
+  "result_redacted": true,
+  "meta": {
+    "request_id": "eefe029c-5625-4aa1-a4e2-c15e4016f71b",
+    "model": "gpt-5.6-terra",
+    "usage": {
+      "input_tokens": 484,
+      "output_tokens": 398,
+      "total_tokens": 882
+    },
+    "duration_ms": 6648,
+    "attempts": 1
+  }
+}
