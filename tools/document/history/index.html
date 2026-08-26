@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="История разборов документов.">
+  <title>История — Разобрать документ</title>
+  <link rel="stylesheet" href="/tools/assets/document.css">
+</head>
+<body data-protected="true" data-page="history">
+  <header class="site-header"><div class="shell header-inner"><a class="brand" href="/tools/document/"><span class="brand-mark" aria-hidden="true">＊</span><span>РАЗОБРАТЬ<br>ДОКУМЕНТ</span></a><a class="top-link" href="/tools/document/app/">Новый разбор</a></div></header>
+  <main>
+    <div class="narrow">
+      <div class="app-head"><div><p class="section-kicker">Ваши документы</p><h1 style="font-size:clamp(38px,7vw,64px)">История разборов</h1><p class="muted">Здесь сохраняются готовые разборы и уточнения.</p></div><div class="balance" data-balance>Осталось разборов: …</div></div>
+      <p class="error" id="history-error" aria-live="polite"></p>
+      <div class="history-list" id="history-list">
+        <article class="history-card">
+          <div><div class="history-meta"><span>18 августа 2026</span><span>Официальное письмо</span></div><h2 style="font-size:27px">Уведомление организации</h2></div>
+          <div class="card-actions"><a class="button" href="/tools/document/result/">Открыть</a><button class="button button-danger" type="button" data-delete>Удалить</button></div>
+        </article>
+        <article class="history-card">
+          <div><div class="history-meta"><span>12 августа 2026</span><span>Банковский документ</span></div><h2 style="font-size:27px">Уведомление банка</h2></div>
+          <div class="card-actions"><a class="button" href="/tools/document/result/">Открыть</a><button class="button button-danger" type="button" data-delete>Удалить</button></div>
+        </article>
+        <article class="history-card">
+          <div><div class="history-meta"><span>3 августа 2026</span><span>Счёт или квитанция</span></div><h2 style="font-size:27px">Квитанция за услуги</h2></div>
+          <div class="card-actions"><a class="button" href="/tools/document/result/">Открыть</a><button class="button button-danger" type="button" data-delete>Удалить</button></div>
+        </article>
+      </div>
+      <div class="empty-state hidden" id="history-empty"><h2>История пока пуста</h2><p>Разберите первый документ — он появится здесь.</p><a class="button" href="/tools/document/app/">Разобрать документ</a></div>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><a href="/tools/document/app/">Новый разбор</a><a href="/tools/login/" data-logout>Выйти</a></div></footer>
+  <script src="/tools/assets/runtime-config.js"></script>
+  <script src="/tools/assets/document.js" defer></script>
+  <script src="/tools/assets/supabase-app.js" defer></script>
+</body>
+</html>

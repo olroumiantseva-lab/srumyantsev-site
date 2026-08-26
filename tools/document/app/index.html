@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="no-referrer">
+  <meta name="description" content="Форма понятного разбора документа.">
+  <title>Новый разбор — Разобрать документ</title>
+  <link rel="stylesheet" href="/tools/assets/document.css">
+</head>
+<body data-protected="true" data-page="app">
+  <header class="site-header"><div class="shell header-inner"><a class="brand" href="/tools/document/"><span class="brand-mark" aria-hidden="true">＊</span><span>РАЗОБРАТЬ<br>ДОКУМЕНТ</span></a><a class="top-link" href="/tools/document/history/">История</a></div></header>
+  <main>
+    <div class="narrow">
+      <div class="app-head"><div><p class="section-kicker">Новый разбор</p><h1 style="font-size:clamp(38px,7vw,64px)">Разобрать документ</h1></div><div class="balance" data-balance>Осталось разборов: …</div></div>
+      <p class="error" id="app-error" aria-live="polite"></p>
+      <form id="analysis-form" novalidate>
+        <section class="panel">
+          <fieldset class="field-group">
+            <legend>1. Что это за документ?</legend>
+            <div class="choice-grid">
+              <label class="choice"><input type="radio" name="document-type" value="letter" checked>Официальное письмо</label>
+              <label class="choice"><input type="radio" name="document-type" value="contract">Договор</label>
+              <label class="choice"><input type="radio" name="document-type" value="bill">Счёт или квитанция</label>
+              <label class="choice"><input type="radio" name="document-type" value="notice">Уведомление</label>
+              <label class="choice"><input type="radio" name="document-type" value="instruction">Инструкция</label>
+              <label class="choice"><input type="radio" name="document-type" value="medical">Медицинский документ</label>
+              <label class="choice"><input type="radio" name="document-type" value="bank">Банковский документ</label>
+              <label class="choice"><input type="radio" name="document-type" value="other">Другое</label>
+              <label class="choice"><input type="radio" name="document-type" value="unknown">Не знаю</label>
+            </div>
+          </fieldset>
+        </section>
+
+        <section class="panel">
+          <fieldset class="field-group">
+            <legend>2. Что вы хотите узнать?</legend>
+            <p class="muted">Можно выбрать несколько вариантов.</p>
+            <div class="choice-grid">
+              <label class="choice"><input type="checkbox" name="goal" value="plain" checked>Объяснить простыми словами</label>
+              <label class="choice"><input type="checkbox" name="goal" value="wants" checked>Что от меня хотят</label>
+              <label class="choice"><input type="checkbox" name="goal" value="actions" checked>Что мне нужно сделать</label>
+              <label class="choice"><input type="checkbox" name="goal" value="attention" checked>На что обратить внимание</label>
+            </div>
+            <details>
+              <summary>Показать ещё варианты</summary>
+              <div class="choice-grid">
+                <label class="choice"><input type="checkbox" name="goal" value="deadlines">Какие есть сроки</label>
+                <label class="choice"><input type="checkbox" name="goal" value="amounts">Какие суммы указаны</label>
+                <label class="choice"><input type="checkbox" name="goal" value="terms">Какие есть важные условия</label>
+                <label class="choice"><input type="checkbox" name="goal" value="risks">Есть ли потенциальные риски</label>
+                <label class="choice"><input type="checkbox" name="goal" value="specialist">Какие вопросы задать специалисту</label>
+              </div>
+            </details>
+          </fieldset>
+        </section>
+
+        <section class="panel">
+          <h2 class="field-label" id="document-source-title">3. Добавьте документ</h2>
+          <p class="muted">Выберите PDF, DOCX или TXT либо вставьте текст ниже. Файл разбирается в браузере, а извлечённый текст передаётся на сервер для анализа.</p>
+          <div class="file-drop" id="file-drop" tabindex="0" role="button" aria-labelledby="file-drop-title" aria-describedby="file-drop-help">
+            <strong id="file-drop-title">Перетащите файл сюда</strong>
+            <span id="file-drop-help">или выберите файл до 8 МБ</span>
+            <label class="button button-secondary" for="document-file">Выбрать файл</label>
+            <input class="visually-hidden" id="document-file" type="file" accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain">
+          </div>
+          <p class="file-status" id="file-status" aria-live="polite"></p>
+          <p class="error" id="file-error" aria-live="assertive"></p>
+          <section class="file-summary hidden" id="file-summary" aria-labelledby="file-summary-title">
+            <div class="file-summary-head">
+              <div><h3 id="file-summary-title">Файл готов</h3><p class="file-name" id="file-name"></p></div>
+              <button class="button button-secondary file-remove" id="file-remove" type="button">Убрать файл</button>
+            </div>
+            <dl class="file-facts"><div><dt>Тип</dt><dd id="file-type"></dd></div><div><dt>Объём текста</dt><dd id="file-text-size"></dd></div></dl>
+            <p class="small muted">Короткий предпросмотр</p>
+            <p class="file-preview" id="file-preview"></p>
+          </section>
+          <div class="source-divider" aria-hidden="true"><span>или</span></div>
+          <label class="field-label" for="source-text">Вставьте текст документа</label>
+          <textarea class="textarea" id="source-text" maxlength="31000" placeholder="Скопируйте сюда текст письма, уведомления, договора или другого документа."></textarea>
+          <div class="field-meta"><span>Можно вставить до 30 000 символов</span><span id="source-count">0 / 30 000</span></div>
+          <div class="privacy-note">Не вставляйте пароли, данные банковских карт и другую информацию, которую не хотите передавать для обработки.</div>
+        </section>
+
+        <section class="panel">
+          <label class="field-label" for="user-context">4. Есть что-то важное, что нужно учитывать? <span class="small muted">Необязательно</span></label>
+          <textarea class="textarea textarea-small" id="user-context" maxlength="1100" placeholder="Например: мне нужно ответить до пятницы. Я не понимаю пункт 4.2."></textarea>
+          <div class="field-meta"><span>Короткого пояснения достаточно</span><span id="context-count">0 / 1 000</span></div>
+        </section>
+
+        <p class="error" id="analysis-error" aria-live="polite"></p>
+        <button class="button button-full" type="submit">Разобрать документ</button>
+        <p class="small muted" style="margin-top:14px">Для анализа введённый или извлечённый текст передаётся на сервер.</p>
+      </form>
+    </div>
+  </main>
+  <footer class="site-footer"><div class="shell footer-inner"><p>Сервис разбора документов</p><a href="/tools/login/" data-logout>Выйти</a></div></footer>
+  <script src="/tools/assets/runtime-config.js"></script>
+  <script src="/tools/vendor/mammoth.browser.min.js" defer></script>
+  <script src="/tools/assets/document-file.js" type="module"></script>
+  <script src="/tools/assets/document.js" defer></script>
+  <script src="/tools/assets/supabase-app.js" defer></script>
+</body>
+</html>
