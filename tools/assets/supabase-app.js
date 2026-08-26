@@ -62,8 +62,24 @@
         button.disabled = true;
         text(error, '');
         const returnTo = query.get('return_to') || '/tools/document/app/';
-        const redirect = new URL(returnTo.startsWith('/tools/') ? returnTo : '/tools/document/app/', location.origin).toString();
-        const { error: authError } = await client.auth.signInWithOtp({ email: email.value.trim(), options: { emailRedirectTo: redirect } });
+        const allowedReturnPaths = new Set([
+          '/tools/document/app/',
+          '/tools/document/history/',
+          '/tools/document/result/',
+        ]);
+        let returnToUrl;
+        try {
+          returnToUrl = new URL(returnTo, location.origin);
+        } catch {
+          returnToUrl = new URL('/tools/document/app/', location.origin);
+        }
+        const redirect = returnToUrl.origin === location.origin && allowedReturnPaths.has(returnToUrl.pathname)
+          ? returnToUrl.toString()
+          : new URL('/tools/document/app/', location.origin).toString();
+        const { error: authError } = await client.auth.signInWithOtp({
+          email: email.value.trim(),
+          options: { emailRedirectTo: redirect, shouldCreateUser: false },
+        });
         button.disabled = false;
         if (authError) { text(error, 'Не удалось отправить ссылку. Попробуйте ещё раз.'); return; }
         loginForm.classList.add('hidden');
