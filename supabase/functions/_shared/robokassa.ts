@@ -1,0 +1,29 @@
+const encoder = new TextEncoder();
+
+export async function sha256Hex(value: string): Promise<string> {
+  const digest = await crypto.subtle.digest("SHA-256", encoder.encode(value));
+  return [...new Uint8Array(digest)].map((byte) => byte.toString(16).padStart(2, "0")).join("");
+}
+
+export function normalizeOutSum(value: string): string | null {
+  if (!/^\d+(?:\.\d{1,2})?$/.test(value)) return null;
+  const [rubles, kopecks = ""] = value.split(".");
+  return `${rubles}.${kopecks.padEnd(2, "0")}`;
+}
+
+export async function paymentSignature(login: string, outSum: string, invId: string, password: string): Promise<string> {
+  return await sha256Hex(`${login}:${outSum}:${invId}:${password}`);
+}
+
+export async function resultSignature(outSum: string, invId: string, password: string): Promise<string> {
+  return await sha256Hex(`${outSum}:${invId}:${password}`);
+}
+
+export function constantTimeEqual(left: string, right: string): boolean {
+  const a = encoder.encode(left.toLowerCase());
+  const b = encoder.encode(right.toLowerCase());
+  if (a.length !== b.length) return false;
+  let diff = 0;
+  for (let i = 0; i < a.length; i++) diff |= a[i] ^ b[i];
+  return diff === 0;
+}
