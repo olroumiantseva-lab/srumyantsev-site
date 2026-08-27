@@ -69,10 +69,29 @@
   };
 
   const normalizePath = (path) => path.endsWith("/") ? path : `${path}/`;
+  const isQuestion = (heading) => heading.textContent.trim().includes("?");
+
+  const wrapQuestion = (heading, compact = false) => {
+    if (!heading || heading.closest("details")) return;
+    const details = document.createElement("details");
+    details.className = compact ? "guide-question guide-question-compact" : "guide-question";
+    const summary = document.createElement("summary");
+    summary.textContent = heading.textContent.trim();
+    const answer = document.createElement("div");
+    answer.className = "guide-question-answer";
+
+    let node = heading.nextSibling;
+    while (node) {
+      const next = node.nextSibling;
+      if (node.nodeType === Node.ELEMENT_NODE && /^(H2|H3|HR|SECTION|DETAILS)$/.test(node.tagName)) break;
+      answer.appendChild(node);
+      node = next;
+    }
+    heading.replaceWith(details);
+    details.append(summary, answer);
+  };
 
   const makeQuestionDetails = (body) => {
-    const isQuestion = (heading) => heading.textContent.trim().includes("?");
-
     body.querySelectorAll(":scope > section").forEach((section) => {
       if (section.querySelector(":scope > details.guide-question")) return;
       const heading = section.querySelector(":scope > h2");
@@ -96,23 +115,11 @@
     });
 
     Array.from(body.querySelectorAll(":scope > h2")).forEach((heading) => {
-      if (!isQuestion(heading)) return;
-      const details = document.createElement("details");
-      details.className = "guide-question";
-      const summary = document.createElement("summary");
-      summary.textContent = heading.textContent.trim();
-      const answer = document.createElement("div");
-      answer.className = "guide-question-answer";
+      if (isQuestion(heading)) wrapQuestion(heading);
+    });
 
-      let node = heading.nextSibling;
-      while (node) {
-        const next = node.nextSibling;
-        if (node.nodeType === Node.ELEMENT_NODE && /^(H2|HR|SECTION|DETAILS)$/.test(node.tagName)) break;
-        answer.appendChild(node);
-        node = next;
-      }
-      heading.replaceWith(details);
-      details.append(summary, answer);
+    Array.from(body.querySelectorAll("h3")).forEach((heading) => {
+      if (isQuestion(heading) && !heading.closest("details")) wrapQuestion(heading, true);
     });
   };
 
