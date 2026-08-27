@@ -1,1 +1,21 @@
 .guide-meta-panel{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:stretch;gap:18px;margin-top:30px}.guide-level-card{margin:0!important;border:3px solid var(--ink);background:var(--paper-2);box-shadow:6px 7px 0 #8a5b3040;padding:18px 22px;font:700 16px/1.5 Georgia,serif;transform:rotate(-.35deg)}.guide-level-index,.guide-level-note{display:block}.guide-level-index{margin-bottom:6px;font-family:"Segoe Print","Comic Sans MS",cursive;font-weight:800}.guide-date-card{border:3px solid var(--ink);background:var(--ochre);box-shadow:5px 6px 0 var(--navy);display:flex;flex-direction:column;justify-content:center;align-items:flex-start;gap:4px;padding:16px 20px;transform:rotate(.7deg)}.seo-page .guide-date-card small{color:var(--ink);font:800 13px/1.35 "Segoe Print","Comic Sans MS",cursive;white-space:nowrap}@media(max-width:680px){.guide-meta-panel{grid-template-columns:1fr;gap:14px}.guide-level-card,.guide-date-card{transform:none}.seo-page .guide-date-card small{white-space:normal}}
+
+/* 2026-08-27: progressive layout refresh for the first five starter guides. */
+.guide-refresh-v2 .seo-body>.numbered-section,.guide-refresh-v2 .seo-body>.template-section,.guide-refresh-v2 .seo-body>h2{margin-top:44px}
+.guide-refresh-v2 .seo-body>.numbered-section:first-child,.guide-refresh-v2 .seo-body>.template-section:first-child{margin-top:0}
+.guide-refresh-v2 .seo-body .prompt-box blockquote{white-space:normal}
+.guide-refresh-v2 .guide-boundary-section{margin-top:82px!important}
+.guide-inline-illustration{background:var(--paper-2);border:3px solid var(--ink);box-shadow:8px 9px 0 #8a5b3040;margin:54px 0 68px;padding:14px;transform:rotate(-.25deg)}
+.guide-inline-illustration:nth-of-type(even){transform:rotate(.25deg)}
+.guide-inline-illustration figcaption{color:var(--brown);margin:13px 4px 2px;font:italic 15px/1.5 Georgia,serif}
+.guide-visual{aspect-ratio:3/2;background:linear-gradient(135deg,#f8eedc 0 58%,#f2d39a 58% 100%);border:2px solid var(--ink);display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:center;padding:clamp(22px,5vw,48px);position:relative;overflow:hidden}
+.guide-visual:before{content:"";position:absolute;width:150px;height:150px;border:3px solid var(--ink);border-radius:50%;background:var(--ochre);right:-45px;top:-48px;opacity:.92}
+.guide-visual:after{content:"";position:absolute;left:7%;right:7%;bottom:11%;border-bottom:3px dashed var(--brown);transform:rotate(-1deg)}
+.guide-art-card{min-height:118px;border:3px solid var(--ink);background:var(--paper-2);box-shadow:5px 6px 0 var(--navy);display:flex;align-items:center;justify-content:center;text-align:center;padding:15px 10px;font:800 clamp(15px,2.2vw,22px)/1.15 "Segoe Print","Comic Sans MS",cursive;position:relative;z-index:1}
+.guide-art-card:nth-child(1){transform:rotate(-3deg)}.guide-art-card:nth-child(2){background:#f5bd4c;transform:rotate(1.5deg) translateY(-8px)}.guide-art-card:nth-child(3){transform:rotate(2.5deg)}
+.guide-question{border:2px solid var(--ink);background:var(--paper-2);box-shadow:4px 4px 0 #8a5b3040;margin:24px 0 48px}
+.guide-question>summary{cursor:pointer;list-style:none;padding:20px 54px 20px 20px;font:800 clamp(20px,3vw,28px)/1.3 "Segoe Print","Comic Sans MS",cursive;position:relative}
+.guide-question>summary::-webkit-details-marker{display:none}.guide-question>summary:after{content:"+";position:absolute;right:19px;top:50%;transform:translateY(-50%);font:900 30px/1 Arial,sans-serif;color:var(--brown)}
+.guide-question[open]>summary{color:var(--brown);border-bottom:2px dashed #8a5b3066}.guide-question[open]>summary:after{content:"−"}
+.guide-question-answer{padding:2px 20px 22px}.guide-question-answer>:first-child{margin-top:16px}.guide-question-answer>:last-child{margin-bottom:0}
+@media(max-width:560px){.guide-refresh-v2 .seo-body>.numbered-section,.guide-refresh-v2 .seo-body>.template-section,.guide-refresh-v2 .seo-body>h2{margin-top:34px}.guide-refresh-v2 .guide-boundary-section{margin-top:62px!important}.guide-inline-illustration{margin:42px 0 54px;padding:9px;transform:none}.guide-visual{gap:9px;padding:20px 13px}.guide-art-card{min-height:88px;border-width:2px;box-shadow:3px 4px 0 var(--navy);font-size:14px}.guide-inline-illustration figcaption{font-size:14px}.guide-question>summary{padding:17px 48px 17px 16px}.guide-question-answer{padding:2px 16px 18px}}
