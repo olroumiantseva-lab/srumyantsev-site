@@ -1,4 +1,18 @@
 document.addEventListener('DOMContentLoaded', () => {
+  const extraStyles = document.createElement('style');
+  extraStyles.textContent = `
+    .guide-toc{background:var(--paper-2);border:3px solid var(--ink);box-shadow:6px 7px 0 #8a5b3040;margin:0 0 54px;padding:24px 26px 22px;transform:rotate(-.2deg)}
+    .guide-toc-title{display:block;margin-bottom:14px;font:800 24px/1.2 "Segoe Print","Comic Sans MS",cursive}
+    .guide-toc ol{margin:0;padding-left:24px}.guide-toc li{margin:7px 0!important;padding-left:4px!important;font-size:16px!important;line-height:1.45!important}
+    .guide-toc a{text-decoration:underline;text-decoration-color:var(--ochre);text-decoration-thickness:2px;text-underline-offset:4px}
+    .guide-toc a:hover{color:var(--brown)}
+    .phone-guide-faq{margin-top:58px!important}
+    .phone-guide-visual{background:linear-gradient(135deg,#f8eedc 0 52%,#e8c98f 52% 100%)}
+    .phone-guide-visual .guide-art-card:nth-child(2){background:var(--ochre)}
+    @media(max-width:560px){.guide-toc{margin-bottom:42px;padding:20px 18px;transform:none}.guide-toc-title{font-size:21px}.guide-toc li{font-size:15px!important}.phone-guide-faq{margin-top:44px!important}}
+  `;
+  document.head.appendChild(extraStyles);
+
   const button = document.querySelector('.back-to-top');
   if (button) {
     const updateVisibility = () => {
