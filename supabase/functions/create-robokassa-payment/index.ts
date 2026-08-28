@@ -21,11 +21,20 @@ Deno.serve(async (request) => {
     const {data,error}=await admin.from("payment_orders").insert({email}).select("id").single();
     if(error) throw error;
     const invId=String(data.id), outSum="290.00";
-    const signature=await paymentSignature(login,outSum,invId,password);
+    const receipt=JSON.stringify({items:[{
+      name:"Доступ к сервису разбора документов — 10 разборов",
+      quantity:1,
+      sum:290,
+      payment_method:"full_payment",
+      payment_object:"service",
+      tax:"none",
+    }]});
+    const encodedReceipt=encodeURIComponent(receipt);
+    const signature=await paymentSignature(login,outSum,invId,password,encodedReceipt);
     const paymentUrl=new URL("https://auth.robokassa.ru/Merchant/Index.aspx");
     paymentUrl.searchParams.set("MerchantLogin",login); paymentUrl.searchParams.set("OutSum",outSum);
     paymentUrl.searchParams.set("InvId",invId); paymentUrl.searchParams.set("Description","Доступ к сервису разбора документов — 10 разборов");
-    paymentUrl.searchParams.set("Email",email); paymentUrl.searchParams.set("SignatureValue",signature);
+    paymentUrl.searchParams.set("Email",email); paymentUrl.searchParams.set("Receipt",receipt); paymentUrl.searchParams.set("SignatureValue",signature);
     if(isTest) paymentUrl.searchParams.set("IsTest","1");
     return json(request,{payment_url:paymentUrl.toString(),order_id:invId});
   } catch(error) { return safeError(request,error); }
