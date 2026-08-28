@@ -34,7 +34,7 @@ Deno.serve(async (request) => {
     const paymentUrl=new URL("https://auth.robokassa.ru/Merchant/Index.aspx");
     paymentUrl.searchParams.set("MerchantLogin",login); paymentUrl.searchParams.set("OutSum",outSum);
     paymentUrl.searchParams.set("InvId",invId); paymentUrl.searchParams.set("Description","Доступ к сервису разбора документов — 10 разборов");
-    paymentUrl.searchParams.set("Email",email); paymentUrl.searchParams.set("Receipt",receipt); paymentUrl.searchParams.set("SignatureValue",signature);
+    paymentUrl.searchParams.set("Email",email); paymentUrl.searchParams.set("Receipt",encodedReceipt); paymentUrl.searchParams.set("SignatureValue",signature);
     if(isTest) paymentUrl.searchParams.set("IsTest","1");
     return json(request,{payment_url:paymentUrl.toString(),order_id:invId});
   } catch(error) { return safeError(request,error); }
