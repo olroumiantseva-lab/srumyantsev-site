@@ -6,9 +6,11 @@ export async function sha256Hex(value: string): Promise<string> {
 }
 
 export function normalizeOutSum(value: string): string | null {
-  if (!/^\d+(?:\.\d{1,2})?$/.test(value)) return null;
-  const [rubles, kopecks = ""] = value.split(".");
-  return `${rubles}.${kopecks.padEnd(2, "0")}`;
+  if (!/^\d+(?:\.\d+)?$/.test(value)) return null;
+  const [rubles, fraction = ""] = value.split(".");
+  const kopecks = fraction.slice(0, 2).padEnd(2, "0");
+  if (fraction.slice(2).replace(/0/g, "") !== "") return null;
+  return `${rubles}.${kopecks}`;
 }
 
 export async function paymentSignature(
