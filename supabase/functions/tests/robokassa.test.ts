@@ -8,7 +8,8 @@ Deno.test("normalizes Robokassa sums without accepting loose numeric input", () 
   assert(normalizeOutSum("290") === "290.00", "integer sum");
   assert(normalizeOutSum("290.0") === "290.00", "single decimal");
   assert(normalizeOutSum("290.00") === "290.00", "two decimals");
-  assert(normalizeOutSum("290.000") === null, "too many decimals");
+  assert(normalizeOutSum("290.000000") === "290.00", "provider fixed precision");
+  assert(normalizeOutSum("290.001") === null, "non-zero excess precision");
   assert(normalizeOutSum("+290.00") === null, "signed sum");
 });
 
