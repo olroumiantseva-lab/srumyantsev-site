@@ -3,13 +3,17 @@ document.addEventListener('DOMContentLoaded', () => {
   extraStyles.textContent = `
     .guide-toc{background:var(--paper-2);border:3px solid var(--ink);box-shadow:6px 7px 0 #8a5b3040;margin:0 0 54px;padding:24px 26px 22px;transform:rotate(-.2deg)}
     .guide-toc-title{display:block;margin-bottom:14px;font:800 24px/1.2 "Segoe Print","Comic Sans MS",cursive}
-    .guide-toc ol{margin:0;padding-left:24px}.guide-toc li{margin:7px 0!important;padding-left:4px!important;font-size:16px!important;line-height:1.45!important}
+    .guide-toc ol{list-style:decimal!important;margin:0;padding-left:24px}.guide-toc li{margin:7px 0!important;padding-left:4px!important;font-size:16px!important;line-height:1.45!important}
     .guide-toc a{text-decoration:underline;text-decoration-color:var(--ochre);text-decoration-thickness:2px;text-underline-offset:4px}
     .guide-toc a:hover{color:var(--brown)}
+    .guide-bullets{list-style:disc!important;padding-left:1.45em!important}.guide-bullets>li{margin:8px 0!important;padding-left:4px!important}
+    .guide-numbered-list{list-style:decimal!important;padding-left:1.55em!important}.guide-numbered-list>li{margin:8px 0!important;padding-left:5px!important}
+    .guide-family-teaching .seo-hero h1{margin:24px 0;font:800 clamp(46px,6vw,78px)/1.02 "Segoe Print","Comic Sans MS",cursive;letter-spacing:-.045em}
+    .guide-family-teaching .teaching-step-title{margin:30px 0 12px;font:800 clamp(23px,3vw,32px)/1.2 "Segoe Print","Comic Sans MS",cursive;letter-spacing:-.025em}
     .phone-guide-faq{margin-top:58px!important}
     .phone-guide-visual{background:linear-gradient(135deg,#f8eedc 0 52%,#e8c98f 52% 100%)}
     .phone-guide-visual .guide-art-card:nth-child(2){background:var(--ochre)}
-    @media(max-width:560px){.guide-toc{margin-bottom:42px;padding:20px 18px;transform:none}.guide-toc-title{font-size:21px}.guide-toc li{font-size:15px!important}.phone-guide-faq{margin-top:44px!important}}
+    @media(max-width:560px){.guide-toc{margin-bottom:42px;padding:20px 18px;transform:none}.guide-toc-title{font-size:21px}.guide-toc li{font-size:15px!important}.guide-family-teaching .seo-hero h1{font-size:42px}.guide-family-teaching .teaching-step-title{font-size:23px}.phone-guide-faq{margin-top:44px!important}}
   `;
   document.head.appendChild(extraStyles);
 
@@ -54,8 +58,68 @@ document.addEventListener('DOMContentLoaded', () => {
     '/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/',
     '/kak-proverit-ne-sovrala-li-neyroset/',
     '/kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/',
-    '/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/'
+    '/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/',
+    '/chto-nelzya-doveryat-neyroseti/',
+    '/kartinki-neyrosetyu-otkrytki-avatarka/',
+    '/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/',
+    '/kak-ponyat-analizy-i-zaklyuchenie-vracha/'
   ]);
+
+  const findSectionByNumber = (number) => Array.from(document.querySelectorAll('.seo-body > section')).find((section) => {
+    const label = section.querySelector(':scope > .section-label');
+    return label?.textContent.trim().startsWith(`${number} ·`);
+  });
+
+  const addBulletClass = (number) => {
+    const section = findSectionByNumber(number);
+    section?.querySelectorAll(':scope > ul').forEach((list) => list.classList.add('guide-bullets'));
+  };
+
+  const applyThirdBatchFormatting = () => {
+    if (path === '/chto-nelzya-doveryat-neyroseti/') {
+      const section = findSectionByNumber('13');
+      const list = section?.querySelector(':scope > ul');
+      if (list) {
+        const ordered = document.createElement('ol');
+        ordered.className = 'guide-numbered-list';
+        while (list.firstChild) ordered.appendChild(list.firstChild);
+        list.replaceWith(ordered);
+      }
+    }
+
+    if (path === '/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/') {
+      ['09', '10', '13'].forEach(addBulletClass);
+    }
+
+    if (path === '/kak-ponyat-analizy-i-zaklyuchenie-vracha/') {
+      ['07', '10'].forEach(addBulletClass);
+    }
+
+    if (path === '/kak-nauchit-blizkogo-polzovatsya-neyrosetyu/') {
+      document.body.classList.add('guide-family-teaching');
+
+      const section04 = findSectionByNumber('04');
+      section04?.querySelectorAll(':scope > h3').forEach((heading) => heading.classList.add('teaching-step-title'));
+
+      const section07 = findSectionByNumber('07');
+      if (section07 && !section07.querySelector(':scope > ul')) {
+        const paragraphs = Array.from(section07.querySelectorAll(':scope > p:not(.section-label)'));
+        if (paragraphs.length) {
+          const list = document.createElement('ul');
+          list.className = 'guide-bullets';
+          paragraphs.forEach((paragraph) => {
+            const item = document.createElement('li');
+            item.innerHTML = paragraph.innerHTML;
+            list.appendChild(item);
+            paragraph.remove();
+          });
+          section07.appendChild(list);
+        }
+      }
+
+      addBulletClass('11');
+    }
+  };
 
   const slugify = (text) => text
     .toLowerCase()
@@ -68,7 +132,10 @@ document.addEventListener('DOMContentLoaded', () => {
   const addToc = () => {
     if (!tocPaths.has(path)) return;
     const body = document.querySelector('.seo-body');
-    if (!body || body.querySelector(':scope > .guide-toc')) return;
+    if (!body) return;
+
+    body.querySelectorAll(':scope > .toc, :scope > section > .toc').forEach((legacyToc) => legacyToc.remove());
+    if (body.querySelector(':scope > .guide-toc')) return;
 
     const headings = Array.from(body.querySelectorAll(':scope > h2, :scope > section > h2'))
       .filter((heading) => {
@@ -192,6 +259,7 @@ document.addEventListener('DOMContentLoaded', () => {
     else body.appendChild(section);
   };
 
+  applyThirdBatchFormatting();
   addToc();
   addPhoneIllustrations();
   addPhoneFaq();
