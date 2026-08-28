@@ -121,6 +121,7 @@ function extractTxt(bytes) {
 function init() {
   const input = document.getElementById("document-file");
   if (!input) return;
+  const pickButton = document.getElementById("document-file-button");
   const drop = document.getElementById("file-drop");
   const status = document.getElementById("file-status");
   const error = document.getElementById("file-error");
@@ -152,6 +153,7 @@ function init() {
     clearSummary();
     drop.classList.add("is-processing");
     input.disabled = true;
+    if (pickButton) pickButton.disabled = true;
     try {
       if (file.size > MAX_FILE_BYTES) throw new FileExtractionError("FILE_TOO_LARGE", "Файл больше 8 МБ. Выберите файл меньшего размера.");
       const buffer = await file.arrayBuffer();
@@ -173,10 +175,16 @@ function init() {
     } finally {
       input.value = "";
       input.disabled = false;
+      if (pickButton) pickButton.disabled = false;
       drop.classList.remove("is-processing", "is-dragging");
     }
   };
 
+  pickButton?.addEventListener("click", (event) => {
+    event.preventDefault();
+    event.stopPropagation();
+    input.click();
+  });
   input.addEventListener("change", () => processFile(input.files?.[0]));
   for (const eventName of ["dragenter", "dragover"]) {
     drop.addEventListener(eventName, (event) => { event.preventDefault(); drop.classList.add("is-dragging"); });
