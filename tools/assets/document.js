@@ -1,5 +1,64 @@
 (() => {
-  if (window.__SUPABASE_CONFIG__?.url && window.__SUPABASE_CONFIG__?.publishableKey) return;
+  if (window.__SUPABASE_CONFIG__?.url && window.__SUPABASE_CONFIG__?.publishableKey) {
+    const fileInput = document.getElementById('document-file');
+    if (fileInput) fileInput.setAttribute('accept', '.pdf,.docx,.txt');
+
+    const resultStack = document.getElementById('result-stack');
+    if (resultStack) {
+      const formatDate = (value) => {
+        if (!/^\d{4}-\d{2}-\d{2}$/.test(String(value ?? ''))) return String(value ?? '');
+        const [year, month, day] = String(value).split('-').map(Number);
+        return new Intl.DateTimeFormat('ru-RU', {
+          day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC',
+        }).format(new Date(Date.UTC(year, month - 1, day)));
+      };
+
+      const formatMoney = (value, currency) => {
+        const amount = Number(value);
+        if (!Number.isFinite(amount)) return String(value ?? '');
+        try {
+          return new Intl.NumberFormat('ru-RU', {
+            style: 'currency', currency: currency || 'RUB', maximumFractionDigits: 2,
+          }).format(amount);
+        } catch {
+          return `${amount.toLocaleString('ru-RU')} ${currency || ''}`.trim();
+        }
+      };
+
+      const formatStructuredFacts = () => {
+        resultStack.querySelectorAll('.result-card').forEach((card) => {
+          const heading = card.querySelector(':scope > h2, :scope > summary');
+          const title = heading?.textContent?.trim();
+          if (title !== 'Сроки' && title !== 'Деньги') return;
+
+          card.querySelectorAll('li').forEach((item) => {
+            const raw = item.textContent.trim();
+            if (!raw.startsWith('{')) return;
+            let value;
+            try { value = JSON.parse(raw); } catch { return; }
+            if (!value || typeof value !== 'object' || Array.isArray(value)) return;
+
+            if (title === 'Сроки') {
+              const date = formatDate(value.date);
+              const label = String(value.label ?? '').trim();
+              const approximation = value.is_exact === false ? ' (примерно)' : '';
+              item.textContent = label && date ? `${label}: ${date}${approximation}` : `${label || date}${approximation}`;
+              return;
+            }
+
+            const label = String(value.label ?? '').trim();
+            const amount = formatMoney(value.value, value.currency);
+            const approximation = value.is_exact === false ? ' (примерно)' : '';
+            item.textContent = label && amount ? `${label}: ${amount}${approximation}` : `${label || amount}${approximation}`;
+          });
+        });
+      };
+
+      new MutationObserver(formatStructuredFacts).observe(resultStack, { childList: true, subtree: true });
+      formatStructuredFacts();
+    }
+    return;
+  }
   const byId = (id) => document.getElementById(id);
 
   const loginForm = byId('login-form');
@@ -22,6 +81,8 @@
 
   const analysisForm = byId('analysis-form');
   if (analysisForm) {
+    const fileInput = byId('document-file');
+    if (fileInput) fileInput.setAttribute('accept', '.pdf,.docx,.txt');
     const source = byId('source-text');
     const context = byId('user-context');
     const sourceCount = byId('source-count');
