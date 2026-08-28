@@ -7,12 +7,13 @@ Deno.serve(async (request) => {
   if(request.method!=="POST"&&request.method!=="GET") return text("METHOD_NOT_ALLOWED",405);
   try {
     const params=request.method==="POST"?new URLSearchParams(await request.text()):new URL(request.url).searchParams;
-    const outSum=normalizeOutSum(params.get("OutSum")??"");
+    const rawOutSum=params.get("OutSum")??"";
+    const outSum=normalizeOutSum(rawOutSum);
     const invId=params.get("InvId")??"", signature=params.get("SignatureValue")??"", isTest=params.get("IsTest")==="1";
     if(!outSum||!/^\d+$/.test(invId)||!/^[0-9a-f]{64}$/i.test(signature)) return text("bad request",400);
     const password=Deno.env.get(isTest?"ROBOKASSA_TEST_PASSWORD_2":"ROBOKASSA_PASSWORD_2")??"";
     if(!password) return text("server config",500);
-    const expected=await resultSignature(outSum,invId,password);
+    const expected=await resultSignature(rawOutSum,invId,password);
     if(!constantTimeEqual(signature,expected)) return text("bad signature",403);
     const url=Deno.env.get("SUPABASE_URL")??"", secret=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")??"";
     if(!url||!secret) return text("server config",500);
