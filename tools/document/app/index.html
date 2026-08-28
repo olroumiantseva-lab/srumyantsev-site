@@ -62,8 +62,10 @@
           <div class="file-drop" id="file-drop" tabindex="0" role="button" aria-labelledby="file-drop-title" aria-describedby="file-drop-help">
             <strong id="file-drop-title">Перетащите файл сюда</strong>
             <span id="file-drop-help">или выберите файл до 8 МБ</span>
-            <label class="button button-secondary" for="document-file">Выбрать файл</label>
-            <input class="visually-hidden" id="document-file" type="file">
+            <label class="button button-secondary" style="position:relative;overflow:hidden;isolation:isolate;">
+              <span style="pointer-events:none;">Выбрать файл</span>
+              <input id="document-file" type="file" aria-label="Выбрать файл" style="position:absolute;inset:0;width:100%;height:100%;margin:0;padding:0;opacity:0;cursor:pointer;z-index:2;">
+            </label>
           </div>
           <p class="file-status" id="file-status" aria-live="polite"></p>
           <p class="error" id="file-error" aria-live="assertive"></p>
