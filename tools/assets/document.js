@@ -1,7 +1,23 @@
 (() => {
+  const byId = (id) => document.getElementById(id);
+
+  const initCounters = () => {
+    const source = byId('source-text');
+    const context = byId('user-context');
+    const sourceCount = byId('source-count');
+    const contextCount = byId('context-count');
+    if (!source || !context || !sourceCount || !contextCount) return;
+    const updateCounts = () => {
+      sourceCount.textContent = `${source.value.length.toLocaleString('ru-RU')} / 30 000`;
+      contextCount.textContent = `${context.value.length.toLocaleString('ru-RU')} / 1 000`;
+    };
+    source.addEventListener('input', updateCounts);
+    context.addEventListener('input', updateCounts);
+    updateCounts();
+  };
+
   if (window.__SUPABASE_CONFIG__?.url && window.__SUPABASE_CONFIG__?.publishableKey) {
-    const fileInput = document.getElementById('document-file');
-    if (fileInput) fileInput.setAttribute('accept', '.pdf,.docx,.txt');
+    initCounters();
 
     const resultStack = document.getElementById('result-stack');
     if (resultStack) {
@@ -59,7 +75,6 @@
     }
     return;
   }
-  const byId = (id) => document.getElementById(id);
 
   const loginForm = byId('login-form');
   if (loginForm) {
@@ -81,20 +96,10 @@
 
   const analysisForm = byId('analysis-form');
   if (analysisForm) {
-    const fileInput = byId('document-file');
-    if (fileInput) fileInput.setAttribute('accept', '.pdf,.docx,.txt');
+    initCounters();
     const source = byId('source-text');
     const context = byId('user-context');
-    const sourceCount = byId('source-count');
-    const contextCount = byId('context-count');
     const formError = byId('analysis-error');
-    const updateCounts = () => {
-      sourceCount.textContent = `${source.value.length.toLocaleString('ru-RU')} / 30 000`;
-      contextCount.textContent = `${context.value.length.toLocaleString('ru-RU')} / 1 000`;
-    };
-    source.addEventListener('input', updateCounts);
-    context.addEventListener('input', updateCounts);
-    updateCounts();
     analysisForm.addEventListener('submit', (event) => {
       event.preventDefault();
       const length = source.value.trim().length;
