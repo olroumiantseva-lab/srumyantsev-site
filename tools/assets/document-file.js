@@ -121,6 +121,11 @@ function extractTxt(bytes) {
 function init() {
   const input = document.getElementById("document-file");
   if (!input) return;
+
+  // Android file providers frequently expose DOCX with a generic MIME type.
+  // Do not filter in the native picker; validate extension/signature after selection instead.
+  input.removeAttribute("accept");
+
   const pickButton = document.getElementById("document-file-button");
   const drop = document.getElementById("file-drop");
   const status = document.getElementById("file-status");
