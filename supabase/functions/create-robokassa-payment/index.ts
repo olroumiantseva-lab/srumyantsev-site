@@ -18,6 +18,8 @@ Deno.serve(async (request) => {
     const password=Deno.env.get(isTest?"ROBOKASSA_TEST_PASSWORD_1":"ROBOKASSA_PASSWORD_1")??"";
     if(!url||!secret||!login||!password) throw new HttpError(500,"SERVER_CONFIG","Оплата пока не настроена.");
     const admin=createClient(url,secret,{auth:{persistSession:false,autoRefreshToken:false}});
+    const {error:expireError}=await admin.rpc("expire_stale_payment_orders");
+    if(expireError) throw expireError;
     const {data,error}=await admin.from("payment_orders").insert({email}).select("id").single();
     if(error) throw error;
     const invId=String(data.id), outSum="290.00";
