@@ -11,7 +11,7 @@
   <header class="site-header">
     <div class="shell header-inner">
       <a class="brand" href="/" aria-label="На главную"><span class="brand-mark" aria-hidden="true">＊</span><span>ДЕД ПОПАЛСЯ<br>В НЕЙРОСЕТИ</span></a>
-      <span class="prototype-label">Локальный прототип</span>
+      <span class="prototype-label">Разбор документов</span>
     </div>
   </header>
   <main>
@@ -22,8 +22,13 @@
       <div class="price-card">
         <span class="price">290 ₽</span>
         <span class="price-note">В цену входят 10 разборов документов</span>
-        <a class="button button-full" href="/tools/login/">Разобрать документ — 290 ₽</a>
-        <p class="small muted" style="margin:16px 0 0">В прототипе оплата не производится. Кнопка открывает демонстрационный вход.</p>
+        <form id="payment-form" novalidate>
+          <label for="payment-email">Электронная почта</label>
+          <input id="payment-email" name="email" type="email" autocomplete="email" required maxlength="320" placeholder="name@example.ru">
+          <button class="button button-full" type="submit">Оплатить 290 ₽</button>
+          <p id="payment-error" class="small" role="alert" aria-live="polite" style="margin:12px 0 0"></p>
+        </form>
+        <p class="small muted" style="margin:16px 0 0">После оплаты на эту почту будет оформлен доступ к 10 разборам.</p>
       </div>
     </section>
 
@@ -47,8 +52,8 @@
         <p class="section-kicker">Как работает</p>
         <h2>Четыре простых шага</h2>
         <div class="grid steps">
+          <div class="step"><h3>Оплатите доступ</h3><p>10 разборов документов стоят 290 ₽.</p></div>
           <div class="step"><h3>Вставьте текст</h3><p>Скопируйте нужную часть документа.</p></div>
-          <div class="step"><h3>Выберите вопросы</h3><p>Отметьте, что именно хотите понять.</p></div>
           <div class="step"><h3>Получите разбор</h3><p>Ответ будет разделён на понятные блоки.</p></div>
           <div class="step"><h3>Уточните детали</h3><p>Задайте до трёх вопросов по этому документу.</p></div>
         </div>
@@ -78,5 +83,43 @@
     </section>
   </main>
   <footer class="site-footer"><div class="shell footer-inner"><p>© 2026 Сергей Румянцев</p><a href="/">Вернуться на основной сайт</a></div></footer>
+  <script>
+    (() => {
+      const form = document.getElementById('payment-form');
+      const email = document.getElementById('payment-email');
+      const error = document.getElementById('payment-error');
+      const button = form.querySelector('button[type="submit"]');
+      const endpoint = 'https://hcicntozymwbgesbpsyj.supabase.co/functions/v1/create-robokassa-payment';
+
+      form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        error.textContent = '';
+        if (!email.checkValidity()) {
+          error.textContent = 'Проверьте адрес электронной почты.';
+          email.focus();
+          return;
+        }
+
+        button.disabled = true;
+        button.textContent = 'Переходим к оплате…';
+        try {
+          const response = await fetch(endpoint, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: email.value.trim() }),
+          });
+          const data = await response.json().catch(() => ({}));
+          if (!response.ok || !data.payment_url) throw new Error(data.message || 'PAYMENT_CREATE_FAILED');
+          location.assign(data.payment_url);
+        } catch (paymentError) {
+          error.textContent = paymentError.message && paymentError.message !== 'PAYMENT_CREATE_FAILED'
+            ? paymentError.message
+            : 'Не удалось открыть оплату. Попробуйте ещё раз.';
+          button.disabled = false;
+          button.textContent = 'Оплатить 290 ₽';
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
