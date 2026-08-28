@@ -11,8 +11,17 @@ export function normalizeOutSum(value: string): string | null {
   return `${rubles}.${kopecks.padEnd(2, "0")}`;
 }
 
-export async function paymentSignature(login: string, outSum: string, invId: string, password: string): Promise<string> {
-  return await sha256Hex(`${login}:${outSum}:${invId}:${password}`);
+export async function paymentSignature(
+  login: string,
+  outSum: string,
+  invId: string,
+  password: string,
+  encodedReceipt?: string,
+): Promise<string> {
+  const parts = [login, outSum, invId];
+  if (encodedReceipt) parts.push(encodedReceipt);
+  parts.push(password);
+  return await sha256Hex(parts.join(":"));
 }
 
 export async function resultSignature(outSum: string, invId: string, password: string): Promise<string> {
