@@ -264,3 +264,10 @@ document.addEventListener('DOMContentLoaded', () => {
   addPhoneIllustrations();
   addPhoneFaq();
 });
+
+(() => {
+  const script = document.createElement('script');
+  script.src = '/ded-guide-blocks.js?v=1';
+  script.defer = true;
+  document.head.appendChild(script);
+})();
