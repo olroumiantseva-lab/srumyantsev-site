@@ -13,5 +13,5 @@
   add('/guide-publication-batch-10.js?v=1');
   add('/guide-publication-upgrade.js?v=1');
   add('/guide-publication-template-fix.js?v=1');
-  add('/guide-youtube-shorts.js?v=1');
+  add('/guide-youtube-shorts.js?v=2');
 })();

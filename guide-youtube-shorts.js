@@ -74,6 +74,17 @@
   const root = document.querySelector('.seo-body, article, main');
   if (!root || root.querySelector('.guide-youtube-short')) return;
 
+  // YouTube error 153 is raised when the player cannot identify the embedder.
+  // Keep an explicit referrer policy and also pass the host/page identity in
+  // player parameters for mobile browsers and WebViews that may suppress Referer.
+  let referrerMeta = document.querySelector('meta[name="referrer"]');
+  if (!referrerMeta) {
+    referrerMeta = document.createElement('meta');
+    referrerMeta.name = 'referrer';
+    referrerMeta.content = 'strict-origin-when-cross-origin';
+    document.head.appendChild(referrerMeta);
+  }
+
   const style = document.createElement('style');
   style.textContent = `
     .guide-youtube-short{margin:42px auto;padding:24px;border:1px solid rgba(70,55,40,.14);border-radius:24px;background:#fbf5e9;box-shadow:0 12px 32px rgba(68,52,36,.08);max-width:720px}
@@ -86,6 +97,14 @@
   `;
   document.head.appendChild(style);
 
+  const params = new URLSearchParams({
+    origin: location.origin,
+    widget_referrer: location.href,
+    playsinline: '1',
+    rel: '0'
+  });
+  const embedSrc = `https://www.youtube.com/embed/${item.id}?${params.toString()}`;
+
   const block = document.createElement('section');
   block.className = 'guide-youtube-short';
   block.innerHTML = `
@@ -94,7 +113,7 @@
     <p class="guide-youtube-short__caption">${item.caption}</p>
     <div class="guide-youtube-short__frame">
       <iframe
-        src="https://www.youtube-nocookie.com/embed/${item.id}"
+        src="${embedSrc}"
         title="${item.title}"
         loading="lazy"
         referrerpolicy="strict-origin-when-cross-origin"
