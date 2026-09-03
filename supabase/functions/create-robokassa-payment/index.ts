@@ -1,6 +1,7 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { HttpError, json, options, originAllowed, safeError } from "../_shared/http.ts";
 import { paymentSignature } from "../_shared/robokassa.ts";
+import { getSupabaseAdminKey } from "../_shared/supabase-admin-key.ts";
 
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
@@ -18,7 +19,7 @@ Deno.serve(async (request) => {
     const payload = await request.json();
     const email = String(payload.email ?? "").trim().toLowerCase();
     if (!emailPattern.test(email) || email.length > 320) throw new HttpError(400,"INVALID_EMAIL","Проверьте адрес электронной почты.");
-    const url=Deno.env.get("SUPABASE_URL")??"", secret=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")??"";
+    const url=Deno.env.get("SUPABASE_URL")??"", secret=getSupabaseAdminKey();
     const isTest=Deno.env.get("APP_ENV")!=="production";
     const login=Deno.env.get("ROBOKASSA_MERCHANT_LOGIN")??"";
     const password=Deno.env.get(isTest?"ROBOKASSA_TEST_PASSWORD_1":"ROBOKASSA_PASSWORD_1")??"";

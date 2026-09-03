@@ -1,5 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { constantTimeEqual, normalizeOutSum, resultSignature } from "../_shared/robokassa.ts";
+import { getSupabaseAdminKey } from "../_shared/supabase-admin-key.ts";
 
 function text(body:string,status=200){return new Response(body,{status,headers:{"Content-Type":"text/plain; charset=utf-8","Cache-Control":"no-store"}});}
 function logPayment(event:string, fields:Record<string,unknown>={}){
@@ -30,7 +31,7 @@ Deno.serve(async (request) => {
       logPayment("callback_rejected",{order_id:logInvId,reason:"bad_signature",duration_ms:Date.now()-started});
       return text("bad signature",403);
     }
-    const url=Deno.env.get("SUPABASE_URL")??"", secret=Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")??"";
+    const url=Deno.env.get("SUPABASE_URL")??"", secret=getSupabaseAdminKey();
     if(!url||!secret){
       logPayment("callback_failed",{order_id:logInvId,reason:"server_config",duration_ms:Date.now()-started});
       return text("server config",500);
