@@ -1,4 +1,5 @@
 import { createClient, type SupabaseClient, type User } from "npm:@supabase/supabase-js@2";
+import { getSupabaseAdminKey } from "./supabase-admin-key.ts";
 
 const localOrigins = new Set(["http://127.0.0.1:4174", "http://localhost:4174"]);
 
@@ -46,7 +47,7 @@ export async function requireUser(request: Request): Promise<AuthContext> {
 
   const url = Deno.env.get("SUPABASE_URL") ?? "";
   const publishable = Deno.env.get("SUPABASE_PUBLISHABLE_KEY") ?? Deno.env.get("SUPABASE_ANON_KEY") ?? "";
-  const secret = Deno.env.get("SUPABASE_SECRET_KEY") ?? Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") ?? "";
+  const secret = getSupabaseAdminKey();
   if (!url || !publishable || !secret) throw new HttpError(500, "SERVER_CONFIG", "Сервис пока не настроен.");
 
   const authClient = createClient(url, publishable, { auth: { persistSession: false, autoRefreshToken: false } });
