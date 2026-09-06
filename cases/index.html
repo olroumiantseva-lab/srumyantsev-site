@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Кейсы: контент, AI и маркетинговые воронки — Сергей Румянцев</title>
+  <meta name="description" content="5 кейсов Сергея Румянцева: GPT-ассистенты, AI-контент-системы, Telegram-воронки, рост охватов и продажи через контент.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://srumyantsev.ru/cases/">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="icon" href="/favicon-32x32.png" type="image/png" sizes="32x32">
+  <meta property="og:title" content="Кейсы: контент, AI и маркетинговые воронки — Сергей Румянцев">
+  <meta property="og:description" content="Контент, AI, Telegram и воронки — 5 кейсов с измеримыми результатами.">
+  <meta property="og:url" content="https://srumyantsev.ru/cases/">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="ru_RU">
+  <meta name="twitter:card" content="summary">
+  <style>
+    :root{--bg:#f4f1e9;--paper:#fffdf8;--ink:#171717;--muted:#68645d;--line:#d8d2c6;--accent:#ffd84d;--dark:#1c1c1c;--max:1120px}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--ink);font-family:Inter,Arial,Helvetica,sans-serif;line-height:1.55}
+    a{color:inherit}
+    .shell{width:min(calc(100% - 40px),var(--max));margin:0 auto}
+    header{display:flex;align-items:center;justify-content:space-between;padding:24px 0;border-bottom:1px solid var(--line)}
+    .name{font-weight:800;letter-spacing:-.02em;text-decoration:none}
+    .contact{font-size:14px;color:var(--muted);text-decoration:none}
+    .hero{padding:80px 0 54px}
+    .eyebrow{display:inline-block;background:var(--accent);padding:7px 11px;font-weight:800;font-size:13px;text-transform:uppercase;letter-spacing:.04em}
+    h1{font-size:clamp(42px,7vw,82px);line-height:.97;letter-spacing:-.055em;margin:22px 0 24px;max-width:980px}
+    .lead{max-width:780px;font-size:clamp(18px,2.2vw,24px);color:#3f3c37;margin:0}
+    .metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin:48px 0 0}
+    .metric{background:var(--dark);color:white;padding:22px;border-radius:14px}
+    .metric strong{display:block;font-size:28px;letter-spacing:-.04em}
+    .metric span{font-size:13px;color:#c9c9c9}
+    .section{padding:56px 0}
+    .section-title{display:flex;justify-content:space-between;gap:24px;align-items:end;margin-bottom:24px}
+    .section-title h2{font-size:clamp(30px,4vw,50px);letter-spacing:-.04em;margin:0}
+    .section-title p{max-width:540px;color:var(--muted);margin:0}
+    .cards{display:grid;gap:18px}
+    .card{background:var(--paper);border:1px solid var(--line);border-radius:18px;padding:32px}
+    .card-top{display:flex;justify-content:space-between;gap:20px;align-items:flex-start}
+    .num{font-size:13px;font-weight:800;background:var(--accent);padding:6px 9px;border-radius:7px;white-space:nowrap}
+    .card h3{font-size:clamp(25px,3vw,38px);line-height:1.05;letter-spacing:-.035em;margin:0 0 18px}
+    .case-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:28px}
+    .case-grid h4{font-size:14px;text-transform:uppercase;letter-spacing:.05em;margin:0 0 8px;color:var(--muted)}
+    .case-grid p{margin:0 0 14px}
+    .case-grid ul{margin:0;padding-left:18px}
+    .result{background:#171717;color:white;border-radius:14px;padding:22px;margin-top:26px}
+    .result strong{display:block;font-size:22px;margin-bottom:8px}
+    .result ul{margin:0;padding-left:18px}
+    .proof{font-size:14px;color:var(--muted);margin-top:18px}
+    .skills{display:flex;flex-wrap:wrap;gap:10px}
+    .skills span{border:1px solid var(--line);background:var(--paper);border-radius:999px;padding:9px 13px;font-size:14px}
+    .method{background:var(--dark);color:white;border-radius:22px;padding:42px}
+    .method h2{font-size:clamp(32px,4vw,52px);line-height:1.02;letter-spacing:-.04em;margin:0 0 18px}
+    .flow{font-size:clamp(20px,3vw,32px);font-weight:800;color:var(--accent);margin:28px 0}
+    .cta{display:flex;justify-content:space-between;gap:26px;align-items:center;background:var(--accent);border-radius:22px;padding:38px;margin:56px 0 70px}
+    .cta h2{font-size:clamp(30px,4vw,48px);letter-spacing:-.04em;margin:0 0 8px}
+    .cta p{margin:0;max-width:620px}
+    .button{display:inline-block;background:#171717;color:white;text-decoration:none;font-weight:800;padding:14px 20px;border-radius:10px;white-space:nowrap}
+    footer{border-top:1px solid var(--line);padding:26px 0 42px;display:flex;justify-content:space-between;gap:20px;color:var(--muted);font-size:14px}
+    @media (max-width:800px){.metrics{grid-template-columns:1fr 1fr}.case-grid{grid-template-columns:1fr}.section-title,.card-top,.cta,footer{display:block}.section-title p{margin-top:12px}.cta .button{margin-top:22px}.hero{padding-top:54px}}
+    @media (max-width:520px){.shell{width:min(calc(100% - 24px),var(--max))}.metrics{grid-template-columns:1fr}.card{padding:22px}.method,.cta{padding:26px}.contact{display:none}}
+  </style>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"ProfilePage","name":"Кейсы: контент, AI и маркетинговые воронки","url":"https://srumyantsev.ru/cases/","mainEntity":{"@type":"Person","name":"Сергей Румянцев","jobTitle":"Senior контент-маркетолог / AI-контент-продюсер","url":"https://srumyantsev.ru/"}}</script>
+</head>
+<body>
+  <header class="shell">
+    <a class="name" href="/cases/">Сергей Румянцев</a>
+    <a class="contact" href="https://t.me/Svroum">Telegram: @Svroum ↗</a>
+  </header>
+
+  <main>
+    <section class="hero shell">
+      <span class="eyebrow">Senior контент-маркетолог · AI-контент-продюсер</span>
+      <h1>Контент, AI и маркетинговые воронки — в цифрах</h1>
+      <p class="lead">Не делаю контент ради регулярности. Строю систему: аудитория → контент → действие → конверсия → деньги. Ниже — пять кейсов, где результат можно измерить.</p>
+      <div class="metrics">
+        <div class="metric"><strong>−60%</strong><span>трудозатрат на контент-производство</span></div>
+        <div class="metric"><strong>+312%</strong><span>ROI Telegram-автоворонки</span></div>
+        <div class="metric"><strong>1 247</strong><span>обращений в месяц через GPT-ассистента</span></div>
+        <div class="metric"><strong>8 500+</strong><span>участников экспертного Telegram-сообщества</span></div>
+      </div>
+    </section>
+
+    <section class="section shell">
+      <div class="section-title"><h2>5 кейсов</h2><p>AI здесь не украшение в резюме. Это инструмент производства, автоматизации и коммерческого результата.</p></div>
+      <div class="cards">
+
+        <article class="card">
+          <div class="card-top"><div><h3>GPT-ассистент: 1 247 обращений в месяц и ответ за 15 секунд</h3></div><span class="num">01</span></div>
+          <div class="case-grid">
+            <div><h4>Задача</h4><p>Сократить время обработки входящих обращений и снизить нагрузку на команду. При ручной работе ответ занимал в среднем около 8 минут.</p></div>
+            <div><h4>Что сделал</h4><p>Спроектировал и внедрил GPT-ассистента для первичной обработки входящих: логика диалога, структура ответов и сценарии типовых запросов.</p></div>
+          </div>
+          <div class="result"><strong>Результат</strong><ul><li>1 247 обработанных обращений в месяц</li><li>время ответа: 8 минут → 15 секунд</li><li>нагрузка на команду снижена на 40%</li></ul></div>
+          <p class="proof">Компетенция: внедрение AI в реальные маркетинговые и клиентские процессы, где результат измеряется скоростью и экономией ресурсов.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><div><h3>AI-контент-система: тот же дневной объём за 4 часа вместо 10</h3></div><span class="num">02</span></div>
+          <div class="case-grid">
+            <div><h4>Задача</h4><p>Увеличить скорость производства контента без потери объёма и без расширения команды. Исходный цикл занимал около 10 часов.</p><p><strong>Дневной объём:</strong> 10 Reels + 10 YouTube Shorts + 8 Telegram-постов.</p></div>
+            <div><h4>Что сделал</h4><p>Собрал единый AI-workflow: исследование тем, идеи, тексты, сценарии, визуалы, обложки, промпты, адаптация под площадки, Tone of Voice и дистрибуция.</p></div>
+          </div>
+          <div class="result"><strong>Результат</strong><ul><li>тот же объём: 10 часов → 4 часа</li><li>трудозатраты снижены на 60%</li><li>производительность выросла примерно в 2,5 раза</li><li>объём контента сохранён без пропорционального расширения команды</li></ul></div>
+          <p class="proof">Компетенция: проектирование AI-процессов, а не просто работа с отдельными нейросетями.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><div><h3>Telegram-автоворонка с ROI +312%</h3></div><span class="num">03</span></div>
+          <div class="case-grid">
+            <div><h4>Задача</h4><p>Перевести аудиторию Telegram из чтения контента в автоматизированную покупку продукта без постоянного участия менеджера.</p></div>
+            <div><h4>Что сделал</h4><p>Собрал путь пользователя: контент, лид-магнит, последовательность сообщений, прогрев, оффер, переход к покупке и аналитика конверсий по этапам.</p></div>
+          </div>
+          <div class="result"><strong>Результат</strong><ul><li>конверсия в оплату — 8,5%</li><li>выручка — 123 840 ₽</li><li>ROI — +312%</li><li>продажи без постоянного участия менеджеров</li></ul></div>
+          <p class="proof">Компетенция: контент как часть коммерческой системы — от внимания до оплаты.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><div><h3>Рост охватов с 350 до 2 800 и 918 целевых подписчиков</h3></div><span class="num">04</span></div>
+          <div class="case-grid">
+            <div><h4>Задача</h4><p>Перезапустить контент в проекте профессиональных услуг, где канал плохо привлекал новую аудиторию и слабо конвертировал внимание в обращения.</p></div>
+            <div><h4>Что сделал</h4><p>Пересобрал позиционирование, контентную структуру, темы и формат подачи. Связал органический контент с платным продвижением и отслеживал стоимость привлечения.</p></div>
+          </div>
+          <div class="result"><strong>Результат</strong><ul><li>средний охват: 350 → 2 800</li><li>+918 целевых подписчиков</li><li>87 ₽ за подписчика</li><li>3 заключённых договора</li></ul></div>
+          <p class="proof">Компетенция: позиционирование → контент → привлечение → конверсия.</p>
+        </article>
+
+        <article class="card">
+          <div class="card-top"><div><h3>Relotera Immigration: Telegram как самостоятельный канал продаж</h3></div><span class="num">05</span></div>
+          <div class="case-grid">
+            <div><h4>Задача</h4><p>Развивать экспертное Telegram-сообщество в сложной миграционной нише так, чтобы контент не только удерживал аудиторию, но и приводил клиентов. Telegram был единственным каналом продвижения проекта.</p></div>
+            <div><h4>Что сделал</h4><p>Выстроил контентную систему: мониторинг вопросов аудитории, редакционное планирование, экспертные публикации, новости, разборы законодательства, кейсы клиентов и анализ продаж.</p></div>
+          </div>
+          <div class="result"><strong>Результат</strong><ul><li>8 500+ участников сообщества</li><li>Telegram — единственный канал продвижения</li><li>в наиболее результативные периоды — 18–51 продажа в месяц</li><li>продажи продолжаются: 2 продажи за последний месяц</li></ul></div>
+          <p class="proof">Компетенция: Telegram как самостоятельный маркетинговый и продающий канал в экспертной нише.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section shell">
+      <div class="section-title"><h2>Что умею собирать</h2><p>От отдельных инструментов — к работающей контентной системе.</p></div>
+      <div class="skills"><span>Контент-стратегия</span><span>Редакционный процесс</span><span>Telegram-маркетинг</span><span>SMM</span><span>Контентные воронки</span><span>AI-автоматизация</span><span>GPT-ассистенты</span><span>Маркетинговая аналитика</span><span>Reels & Shorts</span><span>Копирайтинг</span><span>Визуальный контент</span><span>Управление подрядчиками</span><span>Unit-экономика</span></div>
+    </section>
+
+    <section class="section shell">
+      <div class="method">
+        <h2>Как я подхожу к контенту</h2>
+        <p>Сначала определяю бизнес-задачу. Потом собираю путь клиента. И только после этого решаю, какие публикации, видео, автоматизация и каналы действительно нужны.</p>
+        <div class="flow">аудитория → контент → действие → конверсия → деньги</div>
+        <p>Контент ради регулярности мне не интересен. Интересен контент, который выполняет функцию внутри бизнеса.</p>
+      </div>
+    </section>
+
+    <section class="shell cta">
+      <div><h2>Сергей Румянцев</h2><p>Senior контент-маркетолог / AI-контент-продюсер. Рассматриваю удалённую работу, проектное сотрудничество и долгосрочные контракты.</p></div>
+      <a class="button" href="https://t.me/Svroum">Написать в Telegram ↗</a>
+    </section>
+  </main>
+
+  <footer class="shell"><span>© 2026 Сергей Румянцев</span><a href="/">srumyantsev.ru</a></footer>
+</body>
+</html>
