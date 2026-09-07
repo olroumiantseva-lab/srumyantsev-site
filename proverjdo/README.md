@@ -11,32 +11,107 @@
 5. `/proverjdo/result/` — полный результат.
 6. Upsell: подготовить изменения за +1 000 ₽ (итого 1 490 ₽).
 
-## Продуктовая логика
+## Что уже подключено
+
+- переиспользуется безопасный `tools/assets/runtime-config.js`;
+- PDF/DOCX/TXT извлекаются в браузере существующим `tools/assets/document-file.js`;
+- лимиты сохраняются: файл до 8 МБ, текст до 30 000 символов;
+- исходный файл не отправляется на сервер, только извлечённый текст;
+- контекст договора (`role`, `focus`, `signed`) хранится в `sessionStorage` между шагами;
+- экран scan уже умеет вызывать будущий `contractScanFunction`;
+- paywall уже умеет вызывать будущий `contractPaymentFunction` с `product_id=contract_check_490`.
+
+## Почему старые функции не переиспользованы напрямую
+
+Текущий `analyze-document` требует авторизацию и списывает кредит. Он не подходит для бесплатного preview.
+
+Текущий `create-robokassa-payment` обслуживает старый продукт 290 ₽ / 10 разборов. Подменять цену на фронтенде нельзя: цена и состав продукта должны определяться сервером.
+
+Поэтому новый frontend не делает ложный вызов старого тарифа.
+
+## Backend delta для запуска
+
+Нужно добавить два серверных entry point и расширить универсальный анализ.
+
+### 1. `contract-scan`
+
+Публичный или анонимный endpoint для бесплатного preview.
+
+Вход:
+
+```json
+{
+  "scenario": "contract_check_preview",
+  "source_text": "...",
+  "role": "customer",
+  "focus": "money",
+  "signed": "no"
+}
+```
+
+Выход:
+
+```json
+{
+  "risk_level": "высокий",
+  "findings_count": 7,
+  "summary": "3 финансовых риска, 2 условия стоит изменить",
+  "findings": [
+    {
+      "title": "Цена может измениться после подписания",
+      "why": "...",
+      "action": "..."
+    }
+  ]
+}
+```
+
+Требования: rate limit, ограничение размера текста, без выдачи полного анализа, без доверия к цене/продукту со стороны клиента.
+
+### 2. `create-proverjdo-payment`
+
+Серверный whitelist продуктов.
+
+Первый продукт:
+
+```text
+contract_check_490 => 49000 коп.
+```
+
+Frontend передаёт только `product_id` и email. Цена, описание чека и entitlement определяются сервером.
+
+После подтверждения Robokassa платёж должен дать право ровно на полный разбор конкретного договора, а не начислять старый пакет 10 разборов.
+
+### 3. Универсальный анализ
+
+Сохранить `analyze-document` как универсальное ядро, но добавить сценарии:
+
+- `contract_check_full`
+- `contract_deep`
+- позже `contract_generation`, `business_letter`, `claim`, `offer_check`.
+
+Для полного договора результат должен поддерживать минимум:
+
+- summary;
+- risk_level;
+- findings[]: title, clause, why, consequence, action;
+- missing_terms[];
+- questions_to_counterparty[];
+- checklist[];
+- deep_analysis_available.
+
+### 4. Upsell 1 490 ₽
+
+Не запускать отдельный новый анализ с нуля. Использовать исходный session/document id и расширять существующий результат: replacement clauses, priorities, counterparty letter.
+
+## Продуктовая линейка
 
 - MIN: полный базовый анализ — 490 ₽.
 - Средний чек: глубокий разбор + варианты формулировок — 1 490 ₽.
 - Следующий этап: составить договор — 1 990 ₽.
 - Высокий чек: разобрать ситуацию целиком — от 4 900 ₽.
 
-## Архитектурный принцип
-
-Frontend бренда proverjdo.ru должен быть отдельным от srumyantsev.ru. Backend анализа остаётся универсальным: сценарий передаётся параметром, например `contract_check`, `contract_deep`, `contract_generation`, `business_letter`, `claim`, `offer_check`.
-
-На первом этапе переиспользуем существующий Supabase/OpenAI/Robokassa-контур из `tools/document`, но не копируем бизнес-логику без необходимости.
-
-## MVP scope
-
-- статичный лендинг;
-- загрузка PDF/DOCX/TXT;
-- три уточняющих вопроса;
-- бесплатный risk scan;
-- partial result + locked findings;
-- Robokassa 490 ₽;
-- полный результат;
-- upsell +1000 ₽;
-- история результата для авторизованного пользователя.
-
-## Out of scope
+## Out of scope первого релиза
 
 - подписки;
 - маркетплейс экспертов;
