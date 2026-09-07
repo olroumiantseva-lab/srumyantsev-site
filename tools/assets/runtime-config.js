@@ -4,4 +4,7 @@ window.__SUPABASE_CONFIG__ = {
   publishableKey: "sb_publishable_YJZy8yVjqxm_94zW1uowig_j29qeCMT",
   analysisFunction: "analyze-document",
   paymentFunction: "create-robokassa-payment",
+  // Proverjdo.ru uses separate product endpoints. Leave empty until deployed.
+  contractScanFunction: "",
+  contractPaymentFunction: "",
 };
