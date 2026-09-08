@@ -13,21 +13,42 @@ export function normalizeOutSum(value: string): string | null {
   return `${rubles}.${kopecks}`;
 }
 
+function sortedShpParts(shp: Record<string, string> = {}): string[] {
+  return Object.entries(shp)
+    .filter(([key]) => key.startsWith("Shp_"))
+    .sort(([left], [right]) => left.localeCompare(right))
+    .map(([key, value]) => `${key}=${value}`);
+}
+
 export async function paymentSignature(
   login: string,
   outSum: string,
   invId: string,
   password: string,
   encodedReceipt?: string,
+  shp: Record<string, string> = {},
 ): Promise<string> {
   const parts = [login, outSum, invId];
   if (encodedReceipt) parts.push(encodedReceipt);
-  parts.push(password);
+  parts.push(password, ...sortedShpParts(shp));
   return await sha256Hex(parts.join(":"));
 }
 
-export async function resultSignature(outSum: string, invId: string, password: string): Promise<string> {
-  return await sha256Hex(`${outSum}:${invId}:${password}`);
+export async function resultSignature(
+  outSum: string,
+  invId: string,
+  password: string,
+  shp: Record<string, string> = {},
+): Promise<string> {
+  return await sha256Hex([outSum, invId, password, ...sortedShpParts(shp)].join(":"));
+}
+
+export function collectShp(params: URLSearchParams): Record<string, string> {
+  const result: Record<string, string> = {};
+  for (const [key, value] of params.entries()) {
+    if (key.startsWith("Shp_")) result[key] = value;
+  }
+  return result;
 }
 
 export function constantTimeEqual(left: string, right: string): boolean {
