@@ -6,4 +6,6 @@ window.__SUPABASE_CONFIG__ = {
   paymentFunction: "create-payment",
   paymentProductId: "document_explain_290",
   sourceSite: "ded",
+  contractScanFunction: "contract-scan",
+  contractPaymentFunction: "create-payment",
 };
