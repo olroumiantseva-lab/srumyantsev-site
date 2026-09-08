@@ -7,6 +7,7 @@ export type ProductRecord = {
   allowed_source_sites: string[];
   entitlement_type: "credits" | "feature_access" | "session_unlock";
   entitlement_payload: Record<string, unknown>;
+  resource_type: string | null;
   active: boolean;
 };
 
