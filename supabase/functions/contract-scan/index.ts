@@ -10,37 +10,43 @@ const MAX_SCANS_PER_HOUR = 5;
 const schema = {
   type: "object",
   additionalProperties: false,
-  required: ["risk_level","summary","findings","missing_terms","questions","checklist"],
+  required: ["risk_level", "summary", "findings", "missing_terms", "questions", "checklist"],
   properties: {
-    risk_level: { type: "string", enum: ["low","medium","high"] },
+    risk_level: { type: "string", enum: ["low", "medium", "high"] },
     summary: { type: "string" },
     findings: {
       type: "array",
-      maxItems: 12,
       items: {
         type: "object",
         additionalProperties: false,
-        required: ["title","why","action"],
+        required: ["title", "why", "action"],
         properties: {
           title: { type: "string" },
           why: { type: "string" },
-          action: { type: "string" }
-        }
-      }
+          action: { type: "string" },
+        },
+      },
     },
-    missing_terms: { type: "array", maxItems: 10, items: { type: "string" } },
-    questions: { type: "array", maxItems: 10, items: { type: "string" } },
-    checklist: { type: "array", maxItems: 10, items: { type: "string" } }
-  }
+    missing_terms: { type: "array", items: { type: "string" } },
+    questions: { type: "array", items: { type: "string" } },
+    checklist: { type: "array", items: { type: "string" } },
+  },
 };
 
 function outputText(payload: Record<string, unknown>): string | null {
   const output = Array.isArray(payload.output) ? payload.output : [];
   for (const item of output) {
     if (!item || typeof item !== "object") continue;
-    const content = Array.isArray((item as Record<string, unknown>).content) ? (item as Record<string, unknown>).content as unknown[] : [];
+    const content = Array.isArray((item as Record<string, unknown>).content)
+      ? ((item as Record<string, unknown>).content as unknown[])
+      : [];
     for (const part of content) {
-      if (part && typeof part === "object" && (part as Record<string, unknown>).type === "output_text" && typeof (part as Record<string, unknown>).text === "string") {
+      if (
+        part &&
+        typeof part === "object" &&
+        (part as Record<string, unknown>).type === "output_text" &&
+        typeof (part as Record<string, unknown>).text === "string"
+      ) {
         return (part as Record<string, unknown>).text as string;
       }
     }
@@ -56,40 +62,57 @@ async function fingerprint(request: Request): Promise<string> {
 }
 
 Deno.serve(async (request) => {
-  const preflight = options(request); if (preflight) return preflight;
+  const preflight = options(request);
+  if (preflight) return preflight;
+
   try {
-    if (request.method !== "POST") throw new HttpError(405,"METHOD_NOT_ALLOWED","Метод не поддерживается.");
-    if (!originAllowed(request)) throw new HttpError(403,"ORIGIN_NOT_ALLOWED","Запрос с этого сайта запрещён.");
+    if (request.method !== "POST") throw new HttpError(405, "METHOD_NOT_ALLOWED", "Метод не поддерживается.");
+    if (!originAllowed(request)) throw new HttpError(403, "ORIGIN_NOT_ALLOWED", "Запрос с этого сайта запрещён.");
+
     const contentLength = Number(request.headers.get("content-length") ?? 0);
-    if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) throw new HttpError(413,"PAYLOAD_TOO_LARGE","Документ слишком большой.");
+    if (Number.isFinite(contentLength) && contentLength > MAX_BODY_BYTES) {
+      throw new HttpError(413, "PAYLOAD_TOO_LARGE", "Документ слишком большой.");
+    }
 
     const payload = await request.json();
     const sourceText = typeof payload.source_text === "string" ? payload.source_text.trim() : "";
     const role = typeof payload.role === "string" ? payload.role.trim() : "";
     const focus = typeof payload.focus === "string" ? payload.focus.trim() : "";
     const signed = typeof payload.signed === "string" ? payload.signed.trim() : "";
-    if (!sourceText) throw new HttpError(400,"EMPTY_DOCUMENT","Добавьте текст договора.");
-    if (sourceText.length > MAX_SOURCE_LENGTH) throw new HttpError(400,"DOCUMENT_TOO_LARGE","Текст договора превышает 30 000 символов.");
+
+    if (!sourceText) throw new HttpError(400, "EMPTY_DOCUMENT", "Добавьте текст договора.");
+    if (sourceText.length > MAX_SOURCE_LENGTH) {
+      throw new HttpError(400, "DOCUMENT_TOO_LARGE", "Текст договора превышает 30 000 символов.");
+    }
 
     const url = Deno.env.get("SUPABASE_URL") ?? "";
     const secret = getSupabaseAdminKey();
     const apiKey = Deno.env.get("OPENAI_API_KEY") ?? "";
     const model = Deno.env.get("OPENAI_MODEL") ?? "";
-    if (!url || !secret || !apiKey || !model) throw new HttpError(500,"SERVER_CONFIG","Проверка пока не настроена.");
-    const admin = createClient(url, secret, { auth: { persistSession:false, autoRefreshToken:false } });
+    if (!url || !secret || !apiKey || !model) {
+      throw new HttpError(500, "SERVER_CONFIG", "Проверка пока не настроена.");
+    }
 
+    const admin = createClient(url, secret, { auth: { persistSession: false, autoRefreshToken: false } });
     const fp = await fingerprint(request);
-    const since = new Date(Date.now() - 60 * 60 * 1000).toISOString();
-    const { count, error: countError } = await admin.from("contract_scans").select("id", { count: "exact", head: true }).eq("request_fingerprint", fp).gte("created_at", since);
+    const since = new Date(Date.now() - 3600000).toISOString();
+    const { count, error: countError } = await admin
+      .from("contract_scans")
+      .select("id", { count: "exact", head: true })
+      .eq("request_fingerprint", fp)
+      .gte("created_at", since);
+
     if (countError) throw countError;
-    if ((count ?? 0) >= MAX_SCANS_PER_HOUR) throw new HttpError(429,"RATE_LIMIT","Слишком много проверок. Попробуйте позже.");
+    if ((count ?? 0) >= MAX_SCANS_PER_HOUR) {
+      throw new HttpError(429, "RATE_LIMIT", "Слишком много проверок. Попробуйте позже.");
+    }
 
     const instructions = [
       "Проведи предварительную проверку договора по предоставленному тексту.",
       "Не выдумывай отсутствующие факты и не давай юридических гарантий.",
       "Ищи финансовые риски, сроки, ответственность, расторжение, скрытые обязанности и пробелы.",
       "Формулируй простым русским языком.",
-      "Верни результат строго по JSON Schema."
+      "Верни результат строго по JSON Schema.",
     ].join(" ");
 
     const openai = await fetch(OPENAI_URL, {
@@ -100,43 +123,76 @@ Deno.serve(async (request) => {
         store: false,
         instructions,
         input: `Роль пользователя: ${role || "не указана"}\nФокус: ${focus || "все риски"}\nДоговор уже подписан: ${signed || "не указано"}\n\nДоговор:\n${sourceText}`,
-        text: { format: { type: "json_schema", name: "contract_scan", strict: true, schema } }
-      })
+        text: { format: { type: "json_schema", name: "contract_scan", strict: true, schema } },
+      }),
     });
-    if (!openai.ok) throw new HttpError(502,"OPENAI_ERROR","Сервис проверки временно недоступен.");
+
+    if (!openai.ok) {
+      let code = `OPENAI_HTTP_${openai.status}`;
+      try {
+        const err = await openai.json();
+        const apiCode =
+          err &&
+          typeof err === "object" &&
+          err.error &&
+          typeof err.error === "object" &&
+          typeof err.error.code === "string"
+            ? err.error.code
+            : "";
+        if (apiCode) code = `OPENAI_${apiCode.toUpperCase().replace(/[^A-Z0-9_]/g, "_")}`;
+      } catch {}
+      throw new HttpError(502, code, `OpenAI вернул HTTP ${openai.status}.`);
+    }
+
     const raw = await openai.json();
     const text = outputText(raw as Record<string, unknown>);
-    if (!text) throw new HttpError(502,"OPENAI_ERROR","Сервис проверки вернул некорректный ответ.");
-    let full: any;
-    try { full = JSON.parse(text); } catch { throw new HttpError(502,"OPENAI_ERROR","Сервис проверки вернул некорректный ответ."); }
-    const findings = Array.isArray(full.findings) ? full.findings : [];
+    if (!text) throw new HttpError(502, "OPENAI_EMPTY_OUTPUT", "Сервис проверки вернул пустой структурированный ответ.");
 
-    const { data: scan, error: insertError } = await admin.from("contract_scans").insert({
-      source_text: sourceText,
-      role,
-      focus,
-      signed,
-      status: "preview_ready",
-      preview_json: {
-        risk_level: full.risk_level,
-        summary: full.summary,
-        findings_count: findings.length,
-        first_finding: findings[0] ?? null
-      },
-      full_result_json: full,
-      request_fingerprint: fp
-    }).select("id,expires_at").single();
+    let full: any;
+    try {
+      full = JSON.parse(text);
+    } catch {
+      throw new HttpError(502, "OPENAI_INVALID_JSON", "Сервис проверки вернул некорректный JSON.");
+    }
+
+    const findings = Array.isArray(full.findings) ? full.findings.slice(0, 12) : [];
+    const missingTerms = Array.isArray(full.missing_terms) ? full.missing_terms.slice(0, 10) : [];
+    const questions = Array.isArray(full.questions) ? full.questions.slice(0, 10) : [];
+    const checklist = Array.isArray(full.checklist) ? full.checklist.slice(0, 10) : [];
+    const normalized = { ...full, findings, missing_terms: missingTerms, questions, checklist };
+
+    const { data: scan, error: insertError } = await admin
+      .from("contract_scans")
+      .insert({
+        source_text: sourceText,
+        role,
+        focus,
+        signed,
+        status: "preview_ready",
+        preview_json: {
+          risk_level: normalized.risk_level,
+          summary: normalized.summary,
+          findings_count: findings.length,
+          first_finding: findings[0] ?? null,
+        },
+        full_result_json: normalized,
+        request_fingerprint: fp,
+      })
+      .select("id,expires_at")
+      .single();
+
     if (insertError) throw insertError;
 
     return json(request, {
       scan_id: scan.id,
       expires_at: scan.expires_at,
-      risk_level: full.risk_level,
-      summary: full.summary,
+      risk_level: normalized.risk_level,
+      summary: normalized.summary,
       findings_count: findings.length,
-      findings: findings.slice(0,1)
+      findings: findings.slice(0, 1),
+      backend_version: "contract-scan-v4",
     });
   } catch (error) {
-    return safeError(request,error);
+    return safeError(request, error);
   }
 });
