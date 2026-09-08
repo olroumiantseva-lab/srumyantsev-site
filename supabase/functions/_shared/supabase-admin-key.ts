@@ -17,13 +17,9 @@ export function getSupabaseAdminKey(
         }
       }
     } catch {
-      return "";
+      // Fall through to the platform-provided legacy service-role key.
     }
   }
 
-  if (getEnv("APP_ENV") !== "production") {
-    return getEnv("SUPABASE_SERVICE_ROLE_KEY")?.trim() ?? "";
-  }
-
-  return "";
+  return getEnv("SUPABASE_SERVICE_ROLE_KEY")?.trim() ?? "";
 }
