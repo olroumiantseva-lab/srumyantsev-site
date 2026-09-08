@@ -98,8 +98,8 @@
       form?.addEventListener('submit',async(event)=>{
         event.preventDefault();if(!form.reportValidity())return;
         error?.classList.add('hidden');const button=form.querySelector('button[type="submit"]');button.disabled=true;
-        const bridge=new URL('/tools/document/result/',location.origin);bridge.searchParams.set('proverjdo_order',orderId);
-        const{error:authError}=await client.auth.signInWithOtp({email:email.value.trim().toLowerCase(),options:{emailRedirectTo:bridge.toString(),shouldCreateUser:false}});
+        const resultUrl=new URL('/proverjdo/result/',location.origin);resultUrl.searchParams.set('order_id',orderId);
+        const{error:authError}=await client.auth.signInWithOtp({email:email.value.trim().toLowerCase(),options:{emailRedirectTo:resultUrl.toString(),shouldCreateUser:false}});
         button.disabled=false;
         if(authError){if(error){error.textContent='Не удалось отправить ссылку. Проверьте адрес и попробуйте ещё раз.';error.classList.remove('hidden')}return;}
         form.classList.add('hidden');success?.classList.remove('hidden');success?.focus();
