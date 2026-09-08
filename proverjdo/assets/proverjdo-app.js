@@ -153,8 +153,8 @@
       if (!orderId || !/^\d+$/.test(orderId)) throw new Error('ORDER_NOT_FOUND');
       const { data:{ session } } = await client.auth.getSession();
       if (!session) {
-        const returnTo = `${location.pathname}?order_id=${encodeURIComponent(orderId)}`;
-        location.replace(`/tools/login/?return_to=${encodeURIComponent(returnTo)}`);
+        const bridge = `/tools/document/result/?proverjdo_order=${encodeURIComponent(orderId)}`;
+        location.replace(`/tools/login/?return_to=${encodeURIComponent(bridge)}`);
         return;
       }
       const { data, error } = await client.functions.invoke(config.contractResultFunction || 'contract-result', { body:{ order_id:Number(orderId) } });
