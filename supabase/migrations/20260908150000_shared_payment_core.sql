@@ -39,6 +39,9 @@ alter table public.payment_orders
 alter table public.payment_orders
   add column product_id text references public.products(id) on delete restrict,
   add column source_site text,
+  add column entitlement_type text not null default 'credits'
+    check (entitlement_type in ('credits', 'feature_access', 'session_unlock')),
+  add column entitlement_payload jsonb not null default '{"credits":10}'::jsonb,
   add constraint payment_orders_amount_positive check (amount_kopecks > 0),
   add constraint payment_orders_credits_nonnegative check (credits >= 0),
   add constraint payment_orders_source_site_format check (source_site is null or source_site ~ '^[a-z0-9][a-z0-9_-]{1,39}$');
@@ -53,13 +56,13 @@ alter table public.payment_orders
   alter column source_site set default 'ded',
   alter column source_site set not null;
 
--- Keep the legacy credits default of 10 until the old create-robokassa-payment
--- endpoint is retired. New create-payment always stores an explicit snapshot.
+-- Keep legacy defaults until create-robokassa-payment is retired. This lets the
+-- existing 290 ₽ frontend continue creating valid orders during the rollout.
 
 create index payment_orders_product_created_idx on public.payment_orders(product_id, created_at desc);
 create index payment_orders_source_created_idx on public.payment_orders(source_site, created_at desc);
 
--- Purchases must also be able to record products whose entitlement is not credits.
+-- Non-credit products still create a purchase ledger row, so zero credits is valid.
 alter table public.purchases drop constraint if exists purchases_credits_added_check;
 alter table public.purchases add constraint purchases_credits_added_check check (credits_added >= 0);
 
@@ -94,7 +97,6 @@ set search_path = ''
 as $$
 declare
   v_order public.payment_orders%rowtype;
-  v_product public.products%rowtype;
   v_credits integer;
   v_entitlement_key text;
 begin
@@ -122,26 +124,18 @@ begin
     raise exception using errcode = 'P0001', message = 'USER_NOT_FOUND';
   end if;
 
-  select p.* into v_product
-  from public.products p
-  where p.id = v_order.product_id;
-
-  if not found then
-    raise exception using errcode = 'P0001', message = 'PRODUCT_NOT_FOUND';
-  end if;
-
-  update public.payment_orders
-  set status = 'succeeded', user_id = p_user_id, paid_at = now()
-  where id = p_order_id;
-
-  if v_product.entitlement_type = 'credits' then
-    v_credits := coalesce((v_product.entitlement_payload->>'credits')::integer, v_order.credits, 0);
+  if v_order.entitlement_type = 'credits' then
+    v_credits := coalesce((v_order.entitlement_payload->>'credits')::integer, v_order.credits, 0);
     if v_credits <= 0 then
       raise exception using errcode = 'P0001', message = 'INVALID_CREDIT_ENTITLEMENT';
     end if;
   else
     v_credits := 0;
   end if;
+
+  update public.payment_orders
+  set status = 'succeeded', user_id = p_user_id, paid_at = now()
+  where id = p_order_id;
 
   insert into public.purchases(
     user_id, provider, provider_payment_id, amount, currency, product_id, credits_added, status
@@ -157,13 +151,13 @@ begin
   )
   on conflict(provider, provider_payment_id) do nothing;
 
-  if v_product.entitlement_type = 'credits' then
+  if v_order.entitlement_type = 'credits' then
     insert into public.credit_transactions(user_id, amount, type, reference_id)
     values(p_user_id, v_credits, 'purchase', 'robokassa:' || p_order_id::text)
     on conflict(user_id, type, reference_id) do nothing;
   else
     v_entitlement_key := coalesce(
-      nullif(v_product.entitlement_payload->>'key', ''),
+      nullif(v_order.entitlement_payload->>'key', ''),
       v_order.product_id
     );
 
@@ -173,9 +167,9 @@ begin
       p_user_id,
       v_order.product_id,
       p_order_id,
-      v_product.entitlement_type,
+      v_order.entitlement_type,
       v_entitlement_key,
-      v_product.entitlement_payload
+      v_order.entitlement_payload
     )
     on conflict(payment_order_id, entitlement_key) do nothing;
   end if;
@@ -186,8 +180,8 @@ $$;
 
 revoke all on function public.complete_product_payment(bigint, uuid) from public, anon, authenticated;
 
--- Compatibility wrapper: the currently deployed Robokassa callback can continue to
--- call the old RPC name during the rollout.
+-- Compatibility wrapper: the currently deployed callback may keep using the old
+-- RPC name until the generalized callback is deployed.
 create or replace function public.complete_robokassa_payment(p_order_id bigint, p_user_id uuid)
 returns boolean
 language sql
