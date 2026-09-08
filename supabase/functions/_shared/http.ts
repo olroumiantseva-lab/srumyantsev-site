@@ -1,14 +1,21 @@
 import { createClient, type SupabaseClient, type User } from "npm:@supabase/supabase-js@2";
 import { getSupabaseAdminKey } from "./supabase-admin-key.ts";
 
-const localOrigins = new Set(["http://127.0.0.1:4174", "http://localhost:4174"]);
+const builtInOrigins = new Set([
+  "http://127.0.0.1:4174",
+  "http://localhost:4174",
+  "https://srumyantsev.ru",
+  "https://www.srumyantsev.ru",
+  "https://proverjdo.ru",
+  "https://www.proverjdo.ru",
+]);
 
 function allowedOrigins(): Set<string> {
   const configured = (Deno.env.get("ALLOWED_ORIGINS") ?? "")
     .split(",")
     .map((value) => value.trim())
     .filter(Boolean);
-  return new Set([...localOrigins, ...configured]);
+  return new Set([...builtInOrigins, ...configured]);
 }
 
 export function originAllowed(request: Request): boolean {
