@@ -105,7 +105,8 @@ Deno.serve(async (request) => {
 
     const receipt = robokassaReceipt(product);
     const encodedReceipt = encodeURIComponent(receipt);
-    const signature = await paymentSignature(login, outSum, invId, password, encodedReceipt);
+    const shp = sourceSite === "proverjdo" ? { Shp_site: "proverjdo" } : {};
+    const signature = await paymentSignature(login, outSum, invId, password, encodedReceipt, shp);
     const paymentUrl = new URL("https://auth.robokassa.ru/Merchant/Index.aspx");
     paymentUrl.searchParams.set("MerchantLogin", login);
     paymentUrl.searchParams.set("OutSum", outSum);
@@ -113,6 +114,7 @@ Deno.serve(async (request) => {
     paymentUrl.searchParams.set("Description", product.name);
     paymentUrl.searchParams.set("Email", email);
     paymentUrl.searchParams.set("Receipt", encodedReceipt);
+    for (const [key, value] of Object.entries(shp)) paymentUrl.searchParams.set(key, value);
     paymentUrl.searchParams.set("SignatureValue", signature);
     if (isTest) paymentUrl.searchParams.set("IsTest", "1");
 
