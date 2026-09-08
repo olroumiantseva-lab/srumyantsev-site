@@ -7,6 +7,7 @@ import { getSupabaseAdminKey } from "../_shared/supabase-admin-key.ts";
 const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 const idPattern = /^[a-z0-9][a-z0-9_-]{2,79}$/;
 const sourcePattern = /^[a-z0-9][a-z0-9_-]{1,39}$/;
+const uuidPattern = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
 function logPayment(event: string, fields: Record<string, unknown> = {}) {
   console.log(JSON.stringify({ service: "payment_core", event, ...fields }));
@@ -28,6 +29,7 @@ Deno.serve(async (request) => {
     const email = String(payload.email ?? "").trim().toLowerCase();
     productId = String(payload.product_id ?? "").trim();
     const sourceSite = String(payload.source_site ?? "").trim();
+    const resourceId = payload.resource_id == null ? null : String(payload.resource_id).trim();
 
     if (!emailPattern.test(email) || email.length > 320) throw new HttpError(400, "INVALID_EMAIL", "Проверьте адрес электронной почты.");
     if (!idPattern.test(productId)) throw new HttpError(400, "INVALID_PRODUCT", "Продукт не найден.");
@@ -46,7 +48,7 @@ Deno.serve(async (request) => {
 
     const { data: productData, error: productError } = await admin
       .from("products")
-      .select("id,name,receipt_name,amount_kopecks,currency,allowed_source_sites,entitlement_type,entitlement_payload,active")
+      .select("id,name,receipt_name,amount_kopecks,currency,allowed_source_sites,entitlement_type,entitlement_payload,resource_type,active")
       .eq("id", productId)
       .eq("active", true)
       .maybeSingle();
@@ -56,6 +58,28 @@ Deno.serve(async (request) => {
     const product = productData as ProductRecord;
     if (product.currency !== "RUB") throw new HttpError(409, "UNSUPPORTED_CURRENCY", "Эта валюта пока не поддерживается.");
     if (!sourceAllowed(product, sourceSite)) throw new HttpError(403, "PRODUCT_SOURCE_NOT_ALLOWED", "Этот продукт недоступен на выбранном сайте.");
+
+    let boundResourceId: string | null = null;
+    if (product.resource_type) {
+      if (!resourceId || !uuidPattern.test(resourceId)) throw new HttpError(400, "RESOURCE_REQUIRED", "Сначала выполните проверку документа.");
+      if (product.resource_type === "contract_scan") {
+        const { data: scan, error: scanError } = await admin
+          .from("contract_scans")
+          .select("id,status,expires_at,source_site")
+          .eq("id", resourceId)
+          .eq("source_site", sourceSite)
+          .maybeSingle();
+        if (scanError) throw scanError;
+        if (!scan || ["failed", "expired"].includes(scan.status) || new Date(scan.expires_at).getTime() <= Date.now()) {
+          throw new HttpError(404, "RESOURCE_NOT_FOUND", "Проверка устарела или не найдена. Запустите её заново.");
+        }
+        boundResourceId = scan.id;
+      } else {
+        throw new HttpError(409, "RESOURCE_TYPE_UNSUPPORTED", "Этот тип продукта пока не поддерживается.");
+      }
+    } else if (resourceId) {
+      throw new HttpError(400, "RESOURCE_NOT_ALLOWED", "Для этого продукта привязка к проверке не используется.");
+    }
 
     const credits = creditsForProduct(product);
     const { data: order, error: orderError } = await admin
@@ -68,6 +92,8 @@ Deno.serve(async (request) => {
         credits,
         entitlement_type: product.entitlement_type,
         entitlement_payload: product.entitlement_payload,
+        resource_type: product.resource_type,
+        resource_id: boundResourceId,
       })
       .select("id")
       .single();
@@ -94,6 +120,8 @@ Deno.serve(async (request) => {
       order_id: invId,
       product_id: product.id,
       source_site: sourceSite,
+      resource_type: product.resource_type,
+      resource_id: boundResourceId,
       amount_kopecks: product.amount_kopecks,
       entitlement_type: product.entitlement_type,
       mode: isTest ? "test" : "production",
@@ -106,6 +134,7 @@ Deno.serve(async (request) => {
       product_id: product.id,
       amount_kopecks: product.amount_kopecks,
       currency: product.currency,
+      resource_id: boundResourceId,
     });
   } catch (error) {
     logPayment("payment_link_failed", {
