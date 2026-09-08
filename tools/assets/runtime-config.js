@@ -8,4 +8,5 @@ window.__SUPABASE_CONFIG__ = {
   sourceSite: "ded",
   contractScanFunction: "contract-scan",
   contractPaymentFunction: "create-payment",
+  contractResultFunction: "contract-result",
 };
