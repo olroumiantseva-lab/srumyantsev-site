@@ -1,6 +1,6 @@
 import { createClient } from "npm:@supabase/supabase-js@2";
 import { kopecksToOutSum } from "../_shared/payment-core.ts";
-import { constantTimeEqual, normalizeOutSum, resultSignature } from "../_shared/robokassa.ts";
+import { collectShp, constantTimeEqual, normalizeOutSum, resultSignature } from "../_shared/robokassa.ts";
 import { getSupabaseAdminKey } from "../_shared/supabase-admin-key.ts";
 
 function text(body: string, status = 200) {
@@ -30,6 +30,7 @@ Deno.serve(async (request) => {
     const invId = params.get("InvId") ?? "";
     const signature = params.get("SignatureValue") ?? "";
     const isTest = params.get("IsTest") === "1";
+    const shp = collectShp(params);
     logInvId = /^\d+$/.test(invId) ? invId : "invalid";
 
     if (!outSum || !/^\d+$/.test(invId) || !/^[0-9a-f]{64}$/i.test(signature)) {
@@ -43,7 +44,7 @@ Deno.serve(async (request) => {
       return text("server config", 500);
     }
 
-    const expected = await resultSignature(rawOutSum, invId, password);
+    const expected = await resultSignature(rawOutSum, invId, password, shp);
     if (!constantTimeEqual(signature, expected)) {
       logPayment("callback_rejected", { order_id: logInvId, reason: "bad_signature", duration_ms: Date.now() - started });
       return text("bad signature", 403);
@@ -72,6 +73,11 @@ Deno.serve(async (request) => {
         duration_ms: Date.now() - started,
       });
       return text("order mismatch", 409);
+    }
+
+    if (shp.Shp_site && shp.Shp_site !== order.source_site) {
+      logPayment("callback_rejected", { order_id: logInvId, reason: "source_mismatch", duration_ms: Date.now() - started });
+      return text("source mismatch", 409);
     }
 
     let userId = order.user_id as string | null;
