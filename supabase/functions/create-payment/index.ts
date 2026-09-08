@@ -66,6 +66,8 @@ Deno.serve(async (request) => {
         source_site: sourceSite,
         amount_kopecks: product.amount_kopecks,
         credits,
+        entitlement_type: product.entitlement_type,
+        entitlement_payload: product.entitlement_payload,
       })
       .select("id")
       .single();
@@ -93,6 +95,7 @@ Deno.serve(async (request) => {
       product_id: product.id,
       source_site: sourceSite,
       amount_kopecks: product.amount_kopecks,
+      entitlement_type: product.entitlement_type,
       mode: isTest ? "test" : "production",
       duration_ms: Date.now() - started,
     });
