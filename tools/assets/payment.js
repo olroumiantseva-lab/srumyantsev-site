@@ -35,7 +35,7 @@
     } catch (error) {
       showError(error instanceof Error ? error.message : "Не удалось создать платёж. Попробуйте ещё раз.");
       submit.disabled = false;
-      submit.textContent = "Перейти к оплате — 50 ₽";
+      submit.textContent = "Перейти к оплате — 290 ₽";
     }
   });
 })();
