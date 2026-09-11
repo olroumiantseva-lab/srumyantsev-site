@@ -1,0 +1,178 @@
+name: One-time static SEO rewrite batch 3
+
+on:
+  push:
+    paths:
+      - '.github/workflows/seo-static-rewrite-batch3.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rewrite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rewrite third priority batch
+        shell: python
+        run: |
+          import re, json
+          from pathlib import Path
+
+          pages = {
+            'razbor-neponyatnogo-dokumenta': {
+              'title':'Как разобрать непонятный документ с помощью ChatGPT',
+              'desc':'Как с помощью ChatGPT понять письмо, уведомление, договор или другой сложный документ: главная мысль, требования, сроки, риски и вопросы для проверки.',
+              'h1':'Как разобрать непонятный документ с помощью ChatGPT',
+              'lead':'Не просите нейросеть просто пересказать документ. Попросите отдельно показать: что это за документ, чего от вас хотят, какие есть сроки, деньги, риски и что нужно проверить в оригинале.',
+              'links':[('Как разобрать длинный документ','/dlinnye-dokumenty-dogovor-otchet-kniga/'),('Как разобрать договор','/kak-razobrat-dogovor-s-pomoshchyu-neyroseti/'),('Как проверить ответ нейросети','/kak-proverit-ne-sovrala-li-neyroset/')]
+            },
+            'dve-neyroseti-v-pare-vtoroe-mnenie': {
+              'title':'Как проверить ответ одной нейросети другой: второе мнение',
+              'desc':'Как использовать две нейросети для проверки ответа: найти слабые места, получить контраргументы и не принимать совпадение двух ответов за доказательство.',
+              'h1':'Две нейросети в паре: как получить второе мнение и проверить ответ',
+              'lead':'Вторая нейросеть полезна не для того, чтобы подтвердить первую, а чтобы спорить с ней. Дайте ей исходные данные и попросите найти ошибки, пропуски и альтернативные объяснения.',
+              'links':[('Как проверить ответ нейросети','/kak-proverit-ne-sovrala-li-neyroset/'),('Что нельзя доверять нейросети','/chto-nelzya-doveryat-neyroseti/'),('Личная система доверия к нейросети','/lichnaya-sistema-doveriya-neyroseti/')]
+            },
+            'svoya-biblioteka-promptov': {
+              'title':'Как собрать свою библиотеку промптов для ChatGPT',
+              'desc':'Как хранить удачные запросы к ChatGPT: простая библиотека промптов по задачам, шаблоны, версии и правила, чтобы не начинать каждый раз с нуля.',
+              'h1':'Своя библиотека промптов: как хранить удачные запросы и не искать их заново',
+              'lead':'Не сохраняйте сотни чужих промптов. Начните с пяти собственных запросов, которые уже сработали на ваших задачах, и храните рядом пример хорошего результата.',
+              'links':[('Как правильно задавать вопросы нейросети','/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/'),('Как не потерять переписки','/kak-ne-poteryat-perepiski-s-ii/'),('Как сделать ChatGPT личным помощником','/kak-sdelat-neyroset-lichnym-pomoshchnikom/')]
+            },
+            'neyroset-v-rabote-gde-ekonomit-chasy': {
+              'title':'Нейросеть в работе: какие задачи реально экономят часы',
+              'desc':'Где ChatGPT и другие нейросети действительно экономят рабочее время: письма, документы, исследования, таблицы, черновики и подготовка к встречам.',
+              'h1':'Нейросеть в работе: на каких задачах она действительно экономит часы',
+              'lead':'Лучшие рабочие сценарии — не самые эффектные, а повторяющиеся. Ищите задачи, где вы регулярно собираете информацию, делаете первый черновик, сравниваете варианты или приводите материал к одному формату.',
+              'links':[('10 задач для ChatGPT','/10-zadach-dlya-chatgpt-na-kazhdyy-den/'),('Как работать с таблицами и цифрами','/tablitsy-i-tsifry-neyroset/'),('Как вести большой проект с нейросетью','/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/')]
+            },
+            'rezhimy-i-modeli-neyroseti': {
+              'title':'Модели и режимы ChatGPT: что выбрать для разных задач',
+              'desc':'Чем отличаются модели и режимы нейросетей и какой выбрать для текста, анализа, поиска, изображений и сложных задач без лишней переплаты и путаницы.',
+              'h1':'Модели и режимы нейросети: что выбирать для разных задач',
+              'lead':'Не нужно всегда выбирать самую мощную модель. Для короткого текста, анализа документа, поиска информации и сложного рассуждения полезны разные режимы — ориентируйтесь на задачу, а не на название модели.',
+              'links':[('Какую нейросеть выбрать в 2026 году','/kakuyu-neyroset-vybrat-2026/'),('Как разговаривать с ИИ','/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/'),('Как сделать нейросеть личным помощником','/kak-sdelat-neyroset-lichnym-pomoshchnikom/')]
+            },
+            'lichnaya-sistema-doveriya-neyroseti': {
+              'title':'Как проверять нейросеть: личная система доверия к ответам',
+              'desc':'Простая система проверки ответов ChatGPT: что можно принимать как черновик, что нужно перепроверять и когда обязательно нужен первоисточник или специалист.',
+              'h1':'Личная система доверия к нейросети: что принимать, а что всегда проверять',
+              'lead':'Доверие к нейросети должно зависеть от цены ошибки. Черновик письма можно быстро проверить глазами, а цифры, законы, здоровье, деньги и важные решения требуют отдельной проверки по первоисточнику.',
+              'links':[('Как проверить ответ нейросети','/kak-proverit-ne-sovrala-li-neyroset/'),('Две нейросети как второе мнение','/dve-neyroseti-v-pare-vtoroe-mnenie/'),('Что нельзя доверять нейросети','/chto-nelzya-doveryat-neyroseti/')]
+            },
+            'svoy-arhiv-dokumentov-neyroset': {
+              'title':'Как организовать архив документов с помощью ChatGPT',
+              'desc':'Как использовать нейросеть для разбора и систематизации документов: названия файлов, папки, краткие описания, поиск и безопасная работа без передачи лишних данных.',
+              'h1':'Свой архив документов с помощью нейросети: порядок без ручной сортировки',
+              'lead':'Нейросеть может помочь придумать понятную структуру архива, единые названия файлов и короткие карточки документов. Но конфиденциальные файлы сначала нужно обезличить и не загружать без необходимости.',
+              'links':[('Что нельзя загружать в нейросеть','/chto-nelzya-zagruzhat-v-neyroset/'),('Как разобрать непонятный документ','/razbor-neponyatnogo-dokumenta/'),('Как собрать личную базу знаний','/kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/')]
+            },
+            'uchitsya-s-neyrosetyu-yazyk-professiya-tehnika': {
+              'title':'Как учиться с помощью ChatGPT: язык, профессия и техника',
+              'desc':'Как использовать ChatGPT для обучения: объяснения простыми словами, программа занятий, упражнения, проверка знаний и разбор ошибок без подмены самостоятельной работы.',
+              'h1':'Как учиться с помощью ChatGPT: язык, новая профессия или техника',
+              'lead':'Нейросеть полезнее как личный репетитор, чем как генератор готовых ответов. Попросите её объяснять по шагам, задавать вопросы и проверять ваше понимание, а не просто выдавать решение.',
+              'links':[('Как учить иностранный язык с нейросетью','/kak-uchit-inostrannyy-yazyk-s-pomoshchyu-neyroseti/'),('Как разобраться в инструкции к технике','/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/'),('Как правильно задавать вопросы нейросети','/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/')]
+            },
+            'kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii': {
+              'title':'Как разобраться в инструкции к технике с помощью ChatGPT',
+              'desc':'Как с помощью ChatGPT быстро понять инструкцию к бытовой технике: найти нужный режим, расшифровать термин, получить пошаговые действия и проверить их по оригиналу.',
+              'h1':'Как разобраться в инструкции к технике с помощью ChatGPT',
+              'lead':'Не загружайте инструкцию с просьбой «объясни всё». Сформулируйте конкретную задачу — настроить режим, понять ошибку или найти ограничение — и попросите указать, на каком фрагменте инструкции основан ответ.',
+              'links':[('Как найти причину неисправности по фотографии','/kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/'),('Как разобрать длинный документ','/dlinnye-dokumenty-dogovor-otchet-kniga/'),('Как проверить ответ нейросети','/kak-proverit-ne-sovrala-li-neyroset/')]
+            },
+            'kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti': {
+              'title':'Как вести большой проект с помощью ChatGPT и не терять контекст',
+              'desc':'Как использовать ChatGPT в большом проекте: контекст, этапы, решения, документы, контроль задач и отдельная база знаний вместо одного бесконечного чата.',
+              'h1':'Как вести большой проект с помощью ChatGPT и не потерять контекст',
+              'lead':'Большой проект не стоит вести одним длинным чатом. Разделите постоянный контекст, текущие задачи, решения и исходные документы — тогда нейросеть легче контролировать и проще проверять.',
+              'links':[('Как собрать личную базу знаний','/kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/'),('Своя библиотека промптов','/svoya-biblioteka-promptov/'),('Как сделать ChatGPT личным помощником','/kak-sdelat-neyroset-lichnym-pomoshchnikom/')]
+            }
+          }
+
+          def replace_meta(html, name, value, prop=False):
+              attr = 'property' if prop else 'name'
+              pat = rf'<meta\s+{attr}="{re.escape(name)}"\s+content="[^"]*"\s*/?>'
+              repl = f'<meta {attr}="{name}" content="{value}">'
+              return re.sub(pat, repl, html, count=1, flags=re.I)
+
+          for slug, cfg in pages.items():
+              path = Path(slug) / 'index.html'
+              if not path.exists():
+                  print('missing', path)
+                  continue
+              html = path.read_text(encoding='utf-8')
+              html = re.sub(r'<title>.*?</title>', f'<title>{cfg["title"]}</title>', html, count=1, flags=re.S|re.I)
+              html = replace_meta(html, 'description', cfg['desc'])
+              html = replace_meta(html, 'og:title', cfg['title'], True)
+              html = replace_meta(html, 'og:description', cfg['desc'], True)
+              html = replace_meta(html, 'twitter:title', cfg['title'])
+              html = replace_meta(html, 'twitter:description', cfg['desc'])
+              html = re.sub(r'(<h1[^>]*>).*?(</h1>)', rf'\1{cfg["h1"]}\2', html, count=1, flags=re.S|re.I)
+              html = re.sub(r'Обновлено:\s*\d{1,2}\s+[а-яА-Я]+\s+2026', 'Обновлено: 12 сентября 2026', html, count=1)
+
+              summary = '<section class="indexing-rework-summary"><h2>Коротко: что делать</h2><p>' + cfg['lead'] + '</p></section>\n'
+              if 'indexing-rework-summary' not in html:
+                  html = re.sub(r'(<div class="seo-body"[^>]*>)', r'\1\n' + summary, html, count=1, flags=re.I)
+
+              links = ''.join(f'<li><a href="{href}">{text}</a></li>' for text, href in cfg['links'])
+              related = f'<section class="indexing-rework-links"><h2>Что посмотреть дальше</h2><ul>{links}</ul></section>\n'
+              if 'indexing-rework-links' not in html:
+                  html = re.sub(r'(</div>\s*<section class="guide-followup")', related + r'\1', html, count=1, flags=re.I)
+
+              def patch_article(m):
+                  try: obj = json.loads(m.group(1))
+                  except Exception: return m.group(0)
+                  if obj.get('@type') != 'Article': return m.group(0)
+                  obj['headline'] = cfg['h1']
+                  obj['description'] = cfg['desc']
+                  obj['dateModified'] = '2026-09-12'
+                  obj.setdefault('image', 'https://srumyantsev.ru/logo.png')
+                  return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False, separators=(',',':')) + '</script>'
+              html = re.sub(r'<script type="application/ld\+json">(.*?)</script>', patch_article, html, flags=re.S|re.I)
+              path.write_text(html, encoding='utf-8')
+              print('updated', slug)
+
+          # Add prominent crawl paths from /guides/ near the top of the catalogue.
+          gp = Path('guides/index.html')
+          if gp.exists():
+              html = gp.read_text(encoding='utf-8')
+              if 'seo-priority-links' not in html:
+                  block = '''\n<section class="start-here shell seo-priority-links" aria-labelledby="seo-priority-title">\n  <div><p class="section-kicker">Полезные сценарии</p><h2 id="seo-priority-title">Ещё 10 задач, с которых можно начать</h2></div>\n  <ul>\n    <li><a href="/razbor-neponyatnogo-dokumenta/">Разобрать непонятный документ</a></li>\n    <li><a href="/dve-neyroseti-v-pare-vtoroe-mnenie/">Получить второе мнение другой нейросети</a></li>\n    <li><a href="/svoya-biblioteka-promptov/">Собрать свою библиотеку промптов</a></li>\n    <li><a href="/neyroset-v-rabote-gde-ekonomit-chasy/">Найти рабочие задачи, где ИИ экономит часы</a></li>\n    <li><a href="/rezhimy-i-modeli-neyroseti/">Выбрать модель и режим под задачу</a></li>\n    <li><a href="/lichnaya-sistema-doveriya-neyroseti/">Настроить систему проверки ответов</a></li>\n    <li><a href="/svoy-arhiv-dokumentov-neyroset/">Навести порядок в архиве документов</a></li>\n    <li><a href="/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/">Учиться с нейросетью</a></li>\n    <li><a href="/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/">Разобраться в инструкции к технике</a></li>\n    <li><a href="/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/">Вести большой проект с ChatGPT</a></li>\n  </ul>\n</section>\n'''
+                  html = html.replace('<section class="task-picker shell"', block + '<section class="task-picker shell"', 1)
+                  gp.write_text(html, encoding='utf-8')
+
+          # Ensure the homepage injects a useful priority-links block without altering Next hydration markup.
+          hp = Path('home-priority-links.js')
+          if hp.exists():
+              s = hp.read_text(encoding='utf-8')
+              s = s.replace('Пять задач, которые стоит попробовать дальше','Ещё десять задач, где ИИ реально полезен')
+              marker = '<div class="guide-grid home-priority-grid">'
+              if marker in s:
+                  start = s.index(marker) + len(marker)
+                  end = s.index('</div>`;', start)
+                  cards = '''\n      <article class="guide-card guide-white"><h3>Разобрать непонятный документ</h3><p>Вытащить требования, сроки, риски и следующие действия.</p><a href="/razbor-neponyatnogo-dokumenta/">Открыть гайд →</a></article>\n      <article class="guide-card guide-yellow"><h3>Получить второе мнение</h3><p>Проверить один ответ другой нейросетью и найти слабые места.</p><a href="/dve-neyroseti-v-pare-vtoroe-mnenie/">Открыть гайд →</a></article>\n      <article class="guide-card guide-white"><h3>Собрать библиотеку промптов</h3><p>Хранить удачные рабочие запросы и не начинать каждый раз с нуля.</p><a href="/svoya-biblioteka-promptov/">Открыть гайд →</a></article>\n      <article class="guide-card guide-yellow"><h3>Сэкономить часы на работе</h3><p>Найти повторяющиеся задачи, которые разумно отдать ИИ.</p><a href="/neyroset-v-rabote-gde-ekonomit-chasy/">Открыть гайд →</a></article>\n      <article class="guide-card guide-dark"><h3>Выбрать модель и режим</h3><p>Понять, когда нужна быстрая модель, анализ, поиск или глубокое рассуждение.</p><a href="/rezhimy-i-modeli-neyroseti/">Открыть гайд →</a></article>\n      <article class="guide-card guide-white"><h3>Проверять ответы по системе</h3><p>Разделить черновики, факты и решения с высокой ценой ошибки.</p><a href="/lichnaya-sistema-doveriya-neyroseti/">Открыть гайд →</a></article>\n      <article class="guide-card guide-yellow"><h3>Навести порядок в документах</h3><p>Структура архива, понятные имена файлов и быстрый поиск.</p><a href="/svoy-arhiv-dokumentov-neyroset/">Открыть гайд →</a></article>\n      <article class="guide-card guide-white"><h3>Учиться с нейросетью</h3><p>Использовать ИИ как репетитора, а не генератор готовых ответов.</p><a href="/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/">Открыть гайд →</a></article>\n      <article class="guide-card guide-yellow"><h3>Разобраться в инструкции</h3><p>Найти нужный режим или действие без чтения руководства от корки до корки.</p><a href="/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/">Открыть гайд →</a></article>\n      <article class="guide-card guide-dark"><h3>Вести большой проект</h3><p>Не терять контекст, решения и исходные материалы в одном бесконечном чате.</p><a href="/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/">Открыть гайд →</a></article>\n    '''
+                  s = s[:start] + cards + s[end:]
+              s = s.replace('grid-template-columns:repeat(5,minmax(0,1fr))','grid-template-columns:repeat(5,minmax(0,1fr))')
+              hp.write_text(s, encoding='utf-8')
+
+          # Load homepage helper if it is not already referenced.
+          root = Path('index.html')
+          if root.exists():
+              html = root.read_text(encoding='utf-8')
+              if '/home-priority-links.js' not in html:
+                  html = html.replace('</body>', '<script src="/home-priority-links.js?v=2" defer></script></body>', 1)
+                  root.write_text(html, encoding='utf-8')
+
+      - name: Commit rewritten pages
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .
+          git commit -m 'SEO: rewrite ten unknown URLs and strengthen internal links' || exit 0
+          git push
