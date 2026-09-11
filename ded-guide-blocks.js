@@ -14,5 +14,6 @@
   add('/guide-publication-upgrade.js?v=1');
   add('/guide-publication-template-fix.js?v=1');
   add('/guide-youtube-shorts.js?v=3');
+  add('/guide-indexing-rework.js?v=1');
   add('/home-priority-links.js?v=1');
 })();
