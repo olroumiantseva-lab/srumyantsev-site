@@ -1,0 +1,144 @@
+name: One-time static SEO rewrite
+
+on:
+  push:
+    paths:
+      - '.github/workflows/seo-static-rewrite.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rewrite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rewrite priority guides
+        shell: python
+        run: |
+          from pathlib import Path
+          import re, json, html
+
+          cfg = {
+            '10-zadach-dlya-chatgpt-na-kazhdyy-den/index.html': {
+              'title':'ChatGPT для начинающих: 10 полезных задач на каждый день',
+              'description':'10 практических задач для ChatGPT на каждый день: письма, документы, планы, сравнение вариантов, тексты и готовые запросы для начинающих.',
+              'h1':'10 полезных задач для ChatGPT на каждый день',
+              'heading':'С чего начать: не изучать ChatGPT, а дать ему одну реальную задачу',
+              'text':['Самый быстрый способ понять ChatGPT — не читать список функций, а поручить ему то, что вы и так собирались делать сегодня. Ответить на письмо, объяснить документ, сравнить варианты, составить план или привести в порядок заметки.','Ниже — десять сценариев с готовыми формулировками. Выберите один, подставьте свои данные и после первого ответа обязательно уточните результат: что сократить, что проверить и чего не хватает.'],
+              'links':[('/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/','Как правильно задавать вопросы ChatGPT'),('/kak-proverit-ne-sovrala-li-neyroset/','Как проверить ответ ChatGPT'),('/chto-nelzya-zagruzhat-v-neyroset/','Что нельзя загружать в нейросеть')]
+            },
+            'kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/index.html': {
+              'title':'Как правильно задавать вопросы ChatGPT: формула промпта',
+              'description':'Как написать хороший запрос для ChatGPT: контекст, задача, ограничения, формат ответа и уточняющие вопросы. Простая формула без магических промптов.',
+              'h1':'Как правильно задавать вопросы ChatGPT, чтобы получать полезные ответы',
+              'heading':'Хороший промпт — это не заклинание, а нормальная постановка задачи',
+              'text':['Качество ответа чаще всего зависит не от длины промпта, а от четырёх вещей: что происходит, какой результат нужен, какие есть ограничения и в каком виде вы хотите получить ответ.','Не пытайтесь написать идеальный запрос с первого раза. Дайте нейросети контекст, попросите черновик, затем уточните слабые места. Такой диалог обычно работает лучше, чем один огромный «универсальный промпт».'],
+              'links':[('/10-zadach-dlya-chatgpt-na-kazhdyy-den/','10 задач для ChatGPT на каждый день'),('/kak-proverit-ne-sovrala-li-neyroset/','Как проверить факты в ответе нейросети'),('/svoya-biblioteka-promptov/','Как собрать свою библиотеку промптов')]
+            },
+            'kak-proverit-ne-sovrala-li-neyroset/index.html': {
+              'title':'Как проверить ответ ChatGPT: 5 способов найти ошибки',
+              'description':'Как проверить ответ ChatGPT и другой нейросети: источники, даты, цифры, цитаты и второе мнение. Пять способов заметить выдуманные факты.',
+              'h1':'Как проверить ответ ChatGPT и понять, не выдумала ли нейросеть факты',
+              'heading':'Уверенный тон ответа ничего не доказывает',
+              'text':['Нейросеть может правильно объяснить сложную тему и в той же фразе придумать дату, ссылку или название документа. Поэтому проверять нужно прежде всего проверяемые утверждения: цифры, имена, нормы, цитаты, источники и события.','Простой принцип: чем дороже ошибка, тем ближе вы должны подойти к первоисточнику. Для закона, лечения, денег и обязательств нужен официальный документ или профильный специалист.'],
+              'links':[('/chto-nelzya-doveryat-neyroseti/','Что нельзя доверять нейросети'),('/dve-neyroseti-v-pare-vtoroe-mnenie/','Как получить второе мнение другой нейросети'),('/kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/','Как проверять совет перед важным решением')]
+            },
+            'kak-razobrat-dogovor-s-pomoshchyu-neyroseti/index.html': {
+              'title':'Как проверить договор с помощью ChatGPT: риски и условия',
+              'description':'Как разобрать договор с помощью ChatGPT: найти деньги, сроки, штрафы, расторжение и спорные условия. Пошаговая проверка перед подписанием.',
+              'h1':'Как проверить договор с помощью ChatGPT перед подписанием',
+              'heading':'Сначала вытащите из договора то, чем вы реально рискуете',
+              'text':['Не начинайте с просьбы «проверь договор». Сначала попросите отдельно собрать деньги, сроки, обязанности, штрафы, основания для расторжения и пункты, где одна сторона получает заметно больше прав, чем другая.','После этого возвращайтесь к оригиналу и сверяйте каждый важный вывод. Нейросеть удобна как навигатор по тексту, но не как последний судья: юридически значимые формулировки нужно читать в самом договоре.'],
+              'links':[('/dlinnye-dokumenty-dogovor-otchet-kniga/','Как работать с длинным документом'),('/kak-proverit-ne-sovrala-li-neyroset/','Как проверить выводы нейросети'),('/chto-nelzya-zagruzhat-v-neyroset/','Как обезличить документ перед загрузкой')]
+            },
+            'kak-ne-poteryat-perepiski-s-ii/index.html': {
+              'title':'Как сохранить переписку ChatGPT: чаты, история и промпты',
+              'description':'Как не потерять полезную переписку с ChatGPT: как называть чаты, что сохранять отдельно, как вести библиотеку промптов и личную базу знаний.',
+              'h1':'Как сохранить переписку ChatGPT и не потерять полезные ответы',
+              'heading':'Чат — рабочее место, а не архив',
+              'text':['Полезные ответы лучше не хранить только внутри одного длинного диалога. Через месяц трудно вспомнить, где именно был хороший промпт, финальная версия письма или важный вывод.','Рабочая схема простая: понятное название чата, отдельная заметка для проверенных промптов и отдельное место для результатов, которые понадобятся снова. Тогда история чатов остаётся контекстом, а не единственным хранилищем.'],
+              'links':[('/svoya-biblioteka-promptov/','Как собрать библиотеку промптов'),('/kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/','Как собрать личную базу знаний'),('/chto-nelzya-zagruzhat-v-neyroset/','Что не стоит хранить и загружать в нейросеть')]
+            },
+            'moshenniki-dipfeyki-golos-rodstvennika/index.html': {
+              'title':'Дипфейки и голос родственника: как распознать мошенников',
+              'description':'Как действовать, если звонят или присылают голосовое от имени родственника: признаки дипфейка, проверочный вопрос и безопасный алгоритм действий.',
+              'h1':'Дипфейк и голос родственника: как проверить, что вам звонит не мошенник',
+              'heading':'Главная защита — не распознавать голос, а менять канал связи',
+              'text':['Современная подделка голоса может звучать убедительно, особенно когда человека пугают и торопят. Поэтому опасно строить защиту только на попытке услышать «неестественные интонации».','Если просят деньги, код, срочное действие или секретность — прервите разговор и сами перезвоните человеку по сохранённому номеру. Ещё лучше заранее договориться в семье о контрольном вопросе, ответ на который нельзя узнать из социальных сетей.'],
+              'links':[('/kak-proverit-ne-sovrala-li-neyroset/','Как проверять сомнительную информацию'),('/chto-nelzya-doveryat-neyroseti/','Где нельзя полагаться на ИИ'),('/chto-nelzya-zagruzhat-v-neyroset/','Какие личные данные нельзя загружать')]
+            },
+            'rezyume-i-sobesedovanie-posle-45/index.html': {
+              'title':'Резюме после 45: как обновить опыт с помощью ИИ',
+              'description':'Как переписать резюме после 45 с помощью ChatGPT и ИИ: превратить большой опыт в конкретные результаты, адаптировать под вакансию и подготовиться к собеседованию.',
+              'h1':'Резюме после 45: как показать опыт сильной стороной с помощью ИИ',
+              'heading':'Проблема не в большом опыте, а в том, как он упакован',
+              'text':['Резюме после 45 часто перегружено обязанностями за двадцать лет и плохо показывает, какую пользу человек приносит сейчас. Нейросеть помогает разложить опыт на задачи, результаты, цифры и навыки, а затем собрать короткую версию под конкретную вакансию.','Но не просите ИИ «улучшить резюме» без исходных данных. Дайте вакансию, реальные достижения и ограничение: ничего не выдумывать, не менять должности и не приписывать навыки, которых у вас нет.'],
+              'links':[('/kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/','Как сменить профессию после 45'),('/kak-nauchit-neyroset-pisat-v-svoem-stile/','Как научить ИИ писать в вашем стиле'),('/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/','Как ставить задачу нейросети')]
+            }
+          }
+
+          def patch_ldjson(match, c):
+            raw = match.group(1)
+            try:
+              data = json.loads(raw)
+            except Exception:
+              return match.group(0)
+            def walk(node):
+              if isinstance(node, dict):
+                if node.get('@type') == 'Article':
+                  node['headline'] = c['h1']
+                  node['description'] = c['description']
+                  node['dateModified'] = '2026-09-12'
+                  node.setdefault('image', 'https://srumyantsev.ru/logo.png')
+                if isinstance(node.get('@graph'), list):
+                  for x in node['@graph']: walk(x)
+              elif isinstance(node, list):
+                for x in node: walk(x)
+            walk(data)
+            return '<script type="application/ld+json">' + json.dumps(data, ensure_ascii=False, separators=(',',':')) + '</script>'
+
+          for file_name, c in cfg.items():
+            p = Path(file_name)
+            if not p.exists():
+              print('missing', file_name)
+              continue
+            s = p.read_text(encoding='utf-8')
+            s = re.sub(r'<title>.*?</title>', f'<title>{html.escape(c["title"])}</title>', s, count=1, flags=re.S)
+            s = re.sub(r'<meta name="description" content="[^"]*">', f'<meta name="description" content="{html.escape(c["description"], quote=True)}">', s, count=1)
+            s = re.sub(r'<meta property="og:title" content="[^"]*">', f'<meta property="og:title" content="{html.escape(c["title"], quote=True)}">', s, count=1)
+            s = re.sub(r'<meta property="og:description" content="[^"]*">', f'<meta property="og:description" content="{html.escape(c["description"], quote=True)}">', s, count=1)
+            s = re.sub(r'<meta name="twitter:title" content="[^"]*">', f'<meta name="twitter:title" content="{html.escape(c["title"], quote=True)}">', s, count=1)
+            s = re.sub(r'<meta name="twitter:description" content="[^"]*">', f'<meta name="twitter:description" content="{html.escape(c["description"], quote=True)}">', s, count=1)
+            s = re.sub(r'<h1>.*?</h1>', f'<h1>{html.escape(c["h1"])}</h1>', s, count=1, flags=re.S)
+            s = re.sub(r'<script type="application/ld\+json">(.*?)</script>', lambda m: patch_ldjson(m, c), s, flags=re.S)
+
+            if 'indexing-rework-summary' not in s:
+              block = '<section class="indexing-rework-summary"><h2>' + html.escape(c['heading']) + '</h2>' + ''.join('<p>'+html.escape(x)+'</p>' for x in c['text']) + '</section>'
+              s = re.sub(r'(<div class="seo-body"[^>]*>)', r'\1\n' + block, s, count=1)
+
+            if 'indexing-rework-links' not in s:
+              links = '<section class="indexing-rework-links"><h2>Что ещё пригодится по этой теме</h2><ul>' + ''.join(f'<li><a href="{html.escape(href, quote=True)}">{html.escape(label)}</a></li>' for href,label in c['links']) + '</ul></section>'
+              if '<section class="guide-followup"' in s:
+                s = s.replace('<section class="guide-followup"', links + '<section class="guide-followup"', 1)
+              else:
+                s = s.replace('</div>\n    <aside class="seo-cta"', links + '</div>\n    <aside class="seo-cta"', 1)
+
+            s = re.sub(r'Обновлено:\s*[^<]+', 'Обновлено: 12 сентября 2026', s, count=1)
+            p.write_text(s, encoding='utf-8')
+            print('updated', file_name)
+
+      - name: Commit rewritten HTML
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- '*.html'
+          if git diff --cached --quiet; then
+            echo "No changes"
+          else
+            git commit -m "SEO: statically rewrite priority guides"
+            git push
+          fi
