@@ -1,0 +1,151 @@
+name: One-time static SEO rewrite batch 2
+
+on:
+  push:
+    paths:
+      - '.github/workflows/seo-static-rewrite-batch2.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  rewrite:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Rewrite second priority batch
+        shell: python
+        run: |
+          import re, json
+          from pathlib import Path
+
+          pages = {
+            'neyroseti-posle-45-pervyy-rezultat': {
+              'title':'Нейросети после 45: как начать пользоваться ИИ с нуля',
+              'desc':'Как начать пользоваться нейросетями после 45 лет: первый понятный сценарий, безопасные шаги и готовый запрос без технических терминов.',
+              'h1':'Нейросети после 45: как начать с нуля и получить первый результат',
+              'lead':'Не нужно изучать нейросети целиком. Возьмите одну знакомую задачу — письмо, документ, план или поиск информации — и пройдите её от вопроса до проверенного результата.',
+              'links':[('Какую нейросеть выбрать в 2026 году','/kakuyu-neyroset-vybrat-2026/'),('10 задач для ChatGPT на каждый день','/10-zadach-dlya-chatgpt-na-kazhdyy-den/'),('Как проверить ответ нейросети','/kak-proverit-ne-sovrala-li-neyroset/')]
+            },
+            'kak-nauchit-blizkogo-polzovatsya-neyrosetyu': {
+              'title':'Как научить близкого пользоваться нейросетью без стресса',
+              'desc':'Пошаговый способ показать родителям или близкому человеку, как пользоваться ChatGPT и другими нейросетями без перегруза и лишней теории.',
+              'h1':'Как научить близкого пользоваться нейросетью — спокойно и без перегруза',
+              'lead':'Лучше не объяснять нейросети как технологию. Покажите один полезный сценарий на реальной задаче человека, а затем дайте ему повторить тот же путь самому.',
+              'links':[('Нейросети после 45: первый результат','/neyroseti-posle-45-pervyy-rezultat/'),('Как пользоваться ИИ с телефона','/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/'),('Что нельзя доверять нейросети','/chto-nelzya-doveryat-neyroseti/')]
+            },
+            'dlinnye-dokumenty-dogovor-otchet-kniga': {
+              'title':'Как быстро разобрать длинный документ с помощью ChatGPT',
+              'desc':'Как разбирать длинные документы с помощью ChatGPT: сначала структура и ключевые пункты, затем вопросы по срокам, рискам и нужным фрагментам.',
+              'h1':'Как разобрать длинный документ с помощью ChatGPT и не читать всё подряд',
+              'lead':'Не просите нейросеть просто пересказать большой документ. Сначала получите структуру, ключевые выводы и список мест, которые требуют проверки, а затем задавайте точечные вопросы.',
+              'links':[('Как разобрать договор','/kak-razobrat-dogovor-s-pomoshchyu-neyroseti/'),('Как объяснить непонятное письмо','/kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/'),('Как проверить ответ нейросети','/kak-proverit-ne-sovrala-li-neyroset/')]
+            },
+            'chto-nelzya-zagruzhat-v-neyroset': {
+              'title':'Что нельзя загружать в ChatGPT и другие нейросети',
+              'desc':'Какие данные нельзя отправлять в ChatGPT и другие нейросети: пароли, документы, банковские данные, персональная информация и рабочие секреты.',
+              'h1':'Что нельзя загружать в ChatGPT и другие нейросети',
+              'lead':'Главное правило простое: не отправляйте в обычный чат данные, утечка которых создаст проблему. Личные, банковские, рабочие и чужие данные сначала нужно удалить или обезличить.',
+              'links':[('Что нельзя доверять нейросети','/chto-nelzya-doveryat-neyroseti/'),('Как не потерять переписки с ИИ','/kak-ne-poteryat-perepiski-s-ii/'),('Как проверить важный совет нейросети','/kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/')]
+            },
+            'kak-sdelat-neyroset-lichnym-pomoshchnikom': {
+              'title':'Как сделать ChatGPT личным помощником для повседневных дел',
+              'desc':'Как использовать ChatGPT как личного помощника: задачи, списки, письма, планы и повторяющиеся дела без сложной настройки и автоматизации.',
+              'h1':'Как сделать ChatGPT личным помощником и не усложнять систему',
+              'lead':'Личный помощник из нейросети начинается не с автоматизации, а с повторяющихся задач. Выберите три дела, которые регулярно отнимают время, и задайте для каждого понятный формат результата.',
+              'links':[('10 задач для ChatGPT','/10-zadach-dlya-chatgpt-na-kazhdyy-den/'),('Своя библиотека промптов','/svoya-biblioteka-promptov/'),('Как вести большой проект с нейросетью','/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/')]
+            },
+            'kak-sravnit-tovary-s-pomoshchyu-neyroseti': {
+              'title':'Как сравнить товары с помощью ChatGPT и выбрать лучший',
+              'desc':'Как сравнивать товары с помощью ChatGPT: задать критерии, собрать таблицу различий, проверить характеристики и выбрать подходящий вариант.',
+              'h1':'Как сравнить товары с помощью ChatGPT и не утонуть в характеристиках',
+              'lead':'Нейросеть полезнее всего не тогда, когда выбирает товар за вас, а когда превращает десятки характеристик в короткое сравнение по вашим критериям: цене, надёжности, функциям и ограничениям.',
+              'links':[('Как проверить ответ нейросети','/kak-proverit-ne-sovrala-li-neyroset/'),('Как разобраться в инструкции к технике','/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/'),('Как сравнить тарифы','/kak-sravnit-tarify-s-pomoshchyu-neyroseti/')]
+            },
+            'kak-sravnit-tarify-s-pomoshchyu-neyroseti': {
+              'title':'Как сравнить тарифы с помощью ChatGPT и не переплатить',
+              'desc':'Как сравнивать тарифы связи, интернета, банков и сервисов с помощью ChatGPT: условия, скрытые ограничения, итоговая стоимость и выбор.',
+              'h1':'Как сравнить тарифы с помощью ChatGPT и увидеть реальную стоимость',
+              'lead':'Сравнивать тарифы по рекламной цене бессмысленно. Дайте нейросети полные условия и попросите посчитать итоговую стоимость для вашего сценария, отдельно показав ограничения и доплаты.',
+              'links':[('Как разобраться с деньгами и тарифами','/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/'),('Как сравнить товары','/kak-sravnit-tovary-s-pomoshchyu-neyroseti/'),('Как проверить ответ нейросети','/kak-proverit-ne-sovrala-li-neyroset/')]
+            },
+            'kak-sostavit-marshrut-poezdki-s-pomoshchyu-ii': {
+              'title':'Как составить маршрут поездки с помощью ChatGPT',
+              'desc':'Как спланировать маршрут поездки с помощью ChatGPT: дни, точки, время в пути, ограничения, запасные варианты и проверка актуальной информации.',
+              'h1':'Как составить маршрут поездки с помощью ChatGPT и не получить фантазию',
+              'lead':'Нейросеть хорошо собирает маршрут из ваших ограничений, но плохо заменяет актуальные карты и расписания. Используйте её для структуры поездки, а время работы, билеты и транспорт проверяйте отдельно.',
+              'links':[('ИИ в поездке: перевод, меню и маршрут','/ii-v-poezdke-perevod-menyu-marshrut/'),('Как спланировать семейную поездку','/kak-splanirovat-semeynuyu-poezdku-s-pomoshchyu-ii/'),('Как проверить ответ нейросети','/kak-proverit-ne-sovrala-li-neyroset/')]
+            }
+          }
+
+          def replace_meta(html, name, value, prop=False):
+              attr = 'property' if prop else 'name'
+              pat = rf'<meta\s+{attr}="{re.escape(name)}"\s+content="[^"]*"\s*/?>'
+              repl = f'<meta {attr}="{name}" content="{value}">'
+              return re.sub(pat, repl, html, count=1, flags=re.I)
+
+          for slug, cfg in pages.items():
+              path = Path(slug) / 'index.html'
+              if not path.exists():
+                  print('missing', path)
+                  continue
+              html = path.read_text(encoding='utf-8')
+              html = re.sub(r'<title>.*?</title>', f'<title>{cfg["title"]}</title>', html, count=1, flags=re.S|re.I)
+              html = replace_meta(html, 'description', cfg['desc'])
+              html = replace_meta(html, 'og:title', cfg['title'], True)
+              html = replace_meta(html, 'og:description', cfg['desc'], True)
+              html = replace_meta(html, 'twitter:title', cfg['title'])
+              html = replace_meta(html, 'twitter:description', cfg['desc'])
+              html = re.sub(r'(<h1[^>]*>).*?(</h1>)', rf'\1{cfg["h1"]}\2', html, count=1, flags=re.S|re.I)
+              html = re.sub(r'Обновлено:\s*\d{1,2}\s+[а-яА-Я]+\s+2026', 'Обновлено: 12 сентября 2026', html, count=1)
+
+              # Static summary near the start of the article body.
+              summary = '<section class="indexing-rework-summary"><h2>Коротко: что делать</h2><p>' + cfg['lead'] + '</p></section>\n'
+              if 'indexing-rework-summary' not in html:
+                  html = re.sub(r'(<div class="seo-body"[^>]*>)', r'\1\n' + summary, html, count=1, flags=re.I)
+
+              # Strong cross-links near the end of the main body.
+              links = ''.join(f'<li><a href="{href}">{text}</a></li>' for text, href in cfg['links'])
+              related = f'<section class="indexing-rework-links"><h2>Что посмотреть дальше</h2><ul>{links}</ul></section>\n'
+              if 'indexing-rework-links' not in html:
+                  html = re.sub(r'(</div>\s*<section class="guide-followup")', related + r'\1', html, count=1, flags=re.I)
+
+              # Update Article JSON-LD fields where present.
+              def patch_article(m):
+                  try:
+                      obj = json.loads(m.group(1))
+                  except Exception:
+                      return m.group(0)
+                  if obj.get('@type') != 'Article':
+                      return m.group(0)
+                  obj['headline'] = cfg['h1']
+                  obj['description'] = cfg['desc']
+                  obj['dateModified'] = '2026-09-12'
+                  obj.setdefault('image', 'https://srumyantsev.ru/logo.png')
+                  return '<script type="application/ld+json">' + json.dumps(obj, ensure_ascii=False, separators=(',',':')) + '</script>'
+              html = re.sub(r'<script type="application/ld\+json">(.*?)</script>', patch_article, html, flags=re.S|re.I)
+
+              path.write_text(html, encoding='utf-8')
+              print('updated', slug)
+
+          # Ensure the existing YouTube module is cache-busted so current mappings load immediately.
+          bootstrap = Path('ded-guide-blocks.js')
+          if bootstrap.exists():
+              s = bootstrap.read_text(encoding='utf-8')
+              s = s.replace("add('/guide-youtube-shorts.js?v=3');", "add('/guide-youtube-shorts.js?v=4');")
+              bootstrap.write_text(s, encoding='utf-8')
+
+      - name: Commit rewritten pages
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add .
+          if git diff --cached --quiet; then
+            echo 'No changes'
+          else
+            git commit -m 'SEO: rewrite second priority guide batch'
+            git push
+          fi
