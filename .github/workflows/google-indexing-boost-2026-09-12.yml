@@ -1,0 +1,80 @@
+name: Google indexing boost 2026-09-12
+
+on:
+  push:
+    paths:
+      - '.github/workflows/google-indexing-boost-2026-09-12.yml'
+
+permissions:
+  contents: write
+
+jobs:
+  boost:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Strengthen Google indexing candidates
+        shell: python
+        run: |
+          from pathlib import Path
+          import re
+
+          today = '2026-09-12'
+          display_date = '12 сентября 2026'
+          pages = {
+            '10-zadach-dlya-chatgpt-na-kazhdyy-den/index.html': 'Начните с одной реальной задачи на сегодня: письмо, список покупок, сравнение вариантов, объяснение документа или план. Один полезный результат лучше десятка абстрактных экспериментов с ChatGPT.',
+            'kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/index.html': 'Чтобы ответы стали точнее, сразу дайте контекст, сформулируйте конкретную задачу и скажите, в каком виде нужен результат. Если ответ промахнулся, уточняйте его в том же диалоге, а не начинайте заново.',
+            'kak-proverit-ne-sovrala-li-neyroset/index.html': 'Проверяйте прежде всего цифры, даты, ссылки, законы, медицинские сведения и всё, что влияет на деньги или важное решение. Просите источник, открывайте его сами и сверяйте ключевой факт.',
+            'kak-razobrat-dogovor-s-pomoshchyu-neyroseti/index.html': 'Загрузите или вставьте договор и попросите отдельно выделить ваши обязанности, сроки, деньги, штрафы, одностороннее изменение условий и пункты с неясными формулировками. Важные юридические выводы затем проверяйте по первоисточнику или у специалиста.',
+            'kak-ponyat-analizy-i-zaklyuchenie-vracha/index.html': 'Нейросеть может перевести медицинские термины на обычный язык, собрать вопросы к врачу и показать, какие показатели требуют уточнения. Диагноз и решение о лечении по её ответу принимать нельзя.',
+            'kak-razobratsya-s-dengami-tarify-kredity-kommunalka/index.html': 'Используйте ИИ как помощника по разбору: попросите объяснить строки квитанции, сравнить тарифы или разложить условия кредита по платежам и рискам. Суммы и действующие условия всегда сверяйте с документом и официальным источником.',
+            'kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/index.html': 'На телефоне удобнее всего начать с двух функций: задавать вопросы голосом и фотографировать непонятный текст. Это снимает необходимость печатать длинные запросы и сразу даёт бытовой результат.',
+            'kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/index.html': 'Сфотографируйте или вставьте текст письма и попросите ответить на три вопроса: что от вас хотят, к какому сроку и что нужно сделать. Реквизиты, суммы и правовые последствия затем сверяйте по оригиналу.',
+            'moshenniki-dipfeyki-golos-rodstvennika/index.html': 'Если звонок или голосовое сообщение требуют срочно перевести деньги, не проверяйте человека вопросами в том же звонке. Завершите разговор и самостоятельно свяжитесь с родственником или организацией по известному вам номеру.',
+            'rezyume-i-sobesedovanie-posle-45/index.html': 'Нейросеть полезна не для украшения резюме, а для перевода опыта в понятные работодателю результаты: задачи, ответственность, цифры и конкретные достижения. После этого используйте её как тренажёр собеседования под выбранную вакансию.'
+          }
+
+          changed = []
+          for rel, summary in pages.items():
+              p = Path(rel)
+              text = p.read_text(encoding='utf-8-sig')
+              original = text
+
+              if 'indexing-rework-summary' not in text:
+                  block = f'<section class="indexing-rework-summary"><h2>Коротко: что делать</h2><p>{summary}</p></section>\n'
+                  text = text.replace('<div class="seo-body">', '<div class="seo-body">\n' + block, 1)
+
+              # Fix one known structured-data issue.
+              if rel == 'kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/index.html':
+                  if '"image":' not in text:
+                      text = text.replace('"mainEntityOfPage":"https://srumyantsev.ru/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/"}', '"mainEntityOfPage":"https://srumyantsev.ru/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/","image":"https://srumyantsev.ru/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/telefon-golos-foto.webp"}')
+
+              # Shorten an overlong title while preserving intent.
+              if rel == 'kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/index.html':
+                  text = text.replace('<title>Как объяснить непонятное письмо с помощью ИИ — банк, налоговая, Госуслуги</title>', '<title>Как понять непонятное письмо с помощью ИИ: банк и Госуслуги</title>')
+
+              if text != original:
+                  text = re.sub(r'(<meta property="article:modified_time" content=")\d{4}-\d{2}-\d{2}(T00:00:00\+03:00")', rf'\g<1>{today}\2', text)
+                  text = re.sub(r'("dateModified":")\d{4}-\d{2}-\d{2}("}?)', rf'\g<1>{today}\2', text)
+                  text = re.sub(r'<small>Опубликовано: [^<]+</small>', f'<small>Обновлено: {display_date}</small>', text, count=1)
+                  text = re.sub(r'<p class="article-date">Опубликовано: [^<]+</p>', f'<p class="article-date">Обновлено: {display_date}</p>', text, count=1)
+                  p.write_text(text, encoding='utf-8')
+                  changed.append(rel.split('/')[0])
+
+          sitemap = Path('sitemap.xml')
+          sm = sitemap.read_text(encoding='utf-8')
+          for slug in changed:
+              pattern = rf'(<loc>https://srumyantsev\.ru/{re.escape(slug)}/</loc><lastmod>)\d{{4}}-\d{{2}}-\d{{2}}(</lastmod>)'
+              sm = re.sub(pattern, rf'\g<1>{today}\2', sm)
+          sitemap.write_text(sm, encoding='utf-8')
+
+      - name: Commit changes
+        run: |
+          git config user.name "openai-indexing-bot"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .
+          git commit -m "seo: strengthen ten Google indexing candidates"
+          git push
