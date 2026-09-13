@@ -12,21 +12,16 @@
   section.innerHTML = `
     <div class="section-head">
       <div>
-        <p class="section-kicker">Полезно после первых шагов</p>
-        <h2 id="home-priority-guides-title">Ещё десять задач, где ИИ реально полезен</h2>
+        <p class="section-kicker">Популярные задачи</p>
+        <h2 id="home-priority-guides-title">Что ещё можно разобрать с нейросетью</h2>
       </div>
     </div>
     <div class="guide-grid home-priority-grid">
-      <article class="guide-card guide-white"><h3>Разобрать непонятный документ</h3><p>Вытащить требования, сроки, риски и следующие действия.</p><a href="/razbor-neponyatnogo-dokumenta/">Открыть гайд →</a></article>
-      <article class="guide-card guide-yellow"><h3>Получить второе мнение</h3><p>Проверить один ответ другой нейросетью и найти слабые места.</p><a href="/dve-neyroseti-v-pare-vtoroe-mnenie/">Открыть гайд →</a></article>
-      <article class="guide-card guide-white"><h3>Собрать библиотеку промптов</h3><p>Хранить удачные рабочие запросы и не начинать каждый раз с нуля.</p><a href="/svoya-biblioteka-promptov/">Открыть гайд →</a></article>
-      <article class="guide-card guide-yellow"><h3>Сэкономить часы на работе</h3><p>Найти повторяющиеся задачи, которые разумно отдать ИИ.</p><a href="/neyroset-v-rabote-gde-ekonomit-chasy/">Открыть гайд →</a></article>
-      <article class="guide-card guide-dark"><h3>Выбрать модель и режим</h3><p>Понять, когда нужна быстрая модель, анализ, поиск или глубокое рассуждение.</p><a href="/rezhimy-i-modeli-neyroseti/">Открыть гайд →</a></article>
-      <article class="guide-card guide-white"><h3>Проверять ответы по системе</h3><p>Разделить черновики, факты и решения с высокой ценой ошибки.</p><a href="/lichnaya-sistema-doveriya-neyroseti/">Открыть гайд →</a></article>
-      <article class="guide-card guide-yellow"><h3>Навести порядок в документах</h3><p>Структура архива, понятные имена файлов и быстрый поиск.</p><a href="/svoy-arhiv-dokumentov-neyroset/">Открыть гайд →</a></article>
-      <article class="guide-card guide-white"><h3>Учиться с нейросетью</h3><p>Использовать ИИ как репетитора, а не генератор готовых ответов.</p><a href="/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/">Открыть гайд →</a></article>
-      <article class="guide-card guide-yellow"><h3>Разобраться в инструкции</h3><p>Найти нужный режим или действие без чтения руководства от корки до корки.</p><a href="/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/">Открыть гайд →</a></article>
-      <article class="guide-card guide-dark"><h3>Вести большой проект</h3><p>Не терять контекст, решения и исходные материалы в одном бесконечном чате.</p><a href="/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/">Открыть гайд →</a></article>
+      <article class="guide-card guide-white"><h3>Проверить ответ нейросети</h3><p>Быстро проверить цифры, даты, ссылки и факты, прежде чем на них опираться.</p><a href="/kak-proverit-ne-sovrala-li-neyroset/">Проверить ответ →</a></article>
+      <article class="guide-card guide-yellow"><h3>Разобрать договор перед подписанием</h3><p>Вытащить обязательства, сроки, деньги, штрафы и спорные формулировки.</p><a href="/kak-razobrat-dogovor-s-pomoshchyu-neyroseti/">Разобрать договор →</a></article>
+      <article class="guide-card guide-white"><h3>Понять анализы и заключение врача</h3><p>Расшифровать термины простыми словами и подготовить вопросы врачу.</p><a href="/kak-ponyat-analizy-i-zaklyuchenie-vracha/">Понять заключение →</a></article>
+      <article class="guide-card guide-yellow"><h3>Разобраться с тарифами, кредитами и коммуналкой</h3><p>Сравнить цифры и условия, найти различия и проверить расчёты.</p><a href="/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/">Разобраться с деньгами →</a></article>
+      <article class="guide-card guide-dark"><h3>Понять, что нельзя доверять нейросети</h3><p>Отделить полезную помощь от ситуаций, где решение должен принимать человек.</p><a href="/chto-nelzya-doveryat-neyroseti/">Где нельзя доверять ИИ →</a></article>
     </div>`;
 
   const style = document.createElement('style');
