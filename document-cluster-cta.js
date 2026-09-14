@@ -3,9 +3,10 @@
   const configs = {
     '/kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/': {
       source: 'guide-letter',
-      title: 'Не хотите разбирать письмо вручную?',
-      text: 'Загрузите документ в сервис. Он объяснит простыми словами, что написано, что от вас хотят, какие есть сроки и на что обратить внимание.',
-      button: 'Разобрать документ — 290 ₽'
+      title: 'Не хотите разбирать документ вручную?',
+      text: 'Загрузите документ — сервис бесплатно покажет первые 2–3 абзаца разбора, чтобы вы могли оценить результат. Он объяснит суть документа и выделит действительно важные моменты.',
+      price: 'Без карты и регистрации. Полный разбор одного документа — 290 ₽.',
+      button: 'Разобрать документ бесплатно'
     }
   };
   const config = configs[path];
@@ -13,6 +14,25 @@
 
   const body = document.querySelector('.seo-body');
   if (!body || document.querySelector('[data-document-product-cta]')) return;
+
+  const dateCard = document.querySelector('.guide-date-card');
+  if (dateCard) {
+    const labels = [...dateCard.querySelectorAll('small')];
+    if (labels.length > 1) labels.slice(1).forEach((node) => node.remove());
+  }
+
+  const mainTemplateHeading = [...body.querySelectorAll('h2')]
+    .find((node) => node.textContent.trim() === 'Как понять документ с помощью нейросети');
+  if (mainTemplateHeading) {
+    const section = mainTemplateHeading.closest('section');
+    const intro = section?.querySelector('h2 + p');
+    if (intro && !section.querySelector('[data-document-service-bridge]')) {
+      const bridge = document.createElement('p');
+      bridge.dataset.documentServiceBridge = 'true';
+      bridge.innerHTML = 'Можно собирать такой разбор вручную по промптам ниже. А можно просто загрузить документ — сервис сам разложит его по срокам, суммам, требованиям, рискам и следующим шагам.';
+      intro.insertAdjacentElement('afterend', bridge);
+    }
+  }
 
   const style = document.createElement('style');
   style.textContent = `
@@ -29,7 +49,7 @@
     const box = document.createElement('aside');
     box.className = 'document-product-cta';
     box.dataset.documentProductCta = variant;
-    box.innerHTML = `<h2>${config.title}</h2><p>${config.text}</p><p class="document-product-price">Один документ — один полный разбор. Без подписки.</p><a class="button" href="/tools/document/?from=${encodeURIComponent(config.source)}&placement=${encodeURIComponent(variant)}">${config.button}</a><small>Сервис помогает понять документ, но не заменяет профильного специалиста.</small>`;
+    box.innerHTML = `<h2>${config.title}</h2><p>${config.text}</p><p class="document-product-price">${config.price}</p><a class="button" href="/tools/document/?from=${encodeURIComponent(config.source)}&placement=${encodeURIComponent(variant)}">${config.button}</a><small>Сервис помогает понять документ, но не заменяет консультацию профильного специалиста.</small>`;
     box.querySelector('a').addEventListener('click', () => {
       if (typeof window.ym === 'function') {
         window.ym(111385663, 'reachGoal', 'document_product_click', {
