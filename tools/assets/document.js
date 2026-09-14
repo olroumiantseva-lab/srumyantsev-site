@@ -45,10 +45,16 @@
         }
       };
 
+      const cleanLabel = (value) => String(value ?? '').trim().replace(/[\s.:;,]+$/u, '');
+
       const formatStructuredFacts = () => {
         resultStack.querySelectorAll('.result-card').forEach((card) => {
           const heading = card.querySelector(':scope > h2, :scope > summary');
-          const title = heading?.textContent?.trim();
+          let title = heading?.textContent?.trim();
+          if (title === 'Что стоит уточнить у специалиста') {
+            heading.textContent = 'Что стоит уточнить';
+            title = 'Что стоит уточнить';
+          }
           if (title !== 'Сроки' && title !== 'Деньги') return;
 
           card.querySelectorAll('li').forEach((item) => {
@@ -60,13 +66,13 @@
 
             if (title === 'Сроки') {
               const date = formatDate(value.date);
-              const label = String(value.label ?? '').trim();
+              const label = cleanLabel(value.label);
               const approximation = value.is_exact === false ? ' (примерно)' : '';
               item.textContent = label && date ? `${label}: ${date}${approximation}` : `${label || date}${approximation}`;
               return;
             }
 
-            const label = String(value.label ?? '').trim();
+            const label = cleanLabel(value.label);
             const amount = formatMoney(value.value, value.currency);
             const approximation = value.is_exact === false ? ' (примерно)' : '';
             item.textContent = label && amount ? `${label}: ${amount}${approximation}` : `${label || amount}${approximation}`;
@@ -99,6 +105,20 @@
         const status = byId('result-export-status');
         if (status) status.textContent = 'Файл с результатом сохранён на устройство.';
         track('document_result_download');
+      });
+
+      const expandedForPrint = new Set();
+      window.addEventListener('beforeprint', () => {
+        resultStack.querySelectorAll('details.result-details').forEach((details) => {
+          if (!details.open) {
+            expandedForPrint.add(details);
+            details.open = true;
+          }
+        });
+      });
+      window.addEventListener('afterprint', () => {
+        expandedForPrint.forEach((details) => { details.open = false; });
+        expandedForPrint.clear();
       });
 
       byId('result-print')?.addEventListener('click', () => {
