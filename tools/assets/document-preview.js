@@ -1,5 +1,33 @@
 (() => {
   'use strict';
+
+  const METRIKA_ID = 111385663;
+  const ensureMetrika = () => {
+    if (typeof window.ym === 'function') return;
+    window.ym = function () { (window.ym.a = window.ym.a || []).push(arguments); };
+    window.ym.l = Date.now();
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://mc.yandex.ru/metrika/tag.js';
+    document.head.appendChild(script);
+    window.ym(METRIKA_ID, 'init', {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+    });
+  };
+  ensureMetrika();
+
+  const query = new URLSearchParams(location.search);
+  let attributionSource = String(query.get('from') || '').trim();
+  let attributionPlacement = String(query.get('placement') || '').trim();
+  try {
+    if (attributionSource) sessionStorage.setItem('ded.document.source', attributionSource);
+    else attributionSource = sessionStorage.getItem('ded.document.source') || '';
+    if (attributionPlacement) sessionStorage.setItem('ded.document.placement', attributionPlacement);
+    else attributionPlacement = sessionStorage.getItem('ded.document.placement') || '';
+  } catch {}
+
   const form = document.getElementById('document-preview-form');
   if (!form) return;
   const source = document.getElementById('source-text');
@@ -12,8 +40,13 @@
   const paid = document.getElementById('preview-paid');
 
   const goalMap = { plain: 'simple', wants: 'wants', actions: 'actions', attention: 'attention' };
+  const attribution = () => ({
+    source: attributionSource || 'direct',
+    placement: attributionPlacement || '',
+    product: 'document_explain_290',
+  });
   const track = (goal, params = {}) => {
-    if (typeof window.ym === 'function') window.ym(111385663, 'reachGoal', goal, params);
+    if (typeof window.ym === 'function') window.ym(METRIKA_ID, 'reachGoal', goal, { ...attribution(), ...params });
   };
   const setError = (message) => {
     errorBox.textContent = message;
@@ -69,7 +102,9 @@
       paid.classList.remove('hidden');
       result.scrollIntoView({ behavior: 'smooth', block: 'start' });
       try { sessionStorage.setItem('ded.document.preview.run_id', String(data.run_id || '')); } catch {}
-      track('document_preview_ready', { goal, run_id: data.run_id || '' });
+      const successParams = { goal, run_id: data.run_id || '' };
+      track('document_preview_ready', successParams);
+      track('document_preview_success', successParams);
     } catch (error) {
       setError(error instanceof Error ? error.message : 'Не удалось выполнить предварительный разбор.');
       track('document_preview_error', { goal });
