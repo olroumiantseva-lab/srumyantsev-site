@@ -77,11 +77,30 @@
       disclaimer: 'Сервис не ставит диагноз, не назначает лечение и не заменяет консультацию врача.'
     }
   };
+
+  const softConfigs = {
+    '/tablitsy-i-tsifry-neyroset/': {
+      source: 'guide-tables-numbers',
+      title: 'Если цифры находятся в документе',
+      text: 'Когда суммы, сроки и условия нужно сначала вытащить из квитанции, счёта, договора или другого документа, можно начать со структурированного разбора. Сервис выделит данные из исходного документа, а расчёты после этого лучше перепроверить в таблице или калькуляторе.',
+      button: 'Разобрать документ бесплатно',
+      target: 'tables'
+    },
+    '/dve-neyroseti-v-pare-vtoroe-mnenie/': {
+      source: 'guide-second-opinion',
+      title: 'Если проверяете именно документ',
+      text: 'Сначала получите структурированный разбор исходного документа: требования, сроки, суммы, важные условия и вопросы. После этого критичные выводы можно отдельно перепроверить второй нейросетью и по первоисточнику.',
+      button: 'Получить разбор документа',
+      target: 'second-opinion'
+    }
+  };
+
   const config = configs[path];
-  if (!config) return;
+  const softConfig = softConfigs[path];
+  if (!config && !softConfig) return;
 
   const body = document.querySelector('.seo-body');
-  if (!body || document.querySelector('[data-document-product-cta]')) return;
+  if (!body || document.querySelector('[data-document-product-cta]') || document.querySelector('[data-document-soft-cta]')) return;
 
   const dateCard = document.querySelector('.guide-date-card');
   if (dateCard) {
@@ -89,6 +108,58 @@
     const updated = labels.filter((node) => node.textContent.trim().startsWith('Обновлено:'));
     const keep = updated[0] || labels[0];
     labels.forEach((node) => { if (node !== keep) node.remove(); });
+  }
+
+  const style = document.createElement('style');
+  style.textContent = `
+    .document-product-cta{margin:34px 0;padding:26px 28px;border:2px solid #58432f;border-radius:18px;background:#fff8e8;box-shadow:0 8px 0 rgba(88,67,47,.12)}
+    .document-product-cta h2{margin:0 0 10px;font-size:clamp(26px,4vw,36px);line-height:1.08}
+    .document-product-cta p{margin:0 0 18px;max-width:760px}
+    .document-product-cta .document-product-price{font-weight:700;margin:14px 0 18px}
+    .document-product-cta .button{display:inline-flex;text-decoration:none}
+    .document-product-cta small{display:block;margin-top:12px;opacity:.72}
+    .document-soft-cta{margin:26px 0;padding:20px 22px;border-left:5px solid #58432f;background:#fff8e8;border-radius:12px}
+    .document-soft-cta h3{margin:0 0 8px;font-size:22px;line-height:1.2}
+    .document-soft-cta p{margin:0 0 12px;max-width:760px}
+    .document-soft-cta a{font-weight:700;text-underline-offset:3px}
+    .document-soft-cta small{display:block;margin-top:8px;opacity:.72}
+  `;
+  document.head.appendChild(style);
+
+  const track = (link, source, placement) => {
+    link.addEventListener('click', () => {
+      if (typeof window.ym === 'function') {
+        window.ym(111385663, 'reachGoal', 'document_product_click', {
+          from: path,
+          source,
+          placement,
+          product: 'document_explain_290'
+        });
+      }
+    });
+  };
+
+  if (softConfig) {
+    const box = document.createElement('aside');
+    box.className = 'document-soft-cta';
+    box.dataset.documentSoftCta = softConfig.target;
+    box.innerHTML = `<h3>${softConfig.title}</h3><p>${softConfig.text}</p><a href="/tools/document/?from=${encodeURIComponent(softConfig.source)}&placement=contextual">${softConfig.button} →</a><small>Первые 2–3 абзаца разбора можно посмотреть бесплатно. Полный разбор одного документа — 290 ₽.</small>`;
+    track(box.querySelector('a'), softConfig.source, 'contextual');
+
+    let targetSection = null;
+    if (softConfig.target === 'tables') {
+      targetSection = [...body.querySelectorAll(':scope > section')].find((section) => {
+        const label = section.querySelector('.section-label')?.textContent.trim().toLowerCase() || '';
+        const heading = section.querySelector('h2')?.textContent.trim().toLowerCase() || '';
+        return label.includes('из текста') || heading.includes('из текста') || heading.includes('перенести') || heading.includes('документ');
+      });
+    } else if (softConfig.target === 'second-opinion') {
+      targetSection = body.querySelector('#kakaya-dlya-chego');
+    }
+
+    if (targetSection) targetSection.insertAdjacentElement('beforeend', box);
+    else body.querySelector(':scope > section')?.insertAdjacentElement('afterend', box);
+    return;
   }
 
   if (path === '/kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/') {
@@ -106,32 +177,12 @@
     }
   }
 
-  const style = document.createElement('style');
-  style.textContent = `
-    .document-product-cta{margin:34px 0;padding:26px 28px;border:2px solid #58432f;border-radius:18px;background:#fff8e8;box-shadow:0 8px 0 rgba(88,67,47,.12)}
-    .document-product-cta h2{margin:0 0 10px;font-size:clamp(26px,4vw,36px);line-height:1.08}
-    .document-product-cta p{margin:0 0 18px;max-width:760px}
-    .document-product-cta .document-product-price{font-weight:700;margin:14px 0 18px}
-    .document-product-cta .button{display:inline-flex;text-decoration:none}
-    .document-product-cta small{display:block;margin-top:12px;opacity:.72}
-  `;
-  document.head.appendChild(style);
-
   const makeCta = (variant) => {
     const box = document.createElement('aside');
     box.className = 'document-product-cta';
     box.dataset.documentProductCta = variant;
     box.innerHTML = `<h2>${config.title}</h2><p>${config.text}</p><p class="document-product-price">${config.price}</p><a class="button" href="/tools/document/?from=${encodeURIComponent(config.source)}&placement=${encodeURIComponent(variant)}">${config.button}</a><small>${config.disclaimer || commonDisclaimer}</small>`;
-    box.querySelector('a').addEventListener('click', () => {
-      if (typeof window.ym === 'function') {
-        window.ym(111385663, 'reachGoal', 'document_product_click', {
-          from: path,
-          source: config.source,
-          placement: variant,
-          product: 'document_explain_290'
-        });
-      }
-    });
+    track(box.querySelector('a'), config.source, variant);
     return box;
   };
 
