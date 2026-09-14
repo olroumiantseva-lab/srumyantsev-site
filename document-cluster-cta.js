@@ -2,62 +2,79 @@
   const path = location.pathname.replace(/\/+$/, '/') || '/';
   const commonPrice = 'Разбор одного документа — 290 ₽. Не требуется регистрация и привязка карты к сервису.';
   const commonButton = 'Разобрать документ бесплатно';
+  const commonDisclaimer = 'Сервис помогает понять документ, но не заменяет консультацию профильного специалиста.';
   const configs = {
     '/kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/': {
       source: 'guide-letter',
       title: 'Не хотите разбирать документ вручную?',
       text: 'Загрузите документ — сервис бесплатно покажет первые 2–3 абзаца разбора, чтобы вы могли оценить результат. Он объяснит суть документа и выделит действительно важные моменты.',
       price: commonPrice,
-      button: commonButton
+      button: commonButton,
+      disclaimer: commonDisclaimer
     },
     '/dlinnye-dokumenty-dogovor-otchet-kniga/': {
       source: 'guide-long-document',
       title: 'Есть конкретный документ, который нужно разобрать?',
       text: 'Если не хочется собирать разбор вручную по нескольким промптам, загрузите документ в сервис. Сначала вы бесплатно увидите первые 2–3 абзаца, а полный разбор отдельно соберёт требования, сроки, суммы, важные условия, риски и следующие шаги.',
       price: commonPrice,
-      button: commonButton
+      button: commonButton,
+      disclaimer: commonDisclaimer
     },
     '/kak-proverit-ne-sovrala-li-neyroset/': {
       source: 'guide-fact-check',
       title: 'Нужно разобрать сам документ, а не пересказ?',
       text: 'Загрузите исходный документ в сервис. Он работает от текста документа, отдельно показывает важные факты и то, что из документа определить нельзя. Первые 2–3 абзаца разбора можно посмотреть бесплатно.',
       price: commonPrice,
-      button: commonButton
+      button: commonButton,
+      disclaimer: commonDisclaimer
     },
     '/chto-nelzya-doveryat-neyroseti/': {
       source: 'guide-trust-boundary',
       title: 'Сначала понять документ — потом принимать решение',
       text: 'Если перед вами письмо, договор, квитанция или уведомление, сервис поможет разложить его содержание по фактам, срокам, суммам и следующим шагам. Первые 2–3 абзаца разбора доступны бесплатно.',
       price: commonPrice,
-      button: commonButton
+      button: commonButton,
+      disclaimer: commonDisclaimer
     },
     '/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/': {
       source: 'guide-money-documents',
       title: 'Есть квитанция, тариф или условия, которые нужно разобрать?',
       text: 'Загрузите документ — сервис выделит суммы, сроки, условия, возможные риски и то, что нужно уточнить. Первые 2–3 абзаца разбора можно посмотреть бесплатно перед оплатой полного результата.',
       price: commonPrice,
-      button: commonButton
+      button: commonButton,
+      disclaimer: commonDisclaimer
     },
     '/kak-razobrat-dogovor-s-pomoshchyu-neyroseti/': {
       source: 'guide-contract',
       title: 'Хотите проверить свой договор на практике?',
       text: 'Загрузите договор в сервис. Он выделит платежи, сроки, обязанности, штрафы, условия расторжения, возможные риски и вопросы, которые стоит уточнить. Первые 2–3 абзаца разбора можно посмотреть бесплатно.',
       price: commonPrice,
-      button: commonButton
+      button: commonButton,
+      disclaimer: commonDisclaimer
     },
     '/kak-podgotovitsya-k-obrashcheniyu-v-bank-ili-vedomstvo-s-pomoshchyu-ii/': {
       source: 'guide-bank-agency',
       title: 'Перед обращением сначала разберите документ',
       text: 'Если обращение начинается с письма, уведомления, ответа банка или ведомства, загрузите документ в сервис. Он поможет выделить требования, сроки, суммы, спорные места и вопросы, которые стоит задать. Первые 2–3 абзаца разбора — бесплатно.',
       price: commonPrice,
-      button: commonButton
+      button: commonButton,
+      disclaimer: commonDisclaimer
     },
     '/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/': {
       source: 'guide-phone-photo',
       title: 'Сфотографировали документ? Его можно сразу разобрать',
       text: 'Загрузите фото, скан, PDF или Word в сервис. Он объяснит содержание документа простыми словами и выделит важные сроки, суммы, требования и следующие шаги. Первые 2–3 абзаца разбора можно посмотреть бесплатно.',
       price: commonPrice,
-      button: commonButton
+      button: commonButton,
+      disclaimer: commonDisclaimer
+    },
+    '/kak-ponyat-analizy-i-zaklyuchenie-vracha/': {
+      source: 'guide-medical-document',
+      title: 'Нужно понять медицинский документ простыми словами?',
+      text: 'Загрузите заключение, выписку, результаты обследования или анализов. Сервис поможет объяснить термины, выделить факты из документа и подготовить вопросы врачу. Первые 2–3 абзаца разбора можно посмотреть бесплатно.',
+      price: commonPrice,
+      button: 'Объяснить медицинский документ',
+      disclaimer: 'Сервис не ставит диагноз, не назначает лечение и не заменяет консультацию врача.'
     }
   };
   const config = configs[path];
@@ -104,7 +121,7 @@
     const box = document.createElement('aside');
     box.className = 'document-product-cta';
     box.dataset.documentProductCta = variant;
-    box.innerHTML = `<h2>${config.title}</h2><p>${config.text}</p><p class="document-product-price">${config.price}</p><a class="button" href="/tools/document/?from=${encodeURIComponent(config.source)}&placement=${encodeURIComponent(variant)}">${config.button}</a><small>Сервис помогает понять документ, но не заменяет консультацию профильного специалиста.</small>`;
+    box.innerHTML = `<h2>${config.title}</h2><p>${config.text}</p><p class="document-product-price">${config.price}</p><a class="button" href="/tools/document/?from=${encodeURIComponent(config.source)}&placement=${encodeURIComponent(variant)}">${config.button}</a><small>${config.disclaimer || commonDisclaimer}</small>`;
     box.querySelector('a').addEventListener('click', () => {
       if (typeof window.ym === 'function') {
         window.ym(111385663, 'reachGoal', 'document_product_click', {
