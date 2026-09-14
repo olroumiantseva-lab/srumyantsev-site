@@ -8,6 +8,14 @@
   <meta name="description" content="Структурированный результат разбора документа.">
   <title>Результат разбора — Разобрать документ</title>
   <link rel="stylesheet" href="/tools/assets/document.css">
+  <style>
+    @media print {
+      .site-header,.site-footer,.result-export,.result-upsell,.actions,.small.muted { display:none !important; }
+      body { background:#fff !important; }
+      .narrow { max-width:none !important; }
+      .result-card { break-inside:avoid; box-shadow:none !important; border:1px solid #bbb !important; }
+    }
+  </style>
 </head>
 <body data-protected="true" data-page="result">
   <header class="site-header"><div class="shell header-inner"><a class="brand" href="/tools/document/"><span class="brand-mark" aria-hidden="true">＊</span><span>РАЗОБРАТЬ<br>ДОКУМЕНТ</span></a><a class="top-link" href="/tools/document/history/">История</a></div></header>
@@ -16,7 +24,18 @@
       <div class="app-head"><div><p class="section-kicker">Готово</p><h1 id="result-title" style="font-size:clamp(38px,7vw,64px)">Результат разбора</h1><p class="muted" id="result-meta"></p></div></div>
       <div class="result-stack" id="result-stack"></div>
 
-      <section class="panel" style="margin-top:28px">
+      <section class="panel result-export" style="margin-top:28px">
+        <p class="section-kicker">Ваш результат</p>
+        <h2>Сохраните разбор себе</h2>
+        <p>Платный результат можно сохранить на компьютере и вернуться к нему без сервиса.</p>
+        <div class="actions" style="margin-top:16px">
+          <button class="button" type="button" id="result-download">Скачать результат</button>
+          <button class="button button-secondary" type="button" id="result-print">Сохранить как PDF / распечатать</button>
+        </div>
+        <p class="small muted" id="result-export-status" style="margin-top:12px"></p>
+      </section>
+
+      <section class="panel result-upsell" style="margin-top:28px">
         <p class="section-kicker">Нужно глубже?</p>
         <h2>Когда одного документа недостаточно</h2>
         <p>Если за этим документом стоит целая история — договор, переписка, чеки, претензии, ответы и другие материалы — можно разобрать ситуацию целиком. Вы описываете, что произошло и чего хотите добиться, прикладываете документы, а сервис сопоставляет их между собой.</p>
