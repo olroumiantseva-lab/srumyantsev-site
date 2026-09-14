@@ -14,7 +14,7 @@
   <main>
     <div class="narrow">
       <div class="app-head"><div><p class="section-kicker">Оплаченный разбор</p><h1 style="font-size:clamp(38px,7vw,64px)">Добавьте документ</h1></div></div>
-      <p class="muted">Загрузите файл или вставьте текст. Один успешный запуск использует ваш оплаченный разбор; при технической ошибке он не списывается.</p>
+      <p class="muted">Загрузите файл, фото или скан либо вставьте текст. Один успешный запуск использует ваш оплаченный разбор; при технической ошибке он не списывается.</p>
       <p class="error" id="app-error" aria-live="polite"></p>
       <form id="analysis-form" novalidate>
         <section class="panel">
@@ -59,20 +59,21 @@
 
         <section class="panel">
           <h2 class="field-label" id="document-source-title">3. Добавьте документ</h2>
-          <p class="muted">Выберите PDF, DOCX или TXT либо вставьте текст ниже. Файл разбирается в браузере, а извлечённый текст передаётся на сервер для анализа.</p>
+          <p class="muted">Поддерживаются обычные документы, фотографии страниц и сканы. Текстовые PDF и DOCX читаются в браузере; фото, сканы PDF и старые DOC передаются в сервис распознавания.</p>
           <div class="file-drop" id="file-drop" tabindex="0" role="group" aria-labelledby="file-drop-title" aria-describedby="file-drop-help">
-            <strong id="file-drop-title">Выберите файл</strong>
-            <span id="file-drop-help">PDF, DOCX или TXT до 8 МБ</span>
-            <input id="document-file" type="file" style="display:block;width:100%;max-width:430px;margin-top:10px;padding:10px;border:2px solid #58432f;border-radius:12px;background:#fffdf7;color:#241a14;font:inherit;">
+            <strong id="file-drop-title">Выберите документ или фотографии страниц</strong>
+            <span id="file-drop-help">PDF, DOC, DOCX, TXT, JPG, PNG, WEBP, HEIC/HEIF · до 8 МБ на файл</span>
+            <input id="document-file" type="file" multiple accept=".pdf,.doc,.docx,.txt,.jpg,.jpeg,.png,.webp,.heic,.heif,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain,image/jpeg,image/png,image/webp,image/heic,image/heif" style="display:block;width:100%;max-width:430px;margin-top:10px;padding:10px;border:2px solid #58432f;border-radius:12px;background:#fffdf7;color:#241a14;font:inherit;">
           </div>
+          <p class="small muted" style="margin:10px 0 0">Можно выбрать до 10 фотографий страниц одновременно. Для PDF-скана сервис распознает до 10 страниц.</p>
           <p class="file-status" id="file-status" aria-live="polite"></p>
           <p class="error" id="file-error" aria-live="assertive"></p>
           <section class="file-summary hidden" id="file-summary" aria-labelledby="file-summary-title">
             <div class="file-summary-head">
-              <div><h3 id="file-summary-title">Файл готов</h3><p class="file-name" id="file-name"></p></div>
+              <div><h3 id="file-summary-title">Документ готов</h3><p class="file-name" id="file-name"></p></div>
               <button class="button button-secondary file-remove" id="file-remove" type="button">Убрать файл</button>
             </div>
-            <dl class="file-facts"><div><dt>Тип</dt><dd id="file-type"></dd></div><div><dt>Объём текста</dt><dd id="file-text-size"></dd></div></dl>
+            <dl class="file-facts"><div><dt>Тип</dt><dd id="file-type"></dd></div><div><dt>Объём</dt><dd id="file-text-size"></dd></div></dl>
             <p class="small muted">Короткий предпросмотр</p>
             <p class="file-preview" id="file-preview"></p>
           </section>
@@ -98,6 +99,7 @@
   <footer class="site-footer"><div class="shell footer-inner"><p>Сервис разбора документов</p><a href="/tools/login/" data-logout>Выйти</a></div></footer>
   <script src="/tools/assets/runtime-config.js"></script>
   <script src="/tools/vendor/mammoth.browser.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js" defer></script>
   <script src="/tools/assets/document-file.js" type="module"></script>
   <script src="/tools/assets/document.js" defer></script>
   <script src="/tools/assets/supabase-app.js" defer></script>
