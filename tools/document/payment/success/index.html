@@ -9,6 +9,45 @@
   const invId = p.get('InvId');
   if (p.get('Shp_site') === 'proverjdo' && invId && /^\d+$/.test(invId)) {
     location.replace(`/proverjdo/result/?InvId=${encodeURIComponent(invId)}`);
+    return;
+  }
+
+  const METRIKA_ID = 111385663;
+  if (typeof window.ym !== 'function') {
+    window.ym = function () { (window.ym.a = window.ym.a || []).push(arguments); };
+    window.ym.l = Date.now();
+    const script = document.createElement('script');
+    script.async = true;
+    script.src = 'https://mc.yandex.ru/metrika/tag.js';
+    document.head.appendChild(script);
+    window.ym(METRIKA_ID, 'init', {
+      clickmap: true,
+      trackLinks: true,
+      accurateTrackBounce: true,
+    });
+  }
+
+  if (!invId || !/^\d+$/.test(invId)) return;
+
+  let source = 'direct';
+  let placement = '';
+  let alreadyTracked = false;
+  const storageKey = `ded.document.payment_success.${invId}`;
+  try {
+    source = sessionStorage.getItem('ded.document.source') || 'direct';
+    placement = sessionStorage.getItem('ded.document.placement') || '';
+    alreadyTracked = sessionStorage.getItem(storageKey) === '1';
+    if (!alreadyTracked) sessionStorage.setItem(storageKey, '1');
+  } catch {}
+
+  if (!alreadyTracked) {
+    window.ym(METRIKA_ID, 'reachGoal', 'document_payment_success', {
+      source,
+      placement,
+      product: 'document_explain_290',
+      inv_id: invId,
+      value_rub: 290,
+    });
   }
 })();
 </script></body></html>
