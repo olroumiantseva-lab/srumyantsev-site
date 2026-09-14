@@ -10,10 +10,15 @@
   <link rel="stylesheet" href="/tools/assets/document.css">
   <style>
     @media print {
+      @page { margin: 14mm; }
       .site-header,.site-footer,.result-export,.result-upsell,.actions,.small.muted { display:none !important; }
+      html,body,main,.narrow,#result-stack { height:auto !important; min-height:0 !important; overflow:visible !important; }
       body { background:#fff !important; }
       .narrow { max-width:none !important; }
-      .result-card { break-inside:avoid; box-shadow:none !important; border:1px solid #bbb !important; }
+      .result-card { break-inside:auto !important; page-break-inside:auto !important; box-shadow:none !important; border:1px solid #bbb !important; }
+      details.result-details > summary { list-style:none !important; }
+      details.result-details > summary::-webkit-details-marker { display:none !important; }
+      details.result-details > summary::marker { content:"" !important; }
     }
   </style>
 </head>
