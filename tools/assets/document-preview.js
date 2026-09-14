@@ -20,6 +20,21 @@
     errorBox.classList.toggle('hidden', !message);
   };
 
+  const requestPreview = async (cfg, text, goal) => {
+    const endpoint = `${cfg.url}/functions/v1/${cfg.previewFunction || 'document-preview'}`;
+    const options = {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', apikey: cfg.publishableKey },
+      body: JSON.stringify({ source_text: text, goal }),
+    };
+    let response = await fetch(endpoint, options);
+    if (response.status >= 500) {
+      await new Promise((resolve) => setTimeout(resolve, 700));
+      response = await fetch(endpoint, options);
+    }
+    return response;
+  };
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     setError('');
@@ -39,11 +54,7 @@
     submit.textContent = 'Разбираем документ…';
     track('document_preview_start', { goal });
     try {
-      const response = await fetch(`${cfg.url}/functions/v1/${cfg.previewFunction || 'document-preview'}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json', apikey: cfg.publishableKey },
-        body: JSON.stringify({ source_text: text, goal }),
-      });
+      const response = await requestPreview(cfg, text, goal);
       const data = await response.json().catch(() => ({}));
       if (!response.ok) throw new Error(data.message || 'Не удалось выполнить предварительный разбор.');
       summary.textContent = data.summary || 'Предварительный разбор готов.';
