@@ -4,6 +4,7 @@
   if (!form) return;
   const submit = form.querySelector("[data-payment-submit]");
   const errorBox = form.querySelector("[data-payment-error]");
+  const idleLabel = submit.textContent;
   function showError(message) { errorBox.textContent = message; errorBox.classList.remove("hidden"); }
   form.addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -35,7 +36,7 @@
     } catch (error) {
       showError(error instanceof Error ? error.message : "Не удалось создать платёж. Попробуйте ещё раз.");
       submit.disabled = false;
-      submit.textContent = "Разобрать мой документ — 290 ₽";
+      submit.textContent = idleLabel;
     }
   });
 })();
