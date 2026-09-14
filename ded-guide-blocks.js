@@ -18,5 +18,5 @@
   add('/home-priority-links.js?v=3');
   add('/priority-interlinks.js?v=1');
   add('/metrika-goals.js?v=1');
-  add('/document-cluster-cta.js?v=3');
+  add('/document-cluster-cta.js?v=4');
 })();
