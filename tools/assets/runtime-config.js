@@ -3,6 +3,7 @@ window.__SUPABASE_CONFIG__ = {
   url: "https://vhssshjcrirsuiijolwq.supabase.co",
   publishableKey: "sb_publishable_YJZy8yVjqxm_94zW1uowig_j29qeCMT",
   analysisFunction: "analyze-document",
+  previewFunction: "document-preview",
   paymentFunction: "create-payment",
   paymentProductId: "document_explain_290",
   sourceSite: "ded",
