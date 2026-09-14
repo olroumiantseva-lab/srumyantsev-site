@@ -16,6 +16,10 @@
     updateCounts();
   };
 
+  const track = (goal, params = {}) => {
+    if (typeof window.ym === 'function') window.ym(111385663, 'reachGoal', goal, params);
+  };
+
   if (window.__SUPABASE_CONFIG__?.url && window.__SUPABASE_CONFIG__?.publishableKey) {
     initCounters();
 
@@ -69,6 +73,38 @@
           });
         });
       };
+
+      const exportText = () => {
+        const title = byId('result-title')?.textContent?.trim() || 'Результат разбора документа';
+        const meta = byId('result-meta')?.textContent?.trim() || '';
+        const body = resultStack.innerText.trim();
+        return [title, meta, body, '', 'Разбор подготовлен сервисом «Дед попался в нейросети».', 'Сервис не заменяет консультацию профильного специалиста.']
+          .filter(Boolean)
+          .join('\n\n');
+      };
+
+      byId('result-download')?.addEventListener('click', () => {
+        const text = exportText();
+        if (!text.trim()) return;
+        const stamp = new Date().toISOString().slice(0, 10);
+        const blob = new Blob([`\uFEFF${text}`], { type: 'text/plain;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = `razbor-dokumenta-${stamp}.txt`;
+        document.body.append(link);
+        link.click();
+        link.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        const status = byId('result-export-status');
+        if (status) status.textContent = 'Файл с результатом сохранён на устройство.';
+        track('document_result_download');
+      });
+
+      byId('result-print')?.addEventListener('click', () => {
+        track('document_result_print');
+        window.print();
+      });
 
       new MutationObserver(formatStructuredFacts).observe(resultStack, { childList: true, subtree: true });
       formatStructuredFacts();
