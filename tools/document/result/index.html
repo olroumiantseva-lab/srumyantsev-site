@@ -62,71 +62,8 @@
   </main>
 
   <script src="/tools/assets/runtime-config.js?v=20260915-2335"></script>
-  <script>
-  (() => {
-    const params = new URLSearchParams(location.search);
-    const answerOrder = params.get('answer_check_order');
-
-    const loadScript = (src) => new Promise((resolve, reject) => {
-      const s = document.createElement('script');
-      s.src = src;
-      s.onload = resolve;
-      s.onerror = reject;
-      document.body.appendChild(s);
-    });
-
-    async function answerCheckCallback(orderId) {
-      if (!/^\d+$/.test(orderId || '')) return false;
-      const config = window.__SUPABASE_CONFIG__ || {};
-      if (!config.url || !config.publishableKey) return false;
-
-      await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js');
-      const client = window.supabase.createClient(config.url, config.publishableKey, {
-        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false, flowType: 'pkce' },
-      });
-
-      const code = params.get('code');
-      if (code) {
-        const { error } = await client.auth.exchangeCodeForSession(code);
-        if (error) {
-          location.replace(`/tools/answer-check/login-v2/?return_to=${encodeURIComponent(`/tools/answer-check/result/?InvId=${orderId}`)}&auth_error=${encodeURIComponent(error.code || 'pkce_exchange_failed')}`);
-          return true;
-        }
-      }
-
-      for (let i = 0; i < 60; i += 1) {
-        const { data: { session } } = await client.auth.getSession();
-        if (session) {
-          localStorage.removeItem('answer_check_return_to');
-          sessionStorage.removeItem(`answer_check_reauth_${orderId}`);
-          location.replace(`/tools/answer-check/result/?InvId=${encodeURIComponent(orderId)}`);
-          return true;
-        }
-        await new Promise((resolve) => setTimeout(resolve, 200));
-      }
-
-      location.replace(`/tools/answer-check/login-v2/?return_to=${encodeURIComponent(`/tools/answer-check/result/?InvId=${orderId}`)}&auth_error=session_not_created`);
-      return true;
-    }
-
-    async function start() {
-      if (answerOrder) {
-        document.documentElement.style.visibility = 'hidden';
-        await answerCheckCallback(answerOrder);
-        return;
-      }
-
-      await loadScript('/tools/assets/proverjdo-auth-bridge.js?v=20260915-2335');
-      await loadScript('/tools/assets/document.js?v=20260915-2335');
-      await loadScript('/tools/assets/supabase-app.js?v=20260915-2335');
-    }
-
-    start().catch(() => {
-      if (answerOrder) {
-        location.replace(`/tools/answer-check/login-v2/?return_to=${encodeURIComponent(`/tools/answer-check/result/?InvId=${answerOrder}`)}&auth_error=callback_failed`);
-      }
-    });
-  })();
-  </script>
+  <script src="/tools/assets/proverjdo-auth-bridge.js?v=20260915-2335"></script>
+  <script src="/tools/assets/document.js?v=20260915-2335"></script>
+  <script src="/tools/assets/supabase-app.js?v=20260915-2335"></script>
 </body>
 </html>
