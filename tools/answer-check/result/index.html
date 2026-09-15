@@ -10,6 +10,7 @@
     .answer-claim{padding:18px 0;border-top:1px solid rgba(88,67,47,.16)}
     .answer-claim:first-child{border-top:0}.answer-verdict{display:inline-block;padding:4px 9px;border-radius:999px;background:#eee7d8;font-size:.82rem;font-weight:700;margin-bottom:8px}
     .answer-source{font-size:.9rem}.answer-trust{font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+    @media print{.site-header,.site-footer,.result-export,.result-upsell,.actions{display:none!important}body{background:#fff!important}.panel,.result-card{box-shadow:none!important;border:1px solid #bbb!important}}
   </style>
 </head>
 <body data-page="answer-check-result">
@@ -22,10 +23,31 @@
     <p id="answer-result-error" class="error"></p>
     <div id="answer-result-stack"></div>
   </div>
-  <p style="margin-top:24px"><a class="button button-secondary" href="/tools/answer-check/">Проверить другой ответ</a></p>
+
+  <section class="panel result-export" id="answer-export-panel" style="margin-top:28px;display:none">
+    <p class="section-kicker">Сохранить результат</p>
+    <h2>Заберите проверку себе</h2>
+    <p>Скопируйте весь разбор, сохраните TXT или сделайте PDF через печать браузера.</p>
+    <div class="actions" style="margin-top:16px">
+      <button class="button" type="button" id="answer-copy-result">Скопировать весь разбор</button>
+      <button class="button button-secondary" type="button" id="answer-download-result">Скачать TXT</button>
+      <button class="button button-secondary" type="button" id="answer-print-result">Сохранить как PDF / распечатать</button>
+    </div>
+    <p class="small muted" id="answer-export-status" style="margin-top:12px"></p>
+  </section>
+
+  <section class="panel result-upsell" id="answer-upsell-panel" style="margin-top:28px;display:none">
+    <p class="section-kicker">Нужно глубже?</p>
+    <h2>Разберите ситуацию целиком</h2>
+    <p>Если ошибка касается договора, банка, ЖКХ, спора или другой реальной ситуации, загрузите документы и факты вместе. Сервис сопоставит их и покажет хронологию, противоречия, слабые места и план действий.</p>
+    <p><strong>Полный разбор ситуации — 1 490 ₽.</strong></p>
+    <a class="button" href="https://proverjdo.ru/situation-analysis/?utm_source=srumyantsev.ru&utm_medium=upsell&utm_campaign=answer_check&utm_content=paid_result">Разобрать ситуацию целиком — 1 490 ₽</a>
+  </section>
+
+  <p class="actions" style="margin-top:24px"><a class="button button-secondary" href="/tools/answer-check/">Проверить другой ответ</a></p>
 </section></main>
 <footer class="site-footer"><div class="shell footer-inner"><p>© 2026 ИП Румянцев Сергей Сергеевич</p><a href="/tools/answer-check/">На страницу сервиса</a></div></footer>
 <script src="/tools/assets/runtime-config.js"></script>
-<script src="/tools/assets/answer-check-result.js" defer></script>
+<script src="/tools/assets/answer-check-result.js?v=20260915-2345" defer></script>
 </body>
 </html>
