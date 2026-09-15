@@ -28,7 +28,7 @@
     await loadSdk();
     const client = window.supabase.createClient(config.url, config.publishableKey, { auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true} });
     const returnTo = `/tools/answer-check/result/?InvId=${encodeURIComponent(invId)}`;
-    const loginUrl = `/tools/answer-check/login/?return_to=${encodeURIComponent(returnTo)}`;
+    const loginUrl = `/tools/answer-check/login-v2/?return_to=${encodeURIComponent(returnTo)}&v=20260915-2315`;
     const { data:{session} } = await client.auth.getSession();
     if (!session) {
       location.replace(loginUrl);
