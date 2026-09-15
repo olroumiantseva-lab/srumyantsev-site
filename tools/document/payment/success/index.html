@@ -1,59 +1,50 @@
 <!doctype html>
-<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Оплата принята — Разобрать документ</title><link rel="stylesheet" href="/tools/assets/document.css"></head>
-<body><header class="site-header"><div class="shell header-inner"><a class="brand" href="/tools/document/"><span class="brand-mark" aria-hidden="true">＊</span><span>РАЗОБРАТЬ<br>ДОКУМЕНТ</span></a><span class="prototype-label">Оплата</span></div></header>
-<main><section class="narrow"><div class="notice success"><h1 style="font-size:clamp(34px,6vw,54px)">Оплата принята</h1><p>Один разбор документа оплачен и привязан к электронной почте, указанной при оплате.</p><p>Войдите по одноразовой ссылке, загрузите документ и получите разбор. Пароль придумывать не нужно.</p><a class="button" href="/tools/login/?return_to=%2Ftools%2Fdocument%2Fapp%2F">Перейти к документу</a></div></section></main>
-<footer class="site-footer"><div class="shell footer-inner"><p>© 2026 ИП Румянцев Сергей Сергеевич</p><a href="/tools/document/">На страницу сервиса</a></div></footer>
+<html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Оплата принята</title><link rel="stylesheet" href="/tools/assets/document.css"></head>
+<body><header class="site-header"><div class="shell header-inner"><a class="brand" href="/"><span class="brand-mark" aria-hidden="true">＊</span><span>ОПЛАТА<br>ПРИНЯТА</span></a><span class="prototype-label">Оплата</span></div></header>
+<main><section class="narrow"><div class="notice success"><h1 style="font-size:clamp(34px,6vw,54px)">Оплата принята</h1><p id="success-status">Открываем оплаченный результат…</p><p id="success-fallback" style="display:none"><a class="button" href="/">Вернуться на сайт</a></p></div></section></main>
+<footer class="site-footer"><div class="shell footer-inner"><p>© 2026 ИП Румянцев Сергей Сергеевич</p><a href="/">На главную</a></div></footer>
 <script>
-(() => {
+(async () => {
   const p = new URLSearchParams(location.search);
   const invId = p.get('InvId');
+  const status = document.getElementById('success-status');
+  const fallback = document.getElementById('success-fallback');
+
+  const routeAnswerCheck = () => {
+    const target = new URL('https://vhssshjcrirsuiijolwq.supabase.co/functions/v1/answer-check-success-access');
+    for (const [key, value] of p.entries()) target.searchParams.append(key, value);
+    location.replace(target.toString());
+  };
+
   if (p.get('Shp_site') === 'proverjdo' && invId && /^\d+$/.test(invId)) {
     location.replace(`/proverjdo/result/?InvId=${encodeURIComponent(invId)}`);
     return;
   }
+
   if (p.get('Shp_product') === 'answer_check_290' && invId && /^\d+$/.test(invId)) {
-    const target = new URL('https://vhssshjcrirsuiijolwq.supabase.co/functions/v1/answer-check-success-access');
-    for (const [key, value] of p.entries()) target.searchParams.append(key, value);
-    location.replace(target.toString());
+    routeAnswerCheck();
     return;
   }
 
-  const METRIKA_ID = 111385663;
-  if (typeof window.ym !== 'function') {
-    window.ym = function () { (window.ym.a = window.ym.a || []).push(arguments); };
-    window.ym.l = Date.now();
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://mc.yandex.ru/metrika/tag.js';
-    document.head.appendChild(script);
-    window.ym(METRIKA_ID, 'init', {
-      clickmap: true,
-      trackLinks: true,
-      accurateTrackBounce: true,
-    });
+  if (invId && /^\d+$/.test(invId)) {
+    try {
+      const r = await fetch(`https://vhssshjcrirsuiijolwq.supabase.co/functions/v1/payment-success-route?InvId=${encodeURIComponent(invId)}`, {headers:{Accept:'application/json'}, cache:'no-store'});
+      const data = await r.json();
+      if (r.ok && data?.product_id === 'answer_check_290') {
+        routeAnswerCheck();
+        return;
+      }
+      if (r.ok && data?.product_id === 'document_explain_290') {
+        status.textContent = 'Оплата разбора документа подтверждена.';
+        fallback.style.display = 'block';
+        fallback.querySelector('a').href = '/tools/login/?return_to=%2Ftools%2Fdocument%2Fapp%2F';
+        fallback.querySelector('a').textContent = 'Перейти к документу';
+        return;
+      }
+    } catch {}
   }
 
-  if (!invId || !/^\d+$/.test(invId)) return;
-
-  let source = 'direct';
-  let placement = '';
-  let alreadyTracked = false;
-  const storageKey = `ded.document.payment_success.${invId}`;
-  try {
-    source = sessionStorage.getItem('ded.document.source') || 'direct';
-    placement = sessionStorage.getItem('ded.document.placement') || '';
-    alreadyTracked = sessionStorage.getItem(storageKey) === '1';
-    if (!alreadyTracked) sessionStorage.setItem(storageKey, '1');
-  } catch {}
-
-  if (!alreadyTracked) {
-    window.ym(METRIKA_ID, 'reachGoal', 'document_payment_success', {
-      source,
-      placement,
-      product: 'document_explain_290',
-      inv_id: invId,
-      value_rub: 290,
-    });
-  }
+  status.textContent = 'Оплата принята, но не удалось определить оплаченный продукт автоматически.';
+  fallback.style.display = 'block';
 })();
 </script></body></html>
