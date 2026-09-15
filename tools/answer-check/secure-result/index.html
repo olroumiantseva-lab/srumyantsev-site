@@ -11,7 +11,11 @@
     .answer-claim{padding:18px 0;border-top:1px solid rgba(88,67,47,.16)}
     .answer-claim:first-child{border-top:0}
     .answer-verdict{display:inline-block;padding:4px 9px;border-radius:999px;background:#eee7d8;font-size:.82rem;font-weight:700;margin-bottom:8px}
-    .export-status{margin-top:10px;min-height:1.4em}.result-actions{display:flex;gap:12px;flex-wrap:wrap;align-items:center}.result-summary{font-size:19px;line-height:1.55;margin:10px 0 8px}
+    .export-status{margin-top:10px;min-height:1.4em}
+    .result-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:16px}
+    .result-actions .button{display:flex;align-items:center;justify-content:center;min-height:48px;text-align:center;white-space:normal}
+    .result-summary{font-size:19px;line-height:1.55;margin:10px 0 8px}
+    @media(max-width:760px){.result-actions{grid-template-columns:1fr}.result-actions .button{width:100%}}
     @media print{.site-header,.site-footer,.export-panel,.upsell-panel,.actions{display:none!important}body{background:#fff!important}.narrow{max-width:none!important}.result-card,.panel{box-shadow:none!important;border:1px solid #bbb!important}}
   </style>
 </head>
@@ -20,7 +24,7 @@
 <main><div class="narrow">
   <div class="app-head"><div><p class="section-kicker">Полная проверка</p><h1 id="title" style="font-size:clamp(38px,7vw,64px)">Загружаем результат…</h1><p class="result-summary" id="summary"></p><p class="muted" id="meta"></p></div></div>
   <p class="error" id="error"></p><div class="result-stack" id="stack"></div>
-  <section class="panel export-panel" id="export-panel" style="margin-top:28px;display:none"><p class="section-kicker">Сохранить результат</p><h2>Заберите проверку себе</h2><p>Можно скопировать весь разбор, сохранить его текстовым файлом или сделать PDF через печать браузера.</p><div class="result-actions" style="margin-top:16px"><button class="button" type="button" id="copy-result">Скопировать весь разбор</button><button class="button button-secondary" type="button" id="download-result">Скачать TXT</button><button class="button button-secondary" type="button" id="print-result">Сохранить как PDF / распечатать</button></div><p class="small muted export-status" id="export-status"></p></section>
+  <section class="panel export-panel" id="export-panel" style="margin-top:28px;display:none"><p class="section-kicker">Сохранить результат</p><h2>Заберите проверку себе</h2><p>Можно скопировать весь разбор, сохранить его текстовым файлом или сделать PDF через печать браузера.</p><div class="result-actions"><button class="button" type="button" id="copy-result">Скопировать весь разбор</button><button class="button button-secondary" type="button" id="download-result">Скачать TXT</button><button class="button button-secondary" type="button" id="print-result">Сохранить как PDF / распечатать</button></div><p class="small muted export-status" id="export-status"></p></section>
   <section class="panel upsell-panel" id="upsell-panel" style="margin-top:28px;display:none"><p class="section-kicker">Нужно разобраться глубже?</p><h2>Разберите ситуацию целиком, а не только один ответ</h2><p><strong>Если решение зависит от нескольких документов, одной проверки ответа уже недостаточно.</strong></p><p>Если ошибка касается договора, банка, ЖКХ, спора, претензии или другой реальной ситуации, можно загрузить документы и факты вместе. Сервис сопоставит их между собой и покажет:</p><ul><li>ключевые факты и хронологию;</li><li>противоречия и недостающие доказательства;</li><li>сильные и слабые стороны позиции;</li><li>2–3 возможных сценария;</li><li>пошаговый план действий.</li></ul><p><strong>Полный разбор ситуации — 1 490 ₽.</strong></p><a class="button" href="https://proverjdo.ru/situation-analysis/?utm_source=srumyantsev.ru&utm_medium=upsell&utm_campaign=answer_check&utm_content=paid_result">Разобрать ситуацию целиком — 1 490 ₽</a><p class="small muted" style="margin-top:12px">Подходит, когда нужно проверить не один ответ нейросети, а всю ситуацию по документам и фактам.</p></section>
   <div class="actions" style="margin-top:24px"><a class="button button-secondary" href="/tools/answer-check/">Проверить другой ответ</a></div>
 </div></main>
