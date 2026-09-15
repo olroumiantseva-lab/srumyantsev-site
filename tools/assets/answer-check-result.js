@@ -27,18 +27,28 @@
   async function start() {
     await loadSdk();
     const client = window.supabase.createClient(config.url, config.publishableKey, { auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true} });
+    const returnTo = `/tools/answer-check/result/?InvId=${encodeURIComponent(invId)}`;
+    const loginUrl = `/tools/answer-check/login/?return_to=${encodeURIComponent(returnTo)}`;
     const { data:{session} } = await client.auth.getSession();
     if (!session) {
-      const returnTo = `/tools/answer-check/result/?InvId=${encodeURIComponent(invId)}`;
-      location.replace(`/tools/answer-check/login/?return_to=${encodeURIComponent(returnTo)}`);
+      location.replace(loginUrl);
       return;
     }
     const { data, error:invokeError } = await client.functions.invoke('answer-check-result', { body:{order_id:Number(invId)} });
     if (invokeError || !data?.result) {
+      const alreadyReset = sessionStorage.getItem(`answer_check_reauth_${invId}`) === '1';
+      if (!alreadyReset) {
+        sessionStorage.setItem(`answer_check_reauth_${invId}`, '1');
+        await client.auth.signOut();
+        localStorage.setItem('answer_check_return_to', returnTo);
+        location.replace(loginUrl);
+        return;
+      }
       if (title) title.textContent = 'Полная проверка пока не открылась';
-      if (error) error.textContent = data?.message || 'Если оплата только что прошла, обновите страницу через несколько секунд.';
+      if (error) error.textContent = data?.message || 'Не удалось подтвердить доступ к оплаченному результату.';
       return;
     }
+    sessionStorage.removeItem(`answer_check_reauth_${invId}`);
     const r=data.result;
     title.textContent=r.summary || 'Полная проверка готова';
     meta.textContent=`Уровень доверия: ${r.trust_level || '—'}`;
