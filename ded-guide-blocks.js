@@ -20,4 +20,5 @@
   add('/metrika-goals.js?v=1');
   add('/document-cluster-cta.js?v=6');
   add('/answer-check-cluster-cta.js?v=1');
+  add('/answer-check-practical-cta.js?v=1');
 })();
