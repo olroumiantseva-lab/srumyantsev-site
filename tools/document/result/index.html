@@ -61,7 +61,7 @@
     </div>
   </main>
 
-  <script src="/tools/assets/runtime-config.js?v=20260915-2325"></script>
+  <script src="/tools/assets/runtime-config.js?v=20260915-2335"></script>
   <script>
   (() => {
     const params = new URLSearchParams(location.search);
@@ -82,12 +82,16 @@
 
       await loadScript('https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js');
       const client = window.supabase.createClient(config.url, config.publishableKey, {
-        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
+        auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: false, flowType: 'pkce' },
       });
 
       const code = params.get('code');
       if (code) {
-        try { await client.auth.exchangeCodeForSession(code); } catch (_) {}
+        const { error } = await client.auth.exchangeCodeForSession(code);
+        if (error) {
+          location.replace(`/tools/answer-check/login-v2/?return_to=${encodeURIComponent(`/tools/answer-check/result/?InvId=${orderId}`)}&auth_error=${encodeURIComponent(error.code || 'pkce_exchange_failed')}`);
+          return true;
+        }
       }
 
       for (let i = 0; i < 60; i += 1) {
@@ -112,9 +116,9 @@
         return;
       }
 
-      await loadScript('/tools/assets/proverjdo-auth-bridge.js?v=20260915-2325');
-      await loadScript('/tools/assets/document.js?v=20260915-2325');
-      await loadScript('/tools/assets/supabase-app.js?v=20260915-2325');
+      await loadScript('/tools/assets/proverjdo-auth-bridge.js?v=20260915-2335');
+      await loadScript('/tools/assets/document.js?v=20260915-2335');
+      await loadScript('/tools/assets/supabase-app.js?v=20260915-2335');
     }
 
     start().catch(() => {
