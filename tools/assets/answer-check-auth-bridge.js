@@ -22,13 +22,10 @@
 
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  async function waitForSession(client) {
-    for (let i = 0; i < 20; i += 1) {
-      const { data: { session } } = await client.auth.getSession();
-      if (session) return session;
-      await wait(250);
-    }
-    return null;
+  async function finish(client) {
+    localStorage.removeItem('answer_check_return_to');
+    sessionStorage.removeItem(`answer_check_reauth_${orderId}`);
+    location.replace(returnUrl.toString());
   }
 
   async function start() {
@@ -37,11 +34,33 @@
       auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
     });
 
-    const session = await waitForSession(client);
-    if (!session) return;
+    const params = new URLSearchParams(location.search);
+    const code = params.get('code');
+    if (code) {
+      const { error } = await client.auth.exchangeCodeForSession(code);
+      if (!error) {
+        const { data: { session } } = await client.auth.getSession();
+        if (session) return finish(client);
+      }
+    }
 
-    localStorage.removeItem('answer_check_return_to');
-    location.replace(returnUrl.toString());
+    const { data: { subscription } } = client.auth.onAuthStateChange((event, session) => {
+      if ((event === 'SIGNED_IN' || event === 'INITIAL_SESSION') && session) {
+        subscription.unsubscribe();
+        finish(client);
+      }
+    });
+
+    for (let i = 0; i < 40; i += 1) {
+      const { data: { session } } = await client.auth.getSession();
+      if (session) {
+        subscription.unsubscribe();
+        return finish(client);
+      }
+      await wait(250);
+    }
+
+    subscription.unsubscribe();
   }
 
   start().catch(() => {});
