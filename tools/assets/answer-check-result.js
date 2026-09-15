@@ -30,7 +30,7 @@
     const { data:{session} } = await client.auth.getSession();
     if (!session) {
       const returnTo = `/tools/answer-check/result/?InvId=${encodeURIComponent(invId)}`;
-      location.replace(`/tools/login/?return_to=${encodeURIComponent(returnTo)}`);
+      location.replace(`/tools/answer-check/login/?return_to=${encodeURIComponent(returnTo)}`);
       return;
     }
     const { data, error:invokeError } = await client.functions.invoke('answer-check-result', { body:{order_id:Number(invId)} });
