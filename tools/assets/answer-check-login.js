@@ -11,10 +11,9 @@
   let returnUrl;
   try { returnUrl = new URL(rawReturn, location.origin); }
   catch { returnUrl = new URL('/tools/answer-check/', location.origin); }
-
-  const allowed = returnUrl.origin === location.origin && returnUrl.pathname === '/tools/answer-check/result/';
-  if (!allowed) returnUrl = new URL('/tools/answer-check/', location.origin);
-
+  if (returnUrl.origin !== location.origin || returnUrl.pathname !== '/tools/answer-check/result/') {
+    returnUrl = new URL('/tools/answer-check/', location.origin);
+  }
   const orderId = returnUrl.searchParams.get('InvId');
 
   const loadSdk = () => new Promise((resolve, reject) => {
@@ -33,11 +32,13 @@
       auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
     });
 
+    const hasAuthCallback = location.hash.includes('access_token=') || query.has('code') || query.has('token_hash');
     const { data: { session } } = await client.auth.getSession();
-    if (session) {
+    if (session && hasAuthCallback) {
       location.replace(returnUrl.toString());
       return;
     }
+    if (session) await client.auth.signOut();
 
     form.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -51,22 +52,19 @@
         return;
       }
 
+      localStorage.setItem('answer_check_return_to', returnUrl.pathname + returnUrl.search);
       const button = form.querySelector('button');
       button.disabled = true;
 
       const callbackUrl = new URL('/tools/document/result/', location.origin);
-      callbackUrl.searchParams.set('answer_check_order', orderId);
-
       const { error: authError } = await client.auth.signInWithOtp({
         email: email.value.trim(),
-        options: {
-          emailRedirectTo: callbackUrl.toString(),
-          shouldCreateUser: false,
-        },
+        options: { emailRedirectTo: callbackUrl.toString(), shouldCreateUser: false },
       });
 
       button.disabled = false;
       if (authError) {
+        localStorage.removeItem('answer_check_return_to');
         error.textContent = 'Не удалось отправить ссылку. Проверьте, что используете email из оплаты.';
         return;
       }
