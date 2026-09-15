@@ -1,6 +1,10 @@
 (() => {
-  const query = new URLSearchParams(location.search);
-  const orderId = query.get('answer_check_order');
+  const stored = localStorage.getItem('answer_check_return_to') || '';
+  let returnUrl;
+  try { returnUrl = new URL(stored, location.origin); }
+  catch { return; }
+  if (returnUrl.origin !== location.origin || returnUrl.pathname !== '/tools/answer-check/result/') return;
+  const orderId = returnUrl.searchParams.get('InvId');
   if (!orderId || !/^\d+$/.test(orderId)) return;
 
   const config = window.__SUPABASE_CONFIG__ || {};
@@ -23,7 +27,8 @@
     });
     const { data: { session } } = await client.auth.getSession();
     if (!session) return;
-    location.replace(`/tools/answer-check/result/?InvId=${encodeURIComponent(orderId)}`);
+    localStorage.removeItem('answer_check_return_to');
+    location.replace(returnUrl.toString());
   }
 
   start().catch(() => {});
