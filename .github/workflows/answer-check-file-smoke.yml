@@ -6,6 +6,7 @@ on:
       - '.github/workflows/answer-check-file-smoke.yml'
   workflow_dispatch:
 
+# one-shot production file-path smoke test
 jobs:
   pdf-smoke:
     runs-on: ubuntu-latest
