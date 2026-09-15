@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="referrer" content="no-referrer">
+  <title>Полная проверка ответа</title>
+  <link rel="stylesheet" href="/tools/assets/document.css">
+</head>
+<body>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="/tools/answer-check/"><span class="brand-mark" aria-hidden="true">＊</span><span>ПРОВЕРКА<br>ОТВЕТА</span></a><span class="prototype-label">Полный результат</span></div></header>
+<main><div class="narrow"><div class="app-head"><div><p class="section-kicker">Полная проверка</p><h1 id="title" style="font-size:clamp(38px,7vw,64px)">Загружаем результат…</h1><p class="muted" id="meta"></p></div></div><p class="error" id="error"></p><div class="result-stack" id="stack"></div><div class="actions"><a class="button" href="/tools/answer-check/">Проверить другой ответ</a></div></div></main>
+<script>
+(() => {
+  const q = new URLSearchParams(location.search);
+  const orderId = q.get('order_id');
+  const token = q.get('token');
+  const title = document.getElementById('title');
+  const meta = document.getElementById('meta');
+  const error = document.getElementById('error');
+  const stack = document.getElementById('stack');
+  if (!orderId || !/^\d+$/.test(orderId) || !token) { title.textContent='Результат не найден'; error.textContent='Проверьте ссылку.'; return; }
+  const verdictLabel={supported:'Подтверждается',questionable:'Нужно перепроверить',likely_wrong:'Вероятно ошибка',unverifiable:'Нельзя проверить без первоисточника'};
+  const trustLabel={high:'высокий',medium:'средний',low:'низкий'};
+  const section=(h)=>{const s=document.createElement('section');s.className='result-card';const x=document.createElement('h2');x.textContent=h;s.append(x);return s};
+  const list=(arr)=>{const ul=document.createElement('ul');for(const v of arr||[]){const li=document.createElement('li');li.textContent=String(v);ul.append(li)}return ul};
+  fetch(`https://vhssshjcrirsuiijolwq.supabase.co/functions/v1/answer-check-secure-result?order_id=${encodeURIComponent(orderId)}&token=${encodeURIComponent(token)}`,{headers:{Accept:'application/json'}})
+    .then(async r=>{const data=await r.json().catch(()=>null);if(!r.ok||!data?.result)throw new Error(data?.message||'Не удалось открыть результат');return data.result;})
+    .then(r=>{
+      title.textContent=r.summary||'Полная проверка готова';
+      meta.textContent=`Уровень доверия к ответу: ${trustLabel[r.trust_level]||r.trust_level||'не определён'}`;
+      const intro=section('Общий вывод');const p=document.createElement('p');p.textContent=r.final_verdict||'';intro.append(p);stack.append(intro);
+      const claims=section('Проверенные утверждения');
+      for(const c of r.claims||[]){const box=document.createElement('div');box.className='answer-claim';const badge=document.createElement('span');badge.className='answer-verdict';badge.textContent=verdictLabel[c.verdict]||c.verdict||'Без оценки';const h=document.createElement('h3');h.textContent=c.claim||'';const why=document.createElement('p');why.textContent=c.reason||'';const action=document.createElement('p');const strong=document.createElement('strong');strong.textContent='Как проверить: ';action.append(strong,document.createTextNode(c.verification_action||''));box.append(badge,h,why,action);if(c.source_url&&/^https?:\/\//i.test(c.source_url)){const src=document.createElement('p');const a=document.createElement('a');a.href=c.source_url;a.target='_blank';a.rel='noopener';a.textContent=c.source_title||'Открыть источник';src.append('Источник: ',a);box.append(src)}claims.append(box)}stack.append(claims);
+      if((r.red_flags||[]).length){const s=section('Что особенно настораживает');s.append(list(r.red_flags));stack.append(s)}
+      if((r.contradictions||[]).length){const s=section('Противоречия в ответе');s.append(list(r.contradictions));stack.append(s)}
+      if((r.source_checklist||[]).length){const s=section('Что стоит сверить самостоятельно');s.append(list(r.source_checklist));stack.append(s)}
+    })
+    .catch(e=>{title.textContent='Не удалось открыть результат';error.textContent=e.message||'Попробуйте ещё раз.'});
+})();
+</script>
+</body></html>
