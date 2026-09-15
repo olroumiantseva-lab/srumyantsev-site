@@ -11,6 +11,10 @@
     location.replace(`/proverjdo/result/?InvId=${encodeURIComponent(invId)}`);
     return;
   }
+  if (p.get('Shp_product') === 'answer_check_290' && invId && /^\d+$/.test(invId)) {
+    location.replace(`/tools/answer-check/payment/success/?InvId=${encodeURIComponent(invId)}`);
+    return;
+  }
 
   const METRIKA_ID = 111385663;
   if (typeof window.ym !== 'function') {
