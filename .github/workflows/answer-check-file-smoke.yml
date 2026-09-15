@@ -1,0 +1,43 @@
+name: Answer Check File Smoke
+
+on:
+  push:
+    paths:
+      - '.github/workflows/answer-check-file-smoke.yml'
+  workflow_dispatch:
+
+jobs:
+  pdf-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Build PDF fixture
+        run: |
+          python -m pip install --quiet reportlab
+          python - <<'PY'
+          from reportlab.pdfgen import canvas
+          p='/tmp/answer-check-smoke.pdf'
+          c=canvas.Canvas(p)
+          c.drawString(72, 760, 'The bank service fee will change from 199 to 299 rubles.')
+          c.drawString(72, 740, 'Therefore the rate on an existing loan automatically increases.')
+          c.save()
+          print(p)
+          PY
+      - name: POST PDF to production answer-check-scan
+        run: |
+          set -euo pipefail
+          code=$(curl -sS -o /tmp/response.json -w '%{http_code}' \
+            -X POST 'https://vhssshjcrirsuiijolwq.supabase.co/functions/v1/answer-check-scan' \
+            -H 'Origin: https://srumyantsev.ru' \
+            -F 'original_question=What should be checked in a bank tariff notice?' \
+            -F 'answer_text=' \
+            -F 'mode=high_stakes' \
+            -F 'answer_file=@/tmp/answer-check-smoke.pdf;type=application/pdf')
+          cat /tmp/response.json
+          test "$code" = '200'
+          python - <<'PY'
+          import json
+          d=json.load(open('/tmp/response.json'))
+          assert d.get('run_id'), d
+          assert d.get('backend_version') == 'answer-check-v6-files', d
+          print('PASS', d['run_id'], d['backend_version'])
+          PY
