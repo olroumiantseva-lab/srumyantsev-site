@@ -12,7 +12,9 @@
     return;
   }
   if (p.get('Shp_product') === 'answer_check_290' && invId && /^\d+$/.test(invId)) {
-    location.replace(`/tools/answer-check/payment/success/?InvId=${encodeURIComponent(invId)}`);
+    const target = new URL('https://vhssshjcrirsuiijolwq.supabase.co/functions/v1/answer-check-success-access');
+    for (const [key, value] of p.entries()) target.searchParams.append(key, value);
+    location.replace(target.toString());
     return;
   }
 
