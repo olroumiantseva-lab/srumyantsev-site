@@ -1,6 +1,7 @@
 (() => {
   const config = window.__SUPABASE_CONFIG__ || {};
   const title = document.getElementById('answer-result-title');
+  const summary = document.getElementById('answer-result-summary');
   const meta = document.getElementById('answer-result-meta');
   const error = document.getElementById('answer-result-error');
   const stack = document.getElementById('answer-result-stack');
@@ -29,6 +30,7 @@
   const list = (values) => { const ul=document.createElement('ul'); for(const v of values||[]){const li=document.createElement('li'); li.textContent=String(v); ul.append(li);} return ul; };
   const verdictLabel = { supported:'Подтверждается', questionable:'Нужно перепроверить', likely_wrong:'Вероятно ошибка', unverifiable:'Нельзя проверить без первоисточника' };
   const trustLabel = { high:'высокий', medium:'средний', low:'низкий' };
+  const headline = (r) => (r.claims||[]).some(c=>c.verdict==='likely_wrong') ? 'В ответе есть вероятная ошибка' : r.trust_level==='low' ? 'Ответ требует серьёзной перепроверки' : r.trust_level==='medium' ? 'Ответ стоит использовать с оговорками' : 'Ответ в целом выглядит надёжно';
 
   function buildPlainText(r){
     const lines=['ПОЛНАЯ ПРОВЕРКА ОТВЕТА НЕЙРОСЕТИ','',r.summary||'',`Уровень доверия: ${trustLabel[r.trust_level]||r.trust_level||'не определён'}`,'','ОБЩИЙ ВЫВОД',r.final_verdict||'','','ПРОВЕРЕННЫЕ УТВЕРЖДЕНИЯ'];
@@ -73,7 +75,8 @@
     sessionStorage.removeItem(`answer_check_reauth_${invId}`);
     const r=data.result;
     currentResult=r;
-    title.textContent=r.summary || 'Полная проверка готова';
+    title.textContent=headline(r);
+    if(summary) summary.textContent=r.summary || '';
     meta.textContent=`Уровень доверия к ответу: ${trustLabel[r.trust_level] || r.trust_level || 'не определён'}`;
     const intro=section('Общий вывод'); const p=document.createElement('p'); p.textContent=r.final_verdict || ''; intro.append(p); stack.append(intro);
     if((r.red_flags||[]).length){const s=section('Что особенно настораживает'); s.append(list(r.red_flags)); stack.append(s);}
@@ -86,14 +89,8 @@
     if(upsellPanel) upsellPanel.style.display='block';
   }
 
-  document.getElementById('answer-copy-result')?.addEventListener('click',async()=>{
-    if(!currentResult)return;
-    try{await navigator.clipboard.writeText(buildPlainText(currentResult));if(exportStatus)exportStatus.textContent='Разбор скопирован в буфер обмена.';}catch{if(exportStatus)exportStatus.textContent='Не удалось скопировать автоматически. Попробуйте скачать TXT.';}
-  });
-  document.getElementById('answer-download-result')?.addEventListener('click',()=>{
-    if(!currentResult)return;
-    const blob=new Blob([buildPlainText(currentResult)],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`proverka-otveta-${invId}.txt`;document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url);if(exportStatus)exportStatus.textContent='TXT-файл сохранён.';
-  });
+  document.getElementById('answer-copy-result')?.addEventListener('click',async()=>{if(!currentResult)return;try{await navigator.clipboard.writeText(buildPlainText(currentResult));if(exportStatus)exportStatus.textContent='Разбор скопирован в буфер обмена.';}catch{if(exportStatus)exportStatus.textContent='Не удалось скопировать автоматически. Попробуйте скачать TXT.';}});
+  document.getElementById('answer-download-result')?.addEventListener('click',()=>{if(!currentResult)return;const blob=new Blob([buildPlainText(currentResult)],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=`proverka-otveta-${invId}.txt`;document.body.append(a);a.click();a.remove();URL.revokeObjectURL(url);if(exportStatus)exportStatus.textContent='TXT-файл сохранён.';});
   document.getElementById('answer-print-result')?.addEventListener('click',()=>window.print());
 
   start().catch(() => { if(title) title.textContent='Не удалось загрузить результат'; if(error) error.textContent='Обновите страницу и попробуйте ещё раз.'; });
