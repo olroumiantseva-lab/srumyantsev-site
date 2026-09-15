@@ -26,6 +26,21 @@
     document.head.appendChild(script);
   });
 
+  const authMessage = (authError) => {
+    const code = String(authError?.code || '').toLowerCase();
+    const message = String(authError?.message || '').toLowerCase();
+    if (code.includes('over_request_rate_limit') || code.includes('rate_limit') || message.includes('rate limit') || message.includes('too many')) {
+      return 'Слишком много запросов ссылки для входа. Подождите несколько минут и попробуйте ещё раз.';
+    }
+    if (message.includes('email rate limit')) {
+      return 'Превышен лимит отправки писем. Подождите несколько минут и попробуйте ещё раз.';
+    }
+    if (message.includes('user not found') || message.includes('signup is disabled')) {
+      return 'Учётная запись для этого email не найдена.';
+    }
+    return `Не удалось отправить ссылку: ${authError?.message || 'неизвестная ошибка Supabase Auth'}`;
+  };
+
   async function start() {
     await loadSdk();
     const client = window.supabase.createClient(config.url, config.publishableKey, {
@@ -65,7 +80,7 @@
       button.disabled = false;
       if (authError) {
         localStorage.removeItem('answer_check_return_to');
-        error.textContent = 'Не удалось отправить ссылку. Проверьте, что используете email из оплаты.';
+        error.textContent = authMessage(authError);
         return;
       }
       form.classList.add('hidden');
