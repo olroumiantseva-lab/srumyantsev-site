@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ru">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="referrer" content="no-referrer"><title>Вход — Проверка ответа</title><link rel="stylesheet" href="/tools/assets/document.css"></head>
+<body>
+<header class="site-header"><div class="shell header-inner"><a class="brand" href="/tools/answer-check/"><span class="brand-mark" aria-hidden="true">＊</span><span>ПРОВЕРКА<br>ОТВЕТА</span></a><span class="prototype-label">Вход</span></div></header>
+<main><div class="narrow"><div class="login-card"><p class="section-kicker">Вход без пароля</p><h1 style="font-size:clamp(36px,7vw,58px)">Войдите по электронной почте</h1><p>Мы пришлём одноразовую ссылку. Используйте тот же email, который указали при оплате.</p><form id="answer-login-form" novalidate><label class="field-label" for="answer-login-email">Введите email</label><input class="input" id="answer-login-email" name="email" type="email" autocomplete="email" required placeholder="name@example.com"><p class="error" id="answer-login-error"></p><button class="button button-full" type="submit">Получить ссылку для входа</button></form><div class="success hidden" id="answer-login-success"><h2>Проверьте почту</h2><p>Откройте новую одноразовую ссылку из письма.</p></div></div><a class="text-link" href="/tools/answer-check/">← Вернуться к сервису</a></div></main>
+<script src="/tools/assets/runtime-config.js?v=20260915-2315"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+(async () => {
+  const config = window.__SUPABASE_CONFIG__ || {};
+  const form = document.getElementById('answer-login-form');
+  const email = document.getElementById('answer-login-email');
+  const error = document.getElementById('answer-login-error');
+  const success = document.getElementById('answer-login-success');
+  if (!config.url || !config.publishableKey || !window.supabase) { error.textContent='Не удалось загрузить вход.'; return; }
+
+  const q = new URLSearchParams(location.search);
+  const raw = q.get('return_to') || '';
+  let returnUrl;
+  try { returnUrl = new URL(raw, location.origin); } catch { returnUrl = null; }
+  if (!returnUrl || returnUrl.origin !== location.origin || returnUrl.pathname !== '/tools/answer-check/result/') {
+    error.textContent='Не найден оплаченный результат.'; return;
+  }
+  const orderId = returnUrl.searchParams.get('InvId');
+  if (!orderId || !/^\d+$/.test(orderId)) { error.textContent='Не найден номер оплаченной проверки.'; return; }
+
+  const client = window.supabase.createClient(config.url, config.publishableKey, {auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+  const { data:{session} } = await client.auth.getSession();
+  if (session) await client.auth.signOut();
+
+  function authMessage(e) {
+    const s = `${e?.code||''} ${e?.message||''}`.toLowerCase();
+    if (s.includes('rate') || s.includes('too many')) return 'Слишком много запросов ссылки для входа. Подождите несколько минут и попробуйте ещё раз.';
+    return `Не удалось отправить ссылку: ${e?.message || 'ошибка авторизации'}`;
+  }
+
+  form.addEventListener('submit', async (ev) => {
+    ev.preventDefault(); error.textContent='';
+    if (!email.checkValidity()) { error.textContent='Проверьте адрес электронной почты.'; return; }
+    const button=form.querySelector('button'); button.disabled=true;
+    localStorage.setItem('answer_check_return_to', returnUrl.pathname + returnUrl.search);
+    const callbackUrl = new URL('/tools/document/result/', location.origin);
+    callbackUrl.searchParams.set('answer_check_order', orderId);
+    const { error: authError } = await client.auth.signInWithOtp({
+      email: email.value.trim(),
+      options:{ emailRedirectTo: callbackUrl.toString(), shouldCreateUser:false }
+    });
+    button.disabled=false;
+    if (authError) { error.textContent=authMessage(authError); return; }
+    form.classList.add('hidden'); success.classList.remove('hidden');
+  });
+})();
+</script>
+</body></html>
