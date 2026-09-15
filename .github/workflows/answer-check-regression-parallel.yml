@@ -5,6 +5,7 @@ on:
     paths:
       - '.github/workflows/answer-check-regression-parallel.yml'
 
+# backend v3 quality gate
 jobs:
   case:
     runs-on: ubuntu-latest
@@ -37,7 +38,7 @@ jobs:
           '12':('Что меняет допсоглашение?','Срок переносится с 10 на 30 сентября, цена 420 000 не меняется, будущая неустойка после 30 сентября. Подписание автоматически прощает всю уже возникшую неустойку до подписания.','high_stakes')}
           q,a,mode=cases[cid]
           data=json.dumps({'original_question':q,'answer_text':a,'mode':mode},ensure_ascii=False).encode()
-          req=urllib.request.Request('https://vhssshjcrirsuiijolwq.supabase.co/functions/v1/answer-check-scan',data=data,method='POST',headers={'Content-Type':'application/json','Origin':'https://srumyantsev.ru','User-Agent':'answer-check-regression-parallel-'+cid})
+          req=urllib.request.Request('https://vhssshjcrirsuiijolwq.supabase.co/functions/v1/answer-check-scan',data=data,method='POST',headers={'Content-Type':'application/json','Origin':'https://srumyantsev.ru','User-Agent':'answer-check-regression-v3-'+cid})
           try:
               with urllib.request.urlopen(req,timeout=180) as r:
                   body=r.read().decode(); status=r.status
