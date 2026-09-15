@@ -20,13 +20,26 @@
     document.head.appendChild(script);
   });
 
+  const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+  async function waitForSession(client) {
+    for (let i = 0; i < 20; i += 1) {
+      const { data: { session } } = await client.auth.getSession();
+      if (session) return session;
+      await wait(250);
+    }
+    return null;
+  }
+
   async function start() {
     await loadSdk();
     const client = window.supabase.createClient(config.url, config.publishableKey, {
       auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
     });
-    const { data: { session } } = await client.auth.getSession();
+
+    const session = await waitForSession(client);
     if (!session) return;
+
     localStorage.removeItem('answer_check_return_to');
     location.replace(returnUrl.toString());
   }
