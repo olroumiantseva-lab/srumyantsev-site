@@ -20,7 +20,7 @@ jobs:
         shell: bash
         run: |
           python - <<'PY'
-          import json, urllib.request, os, pathlib
+          import json, urllib.request, urllib.error, os, pathlib
           cid=os.environ['CASE_ID']
           cases={
           '01':('Что делать с уведомлением о задолженности по ЖКХ?','У вас задолженность 14 820,35 руб. Реакция нужна в течение 10 календарных дней с момента получения: можно оплатить или направить возражения. Есть приложение-расчёт. Также уже начислена пеня 10%, её обязательно оплатить вместе с долгом.','important'),
@@ -41,9 +41,13 @@ jobs:
           try:
               with urllib.request.urlopen(req,timeout=180) as r:
                   body=r.read().decode(); status=r.status
+          except urllib.error.HTTPError as e:
+              body=e.read().decode('utf-8','replace'); status=e.code
           except Exception as e:
               body=json.dumps({'error':repr(e)},ensure_ascii=False); status='error'
-          out={'case':cid,'status':status,'body':json.loads(body) if body.startswith('{') else body}
+          try: parsed=json.loads(body)
+          except Exception: parsed=body
+          out={'case':cid,'status':status,'body':parsed}
           pathlib.Path(f'case-{cid}.json').write_text(json.dumps(out,ensure_ascii=False,indent=2),encoding='utf-8')
           print(json.dumps(out,ensure_ascii=False))
           PY
