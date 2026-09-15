@@ -1,9 +1,16 @@
 (() => {
+  const params = new URLSearchParams(location.search);
+  const queryOrder = params.get('answer_check_order');
   const stored = localStorage.getItem('answer_check_return_to') || '';
-  let returnUrl;
-  try { returnUrl = new URL(stored, location.origin); }
-  catch { return; }
-  if (returnUrl.origin !== location.origin || returnUrl.pathname !== '/tools/answer-check/result/') return;
+
+  let returnUrl = null;
+  if (queryOrder && /^\d+$/.test(queryOrder)) {
+    returnUrl = new URL(`/tools/answer-check/result/?InvId=${encodeURIComponent(queryOrder)}`, location.origin);
+  } else if (stored) {
+    try { returnUrl = new URL(stored, location.origin); } catch {}
+  }
+
+  if (!returnUrl || returnUrl.origin !== location.origin || returnUrl.pathname !== '/tools/answer-check/result/') return;
   const orderId = returnUrl.searchParams.get('InvId');
   if (!orderId || !/^\d+$/.test(orderId)) return;
 
@@ -22,7 +29,8 @@
 
   const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
-  async function finish(client) {
+  function finish(subscription) {
+    if (subscription) subscription.unsubscribe();
     localStorage.removeItem('answer_check_return_to');
     sessionStorage.removeItem(`answer_check_reauth_${orderId}`);
     location.replace(returnUrl.toString());
@@ -34,33 +42,28 @@
       auth: { persistSession: true, autoRefreshToken: true, detectSessionInUrl: true },
     });
 
-    const params = new URLSearchParams(location.search);
     const code = params.get('code');
     if (code) {
       const { error } = await client.auth.exchangeCodeForSession(code);
       if (!error) {
         const { data: { session } } = await client.auth.getSession();
-        if (session) return finish(client);
+        if (session) return finish();
       }
     }
 
-    const { data: { subscription } } = client.auth.onAuthStateChange((event, session) => {
-      if ((event === 'SIGNED_IN' || event === 'INITIAL_SESSION') && session) {
-        subscription.unsubscribe();
-        finish(client);
-      }
+    let sub = null;
+    const { data } = client.auth.onAuthStateChange((event, session) => {
+      if ((event === 'SIGNED_IN' || event === 'INITIAL_SESSION') && session) finish(sub);
     });
+    sub = data.subscription;
 
     for (let i = 0; i < 40; i += 1) {
       const { data: { session } } = await client.auth.getSession();
-      if (session) {
-        subscription.unsubscribe();
-        return finish(client);
-      }
+      if (session) return finish(sub);
       await wait(250);
     }
 
-    subscription.unsubscribe();
+    sub?.unsubscribe();
   }
 
   start().catch(() => {});
