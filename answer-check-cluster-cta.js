@@ -36,6 +36,47 @@
       title: 'Если цена ошибки высокая — проверьте ответ до решения',
       text: 'Для закона, денег, здоровья и других важных тем можно отдельно проверить уже готовый ответ нейросети. Сервис покажет уровень доверия, спорные утверждения, источники и что нужно сверить самостоятельно.',
       terms: ['можно ли доверять ответам', 'здоровье, деньги и права']
+    },
+
+    // Ступень 1 — второй маршрут. Здесь продукт появляется только там,
+    // где он естественно продолжает действие читателя.
+    '/rasshifrovka-audio-neyrosetyu/': {
+      mode: 'inline', source: 'guide-audio-transcript',
+      text: 'Если после расшифровки нейросеть ещё и сделала выводы по содержанию разговора, важные факты лучше проверить отдельно. Готовый ответ можно прогнать через сервис «Проверка ответа».',
+      terms: ['что делать с расшифровкой', 'провер', 'ошиб']
+    },
+    '/dlinnye-dokumenty-dogovor-otchet-kniga/': {
+      mode: 'soft', source: 'guide-long-document-answer-check',
+      title: 'Разобрали документ — проверьте уже сам вывод нейросети',
+      text: 'Разбор документа и проверка ответа — разные задачи. Если нейросеть сделала юридический, финансовый или иной важный вывод по PDF, можно отдельно проверить этот вывод: какие утверждения подтверждаются, а где модель могла додумать.',
+      terms: ['три проверки', 'прочитала ли нейросеть', 'провер']
+    },
+    '/tablitsy-i-tsifry-neyroset/': {
+      mode: 'soft', source: 'guide-tables-answer-check',
+      title: 'Формула сошлась — но вывод тоже стоит проверить',
+      text: 'Калькулятор проверит арифметику, но не смысл вывода. Если нейросеть объясняет цифры, тариф, расчёт или делает финансовое заключение, готовый ответ можно отдельно проверить по фактам и источникам.',
+      terms: ['где ии', 'ошиб', 'провер']
+    },
+    '/dve-neyroseti-v-pare-vtoroe-mnenie/': {
+      mode: 'full', source: 'guide-second-opinion-answer-check',
+      title: 'Не хотите вручную сравнивать два ответа?',
+      text: 'Можно вставить один готовый ответ в сервис. Он разобьёт его на проверяемые утверждения, отметит спорные места, сверит важные факты и покажет, что именно нужно проверить в первоисточнике.',
+      terms: ['второе мнение', 'сравнить ответы', 'две нейросети']
+    },
+    '/pochemu-neyroset-otkazyvaetsya-otvechat/': {
+      mode: 'inline', source: 'guide-refusal',
+      text: 'Отказ нейросети и неправильный ответ — разные вещи. Если она всё-таки ответила, но вы сомневаетесь в фактах, можно отдельно проверить уже готовый ответ.',
+      terms: ['почему', 'отказ', 'отвеч']
+    },
+    '/pochemu-neyroset-daet-skuchnye-otvety/': {
+      mode: 'inline', source: 'guide-boring-answers',
+      text: 'Когда добились более живого и конкретного ответа, не путайте убедительность с точностью. Если в тексте появились факты, цифры или ссылки, важные утверждения можно проверить отдельно.',
+      terms: ['улучш', 'ответ', 'конкрет']
+    },
+    '/kak-ne-poteryat-perepiski-s-ii/': {
+      mode: 'inline', source: 'guide-chat-history',
+      text: 'Сохранять стоит не только удачные промпты, но и ответы, на которые вы потом опираетесь. Перед повторным использованием старого ответа проверьте, не устарели ли факты, даты и правила.',
+      terms: ['сохраня', 'переписк', 'порядок']
     }
   };
 
@@ -44,19 +85,20 @@
   const body = document.querySelector('.seo-body');
   if (!body || body.querySelector('[data-answer-check-cta]')) return;
 
-  // On the two fact-check guides the answer-check product is the primary continuation,
-  // so remove the older document-product promo to avoid competing CTAs.
+  // На страницах, где проверка ответа — главный следующий шаг,
+  // не показываем рядом конкурирующий продуктовый CTA.
   if (config.mode === 'full') {
-    document.querySelectorAll('[data-document-product-cta]').forEach((node) => node.remove());
+    document.querySelectorAll('[data-document-product-cta], [data-document-soft-cta]').forEach((node) => node.remove());
   }
-  // The phone guide already has two document CTAs. Keep the contextual one and remove
-  // the late duplicate before adding a small answer-check bridge.
   if (path === '/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/') {
     document.querySelector('[data-document-product-cta="before_finish"]')?.remove();
   }
 
   const style = document.createElement('style');
   style.textContent = `
+    .answer-check-inline-cta{margin:22px 0;padding:0 0 0 16px;border-left:3px solid rgba(154,95,53,.55);font-size:.98em}
+    .answer-check-inline-cta p{margin:0;max-width:800px}
+    .answer-check-inline-cta a{font-weight:700;text-underline-offset:3px}
     .answer-check-soft-cta{margin:28px 0;padding:20px 22px;border-left:5px solid #9a5f35;background:#fff6e4;border-radius:12px}
     .answer-check-soft-cta h3{margin:0 0 8px;font-size:22px;line-height:1.2}
     .answer-check-soft-cta p{margin:0 0 12px;max-width:780px}
@@ -71,13 +113,14 @@
   `;
   document.head.appendChild(style);
 
-  const href = `/tools/answer-check/?from=${encodeURIComponent(config.source)}&placement=${config.mode === 'full' ? 'guide_primary' : 'guide_contextual'}`;
+  const placement = config.mode === 'full' ? 'guide_primary' : config.mode === 'inline' ? 'guide_inline' : 'guide_contextual';
+  const href = `/tools/answer-check/?from=${encodeURIComponent(config.source)}&placement=${placement}`;
   const track = (link) => link.addEventListener('click', () => {
     if (typeof window.ym === 'function') {
       window.ym(111385663, 'reachGoal', 'answer_check_product_click', {
         from: path,
         source: config.source,
-        placement: config.mode === 'full' ? 'guide_primary' : 'guide_contextual',
+        placement,
         product: 'answer_check_290'
       });
     }
@@ -88,6 +131,9 @@
   if (config.mode === 'full') {
     box.className = 'answer-check-product-cta';
     box.innerHTML = `<h2>${config.title}</h2><p>${config.text}</p><p class="answer-check-price">Предварительная проверка — бесплатно. Полная проверка — 290 ₽.</p><a class="button" href="${href}">Проверить ответ нейросети</a><small>Можно вставить текст ответа или загрузить JPG, PDF или HEIC. Для важных решений результат проверки не заменяет профильного специалиста.</small>`;
+  } else if (config.mode === 'inline') {
+    box.className = 'answer-check-inline-cta';
+    box.innerHTML = `<p>${config.text} <a href="${href}">Проверить ответ →</a></p>`;
   } else {
     box.className = 'answer-check-soft-cta';
     box.innerHTML = `<h3>${config.title}</h3><p>${config.text}</p><a href="${href}">Проверить ответ нейросети бесплатно →</a><small>Полная проверка — 290 ₽.</small>`;
@@ -102,6 +148,7 @@
 
   if (target) target.insertAdjacentElement('afterend', box);
   else if (config.mode === 'full' && sections[1]) sections[1].insertAdjacentElement('afterend', box);
+  else if (config.mode === 'inline' && sections[3]) sections[3].insertAdjacentElement('afterend', box);
   else if (sections[2]) sections[2].insertAdjacentElement('afterend', box);
   else body.appendChild(box);
 })();
