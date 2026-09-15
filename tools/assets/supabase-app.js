@@ -9,7 +9,7 @@
     script.crossOrigin = 'anonymous';
     script.onload = resolve;
     script.onerror = () => reject(new Error('SDK_LOAD_FAILED'));
-    document.head.append(script);
+    document.head.appendChild(script);
   });
 
   const text = (node, value) => { if (node) node.textContent = value; };
@@ -25,6 +25,9 @@
 
     const hash = new URLSearchParams(location.hash.slice(1));
     const query = new URLSearchParams(location.search);
+    const answerCheckOrder = query.get('answer_check_order');
+    const isAnswerCheckCallback = document.body.dataset.page === 'result' && /^\d+$/.test(answerCheckOrder || '');
+
     if (hash.get('error') || query.get('error')) {
       const target = byId('login-error');
       text(target, 'Ссылка устарела или уже использована. Получите новую ссылку для входа.');
@@ -32,11 +35,13 @@
     }
 
     const { data: { session } } = await client.auth.getSession();
-    const protectedPage = document.body.dataset.protected === 'true';
+    const protectedPage = document.body.dataset.protected === 'true' && !isAnswerCheckCallback;
     if (protectedPage && !session) {
       location.replace(`/tools/login/?return_to=${encodeURIComponent(location.pathname + location.search)}`);
       return;
     }
+
+    if (isAnswerCheckCallback) return;
 
     document.querySelectorAll('[data-logout]').forEach((link) => link.addEventListener('click', async (event) => {
       event.preventDefault();
