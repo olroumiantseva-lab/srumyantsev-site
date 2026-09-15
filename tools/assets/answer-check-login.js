@@ -72,6 +72,7 @@
       button.disabled = true;
 
       const callbackUrl = new URL('/tools/document/result/', location.origin);
+      callbackUrl.searchParams.set('answer_check_order', orderId);
       const { error: authError } = await client.auth.signInWithOtp({
         email: email.value.trim(),
         options: { emailRedirectTo: callbackUrl.toString(), shouldCreateUser: false },
