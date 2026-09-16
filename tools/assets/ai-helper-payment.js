@@ -17,12 +17,13 @@
     try {
       const headers = {'Content-Type':'application/json'};
       if (config.publishableKey) headers.apikey = config.publishableKey;
-      const response = await fetch(`${config.url}/functions/v1/create-payment`, {
+      const response = await fetch(`${config.url}/functions/v1/ai-helper-payment`, {
         method:'POST', headers,
-        body: JSON.stringify({email, product_id:'ai_helper_1490', source_site:'ded'})
+        body: JSON.stringify({email})
       });
       const payload = await response.json().catch(() => ({}));
-      if (!response.ok || !payload.payment_url) throw new Error(payload.message || 'Не удалось создать платёж.');
+      if (!response.ok || !payload.payment_url || !payload.order_id || !payload.checkout_token) throw new Error(payload.message || 'Не удалось создать платёж.');
+      localStorage.setItem(`ai_helper_checkout_${payload.order_id}`, payload.checkout_token);
       if (typeof window.ym === 'function') window.ym(111385663, 'reachGoal', 'ai_helper_checkout', {product:'ai_helper_1490'});
       location.assign(payload.payment_url);
     } catch (e) {
