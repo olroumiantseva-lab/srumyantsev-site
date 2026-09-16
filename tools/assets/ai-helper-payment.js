@@ -4,6 +4,19 @@
   const submit = form.querySelector('button[type="submit"]');
   const error = document.getElementById('ai-helper-payment-error');
   const idle = submit.textContent;
+  const pageParams = new URLSearchParams(location.search);
+
+  document.querySelectorAll('a[href="#buy"]').forEach((link) => {
+    link.addEventListener('click', () => {
+      if (typeof window.ym !== 'function') return;
+      window.ym(111385663, 'reachGoal', 'ai_helper_product_click', {
+        product:'ai_helper_1490',
+        from: pageParams.get('from') || 'ai_helper_landing',
+        placement: pageParams.get('placement') || (link.closest('.hero') ? 'landing_hero' : 'landing_body')
+      });
+    });
+  });
+
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     error.textContent = '';
