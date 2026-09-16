@@ -14,6 +14,15 @@
     fallback.style.display = 'block';
   };
 
+  const sendPaidGoalOnce = () => {
+    const marker = `ai_helper_paid_goal_${orderId}`;
+    if (localStorage.getItem(marker)) return;
+    if (typeof window.ym === 'function') {
+      window.ym(111385663, 'reachGoal', 'ai_helper_paid', {product:'ai_helper_1490'});
+      localStorage.setItem(marker, '1');
+    }
+  };
+
   if (!/^\d+$/.test(orderId) || !checkoutToken || !config.url) {
     fail('Не найдено подтверждение покупки в этом браузере. Если оплата уже прошла, не оплачивайте повторно.');
     return;
@@ -31,6 +40,7 @@
       });
       const payload = await response.json().catch(() => ({}));
       if (response.ok && payload?.setup_url) {
+        sendPaidGoalOnce();
         localStorage.removeItem(key);
         status.textContent = 'Оплата подтверждена. Открываем настройку…';
         location.replace(payload.setup_url);
