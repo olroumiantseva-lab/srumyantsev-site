@@ -22,4 +22,5 @@
   add('/answer-check-cluster-cta.js?v=1');
   add('/answer-check-practical-cta.js?v=1');
   add('/ai-helper-cluster-cta.js?v=3');
+  add('/important-letter-cluster-cta.js?v=1');
 })();
