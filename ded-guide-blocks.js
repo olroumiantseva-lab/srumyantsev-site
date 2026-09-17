@@ -16,7 +16,7 @@
   add('/guide-youtube-shorts.js?v=5');
   add('/guide-indexing-rework.js?v=1');
   add('/home-priority-links.js?v=3');
-  add('/priority-interlinks.js?v=1');
+  add('/priority-interlinks.js?v=2');
   add('/metrika-goals.js?v=1');
   add('/document-cluster-cta.js?v=6');
   add('/answer-check-cluster-cta.js?v=1');
