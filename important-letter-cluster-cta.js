@@ -41,11 +41,56 @@
     }
   };
 
-  const config = configs[path];
-  if (!config) return;
+  const nativeLinks = {
+    '/kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/': {
+      source: 'guide-repair-service-letter',
+      heading: 'Подготовьте нормальное описание для специалиста',
+      html: 'Если нужен не короткий мессенджер, а полноценное обращение в сервисный центр, продавцу или управляющей компании, можно <a href="/tools/important-letter/?from=guide-repair-service-letter&placement=native">собрать важное письмо по своим фактам</a>: начало сервис покажет бесплатно.'
+    },
+    '/smeta-na-remont-s-pomoshchyu-ii/': {
+      source: 'guide-estimate-letter',
+      heading: 'Найдите расходы без цены и забытые категории',
+      html: 'Если после проверки сметы нужно письменно запросить у подрядчика цены, состав работ или объяснение расхождений, можно <a href="/tools/important-letter/?from=guide-estimate-letter&placement=native">подготовить письмо подрядчику</a> по уже собранным фактам и цифрам.'
+    },
+    '/kak-splanirovat-remont-komnaty-s-pomoshchyu-neyroseti/': {
+      source: 'guide-room-renovation-letter',
+      heading: 'Сначала проверить, потом покупать',
+      html: 'Когда план, сроки и объём работ согласованы, полезно зафиксировать их письменно. Для этого можно <a href="/tools/important-letter/?from=guide-room-renovation-letter&placement=native">подготовить деловое письмо мастеру или подрядчику</a> и проверить формулировки до отправки.'
+    }
+  };
 
   const body = document.querySelector('.seo-body');
-  if (!body || document.querySelector('[data-important-letter-cta]')) return;
+  if (!body) return;
+
+  const trackLink = (link, source, placement) => {
+    link?.addEventListener('click', () => {
+      if (typeof window.ym === 'function') {
+        window.ym(111385663, 'reachGoal', 'important_letter_guide_click', {
+          from: path,
+          source,
+          placement,
+          product: 'important_letter_390'
+        });
+      }
+    });
+  };
+
+  const native = nativeLinks[path];
+  if (native && !document.querySelector('[data-important-letter-native]')) {
+    const section = [...body.querySelectorAll(':scope > section')].find((node) =>
+      node.querySelector('h2')?.textContent.trim() === native.heading
+    );
+    if (section) {
+      const paragraph = document.createElement('p');
+      paragraph.dataset.importantLetterNative = native.source;
+      paragraph.innerHTML = native.html;
+      section.appendChild(paragraph);
+      trackLink(paragraph.querySelector('a'), native.source, 'native');
+    }
+  }
+
+  const config = configs[path];
+  if (!config || document.querySelector('[data-important-letter-cta]')) return;
 
   if (config.mode === 'primary') {
     document.querySelectorAll('[data-document-product-cta]').forEach((node) => node.remove());
@@ -70,17 +115,7 @@
     box.className = `important-letter-cta${contextual ? ' contextual' : ''}`;
     box.dataset.importantLetterCta = placement;
     box.innerHTML = `<h2>${config.title}</h2><p>${config.text}</p><p class="important-letter-price">Начало — бесплатно · полный текст — 390 ₽ · без подписки</p><a class="button" href="/tools/important-letter/?from=${encodeURIComponent(config.source)}&placement=${encodeURIComponent(placement)}">${config.button}</a><small>Сервис пишет только по фактам и документам, которые вы предоставили. Даты, суммы и реквизиты перед отправкой нужно проверить.</small>`;
-    const link = box.querySelector('a');
-    link?.addEventListener('click', () => {
-      if (typeof window.ym === 'function') {
-        window.ym(111385663, 'reachGoal', 'important_letter_guide_click', {
-          from: path,
-          source: config.source,
-          placement,
-          product: 'important_letter_390'
-        });
-      }
-    });
+    trackLink(box.querySelector('a'), config.source, placement);
     return box;
   };
 
