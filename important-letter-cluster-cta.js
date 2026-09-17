@@ -56,6 +56,16 @@
       source: 'guide-room-renovation-letter',
       heading: 'Сначала проверить, потом покупать',
       html: 'Когда план, сроки и объём работ согласованы, полезно зафиксировать их письменно. Для этого можно <a href="/tools/important-letter/?from=guide-room-renovation-letter&placement=native">подготовить деловое письмо мастеру или подрядчику</a> и проверить формулировки до отправки.'
+    },
+    '/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/': {
+      source: 'guide-instruction-service-letter',
+      heading: 'Соберите нормальное описание для мастера',
+      html: 'Если вопрос нужно передать в сервисный центр письменно, можно <a href="/tools/important-letter/?from=guide-instruction-service-letter&placement=native">подготовить обращение по модели, симптомам и уже выполненным проверкам</a>. Сервис начнёт с ваших фактов и не будет придумывать диагноз.'
+    },
+    '/kak-sravnit-tarify-s-pomoshchyu-neyroseti/': {
+      source: 'guide-tariff-letter',
+      heading: 'Найдите то, что нужно уточнить',
+      html: 'Если нужно запросить у компании разъяснение, перерасчёт или изменение условий, собранные вопросы можно сразу превратить в <a href="/tools/important-letter/?from=guide-tariff-letter&placement=native">готовое деловое письмо</a>. Начало сервис покажет бесплатно.'
     }
   };
 
