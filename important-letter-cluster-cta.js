@@ -5,13 +5,39 @@
       source: 'guide-bank-agency-letter',
       title: 'Факты собраны? Превратите их в готовое письмо',
       text: 'Укажите, кому пишете, что произошло и чего хотите добиться. Сервис бесплатно покажет начало письма. Полный готовый текст — 390 ₽.',
-      button: 'Написать важное письмо'
+      button: 'Написать важное письмо',
+      mode: 'primary'
     },
     '/kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/': {
       source: 'guide-incoming-letter-reply',
       title: 'Поняли, что вам написали? Теперь можно подготовить ответ',
       text: 'Передайте сервису факты, документы и желаемый результат. Он бесплатно покажет начало ответа, а полный готовый текст можно открыть за 390 ₽.',
-      button: 'Подготовить ответное письмо'
+      button: 'Подготовить ответное письмо',
+      mode: 'primary'
+    },
+    '/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/': {
+      source: 'guide-money-letter',
+      title: 'Нашли спорное начисление или условие? Зафиксируйте обращение письменно',
+      text: 'Укажите организацию, что произошло, суммы и чего хотите добиться. Сервис подготовит письмо по вашим фактам без выдуманных норм и обещаний.',
+      button: 'Подготовить обращение',
+      mode: 'contextual',
+      keywords: ['коммун', 'банк', 'кредит', 'тариф', 'начислен', 'списан']
+    },
+    '/kak-razobrat-dogovor-s-pomoshchyu-neyroseti/': {
+      source: 'guide-contract-letter',
+      title: 'Разобрали договор? Теперь можно письменно зафиксировать позицию',
+      text: 'Если нужно запросить разъяснение, изменение условия, возврат денег или ответ контрагента, сервис соберёт письмо по пунктам договора и вашим фактам.',
+      button: 'Написать контрагенту',
+      mode: 'contextual',
+      keywords: ['растор', 'штраф', 'обязан', 'срок', 'услов', 'контраг']
+    },
+    '/kak-sravnit-predlozheniya-masterov-i-vybrat-podryadchika-s-pomoshchyu-ii/': {
+      source: 'guide-contractor-letter',
+      title: 'Нужно зафиксировать договорённости с подрядчиком?',
+      text: 'Опишите согласованные работы, сроки, цену и что хотите получить в ответ. Сервис поможет собрать спокойное деловое письмо без лишней резкости.',
+      button: 'Написать подрядчику',
+      mode: 'contextual',
+      keywords: ['подряд', 'мастер', 'срок', 'смет', 'услов', 'договор']
     }
   };
 
@@ -21,10 +47,10 @@
   const body = document.querySelector('.seo-body');
   if (!body || document.querySelector('[data-important-letter-cta]')) return;
 
-  // На этих двух страницах продукт «Важное письмо» ближе к намерению пользователя,
-  // поэтому убираем ранее добавленные CTA разбора документа, чтобы не конкурировать самим с собой.
-  document.querySelectorAll('[data-document-product-cta]').forEach((node) => node.remove());
-  document.querySelectorAll('[data-document-service-bridge]').forEach((node) => node.remove());
+  if (config.mode === 'primary') {
+    document.querySelectorAll('[data-document-product-cta]').forEach((node) => node.remove());
+    document.querySelectorAll('[data-document-service-bridge]').forEach((node) => node.remove());
+  }
 
   const style = document.createElement('style');
   style.textContent = `
@@ -34,12 +60,14 @@
     .important-letter-cta .important-letter-price{font-weight:700;margin:14px 0 18px}
     .important-letter-cta .button{display:inline-flex;text-decoration:none}
     .important-letter-cta small{display:block;margin-top:12px;opacity:.72}
+    .important-letter-cta.contextual{padding:22px 24px;border-width:1px;box-shadow:0 5px 0 rgba(88,67,47,.1)}
+    .important-letter-cta.contextual h2{font-size:clamp(23px,3vw,30px)}
   `;
   document.head.appendChild(style);
 
-  const makeCta = (placement) => {
+  const makeCta = (placement, contextual = false) => {
     const box = document.createElement('aside');
-    box.className = 'important-letter-cta';
+    box.className = `important-letter-cta${contextual ? ' contextual' : ''}`;
     box.dataset.importantLetterCta = placement;
     box.innerHTML = `<h2>${config.title}</h2><p>${config.text}</p><p class="important-letter-price">Начало — бесплатно · полный текст — 390 ₽ · без подписки</p><a class="button" href="/tools/important-letter/?from=${encodeURIComponent(config.source)}&placement=${encodeURIComponent(placement)}">${config.button}</a><small>Сервис пишет только по фактам и документам, которые вы предоставили. Даты, суммы и реквизиты перед отправкой нужно проверить.</small>`;
     const link = box.querySelector('a');
@@ -55,6 +83,18 @@
     });
     return box;
   };
+
+  if (config.mode === 'contextual') {
+    const sections = [...body.querySelectorAll(':scope > section')];
+    const keywordSection = sections.find((section) => {
+      const text = section.textContent.toLowerCase();
+      return (config.keywords || []).some((keyword) => text.includes(keyword));
+    });
+    const anchor = keywordSection || sections[Math.max(0, Math.floor(sections.length * 0.6))];
+    if (anchor) anchor.insertAdjacentElement('afterend', makeCta('contextual', true));
+    else body.appendChild(makeCta('contextual', true));
+    return;
+  }
 
   const firstSection = body.querySelector(':scope > section');
   if (firstSection) firstSection.insertAdjacentElement('afterend', makeCta('after_intro'));
