@@ -16,6 +16,10 @@
   const byId = (id) => document.getElementById(id);
   const errorMessage = (error, fallback) => error?.context?.json?.message || error?.message || fallback;
   const wait = (milliseconds) => new Promise((resolve) => setTimeout(resolve, milliseconds));
+  const track = (goal, params = {}) => {
+    if (typeof window.dedTrack === 'function') window.dedTrack(goal, { product: 'document_explain_290', ...params });
+    else if (typeof window.ym === 'function') window.ym(111385663, 'reachGoal', goal, { product: 'document_explain_290', ...params });
+  };
 
   async function start() {
     await loadSdk();
@@ -126,6 +130,7 @@
       if (context.value.length > 1000) { text(errorNode, 'Сократите дополнительный контекст до 1 000 символов.'); return; }
       button.disabled = true;
       text(button, 'Разбираем…');
+      track('document_paid_analysis_start', { document_type: form.elements['document-type'].value });
       text(errorNode, '');
       const payload = {
         document_type: form.elements['document-type'].value,
@@ -156,6 +161,7 @@
         await refreshBalance(client);
         return;
       }
+      track('document_paid_analysis_ready', { document_type: payload.document_type });
       location.assign(`/tools/document/result/?id=${encodeURIComponent(data.session_id)}`);
     });
   }
@@ -211,6 +217,7 @@
     text(byId('result-title'), item.title);
     text(byId('result-meta'), `${item.document_type} · ${new Intl.DateTimeFormat('ru-RU', { dateStyle: 'long' }).format(new Date(item.created_at))}`);
     renderResult(item.result_json ?? {});
+    track('document_paid_result_opened', { document_type: item.document_type });
   }
 
   function showResultError(message) {
