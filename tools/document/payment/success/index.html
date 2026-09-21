@@ -30,7 +30,7 @@
       const data = await r.json();
       if (r.ok && data?.product_id === 'answer_check_290') { routeAnswerCheck(); return; }
       if (r.ok && data?.product_id === 'ai_helper_1490') { routeAiHelper(); return; }
-      if (r.ok && data?.product_id === 'important_letter_390') { window.dedTrack?.('important_letter_payment_success',{product:'important_letter_390'}); routeAiHelper(); return; }
+      if (r.ok && data?.product_id === 'important_letter_390') { window.dedTrack?.('important_letter_paid',{product:'important_letter_390'}); routeAiHelper(); return; }
       if (r.ok && data?.product_id === 'document_explain_290') {
         window.dedTrack?.('document_payment_success',{product:'document_explain_290'});
         status.textContent = 'Оплата разбора документа подтверждена.';
