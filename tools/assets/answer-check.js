@@ -12,6 +12,20 @@
   const allowedExt = new Set(['jpg', 'jpeg', 'pdf', 'heic', 'heif']);
   const esc = (value) => String(value ?? '').replace(/[&<>"']/g, (c) => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   let heicLoader = null;
+  const q = new URLSearchParams(location.search);
+  let source = String(q.get('from') || '').trim();
+  let placement = String(q.get('placement') || '').trim();
+  try {
+    if (source) sessionStorage.setItem('ded.answer_check.source', source);
+    else source = sessionStorage.getItem('ded.answer_check.source') || '';
+    if (placement) sessionStorage.setItem('ded.answer_check.placement', placement);
+    else placement = sessionStorage.getItem('ded.answer_check.placement') || '';
+  } catch {}
+  const track = (goal, params = {}) => {
+    const payload = { product: 'answer_check_290', source: source || 'direct', placement, ...params };
+    if (typeof window.dedTrack === 'function') window.dedTrack(goal, payload);
+    else if (typeof window.ym === 'function') window.ym(111385663, 'reachGoal', goal, payload);
+  };
 
   function extOf(name) {
     const parts = String(name || '').toLowerCase().split('.');
@@ -87,6 +101,7 @@
       if (answerText && answerText.length < 40 && !selectedFile) throw new Error('Вставьте ответ нейросети целиком — хотя бы несколько предложений.');
 
       const preparedFile = await prepareFile(selectedFile);
+      track('answer_check_free_start', { mode: form.elements.mode.value, input_type: preparedFile ? 'file' : 'text' });
       let response;
       if (preparedFile) {
         const body = new FormData();
@@ -130,7 +145,7 @@
           <p class="section-kicker">Полная проверка</p>
           <h2>Открыть полную проверку — 290 ₽</h2>
           <p>В полной версии: все проверяемые утверждения, источники, сомнительные места, красные флаги, противоречия, чек-лист и итоговая рекомендация.</p>
-          <form action="https://vhssshjcrirsuiijolwq.supabase.co/functions/v1/answer-check-payment" method="post">
+          <form id="answer-check-payment-form" action="https://vhssshjcrirsuiijolwq.supabase.co/functions/v1/answer-check-payment" method="post">
             <input type="hidden" name="run_id" value="${esc(data.run_id)}">
             <label class="field-label" for="answer-pay-email">Электронная почта</label>
             <input class="input" id="answer-pay-email" name="email" type="email" autocomplete="email" required placeholder="name@example.com">
@@ -139,6 +154,11 @@
           </form>
         </div>`;
       result.classList.remove('hidden');
+      track('answer_check_preview_ready', { mode: form.elements.mode.value, run_id: data.run_id });
+      const paymentForm = document.getElementById('answer-check-payment-form');
+      paymentForm?.addEventListener('submit', () => {
+        track('answer_check_checkout', { run_id: data.run_id });
+      }, { once: true });
       result.scrollIntoView({behavior:'smooth', block:'start'});
     } catch (e) {
       error.textContent = e?.message || 'Не удалось выполнить проверку. Попробуйте ещё раз.';
