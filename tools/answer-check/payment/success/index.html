@@ -21,26 +21,14 @@
     link.textContent = 'Вернуться к проверке';
     return;
   }
-  const returnTo = `/tools/answer-check/result/?InvId=${encodeURIComponent(invId)}`;
-  link.href = `/tools/answer-check/login-v2/?return_to=${encodeURIComponent(returnTo)}`;
 
-  const METRIKA_ID = 111385663;
-  if (typeof window.ym !== 'function') {
-    window.ym = function () { (window.ym.a = window.ym.a || []).push(arguments); };
-    window.ym.l = Date.now();
-    const script = document.createElement('script');
-    script.async = true;
-    script.src = 'https://mc.yandex.ru/metrika/tag.js';
-    document.head.appendChild(script);
-    window.ym(METRIKA_ID, 'init', { clickmap: true, trackLinks: true, accurateTrackBounce: true });
-  }
-  let tracked = false;
-  const key = `ded.answer_check.payment_success.${invId}`;
-  try {
-    tracked = sessionStorage.getItem(key) === '1';
-    if (!tracked) sessionStorage.setItem(key, '1');
-  } catch {}
-  if (!tracked) window.ym(METRIKA_ID, 'reachGoal', 'answer_check_payment_success', { product: 'answer_check_290', inv_id: invId, value_rub: 290 });
+  // Legacy success page: hand the signed Robokassa return to the current
+  // secure access endpoint instead of the removed login-v2/result route.
+  link.textContent = 'Открываем полный результат…';
+  link.removeAttribute('href');
+  const target = new URL('https://vhssshjcrirsuiijolwq.supabase.co/functions/v1/answer-check-success-access');
+  for (const [key, value] of p.entries()) target.searchParams.append(key, value);
+  location.replace(target.toString());
 })();
 </script>
 </body></html>
