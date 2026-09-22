@@ -5,14 +5,25 @@
   const error = document.getElementById('ai-helper-payment-error');
   const idle = submit.textContent;
   const pageParams = new URLSearchParams(location.search);
+  let source = String(pageParams.get('from') || '').trim();
+  let placement = String(pageParams.get('placement') || '').trim();
+  try {
+    if (source) sessionStorage.setItem('ded.ai_helper.source', source);
+    else source = sessionStorage.getItem('ded.ai_helper.source') || '';
+    if (placement) sessionStorage.setItem('ded.ai_helper.placement', placement);
+    else placement = sessionStorage.getItem('ded.ai_helper.placement') || '';
+  } catch {}
+  const track = (goal, params = {}) => {
+    const payload = { product:'ai_helper_1490', source:source||'direct', placement, ...params };
+    if (typeof window.dedTrack === 'function') window.dedTrack(goal, payload);
+    else if (typeof window.ym === 'function') window.ym(111385663, 'reachGoal', goal, payload);
+  };
 
   document.querySelectorAll('a[href="#buy"]').forEach((link) => {
     link.addEventListener('click', () => {
-      if (typeof window.ym !== 'function') return;
-      window.ym(111385663, 'reachGoal', 'ai_helper_product_click', {
-        product:'ai_helper_1490',
-        from: pageParams.get('from') || 'ai_helper_landing',
-        placement: pageParams.get('placement') || (link.closest('.hero') ? 'landing_hero' : 'landing_body')
+      track('ai_helper_product_click', {
+        from: source || 'ai_helper_landing',
+        placement: placement || (link.closest('.hero') ? 'landing_hero' : 'landing_body')
       });
     });
   });
@@ -37,7 +48,7 @@
       const payload = await response.json().catch(() => ({}));
       if (!response.ok || !payload.payment_url || !payload.order_id || !payload.checkout_token) throw new Error(payload.message || 'Не удалось создать платёж.');
       localStorage.setItem(`ai_helper_checkout_${payload.order_id}`, payload.checkout_token);
-      if (typeof window.ym === 'function') window.ym(111385663, 'reachGoal', 'ai_helper_checkout', {product:'ai_helper_1490'});
+      track('ai_helper_checkout');
       location.assign(payload.payment_url);
     } catch (e) {
       error.textContent = e instanceof Error ? e.message : 'Не удалось создать платёж.';
