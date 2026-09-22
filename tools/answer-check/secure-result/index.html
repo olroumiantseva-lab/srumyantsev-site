@@ -33,6 +33,12 @@
 <script>
 (() => {
   const q=new URLSearchParams(location.search),orderId=q.get('order_id'),token=q.get('token');
+  if(q.get('paid')==='1'){
+    const key=`ded.answer_check.payment_success.${orderId||''}`;
+    let sent=false;
+    try{sent=sessionStorage.getItem(key)==='1';if(!sent)sessionStorage.setItem(key,'1');}catch{}
+    if(!sent)window.dedTrack?.('answer_check_payment_success',{product:'answer_check_290',order_id:orderId||'',value_rub:290});
+  }
   const title=document.getElementById('title'),summary=document.getElementById('summary'),meta=document.getElementById('meta'),error=document.getElementById('error'),stack=document.getElementById('stack'),exportPanel=document.getElementById('export-panel'),upsellPanel=document.getElementById('upsell-panel'),exportStatus=document.getElementById('export-status');
   let currentResult=null;
   if(!orderId||!/^\d+$/.test(orderId)||!token){title.textContent='Результат не найден';error.textContent='Проверьте ссылку.';return;}
