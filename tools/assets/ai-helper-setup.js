@@ -5,6 +5,13 @@
   const steps = [...root.querySelectorAll('.wizard-step')], progress = [...root.querySelectorAll('.ai-helper-progress span')];
   const next = document.getElementById('wizard-next'), back = document.getElementById('wizard-back'), error = document.getElementById('wizard-error');
   const testArea = document.getElementById('test-area'), testOutput = document.getElementById('test-output'); let current = 0, tested = false;
+  const track = (goal, params = {}) => {
+    const payload = { product: 'ai_helper_1490', ...params };
+    if (typeof window.dedTrack === 'function') window.dedTrack(goal, payload);
+    else if (typeof window.ym === 'function') window.ym(111385663, 'reachGoal', goal, payload);
+  };
+  let wizardStarted = false;
+  try { wizardStarted = sessionStorage.getItem(`ded.ai_helper.wizard_start.${orderId}`) === '1'; } catch {}
   const value = id => (document.getElementById(id)?.value || '').trim(); const checked = name => root.querySelector(`[name="${name}"]:checked`)?.value || '';
   const state = () => ({scenario:checked('scenario'),task_description:value('task-description'),user_role:value('user-role'),input_type:value('input-type'),desired_outcome:value('desired-outcome'),forbidden_actions:value('forbidden-actions'),detail_level:checked('detail'),tone:checked('tone'),output_format:value('output-format'),clarification_mode:checked('clarification'),must_include:value('must-include'),good_example:value('good-example'),bad_patterns:value('bad-patterns'),verification_rules:[...root.querySelectorAll('[name="rule"]:checked')].map(n=>n.value),custom_rule:value('custom-rule'),test_input:value('test-input')});
   const fail = message => { error.textContent = message; error.classList.remove('hidden'); };
@@ -12,6 +19,12 @@
   const show = i => { current=Math.max(0,Math.min(i,steps.length-1)); steps.forEach((s,n)=>s.classList.toggle('is-active',n===current)); progress.forEach((p,n)=>p.classList.toggle('is-active',n<=current)); back.classList.toggle('hidden',current===0); next.textContent=current===5?(tested?'Собрать помощника':'Проверить на этой задаче'):'Дальше'; error.classList.add('hidden'); root.scrollIntoView({behavior:'smooth',block:'start'}); };
   async function call(action, feedback={}) { const headers={'Content-Type':'application/json'}; if(config.publishableKey) headers.apikey=config.publishableKey; const r=await fetch(`${base}/functions/v1/ai-helper-generate`,{method:'POST',headers,body:JSON.stringify({order_id:Number(orderId),token,action,answers:state(),feedback})}); const data=await r.json().catch(()=>({})); if(!r.ok) throw new Error(data.message||'Не удалось выполнить запрос.'); return data; }
   if(!/^\d+$/.test(orderId)||token.length<32){ fail('Ссылка настройки недействительна. Откройте её снова после оплаты.'); next.disabled=true; }
-  next.addEventListener('click', async()=>{ const msg=validate(current); if(msg){fail(msg);return;} if(current<5){show(current+1);return;} next.disabled=true; back.disabled=true; error.classList.add('hidden'); try { if(!tested){ next.textContent='Проверяем…'; const data=await call('test'); testOutput.textContent=data.test_response||''; testArea.classList.remove('hidden'); tested=true; next.textContent='Собрать помощника'; if(typeof window.ym==='function')window.ym(111385663,'reachGoal','ai_helper_wizard_start',{scenario:state().scenario}); } else { next.textContent='Собираем…'; const feedback={choice:checked('feedback'),comment:value('feedback-text')}; await call('finalize',feedback); if(typeof window.ym==='function')window.ym(111385663,'reachGoal','ai_helper_wizard_complete',{scenario:state().scenario}); location.assign(`/tools/ai-helper/secure-result/?order_id=${encodeURIComponent(orderId)}&token=${encodeURIComponent(token)}`); return; } } catch(e){fail(e instanceof Error?e.message:'Не удалось выполнить запрос.');} finally {next.disabled=false;back.disabled=false;} });
+  next.addEventListener('click', async()=>{ const msg=validate(current); if(msg){fail(msg);return;}
+    if(current===0&&!wizardStarted){
+      track('ai_helper_wizard_start',{scenario:state().scenario});
+      wizardStarted=true;
+      try{sessionStorage.setItem(`ded.ai_helper.wizard_start.${orderId}`,'1');}catch{}
+    }
+    if(current<5){show(current+1);return;} next.disabled=true; back.disabled=true; error.classList.add('hidden'); try { if(!tested){ next.textContent='Проверяем…'; const data=await call('test'); testOutput.textContent=data.test_response||''; testArea.classList.remove('hidden'); tested=true; next.textContent='Собрать помощника'; track('ai_helper_test_ready',{scenario:state().scenario}); } else { next.textContent='Собираем…'; const feedback={choice:checked('feedback'),comment:value('feedback-text')}; await call('finalize',feedback); track('ai_helper_wizard_complete',{scenario:state().scenario}); location.assign(`/tools/ai-helper/secure-result/?order_id=${encodeURIComponent(orderId)}&token=${encodeURIComponent(token)}`); return; } } catch(e){fail(e instanceof Error?e.message:'Не удалось выполнить запрос.');} finally {next.disabled=false;back.disabled=false;} });
   back.addEventListener('click',()=>{ if(current===5&&tested){tested=false;testArea.classList.add('hidden');testOutput.textContent='';} show(current-1); });
 })();
