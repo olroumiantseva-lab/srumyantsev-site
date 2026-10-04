@@ -31,6 +31,7 @@
   const form = document.getElementById('document-preview-form');
   if (!form) return;
   const source = document.getElementById('source-text');
+  const paste = document.getElementById('source-paste');
   const errorBox = document.getElementById('preview-error');
   const submit = document.getElementById('preview-submit');
   const result = document.getElementById('preview-result');
@@ -53,6 +54,17 @@
     errorBox.classList.toggle('hidden', !message);
   };
 
+  // Pasted text must work independently of the PDF/file-reading module.
+  paste?.addEventListener('input', () => {
+    if (source) source.value = paste.value;
+    document.getElementById('file-summary')?.classList.add('hidden');
+    for (const id of ['file-error', 'file-status']) {
+      const element = document.getElementById(id);
+      if (element) element.textContent = '';
+    }
+    setError('');
+  });
+
   const requestPreview = async (cfg, text, goal) => {
     const endpoint = `${cfg.url}/functions/v1/${cfg.previewFunction || 'document-preview'}`;
     const options = {
@@ -71,7 +83,7 @@
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
     setError('');
-    const text = String(source?.value || '').trim();
+    const text = String(paste?.value || source?.value || '').trim();
     if (!text) {
       setError('Сначала добавьте документ, фотографии страниц или вставьте текст.');
       return;

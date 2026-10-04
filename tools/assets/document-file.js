@@ -146,6 +146,7 @@ function init() {
   const input = document.getElementById("document-file");
   if (!input) return;
   const source = document.getElementById("source-text");
+  const paste = document.getElementById("source-paste");
   const drop = document.getElementById("file-drop");
   const status = document.getElementById("file-status");
   const error = document.getElementById("file-error");
@@ -166,6 +167,7 @@ function init() {
   };
   const finish = (name, type, text, detail) => {
     if (text.length > MAX_TEXT) throw new InputError("TEXT_TOO_LONG", "Текст документа превышает 30 000 символов. Разделите документ на части.");
+    if (paste) paste.value = "";
     setSource(text);
     show(name, type, text, detail);
     error.textContent = "";
@@ -261,6 +263,7 @@ function init() {
   drop?.addEventListener("drop", (event) => { event.preventDefault(); drop.classList.remove("is-dragging"); process(event.dataTransfer?.files); });
   drop?.addEventListener("keydown", (event) => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); input.click(); } });
   document.getElementById("file-remove")?.addEventListener("click", () => {
+    if (paste) paste.value = "";
     setSource("");
     error.textContent = "";
     status.textContent = "";
