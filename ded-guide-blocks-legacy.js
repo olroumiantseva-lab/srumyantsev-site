@@ -85,6 +85,7 @@ const initDedGuideBlocks = () => {
     const avatar = document.createElement('img');
     avatar.className = 'ded-block__avatar';
     avatar.src = '/sergey-author.png';
+    avatar.width = 82; avatar.height = 82; avatar.loading = 'lazy'; avatar.decoding = 'async';
     avatar.alt = 'Сергей Румянцев — Дед попался в нейросети';
     const content = document.createElement('div');
     const label = document.createElement('div');

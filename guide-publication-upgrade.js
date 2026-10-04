@@ -105,36 +105,9 @@
     nav.append(strong,ol); body.insertBefore(nav,body.firstChild);
   };
 
-  const svgUri = (caption,index) => {
-    const safe = (s) => s.replace(/[&<>"]/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[ch]));
-    const words=safe(caption).split(' ');
-    const lines=[]; let line='';
-    words.forEach(w=>{ const test=(line+' '+w).trim(); if(test.length>34){lines.push(line); line=w;}else line=test; }); if(line) lines.push(line);
-    const tspans=lines.slice(0,3).map((l,i)=>`<tspan x="120" dy="${i?42:0}">${l}</tspan>`).join('');
-    const svg=`<svg xmlns="http://www.w3.org/2000/svg" width="1536" height="900" viewBox="0 0 1536 900"><rect width="1536" height="900" fill="#f5ead7"/><rect x="65" y="65" width="1406" height="770" rx="8" fill="#fff8e8" stroke="#24221f" stroke-width="6"/><circle cx="1300" cy="180" r="92" fill="#e7b64c" stroke="#24221f" stroke-width="5"/><text x="1300" y="198" text-anchor="middle" font-family="Arial,sans-serif" font-size="58" font-weight="700" fill="#24221f">${index+1}</text><text x="120" y="250" font-family="Georgia,serif" font-size="52" font-weight="700" fill="#24221f">${tspans}</text><path d="M120 520 H520" stroke="#24221f" stroke-width="6"/><rect x="120" y="590" width="300" height="110" fill="#e7b64c" stroke="#24221f" stroke-width="5"/><rect x="500" y="590" width="300" height="110" fill="#f2e5c9" stroke="#24221f" stroke-width="5"/><rect x="880" y="590" width="300" height="110" fill="#d9e1e8" stroke="#24221f" stroke-width="5"/><text x="270" y="658" text-anchor="middle" font-family="Arial,sans-serif" font-size="32" font-weight="700">СИТУАЦИЯ</text><text x="650" y="658" text-anchor="middle" font-family="Arial,sans-serif" font-size="32" font-weight="700">РАЗБОР</text><text x="1030" y="658" text-anchor="middle" font-family="Arial,sans-serif" font-size="32" font-weight="700">ВЫВОД</text></svg>`;
-    return 'data:image/svg+xml;charset=UTF-8,'+encodeURIComponent(svg);
-  };
-
-  const ensureThreeImages = () => {
-    const body=document.querySelector('.seo-body'); if(!body) return;
-    let count=body.querySelectorAll('.article-image img').length;
-    if(count>=3) return;
-    const sections=Array.from(body.querySelectorAll(':scope > .numbered-section, :scope > section')).filter(s=>!s.classList.contains('faq-section'));
-    const slots=[2,Math.floor(sections.length/2),Math.max(2,sections.length-3)];
-    let addIndex=0;
-    while(count<3 && sections.length) {
-      const caption=config.visuals[addIndex % config.visuals.length];
-      const fig=document.createElement('figure'); fig.className='article-image publication-illustration'; fig.dataset.publicationIllustration=String(addIndex+1);
-      const img=document.createElement('img'); img.src=svgUri(caption,addIndex); img.alt=caption; img.width=1536; img.height=900; img.loading='lazy'; img.decoding='async';
-      const fc=document.createElement('figcaption'); fc.textContent=caption; fig.append(img,fc);
-      const anchor=sections[Math.min(slots[addIndex],sections.length-1)]; anchor.insertAdjacentElement('afterend',fig);
-      count++; addIndex++;
-    }
-  };
-
   const makeDed = (type,title,contentText) => {
     const block=document.createElement('aside'); block.className=`ded-block ded-block--${type}`; block.dataset.dedBlock=type;
-    const avatar=document.createElement('img'); avatar.className='ded-block__avatar'; avatar.src='/sergey-author.png'; avatar.alt='Сергей Румянцев — Дед попался в нейросети';
+    const avatar=document.createElement('img'); avatar.className='ded-block__avatar'; avatar.src='/sergey-author.png'; avatar.alt='Сергей Румянцев — Дед попался в нейросети'; avatar.width=82; avatar.height=82; avatar.loading='lazy'; avatar.decoding='async';
     const content=document.createElement('div'); const label=document.createElement('div'); label.className='ded-block__label'; label.textContent=type==='said'?'Дед сказал':'Дед сделал'; content.appendChild(label);
     if(title){const h=document.createElement('h3');h.className='ded-block__title';h.textContent=title;content.appendChild(h);}
     const body=document.createElement('div'); body.className=type==='said'?'ded-block__text':'ded-block__body';
@@ -162,7 +135,6 @@
     addToc();
     normalizeFaq();
     normalizeFollowup();
-    ensureThreeImages();
     addDedBlocks();
   });
 })();

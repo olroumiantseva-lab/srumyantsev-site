@@ -179,47 +179,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   const phonePath = '/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/';
 
-  const makePhoneIllustration = (cards, caption, index) => {
-    const figure = document.createElement('figure');
-    figure.className = 'article-image guide-inline-illustration phone-guide-illustration';
-    figure.dataset.phoneIllustration = String(index + 1);
-
-    const visual = document.createElement('div');
-    visual.className = 'guide-visual phone-guide-visual';
-    visual.setAttribute('role', 'img');
-    visual.setAttribute('aria-label', caption);
-
-    cards.forEach((label) => {
-      const card = document.createElement('span');
-      card.className = 'guide-art-card';
-      card.textContent = label;
-      visual.appendChild(card);
-    });
-
-    const figcaption = document.createElement('figcaption');
-    figcaption.textContent = caption;
-    figure.append(visual, figcaption);
-    return figure;
-  };
-
-  const addPhoneIllustrations = () => {
-    if (path !== phonePath) return;
-    const body = document.querySelector('.seo-body');
-    if (!body || body.querySelector('[data-phone-illustration]')) return;
-
-    const sections = Array.from(body.querySelectorAll(':scope > .numbered-section'));
-    const specs = [
-      { after: 1, cards: ['Голос', 'Вопрос', 'Ответ'], caption: 'На телефоне запрос можно просто наговорить: формулировку не обязательно печатать и доводить до идеала.' },
-      { after: 3, cards: ['Фото', 'Текст', 'Понять'], caption: 'Камера превращает квитанцию, письмо или инструкцию в материал для разбора прямо на месте.' },
-      { after: 6, cards: ['Скриншот', 'Ошибка', 'Действие'], caption: 'Если непонятное уже на экране, скриншот обычно полезнее пересказа ошибки своими словами.' }
-    ];
-
-    specs.forEach((spec, index) => {
-      const anchor = sections[Math.min(spec.after, sections.length - 1)];
-      if (anchor) anchor.insertAdjacentElement('afterend', makePhoneIllustration(spec.cards, spec.caption, index));
-    });
-  };
-
   const addPhoneFaq = () => {
     if (path !== phonePath) return;
     const body = document.querySelector('.seo-body');
@@ -261,13 +220,12 @@ document.addEventListener('DOMContentLoaded', () => {
 
   applyThirdBatchFormatting();
   addToc();
-  addPhoneIllustrations();
   addPhoneFaq();
 });
 
 (() => {
   const script = document.createElement('script');
-  script.src = '/ded-guide-blocks.js?v=1';
+  script.src = '/ded-guide-blocks.js?v=2';
   script.defer = true;
   document.head.appendChild(script);
 })();

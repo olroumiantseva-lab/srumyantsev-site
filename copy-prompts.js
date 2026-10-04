@@ -123,53 +123,6 @@
     });
   };
 
-  const makeIllustration = ({ cards, caption }, index) => {
-    const figure = document.createElement("figure");
-    figure.className = "article-image guide-inline-illustration";
-    figure.dataset.guideIllustration = String(index + 1);
-
-    const visual = document.createElement("div");
-    visual.className = "guide-visual";
-    visual.setAttribute("role", "img");
-    visual.setAttribute("aria-label", caption);
-    cards.forEach((label) => {
-      const card = document.createElement("span");
-      card.className = "guide-art-card";
-      card.textContent = label;
-      visual.appendChild(card);
-    });
-
-    const figcaption = document.createElement("figcaption");
-    figcaption.textContent = caption;
-    figure.append(visual, figcaption);
-    return figure;
-  };
-
-  const addIllustrations = (body, illustrations) => {
-    if (body.querySelector("[data-guide-illustration]")) return;
-    let anchors = Array.from(body.querySelectorAll(":scope > section, :scope > details.guide-question, :scope > h2"));
-    anchors = anchors.filter((node) => !node.classList.contains("guide-boundary-section"));
-    if (!anchors.length) return;
-
-    const rawPositions = [
-      Math.min(1, anchors.length - 1),
-      Math.max(0, Math.floor((anchors.length - 1) / 2)),
-      Math.max(0, anchors.length - 2)
-    ];
-    const positions = [];
-    rawPositions.forEach((position) => {
-      let candidate = position;
-      while (positions.includes(candidate) && candidate < anchors.length - 1) candidate += 1;
-      while (positions.includes(candidate) && candidate > 0) candidate -= 1;
-      if (!positions.includes(candidate)) positions.push(candidate);
-    });
-
-    illustrations.slice(0, positions.length).forEach((illustration, index) => {
-      const anchor = anchors[positions[index]];
-      anchor.insertAdjacentElement("afterend", makeIllustration(illustration, index));
-    });
-  };
-
   const refreshStarterGuide = () => {
     const path = normalizePath(window.location.pathname);
     const illustrations = starterGuides[path];
@@ -187,7 +140,6 @@
       }
     });
 
-    addIllustrations(body, illustrations);
   };
 
   if (document.readyState === "loading") {

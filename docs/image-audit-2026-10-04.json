@@ -1,0 +1,2454 @@
+{
+  "date": "2026-10-04",
+  "generated": [
+    {
+      "key": "asset-000",
+      "file": "chto-nelzya-doveryat-neyroseti/granitsy-neyroseti-foto.webp",
+      "original": "chto-nelzya-doveryat-neyroseti/granitsy-neyroseti-shema.webp",
+      "topic": "Можно ли доверять нейросети: где нужна проверка",
+      "prompt_subject": "Пять ситуаций, в которых нейросети не стоит доверять",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-001",
+      "file": "chto-nelzya-doveryat-neyroseti/priznaki-pereshli-chertu-foto.webp",
+      "original": "chto-nelzya-doveryat-neyroseti/priznaki-pereshli-chertu.webp",
+      "topic": "Можно ли доверять нейросети: где нужна проверка",
+      "prompt_subject": "Четыре признака, что вы слишком доверились нейросети",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-002",
+      "file": "dlinnye-dokumenty-dogovor-otchet-kniga/karta-dokumenta-primer-foto.webp",
+      "original": "dlinnye-dokumenty-dogovor-otchet-kniga/karta-dokumenta-primer.webp",
+      "topic": "Как разобрать длинный документ с помощью ChatGPT и не читать всё подряд",
+      "prompt_subject": "Карта документа: структура договора с номерами разделов",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-003",
+      "file": "dlinnye-dokumenty-dogovor-otchet-kniga/narezka-dokumenta-po-chastyam-foto.webp",
+      "original": "dlinnye-dokumenty-dogovor-otchet-kniga/narezka-dokumenta-po-chastyam.webp",
+      "topic": "Как разобрать длинный документ с помощью ChatGPT и не читать всё подряд",
+      "prompt_subject": "Разбор длинного документа по частям",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-004",
+      "file": "dlinnye-dokumenty-dogovor-otchet-kniga/proverka-chto-prochitala-foto.webp",
+      "original": "dlinnye-dokumenty-dogovor-otchet-kniga/proverka-chto-prochitala.webp",
+      "topic": "Как разобрать длинный документ с помощью ChatGPT и не читать всё подряд",
+      "prompt_subject": "Контрольные вопросы: проверка, что нейросеть прочитала документ",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-005",
+      "file": "dve-neyroseti-v-pare-vtoroe-mnenie/avtor-i-redaktor-foto.webp",
+      "original": "dve-neyroseti-v-pare-vtoroe-mnenie/avtor-i-redaktor-shema.webp",
+      "topic": "Две нейросети в паре: как получить второе мнение и проверить ответ",
+      "prompt_subject": "Схема работы: одна нейросеть пишет, вторая критикует",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-006",
+      "file": "dve-neyroseti-v-pare-vtoroe-mnenie/dve-ikonki-ryadom-foto.webp",
+      "original": "dve-neyroseti-v-pare-vtoroe-mnenie/dve-ikonki-ryadom.webp",
+      "topic": "Две нейросети в паре: как получить второе мнение и проверить ответ",
+      "prompt_subject": "Две нейросети рядом на главном экране телефона",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-007",
+      "file": "dve-neyroseti-v-pare-vtoroe-mnenie/raskhozhdenie-otvetov-foto.webp",
+      "original": "dve-neyroseti-v-pare-vtoroe-mnenie/raskhozhdenie-otvetov.webp",
+      "topic": "Две нейросети в паре: как получить второе мнение и проверить ответ",
+      "prompt_subject": "Что делать, когда две нейросети дали разные ответы",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-013",
+      "file": "kak-nauchit-neyroset-pisat-v-svoem-stile/chuzhoy-i-svoy-tekst-foto.webp",
+      "original": "kak-nauchit-neyroset-pisat-v-svoem-stile/chuzhoy-i-svoy-tekst.webp",
+      "topic": "Как передать нейросети свой стиль и получать тексты, похожие на ваши",
+      "prompt_subject": "Сравнение безличного текста нейросети и текста в узнаваемом авторском стиле",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-014",
+      "file": "kak-nauchit-neyroset-pisat-v-svoem-stile/cikl-pravok-profilya-foto.webp",
+      "original": "kak-nauchit-neyroset-pisat-v-svoem-stile/cikl-pravok-profilya.webp",
+      "topic": "Как передать нейросети свой стиль и получать тексты, похожие на ваши",
+      "prompt_subject": "Цикл улучшения текста: черновик, правка, новое правило и обновлённый результат",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-015",
+      "file": "kak-nauchit-neyroset-pisat-v-svoem-stile/primery-v-golosovoy-profil-foto.webp",
+      "original": "kak-nauchit-neyroset-pisat-v-svoem-stile/primery-v-golosovoy-profil.webp",
+      "topic": "Как передать нейросети свой стиль и получать тексты, похожие на ваши",
+      "prompt_subject": "Несколько авторских текстов превращаются в короткий голосовой профиль",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-016",
+      "file": "kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/kogda-ostanovitsya-foto.webp",
+      "original": "kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/kogda-ostanovitsya.webp",
+      "topic": "Как определить неисправность электрического компонента по фото с помощью ИИ",
+      "prompt_subject": "Видимые признаки повреждения электрического компонента и безопасная остановка проверки",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-018",
+      "file": "kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/shema-bezopasnoy-proverki-foto.webp",
+      "original": "kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/shema-bezopasnoy-proverki.webp",
+      "topic": "Как определить неисправность электрического компонента по фото с помощью ИИ",
+      "prompt_subject": "Схема безопасной визуальной проверки электрического компонента по фотографии",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-023",
+      "file": "kak-podgotovitsya-k-obrashcheniyu-v-bank-ili-vedomstvo-s-pomoshchyu-ii/ot-haosa-k-chek-listu-foto.webp",
+      "original": "kak-podgotovitsya-k-obrashcheniyu-v-bank-ili-vedomstvo-s-pomoshchyu-ii/ot-haosa-k-chek-listu.webp",
+      "topic": "Как подготовиться к обращению в банк, ведомство или сервис с помощью ИИ",
+      "prompt_subject": "Разрозненные заметки превращаются в хронологию, вопросы и ясную просьбу",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-025",
+      "file": "kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/pyat-elementov-zaprosa-foto.webp",
+      "original": "kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/pyat-elementov-zaprosa.webp",
+      "topic": "Что посмотреть или почитать: как подобрать фильм или книгу с помощью нейросети",
+      "prompt_subject": "Схема пяти элементов запроса к нейросети",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-028",
+      "file": "kak-podobrat-podarok-s-pomoshchyu-neyroseti/formula-podbora-podarka-foto.webp",
+      "original": "kak-podobrat-podarok-s-pomoshchyu-neyroseti/formula-podbora-podarka.webp",
+      "topic": "Что подарить: как подобрать подарок с помощью нейросети без банальностей",
+      "prompt_subject": "Схема подбора подарка: человек, интересы, бюджет и исключения",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-031",
+      "file": "kak-pomoch-rebenku-podgotovitsya-k-kontrolnoy-s-pomoshchyu-ii/karta-probelov-foto.webp",
+      "original": "kak-pomoch-rebenku-podgotovitsya-k-kontrolnoy-s-pomoshchyu-ii/karta-probelov.webp",
+      "topic": "Как помочь ребёнку подготовиться к контрольной, не делая за него домашнюю работу",
+      "prompt_subject": "Карта учебных тем показывает понятные, неуверенные и проблемные места и превращается в план повторения",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-033",
+      "file": "kak-pomoch-rebenku-podgotovitsya-k-kontrolnoy-s-pomoshchyu-ii/tsikl-proverki-znaniy-foto.webp",
+      "original": "kak-pomoch-rebenku-podgotovitsya-k-kontrolnoy-s-pomoshchyu-ii/tsikl-proverki-znaniy.webp",
+      "topic": "Как помочь ребёнку подготовиться к контрольной, не делая за него домашнюю работу",
+      "prompt_subject": "Цикл подготовки: вопрос, самостоятельный ответ, объяснение, сверка, исправление и новое задание",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-034",
+      "file": "kak-pomoch-roditelyam-razobratsya-so-smartfonom-s-pomoshchyu-neyroseti/chetyre-shaga-smartfon-foto.webp",
+      "original": "kak-pomoch-roditelyam-razobratsya-so-smartfonom-s-pomoshchyu-neyroseti/chetyre-shaga-smartfon.webp",
+      "topic": "Как помочь родителям разобраться со смартфоном с помощью нейросети",
+      "prompt_subject": "Четыре шага разбора проблемы со смартфоном от снимка экрана до проверки результата",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-035",
+      "file": "kak-pomoch-roditelyam-razobratsya-so-smartfonom-s-pomoshchyu-neyroseti/sam-ili-ostanovitsya-foto.webp",
+      "original": "kak-pomoch-roditelyam-razobratsya-so-smartfonom-s-pomoshchyu-neyroseti/sam-ili-ostanovitsya.webp",
+      "topic": "Как помочь родителям разобраться со смартфоном с помощью нейросети",
+      "prompt_subject": "Безопасные настройки смартфона отделены от банковских данных, паролей, ссылок и сброса устройства",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-040",
+      "file": "kak-prevratit-opyt-v-konsultatsiyu-ili-produkt-s-pomoshchyu-ii/opyt-problema-rezultat-format-foto.webp",
+      "original": "kak-prevratit-opyt-v-konsultatsiyu-ili-produkt-s-pomoshchyu-ii/opyt-problema-rezultat-format.webp",
+      "topic": "Как превратить свой опыт в консультацию, курс или небольшой продукт с помощью нейросети",
+      "prompt_subject": "Схема от профессионального опыта через повторяющуюся проблему и результат к формату продукта",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-042",
+      "file": "kak-prevratit-opyt-v-konsultatsiyu-ili-produkt-s-pomoshchyu-ii/pyat-formatov-foto.webp",
+      "original": "kak-prevratit-opyt-v-konsultatsiyu-ili-produkt-s-pomoshchyu-ii/pyat-formatov.webp",
+      "topic": "Как превратить свой опыт в консультацию, курс или небольшой продукт с помощью нейросети",
+      "prompt_subject": "Пять форматов продукта из опыта: консультация, разбор, чек-лист, практикум и курс",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-043",
+      "file": "kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/protokol-pered-resheniem-foto.webp",
+      "original": "kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/protokol-pered-resheniem.webp",
+      "topic": "Как проверить совет нейросети перед покупкой, лечением или финансовым решением",
+      "prompt_subject": "Ответ ИИ разделяется на утверждения, сверяется с источниками и превращается в вопросы перед решением",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-045",
+      "file": "kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/tri-urovnya-proverki-foto.webp",
+      "original": "kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/tri-urovnya-proverki.webp",
+      "topic": "Как проверить совет нейросети перед покупкой, лечением или финансовым решением",
+      "prompt_subject": "Три уровня проверки: быстрая сверка, первоисточник и решение со специалистом",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-046",
+      "file": "kak-provesti-reviziyu-zhizni-s-pomoshchyu-ii/chetyre-gruppy-foto.webp",
+      "original": "kak-provesti-reviziyu-zhizni-s-pomoshchyu-ii/chetyre-gruppy.webp",
+      "topic": "Как провести ревизию своей жизни с помощью ИИ: дела, документы, деньги, планы",
+      "prompt_subject": "Четыре группы ревизии: дела, документы, деньги и планы",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-049",
+      "file": "kak-razobrat-dogovor-s-pomoshchyu-neyroseti/dengi-sroki-obyazannosti-foto.webp",
+      "original": "kak-razobrat-dogovor-s-pomoshchyu-neyroseti/dengi-sroki-obyazannosti.webp",
+      "topic": "Как проверить договор с помощью ChatGPT перед подписанием",
+      "prompt_subject": "Проверка договора: деньги, сроки и обязанности сторон",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-050",
+      "file": "kak-razobrat-dogovor-s-pomoshchyu-neyroseti/karta-dogovora-foto.webp",
+      "original": "kak-razobrat-dogovor-s-pomoshchyu-neyroseti/karta-dogovora.webp",
+      "topic": "Как проверить договор с помощью ChatGPT перед подписанием",
+      "prompt_subject": "Карта договора с платежами, обязанностями, сроками, расторжением и рисками",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-051",
+      "file": "kak-razobrat-dogovor-s-pomoshchyu-neyroseti/obeshchanie-i-dogovor-foto.webp",
+      "original": "kak-razobrat-dogovor-s-pomoshchyu-neyroseti/obeshchanie-i-dogovor.webp",
+      "topic": "Как проверить договор с помощью ChatGPT перед подписанием",
+      "prompt_subject": "Сравнение обещаний продавца с условиями договора",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-055",
+      "file": "kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/karta-razryva-navykov-foto.webp",
+      "original": "kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/karta-razryva-navykov.webp",
+      "topic": "Как подготовиться к новой профессии после 45 с помощью нейросети",
+      "prompt_subject": "Сравнение требований вакансий с имеющимися навыками",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-056",
+      "file": "kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/opyt-kak-most-v-novuyu-professiyu-foto.webp",
+      "original": "kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/opyt-kak-most-v-novuyu-professiyu.webp",
+      "topic": "Как подготовиться к новой профессии после 45 с помощью нейросети",
+      "prompt_subject": "Прежний опыт становится мостом к новой профессии",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-057",
+      "file": "kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/plan-obucheniya-i-testovaya-zadacha-foto.webp",
+      "original": "kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/plan-obucheniya-i-testovaya-zadacha.webp",
+      "topic": "Как подготовиться к новой профессии после 45 с помощью нейросети",
+      "prompt_subject": "Учебный план заканчивается реальной тестовой работой",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-058",
+      "file": "kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/cikl-bazy-znaniy-foto.webp",
+      "original": "kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/cikl-bazy-znaniy.webp",
+      "topic": "Как собрать личную базу знаний с помощью нейросети",
+      "prompt_subject": "Цикл личной базы знаний от сохранения источника до поиска и обновления",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-059",
+      "file": "kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/istochniki-v-zametki-foto.webp",
+      "original": "kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/istochniki-v-zametki.webp",
+      "topic": "Как собрать личную базу знаний с помощью нейросети",
+      "prompt_subject": "Книга, статья, заметка и голосовая запись превращаются в организованные знания",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-062",
+      "file": "kak-sostavit-marshrut-poezdki-s-pomoshchyu-ii/mesta-po-rayonam-foto.webp",
+      "original": "kak-sostavit-marshrut-poezdki-s-pomoshchyu-ii/mesta-po-rayonam.webp",
+      "topic": "Как составить маршрут с помощью ИИ и спланировать поездку",
+      "prompt_subject": "Достопримечательности на карте, сгруппированные по близким районам для разных дней поездки",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-063",
+      "file": "kak-sostavit-marshrut-poezdki-s-pomoshchyu-ii/plan-po-dnyam-i-zapas-foto.webp",
+      "original": "kak-sostavit-marshrut-poezdki-s-pomoshchyu-ii/plan-po-dnyam-i-zapas.webp",
+      "topic": "Как составить маршрут с помощью ИИ и спланировать поездку",
+      "prompt_subject": "Маршрут поездки по дням с утренними и вечерними точками, отдыхом и запасным планом на дождь",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-064",
+      "file": "kak-sostavit-obyavlenie-i-prodat-veshch-s-pomoshchyu-neyroseti/bezopasnaya-sdelka-foto.webp",
+      "original": "kak-sostavit-obyavlenie-i-prodat-veshch-s-pomoshchyu-neyroseti/bezopasnaya-sdelka.webp",
+      "topic": "Как составить объявление и безопасно продать ненужную вещь с помощью нейросети",
+      "prompt_subject": "Безопасная сделка внутри приложения и опасная внешняя ссылка с формой оплаты",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-068",
+      "file": "kak-splanirovat-remont-komnaty-s-pomoshchyu-neyroseti/ot-plana-k-pokupke-foto.webp",
+      "original": "kak-splanirovat-remont-komnaty-s-pomoshchyu-neyroseti/ot-plana-k-pokupke.webp",
+      "topic": "Как спланировать ремонт комнаты с помощью нейросети",
+      "prompt_subject": "Последовательность ремонта комнаты от обмеров и электрики до отделки, мебели и финальной покупки",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-070",
+      "file": "kak-splanirovat-semeynuyu-poezdku-s-pomoshchyu-ii/obshchiy-i-raznye-marshruty-foto.webp",
+      "original": "kak-splanirovat-semeynuyu-poezdku-s-pomoshchyu-ii/obshchiy-i-raznye-marshruty.webp",
+      "topic": "Как спланировать семейную поездку с детьми, родителями и пожилыми родственниками с помощью ИИ",
+      "prompt_subject": "Семейный маршрут разделяется на активный и спокойный варианты и снова соединяется",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-071",
+      "file": "kak-splanirovat-semeynuyu-poezdku-s-pomoshchyu-ii/potrebnosti-semii-foto.webp",
+      "original": "kak-splanirovat-semeynuyu-poezdku-s-pomoshchyu-ii/potrebnosti-semii.webp",
+      "topic": "Как спланировать семейную поездку с детьми, родителями и пожилыми родственниками с помощью ИИ",
+      "prompt_subject": "Потребности ребёнка, взрослых и пожилого родственника собраны в спокойный план дня",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-073",
+      "file": "kak-sravnit-predlozheniya-masterov-i-vybrat-podryadchika-s-pomoshchyu-ii/proverka-podryadchika-foto.webp",
+      "original": "kak-sravnit-predlozheniya-masterov-i-vybrat-podryadchika-s-pomoshchyu-ii/proverka-podryadchika.webp",
+      "topic": "Как сравнить предложения мастеров и выбрать подрядчика с помощью ИИ",
+      "prompt_subject": "Проверка подрядчика через портфолио, отзыв заказчика, договор и поэтапную оплату",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-076",
+      "file": "kak-sravnit-tarify-s-pomoshchyu-neyroseti/reklamnaya-i-polnaya-stoimost-foto.webp",
+      "original": "kak-sravnit-tarify-s-pomoshchyu-neyroseti/reklamnaya-i-polnaya-stoimost.webp",
+      "topic": "Как сравнить тарифы с помощью ChatGPT и увидеть реальную стоимость",
+      "prompt_subject": "Сравнение рекламной цены тарифа с полной стоимостью за год",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-077",
+      "file": "kak-sravnit-tarify-s-pomoshchyu-neyroseti/reviziya-podpisok-foto.webp",
+      "original": "kak-sravnit-tarify-s-pomoshchyu-neyroseti/reviziya-podpisok.webp",
+      "topic": "Как сравнить тарифы с помощью ChatGPT и увидеть реальную стоимость",
+      "prompt_subject": "Ревизия регулярных платежей с поиском одинаковых услуг и ненужных подписок",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-079",
+      "file": "kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/chetyre-shaga-poiska-foto.webp",
+      "original": "kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/chetyre-shaga-poiska.webp",
+      "topic": "Как вспомнить забытое слово, термин или название с помощью нейросети",
+      "prompt_subject": "Схема поиска забытого слова: контекст, признаки, исключения и варианты",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-086",
+      "file": "lichnaya-sistema-doveriya-neyroseti/lichnyy-spisok-isklyucheniy-foto.webp",
+      "original": "lichnaya-sistema-doveriya-neyroseti/lichnyy-spisok-isklyucheniy.webp",
+      "topic": "Личная система доверия к нейросети: что принимать, а что всегда проверять",
+      "prompt_subject": "Личный список того, что нужно проверять всегда",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-087",
+      "file": "lichnaya-sistema-doveriya-neyroseti/tri-urovnya-riska-foto.webp",
+      "original": "lichnaya-sistema-doveriya-neyroseti/tri-urovnya-riska.webp",
+      "topic": "Личная система доверия к нейросети: что принимать, а что всегда проверять",
+      "prompt_subject": "Три уровня риска: зелёный, жёлтый и красный",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-091",
+      "file": "moshenniki-dipfeyki-golos-rodstvennika/pamyatka-ot-moshennikov-foto.webp",
+      "original": "moshenniki-dipfeyki-golos-rodstvennika/pamyatka-ot-moshennikov.webp",
+      "topic": "Дипфейк и голос родственника: как проверить, что вам звонит не мошенник",
+      "prompt_subject": "Памятка из пяти правил защиты от мошенников",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-094",
+      "file": "nastavnichestvo-uchit-drugih-podrabotka/programma-iz-shesti-vstrech-foto.webp",
+      "original": "nastavnichestvo-uchit-drugih-podrabotka/programma-iz-shesti-vstrech.webp",
+      "topic": "Наставничество после 50: как учить нейросетям и превратить это в подработку",
+      "prompt_subject": "Программа из шести встреч для группы новичков",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-095",
+      "file": "neyroset-v-rabote-gde-ekonomit-chasy/gde-ekonomit-a-gde-net-foto.webp",
+      "original": "neyroset-v-rabote-gde-ekonomit-chasy/gde-ekonomit-a-gde-net.webp",
+      "topic": "Нейросеть в работе: на каких задачах она действительно экономит часы",
+      "prompt_subject": "Задачи, где нейросеть экономит время, и задачи, где создаёт лишнюю работу",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-096",
+      "file": "neyroset-v-rabote-gde-ekonomit-chasy/rabochie-dannye-pravila-foto.webp",
+      "original": "neyroset-v-rabote-gde-ekonomit-chasy/rabochie-dannye-pravila.webp",
+      "topic": "Нейросеть в работе: на каких задачах она действительно экономит часы",
+      "prompt_subject": "Что нельзя загружать в нейросеть из рабочих документов",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-097",
+      "file": "neyroset-v-rabote-gde-ekonomit-chasy/test-tridtsati-minut-foto.webp",
+      "original": "neyroset-v-rabote-gde-ekonomit-chasy/test-tridtsati-minut.webp",
+      "topic": "Нейросеть в работе: на каких задачах она действительно экономит часы",
+      "prompt_subject": "Правило тридцати минут: считаем реальную экономию",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-098",
+      "file": "pochemu-neyroset-daet-skuchnye-otvety/dialog-vmesto-zaprosa-foto.webp",
+      "original": "pochemu-neyroset-daet-skuchnye-otvety/dialog-vmesto-zaprosa.webp",
+      "topic": "Почему ответы стали скучными",
+      "prompt_subject": "Разговор с нейросетью вместо одиночного запроса",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-099",
+      "file": "pochemu-neyroset-daet-skuchnye-otvety/pervyy-otvet-i-tretiy-foto.webp",
+      "original": "pochemu-neyroset-daet-skuchnye-otvety/pervyy-otvet-i-tretiy.webp",
+      "topic": "Почему ответы стали скучными",
+      "prompt_subject": "Сравнение первого ответа нейросети и ответа после доработки",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-100",
+      "file": "pochemu-neyroset-daet-skuchnye-otvety/shest-priemov-foto.webp",
+      "original": "pochemu-neyroset-daet-skuchnye-otvety/shest-priemov-shema.webp",
+      "topic": "Почему ответы стали скучными",
+      "prompt_subject": "Шесть приёмов, которые улучшают ответ нейросети",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-101",
+      "file": "pochemu-neyroset-otkazyvaetsya-otvechat/otkaz-neyroseti-primer-foto.webp",
+      "original": "pochemu-neyroset-otkazyvaetsya-otvechat/otkaz-neyroseti-primer.webp",
+      "topic": "Когда нейросеть отказывается отвечать",
+      "prompt_subject": "Отказ нейросети отвечать на запрос",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-102",
+      "file": "pochemu-neyroset-otkazyvaetsya-otvechat/pereformulirovka-zaprosa-foto.webp",
+      "original": "pochemu-neyroset-otkazyvaetsya-otvechat/pereformulirovka-zaprosa.webp",
+      "topic": "Когда нейросеть отказывается отвечать",
+      "prompt_subject": "Тот же запрос до и после уточнения задачи",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-103",
+      "file": "rasshifrovka-audio-neyrosetyu/golosovoe-v-chat-rasshifrovka-foto.webp",
+      "original": "rasshifrovka-audio-neyrosetyu/golosovoe-v-chat-rasshifrovka.webp",
+      "topic": "Голос и расшифровка: наговорил, получил текст",
+      "prompt_subject": "Голосовое сообщение, отправленное нейросети для расшифровки",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-104",
+      "file": "rasshifrovka-audio-neyrosetyu/nadiktovka-v-tekst-foto.webp",
+      "original": "rasshifrovka-audio-neyrosetyu/nadiktovka-v-tekst.webp",
+      "topic": "Голос и расшифровка: наговорил, получил текст",
+      "prompt_subject": "Надиктованный монолог, превращённый в готовый текст",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-105",
+      "file": "rasshifrovka-audio-neyrosetyu/protokol-vstrechi-iz-zapisi-foto.webp",
+      "original": "rasshifrovka-audio-neyrosetyu/protokol-vstrechi-iz-zapisi.webp",
+      "topic": "Голос и расшифровка: наговорил, получил текст",
+      "prompt_subject": "Протокол встречи, сделанный из аудиозаписи",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-106",
+      "file": "rezhimy-i-modeli-neyroseti/pereklyuchateli-v-chate-foto.webp",
+      "original": "rezhimy-i-modeli-neyroseti/pereklyuchateli-v-chate.webp",
+      "topic": "Модели и режимы нейросети: что выбирать для разных задач",
+      "prompt_subject": "Переключатели режимов в интерфейсе чата",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-107",
+      "file": "rezhimy-i-modeli-neyroseti/pravilo-vybora-rezhima-foto.webp",
+      "original": "rezhimy-i-modeli-neyroseti/pravilo-vybora-rezhima.webp",
+      "topic": "Модели и режимы нейросети: что выбирать для разных задач",
+      "prompt_subject": "Схема выбора режима под задачу",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-111",
+      "file": "semeynaya-tsifrovaya-instruktsiya-s-pomoshchyu-neyroseti/instruktsiya-i-sekrety-foto.webp",
+      "original": "semeynaya-tsifrovaya-instruktsiya-s-pomoshchyu-neyroseti/instruktsiya-i-sekrety.webp",
+      "topic": "Семейная цифровая инструкция: документы, контакты и важная информация для близких",
+      "prompt_subject": "Открытая семейная инструкция отделена от запертых ключей, паролей и документов",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-112",
+      "file": "semeynaya-tsifrovaya-instruktsiya-s-pomoshchyu-neyroseti/pyat-razdelov-instruktsii-foto.webp",
+      "original": "semeynaya-tsifrovaya-instruktsiya-s-pomoshchyu-neyroseti/pyat-razdelov-instruktsii.webp",
+      "topic": "Семейная цифровая инструкция: документы, контакты и важная информация для близких",
+      "prompt_subject": "Пять разделов семейной инструкции: люди, дом, здоровье, платежи и цифровые сервисы",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-120",
+      "file": "svoy-arhiv-dokumentov-neyroset/nazvanie-fayla-primer-foto.webp",
+      "original": "svoy-arhiv-dokumentov-neyroset/nazvanie-fayla-primer.webp",
+      "topic": "Свой архив документов с помощью нейросети: порядок без ручной сортировки",
+      "prompt_subject": "Правильное название файла документа для быстрого поиска",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-121",
+      "file": "svoy-arhiv-dokumentov-neyroset/papki-arhiva-foto.webp",
+      "original": "svoy-arhiv-dokumentov-neyroset/papki-arhiva-struktura.webp",
+      "topic": "Свой архив документов с помощью нейросети: порядок без ручной сортировки",
+      "prompt_subject": "Структура папок домашнего архива документов",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-122",
+      "file": "svoy-arhiv-dokumentov-neyroset/poisk-po-arhivu-foto.webp",
+      "original": "svoy-arhiv-dokumentov-neyroset/poisk-po-arhivu.webp",
+      "topic": "Свой архив документов с помощью нейросети: порядок без ручной сортировки",
+      "prompt_subject": "Поиск нужного документа в архиве с помощью нейросети",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-123",
+      "file": "svoya-biblioteka-promptov/inventarizatsiya-zadach-foto.webp",
+      "original": "svoya-biblioteka-promptov/inventarizatsiya-zadach.webp",
+      "topic": "Своя библиотека промптов: как хранить удачные запросы и не искать их заново",
+      "prompt_subject": "Список повторяющихся задач за две недели",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-124",
+      "file": "svoya-biblioteka-promptov/shablon-s-podstanovkami-foto.webp",
+      "original": "svoya-biblioteka-promptov/shablon-s-podstanovkami.webp",
+      "topic": "Своя библиотека промптов: как хранить удачные запросы и не искать их заново",
+      "prompt_subject": "Шаблон промпта с местами для подстановки",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-125",
+      "file": "svoya-biblioteka-promptov/zametka-biblioteka-promptov-foto.webp",
+      "original": "svoya-biblioteka-promptov/zametka-biblioteka-promptov.webp",
+      "topic": "Своя библиотека промптов: как хранить удачные запросы и не искать их заново",
+      "prompt_subject": "Личная библиотека промптов в заметках телефона",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-126",
+      "file": "tablitsy-i-tsifry-neyroset/formula-vmesto-otveta-foto.webp",
+      "original": "tablitsy-i-tsifry-neyroset/formula-vmesto-otveta.webp",
+      "topic": "Таблицы и цифры: где ИИ помогает, а где уверенно врёт",
+      "prompt_subject": "Нейросеть даёт формулу для таблицы вместо готового числа",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-127",
+      "file": "tablitsy-i-tsifry-neyroset/proverka-rascheta-foto.webp",
+      "original": "tablitsy-i-tsifry-neyroset/proverka-rascheta.webp",
+      "topic": "Таблицы и цифры: где ИИ помогает, а где уверенно врёт",
+      "prompt_subject": "Проверка расчёта нейросети калькулятором",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-128",
+      "file": "tablitsy-i-tsifry-neyroset/tekst-v-tablitsu-foto.webp",
+      "original": "tablitsy-i-tsifry-neyroset/tekst-v-tablitsu.webp",
+      "topic": "Таблицы и цифры: где ИИ помогает, а где уверенно врёт",
+      "prompt_subject": "Список из текста, превращённый в таблицу",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-129",
+      "file": "uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/plan-osvoeniya-navyka-foto.webp",
+      "original": "uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/plan-osvoeniya-navyka.webp",
+      "topic": "Как учиться с помощью ChatGPT: язык, новая профессия или техника",
+      "prompt_subject": "План освоения нового навыка по неделям",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-130",
+      "file": "uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/proverka-znaniy-voprosami-foto.webp",
+      "original": "uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/proverka-znaniy-voprosami.webp",
+      "topic": "Как учиться с помощью ChatGPT: язык, новая профессия или техника",
+      "prompt_subject": "Проверка понимания вопросами вместо готового ответа",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-131",
+      "file": "uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/razgovornaya-praktika-neyroset-foto.webp",
+      "original": "uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/razgovornaya-praktika-neyroset.webp",
+      "topic": "Как учиться с помощью ChatGPT: язык, новая профессия или техника",
+      "prompt_subject": "Разговорная практика языка с нейросетью",
+      "prompt_scene": "Depict this particular task with real people aged 45–65, real household or office objects and believable physical actions. Use a different camera angle and scene appropriate to the specific concept. Prefer an overhead desk still life for document structure or workflow topics, a candid person doing the task for advice topics. Do not turn abstract ideas into floating symbols.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-011",
+      "file": "kak-nauchit-blizkogo-polzovatsya-neyrosetyu/kartochka-tri-shaga-foto.webp",
+      "original": "kak-nauchit-blizkogo-polzovatsya-neyrosetyu/kartochka-tri-shaga.webp",
+      "topic": "Три простых действия для первого знакомства с нейросетью",
+      "prompt_subject": "Три простых действия для первого знакомства с нейросетью",
+      "prompt_scene": "An elderly person independently tries a phone voice question while an adult relative sits nearby at the kitchen table, a paper instruction card with no legible text.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-019",
+      "file": "kak-ne-poteryat-perepiski-s-ii/pamyat-neyroseti-nastroyki-foto.webp",
+      "original": "kak-ne-poteryat-perepiski-s-ii/pamyat-neyroseti-nastroyki.webp",
+      "topic": "Проверка личных настроек памяти нейросети",
+      "prompt_subject": "Проверка личных настроек памяти нейросети",
+      "prompt_scene": "A mature man reviewing privacy and memory settings in a generic chat app on a laptop, display deliberately out of focus, notebook of preferences on desk.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-020",
+      "file": "kak-ne-poteryat-perepiski-s-ii/spisok-chatov-do-i-posle-foto.webp",
+      "original": "kak-ne-poteryat-perepiski-s-ii/spisok-chatov-do-i-posle.webp",
+      "topic": "Порядок в сохранённых переписках с нейросетью",
+      "prompt_subject": "Порядок в сохранённых переписках с нейросетью",
+      "prompt_scene": "Woman organizing her old laptop AI conversations and writing meaningful topic names in a notebook, over shoulder view, softly blurred text display.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-026",
+      "file": "kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/slishkom-mrachno-dialog-foto.webp",
+      "original": "kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/slishkom-mrachno-dialog.webp",
+      "topic": "Уточнение предпочтений при подборе фильма",
+      "prompt_subject": "Уточнение предпочтений при подборе фильма",
+      "prompt_scene": "Man choosing a light evening movie on a laptop with partner, discussing tastes, paperback book and tea on table, warm real home scene.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-029",
+      "file": "kak-podobrat-podarok-s-pomoshchyu-neyroseti/ot-banalnogo-k-tochnomu-foto.webp",
+      "original": "kak-podobrat-podarok-s-pomoshchyu-neyroseti/ot-banalnogo-k-tochnomu.webp",
+      "topic": "Сравнение вариантов подарка по интересам человека",
+      "prompt_subject": "Сравнение вариантов подарка по интересам человека",
+      "prompt_scene": "Woman comparing a paperback travel book, a warm wool scarf and a small unbranded gift box at a table while checking notes on laptop.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-052",
+      "file": "kak-razobratsya-s-dengami-tarify-kredity-kommunalka/audit-podpisok-spisaniya-foto.webp",
+      "original": "kak-razobratsya-s-dengami-tarify-kredity-kommunalka/audit-podpisok-spisaniya.webp",
+      "topic": "Проверка подписок и регулярных списаний",
+      "prompt_subject": "Проверка подписок и регулярных списаний",
+      "prompt_scene": "Closeup hands comparing monthly account statements and phone app subscription settings, calculator, paper notebook, no actual names, figures or account numbers readable.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-053",
+      "file": "kak-razobratsya-s-dengami-tarify-kredity-kommunalka/pereplata-po-kreditu-raschet-foto.webp",
+      "original": "kak-razobratsya-s-dengami-tarify-kredity-kommunalka/pereplata-po-kreditu-raschet.webp",
+      "topic": "Проверка полной стоимости кредита по договору и калькулятору",
+      "prompt_subject": "Проверка полной стоимости кредита по договору и калькулятору",
+      "prompt_scene": "A mature couple checking a printed consumer loan contract and calculating costs on a physical calculator at a home table, laptop present, no legible numerical claims.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-067",
+      "file": "kak-splanirovat-remont-komnaty-s-pomoshchyu-neyroseti/obmery-i-tri-planirovki-foto.webp",
+      "original": "kak-splanirovat-remont-komnaty-s-pomoshchyu-neyroseti/obmery-i-tri-planirovki.webp",
+      "topic": "Обмер комнаты перед планированием ремонта",
+      "prompt_subject": "Обмер комнаты перед планированием ремонта",
+      "prompt_scene": "Woman measuring an actual living room wall with a tape measure while a partner records measurements in notebook, laptop on a small table, natural daylight.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "asset-080",
+      "file": "kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/neyroset-zadaet-voprosy-foto.webp",
+      "original": "kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/neyroset-zadaet-voprosy.webp",
+      "topic": "Уточняющие вопросы для поиска забытого слова",
+      "prompt_subject": "Уточняющие вопросы для поиска забытого слова",
+      "prompt_scene": "Older man recalling a word while talking into his smartphone at a home desk, laptop and handwritten associative notes, thoughtful real face.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-10-zadach-dlya-chatgpt-na-kazhdyy-den",
+      "file": "10-zadach-dlya-chatgpt-na-kazhdyy-den/10-zadach-dlya-chatgpt-na-kazhdyy-den-foto.webp",
+      "original": null,
+      "topic": "10 полезных задач для ChatGPT на каждый день",
+      "prompt_subject": "10 полезных задач для ChatGPT на каждый день",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-chto-nelzya-zagruzhat-v-neyroset",
+      "file": "chto-nelzya-zagruzhat-v-neyroset/chto-nelzya-zagruzhat-v-neyroset-foto.webp",
+      "original": null,
+      "topic": "Что нельзя загружать в ChatGPT и другие нейросети",
+      "prompt_subject": "Что нельзя загружать в ChatGPT и другие нейросети",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-ii-kak-domashniy-repetitor-dlya-rebenka",
+      "file": "ii-kak-domashniy-repetitor-dlya-rebenka/ii-kak-domashniy-repetitor-dlya-rebenka-foto.webp",
+      "original": null,
+      "topic": "ИИ как домашний репетитор: как объяснить ребёнку сложную тему",
+      "prompt_subject": "ИИ как домашний репетитор: как объяснить ребёнку сложную тему",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii",
+      "file": "kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii-foto.webp",
+      "original": null,
+      "topic": "Как объяснить непонятное письмо с помощью ИИ",
+      "prompt_subject": "Как объяснить непонятное письмо с помощью ИИ",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey",
+      "file": "kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey-foto.webp",
+      "original": null,
+      "topic": "Как разговаривать с ИИ на телефоне голосом и без печати",
+      "prompt_subject": "Как разговаривать с ИИ на телефоне голосом и без печати",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-kak-proverit-ne-sovrala-li-neyroset",
+      "file": "kak-proverit-ne-sovrala-li-neyroset/kak-proverit-ne-sovrala-li-neyroset-foto.webp",
+      "original": null,
+      "topic": "Как проверить ответ ChatGPT и понять, не выдумала ли нейросеть факты",
+      "prompt_subject": "Как проверить ответ ChatGPT и понять, не выдумала ли нейросеть факты",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety",
+      "file": "kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety-foto.webp",
+      "original": null,
+      "topic": "Как правильно задавать вопросы ChatGPT, чтобы получать полезные ответы",
+      "prompt_subject": "Как правильно задавать вопросы ChatGPT, чтобы получать полезные ответы",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii",
+      "file": "kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii-foto.webp",
+      "original": null,
+      "topic": "Как разобраться в инструкции к технике с помощью ChatGPT",
+      "prompt_subject": "Как разобраться в инструкции к технике с помощью ChatGPT",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-kak-sdelat-neyroset-lichnym-pomoshchnikom",
+      "file": "kak-sdelat-neyroset-lichnym-pomoshchnikom/kak-sdelat-neyroset-lichnym-pomoshchnikom-foto.webp",
+      "original": null,
+      "topic": "Как сделать ChatGPT личным помощником и не усложнять систему",
+      "prompt_subject": "Как сделать ChatGPT личным помощником и не усложнять систему",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-kak-sravnit-tovary-s-pomoshchyu-neyroseti",
+      "file": "kak-sravnit-tovary-s-pomoshchyu-neyroseti/kak-sravnit-tovary-s-pomoshchyu-neyroseti-foto.webp",
+      "original": null,
+      "topic": "Как сравнить товары с помощью ChatGPT и не утонуть в характеристиках",
+      "prompt_subject": "Как сравнить товары с помощью ChatGPT и не утонуть в характеристиках",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-kak-uchit-inostrannyy-yazyk-s-pomoshchyu-neyroseti",
+      "file": "kak-uchit-inostrannyy-yazyk-s-pomoshchyu-neyroseti/kak-uchit-inostrannyy-yazyk-s-pomoshchyu-neyroseti-foto.webp",
+      "original": null,
+      "topic": "Как учить иностранный язык после 45 с помощью нейросети",
+      "prompt_subject": "Как учить иностранный язык после 45 с помощью нейросети",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti",
+      "file": "kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti-foto.webp",
+      "original": null,
+      "topic": "Как вести большой проект с помощью ChatGPT и не потерять контекст",
+      "prompt_subject": "Как вести большой проект с помощью ChatGPT и не потерять контекст",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-kakuyu-neyroset-vybrat-2026",
+      "file": "kakuyu-neyroset-vybrat-2026/kakuyu-neyroset-vybrat-2026-foto.webp",
+      "original": null,
+      "topic": "Какую нейросеть выбрать в 2026 году и как начать за 10 минут",
+      "prompt_subject": "Какую нейросеть выбрать в 2026 году и как начать за 10 минут",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-kratkiy-pereskaz-video-youtube-neyrosetyu",
+      "file": "kratkiy-pereskaz-video-youtube-neyrosetyu/kratkiy-pereskaz-video-youtube-neyrosetyu-foto.webp",
+      "original": null,
+      "topic": "Как смотреть получасовые видео на YouTube за 3 минуты с помощью ИИ",
+      "prompt_subject": "Как смотреть получасовые видео на YouTube за 3 минуты с помощью ИИ",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-neyroseti-posle-45-pervyy-rezultat",
+      "file": "neyroseti-posle-45-pervyy-rezultat/neyroseti-posle-45-pervyy-rezultat-foto.webp",
+      "original": null,
+      "topic": "Нейросети после 45: как начать с нуля и получить первый результат",
+      "prompt_subject": "Нейросети после 45: как начать с нуля и получить первый результат",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-razbor-dogovora-online",
+      "file": "razbor-dogovora-online/razbor-dogovora-online-foto.webp",
+      "original": null,
+      "topic": "Разберите договор до подписания и увидьте условия, которые легко пропустить",
+      "prompt_subject": "Разберите договор до подписания и увидьте условия, которые легко пропустить",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-razbor-neponyatnogo-dokumenta",
+      "file": "razbor-neponyatnogo-dokumenta/razbor-neponyatnogo-dokumenta-foto.webp",
+      "original": null,
+      "topic": "Как разобрать непонятный документ с помощью ChatGPT",
+      "prompt_subject": "Как разобрать непонятный документ с помощью ChatGPT",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-smeta-na-remont-s-pomoshchyu-ii",
+      "file": "smeta-na-remont-s-pomoshchyu-ii/smeta-na-remont-s-pomoshchyu-ii-foto.webp",
+      "original": null,
+      "topic": "Как рассчитать смету на ремонт или крупную покупку без сложных таблиц",
+      "prompt_subject": "Как рассчитать смету на ремонт или крупную покупку без сложных таблиц",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "hero-telefon-vmesto-klaviatury",
+      "file": "telefon-vmesto-klaviatury/telefon-vmesto-klaviatury-foto.webp",
+      "original": null,
+      "topic": "Телефон вместо клавиатуры: 3 задания за 20 минут",
+      "prompt_subject": "Телефон вместо клавиатуры: 3 задания за 20 минут",
+      "prompt_scene": "One actual person aged 45–65 doing the specific task at a realistic home desk, using a laptop or phone and appropriate real objects. For a child learning topic show a parent helping a teenager who is doing the exercise independently. For foreign language learning show headphones, language book and spoken practice. For appliance instructions show closed, disconnected equipment. No abstract symbolic interpretation.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "custom-arhiv-chatgpt-telefon-foto",
+      "file": "gde-arhiv-v-chatgpt-kak-nayti-arhivirovannye-chaty/arhiv-chatgpt-telefon-foto.webp",
+      "original": "/kak-ne-poteryat-perepiski-s-ii/zametka-moi-prompty.webp",
+      "topic": "Женщина ищет сохранённый разговор с ИИ на смартфоне",
+      "prompt_subject": "Женщина ищет сохранённый разговор с ИИ на смартфоне",
+      "prompt_scene": "Closeup woman checking a saved AI conversation on her smartphone at home, notebook nearby; display is softly out of focus.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "custom-arhiv-chatgpt-poisk-foto",
+      "file": "gde-arhiv-v-chatgpt-kak-nayti-arhivirovannye-chaty/arhiv-chatgpt-poisk-foto.webp",
+      "original": "/kak-ne-poteryat-perepiski-s-ii/pamyat-neyroseti-nastroyki.webp",
+      "topic": "Поиск старой переписки ChatGPT на компьютере",
+      "prompt_subject": "Поиск старой переписки ChatGPT на компьютере",
+      "prompt_scene": "Overhead laptop, paper notebook of saved conversation topics and a small backup storage drive on a real desk, a person searching saved conversations.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "custom-rezume-konteksta-chatgpt-foto",
+      "file": "kak-perenesti-istoriyu-chatgpt-iz-odnogo-chata-v-drugoy/rezume-konteksta-chatgpt-foto.webp",
+      "original": "/kak-ne-poteryat-perepiski-s-ii/zametka-moi-prompty.webp",
+      "topic": "Подготовка резюме переписки для нового чата ChatGPT",
+      "prompt_subject": "Подготовка резюме переписки для нового чата ChatGPT",
+      "prompt_scene": "Man summarizing a long AI conversation in a paper notebook while reviewing laptop screen; printed project notes and pen.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "custom-perenos-konteksta-chatgpt-foto",
+      "file": "kak-perenesti-istoriyu-chatgpt-iz-odnogo-chata-v-drugoy/perenos-konteksta-chatgpt-foto.webp",
+      "original": "/kak-ne-poteryat-perepiski-s-ii/spisok-chatov-do-i-posle.webp",
+      "topic": "Продолжение проекта в новом чате ChatGPT",
+      "prompt_subject": "Продолжение проекта в новом чате ChatGPT",
+      "prompt_scene": "Over-shoulder view of woman comparing old and new text conversations in two softly blurred laptop windows, project brief in foreground.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "custom-instruktsiya-k-lekarstvu-foto",
+      "file": "kak-rasshifrovat-instruktsiyu-k-lekarstvu-s-pomoshchyu-ii/instruktsiya-k-lekarstvu-foto.webp",
+      "original": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/zaklyuchenie-vracha-rasshifrovka.webp",
+      "topic": "Чтение инструкции к лекарству перед подготовкой вопросов врачу",
+      "prompt_subject": "Чтение инструкции к лекарству перед подготовкой вопросов врачу",
+      "prompt_scene": "Closeup actual folded medicine package leaflet on a home desk, unbranded closed medicine box, laptop and notebook; woman reads the leaflet. No dosage or patient data legible.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "custom-foto-listka-vkladysha-foto",
+      "file": "kak-rasshifrovat-instruktsiyu-k-lekarstvu-s-pomoshchyu-ii/foto-listka-vkladysha-foto.webp",
+      "original": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/blank-analizov-obezlichennyy.webp",
+      "topic": "Фотографирование листка-вкладыша для объяснения медицинских терминов",
+      "prompt_subject": "Фотографирование листка-вкладыша для объяснения медицинских терминов",
+      "prompt_scene": "Hands photographing a folded medicine leaflet with a smartphone, unbranded closed medicine packaging and a pencil on real table. No dosage legible.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "custom-foto-naznacheniya-vracha",
+      "file": "kak-rasshifrovat-retsept-ili-naznachenie-vracha-po-foto/foto-naznacheniya-vracha.webp",
+      "original": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/blank-analizov-obezlichennyy.webp",
+      "topic": "Фотографирование назначения врача с закрытыми личными данными",
+      "prompt_subject": "Фотографирование назначения врача с закрытыми личными данными",
+      "prompt_scene": "Hands photographing a handwritten medical prescription on a table, identifying fields covered with opaque slips, doctor note and notebook, no names or dosages readable.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "custom-proverka-golosovogo-perezvon-foto",
+      "file": "kak-proverit-ne-poddelano-li-golosovoe-soobshchenie/proverka-golosovogo-perezvon-foto.webp",
+      "original": "/moshenniki-dipfeyki-golos-rodstvennika/kak-raspoznat-dipfeyk-videozvonok.webp",
+      "topic": "Проверка подозрительного голосового сообщения обратным звонком",
+      "prompt_subject": "Проверка подозрительного голосового сообщения обратным звонком",
+      "prompt_scene": "Woman listening to a voice message with one earbud, stopping and making an independent phone call on her smartphone at home, notebook with known contact information turned face-down.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "custom-foto-koda-oshibki-stiralnoy-mashiny",
+      "file": "kak-rasshifrovat-kod-oshibki-tehniki-po-foto/foto-koda-oshibki-stiralnoy-mashiny.webp",
+      "original": "/kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/neispravnost-po-foto-hero.webp",
+      "topic": "Фотографирование дисплея стиральной машины с кодом ошибки",
+      "prompt_subject": "Фотографирование дисплея стиральной машины с кодом ошибки",
+      "prompt_scene": "Closeup hands taking a phone photo of a closed washing machine control panel showing a simple generic fault indicator, user manual nearby; no disassembly or tools.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "custom-osмотр-otklyuchennogo-komponenta-foto",
+      "file": "kak-opredelit-neispravnost-elektricheskih-komponentov-po-foto-s-ii/osmotr-otklyuchennogo-komponenta-foto.webp",
+      "original": "/kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/shema-bezopasnoy-proverki.webp",
+      "topic": "Безопасная визуальная проверка отключённого электрического компонента",
+      "prompt_subject": "Безопасная визуальная проверка отключённого электрического компонента",
+      "prompt_scene": "A qualified technician visually examining a completely disconnected removed plug-in electronic circuit board on a wooden workbench with magnifying glass, smartphone photograph, no mains cables or powered equipment.",
+      "generation": "built-in imagegen"
+    },
+    {
+      "key": "archive-initial",
+      "file": "gde-arhiv-v-chatgpt-kak-nayti-arhivirovannye-chaty/arhiv-chatgpt-kompyuter-foto.webp",
+      "topic": "Поиск архивированных чатов ChatGPT",
+      "prompt_scene": "Man at home searching saved AI conversations on laptop and phone; natural daylight, softly blurred UI, no diagram or overlay.",
+      "generation": "built-in imagegen"
+    }
+  ],
+  "pages": [
+    {
+      "page": "neyroset-v-rabote-gde-ekonomit-chasy/index.html",
+      "images": [
+        {
+          "src": "/neyroset-v-rabote-gde-ekonomit-chasy/gde-ekonomit-a-gde-net-foto.webp",
+          "alt": "Работа с нейросетью над повседневной рабочей задачей",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/neyroset-v-rabote-gde-ekonomit-chasy/test-tridtsati-minut-foto.webp",
+          "alt": "Сравнение времени на ручную работу и работу с нейросетью",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/neyroset-v-rabote-gde-ekonomit-chasy/rabochie-dannye-pravila-foto.webp",
+          "alt": "Подготовка обезличенных рабочих данных перед использованием ИИ",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-rasshifrovat-instruktsiyu-k-lekarstvu-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/voprosy-vrachu-spisok.webp",
+          "alt": "Разбор инструкции к лекарственному препарату и список вопросов врачу",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-rasshifrovat-instruktsiyu-k-lekarstvu-s-pomoshchyu-ii/instruktsiya-k-lekarstvu-foto.webp",
+          "alt": "Чтение инструкции к лекарству перед подготовкой вопросов врачу",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-rasshifrovat-instruktsiyu-k-lekarstvu-s-pomoshchyu-ii/foto-listka-vkladysha-foto.webp",
+          "alt": "Фотографирование листка-вкладыша для объяснения медицинских терминов",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "pochemu-neyroset-otkazyvaetsya-otvechat/index.html",
+      "images": [
+        {
+          "src": "/pochemu-neyroset-otkazyvaetsya-otvechat/otkaz-neyroseti-primer-foto.webp",
+          "alt": "Разбор причины отказа нейросети отвечать на запрос",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/pochemu-neyroset-otkazyvaetsya-otvechat/pereformulirovka-zaprosa-foto.webp",
+          "alt": "Переформулировка задания для нейросети",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/opyt-kak-most-v-novuyu-professiyu-foto.webp",
+          "alt": "Освоение новой профессиональной задачи после 45",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/karta-razryva-navykov-foto.webp",
+          "alt": "Оценка навыков для перехода в новую профессию после 45",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-smenit-professiyu-posle-45-s-pomoshchyu-neyroseti/plan-obucheniya-i-testovaya-zadacha-foto.webp",
+          "alt": "Учебный план и практическое задание для новой профессии",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "chto-nelzya-zagruzhat-v-neyroset/index.html",
+      "images": [
+        {
+          "src": "/chto-nelzya-zagruzhat-v-neyroset/chto-nelzya-zagruzhat-v-neyroset-foto.webp",
+          "alt": "Что нельзя загружать в ChatGPT и другие нейросети",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "nastavnichestvo-uchit-drugih-podrabotka/index.html",
+      "images": [
+        {
+          "src": "/nastavnichestvo-uchit-drugih-podrabotka/pervoe-zanyatie-struktura.webp",
+          "alt": "Структура первого занятия по обучению нейросетям",
+          "width": "1713",
+          "height": "918"
+        },
+        {
+          "src": "/nastavnichestvo-uchit-drugih-podrabotka/programma-iz-shesti-vstrech-foto.webp",
+          "alt": "Практическое занятие по работе с нейросетью",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/nastavnichestvo-uchit-drugih-podrabotka/gde-iskat-pervyh-uchenikov.webp",
+          "alt": "Где искать первых учеников для занятий",
+          "width": "1536",
+          "height": "1024"
+        }
+      ]
+    },
+    {
+      "page": "kak-razobrat-dogovor-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-razobrat-dogovor-s-pomoshchyu-neyroseti/karta-dogovora-foto.webp",
+          "alt": "Разбор условий договора по документу и заметкам",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-razobrat-dogovor-s-pomoshchyu-neyroseti/dengi-sroki-obyazannosti-foto.webp",
+          "alt": "Проверка денег, сроков и обязательств в договоре",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-razobrat-dogovor-s-pomoshchyu-neyroseti/obeshchanie-i-dogovor-foto.webp",
+          "alt": "Сверка устных договорённостей с текстом договора",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/index.html",
+      "images": [
+        {
+          "src": "/kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/proverka-soveta-hero.webp",
+          "alt": "Женщина сверяет ответ нейросети с документами перед важным решением",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/tri-urovnya-proverki-foto.webp",
+          "alt": "Сверка рекомендаций ИИ с документами перед принятием решения",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-proverit-sovet-neyroseti-pered-vazhnym-resheniem/protokol-pered-resheniem-foto.webp",
+          "alt": "Проверка совета нейросети перед важным решением",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-uchit-inostrannyy-yazyk-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-uchit-inostrannyy-yazyk-s-pomoshchyu-neyroseti/kak-uchit-inostrannyy-yazyk-s-pomoshchyu-neyroseti-foto.webp",
+          "alt": "Как учить иностранный язык после 45 с помощью нейросети",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-sravnit-predlozheniya-masterov-i-vybrat-podryadchika-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-sravnit-predlozheniya-masterov-i-vybrat-podryadchika-s-pomoshchyu-ii/vybor-podryadchika-hero.webp",
+          "alt": "Семейная пара сравнивает сметы и план ремонта перед выбором подрядчика",
+          "width": "1754",
+          "height": "896"
+        },
+        {
+          "src": "/kak-sravnit-predlozheniya-masterov-i-vybrat-podryadchika-s-pomoshchyu-ii/sravnenie-smet.webp",
+          "alt": "Три разные сметы преобразуются в единую таблицу с отмеченными пропусками",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-sravnit-predlozheniya-masterov-i-vybrat-podryadchika-s-pomoshchyu-ii/proverka-podryadchika-foto.webp",
+          "alt": "Проверка предложения подрядчика перед заказом работ",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "razbor-dogovora-online/index.html",
+      "images": [
+        {
+          "src": "/razbor-dogovora-online/razbor-dogovora-online-foto.webp",
+          "alt": "Разберите договор до подписания и увидьте условия, которые легко пропустить",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-ne-poteryat-perepiski-s-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-ne-poteryat-perepiski-s-ii/spisok-chatov-do-i-posle-foto.webp",
+          "alt": "Порядок в сохранённых переписках с нейросетью",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-ne-poteryat-perepiski-s-ii/zametka-moi-prompty.webp",
+          "alt": "Личная заметка со своими промптами в телефоне",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-ne-poteryat-perepiski-s-ii/pamyat-neyroseti-nastroyki-foto.webp",
+          "alt": "Проверка настроек памяти нейросети на компьютере",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii/kak-razobratsya-v-instruktsii-k-tehnike-s-pomoshchyu-ii-foto.webp",
+          "alt": "Как разобраться в инструкции к технике с помощью ChatGPT",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kakuyu-neyroset-vybrat-2026/index.html",
+      "images": [
+        {
+          "src": "/kakuyu-neyroset-vybrat-2026/kakuyu-neyroset-vybrat-2026-foto.webp",
+          "alt": "Какую нейросеть выбрать в 2026 году и как начать за 10 минут",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "svoya-biblioteka-promptov/index.html",
+      "images": [
+        {
+          "src": "/svoya-biblioteka-promptov/zametka-biblioteka-promptov-foto.webp",
+          "alt": "Сохранение удачного запроса нейросети в личных заметках",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/svoya-biblioteka-promptov/inventarizatsiya-zadach-foto.webp",
+          "alt": "Отбор полезных запросов для библиотеки промптов",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/svoya-biblioteka-promptov/shablon-s-podstanovkami-foto.webp",
+          "alt": "Адаптация шаблона промпта под новую задачу",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-opredelit-neispravnost-elektricheskih-komponentov-po-foto-s-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/kogda-ostanovitsya-foto.webp",
+          "alt": "Остановка самостоятельной проверки неисправной техники",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-opredelit-neispravnost-elektricheskih-komponentov-po-foto-s-ii/osmotr-otklyuchennogo-komponenta-foto.webp",
+          "alt": "Безопасная визуальная проверка отключённого электрического компонента",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii/kak-obyasnit-neponyatnoe-pismo-s-pomoshchyu-ii-foto.webp",
+          "alt": "Как объяснить непонятное письмо с помощью ИИ",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/slovo-vertitsya-na-yazyke.webp",
+          "alt": "Человек пытается вспомнить забытое слово с помощью нейросети",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/chetyre-shaga-poiska-foto.webp",
+          "alt": "Поиск забытого слова по связанным понятиям и заметкам",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-vspomnit-zabytoe-slovo-s-pomoshchyu-neyroseti/neyroset-zadaet-voprosy-foto.webp",
+          "alt": "Уточняющие вопросы для поиска забытого слова",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-proverit-ne-poddelano-li-golosovoe-soobshchenie/index.html",
+      "images": [
+        {
+          "src": "/moshenniki-dipfeyki-golos-rodstvennika/moshenniki-dipfeyk-zvonok.webp",
+          "alt": "Подозрительное голосовое сообщение от имени родственника",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/moshenniki-dipfeyki-golos-rodstvennika/kod-iz-sms-moshenniki.webp",
+          "alt": "Просьба сообщить код из СМС в мошеннической схеме",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-proverit-ne-poddelano-li-golosovoe-soobshchenie/proverka-golosovogo-perezvon-foto.webp",
+          "alt": "Проверка подозрительного голосового сообщения обратным звонком",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "rezhimy-i-modeli-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/rezhimy-i-modeli-neyroseti/pereklyuchateli-v-chate-foto.webp",
+          "alt": "Выбор режима нейросети под конкретную задачу",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/rezhimy-i-modeli-neyroseti/pravilo-vybora-rezhima-foto.webp",
+          "alt": "Подготовка задачи перед выбором модели и режима ИИ",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "gde-arhiv-v-chatgpt-kak-nayti-arhivirovannye-chaty/index.html",
+      "images": [
+        {
+          "src": "/gde-arhiv-v-chatgpt-kak-nayti-arhivirovannye-chaty/arhiv-chatgpt-kompyuter-foto.webp",
+          "alt": "Поиск сохранённой переписки ChatGPT на компьютере и телефоне",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/gde-arhiv-v-chatgpt-kak-nayti-arhivirovannye-chaty/arhiv-chatgpt-telefon-foto.webp",
+          "alt": "Женщина ищет сохранённый разговор с ИИ на смартфоне",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/gde-arhiv-v-chatgpt-kak-nayti-arhivirovannye-chaty/arhiv-chatgpt-poisk-foto.webp",
+          "alt": "Поиск старой переписки ChatGPT на компьютере",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-podgotovitsya-k-obrashcheniyu-v-bank-ili-vedomstvo-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-podgotovitsya-k-obrashcheniyu-v-bank-ili-vedomstvo-s-pomoshchyu-ii/podgotovka-obrashcheniya-hero.webp",
+          "alt": "Мужчина готовит документы и краткую карточку дела перед обращением",
+          "width": "1717",
+          "height": "916"
+        },
+        {
+          "src": "/kak-podgotovitsya-k-obrashcheniyu-v-bank-ili-vedomstvo-s-pomoshchyu-ii/kartochka-obrashcheniya.webp",
+          "alt": "Одностраничная карточка обращения с фактами, хронологией, подтверждениями и просьбой",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-podgotovitsya-k-obrashcheniyu-v-bank-ili-vedomstvo-s-pomoshchyu-ii/ot-haosa-k-chek-listu-foto.webp",
+          "alt": "Подготовка документов и списка вопросов для обращения в ведомство",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-sostavit-obyavlenie-i-prodat-veshch-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-sostavit-obyavlenie-i-prodat-veshch-s-pomoshchyu-neyroseti/prodazha-veshchi-hero.webp",
+          "alt": "Женщина очищает и фотографирует настольную лампу перед продажей",
+          "width": "1694",
+          "height": "929"
+        },
+        {
+          "src": "/kak-sostavit-obyavlenie-i-prodat-veshch-s-pomoshchyu-neyroseti/fotografii-dlya-obyavleniya.webp",
+          "alt": "Набор фотографий вещи: общий вид, разные стороны, шнур и крупный план царапины",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-sostavit-obyavlenie-i-prodat-veshch-s-pomoshchyu-neyroseti/bezopasnaya-sdelka-foto.webp",
+          "alt": "Проверка условий безопасной продажи ненужной вещи",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kratkiy-pereskaz-video-youtube-neyrosetyu/index.html",
+      "images": [
+        {
+          "src": "/kratkiy-pereskaz-video-youtube-neyrosetyu/kratkiy-pereskaz-video-youtube-neyrosetyu-foto.webp",
+          "alt": "Как смотреть получасовые видео на YouTube за 3 минуты с помощью ИИ",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-provesti-reviziyu-zhizni-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-provesti-reviziyu-zhizni-s-pomoshchyu-ii/reviziya-zhizni-hero.webp",
+          "alt": "Бытовой завал из дел, документов, платежей и планов перед ревизией",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-provesti-reviziyu-zhizni-s-pomoshchyu-ii/chetyre-gruppy-foto.webp",
+          "alt": "Сортировка домашних дел, документов и планов",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-provesti-reviziyu-zhizni-s-pomoshchyu-ii/haos-chetyre-gruppy-sem-deystviy.webp",
+          "alt": "Переход от хаоса к четырём группам и семи ближайшим действиям",
+          "width": "1536",
+          "height": "1024"
+        }
+      ]
+    },
+    {
+      "page": "kak-rasshifrovat-kod-oshibki-tehniki-po-foto/index.html",
+      "images": [
+        {
+          "src": "/kak-rasshifrovat-kod-oshibki-tehniki-po-foto/foto-koda-oshibki-stiralnoy-mashiny.webp",
+          "alt": "Фотографирование дисплея стиральной машины с кодом ошибки",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/shema-bezopasnoy-proverki-foto.webp",
+          "alt": "Фотографирование бытовой техники для безопасного описания неисправности",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-splanirovat-remont-komnaty-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-splanirovat-remont-komnaty-s-pomoshchyu-neyroseti/remont-komnaty-hero.webp",
+          "alt": "Планирование ремонта комнаты по обмерам, фотографии и списку работ с помощью нейросети",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-splanirovat-remont-komnaty-s-pomoshchyu-neyroseti/obmery-i-tri-planirovki-foto.webp",
+          "alt": "Обмер комнаты перед планированием ремонта",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-splanirovat-remont-komnaty-s-pomoshchyu-neyroseti/ot-plana-k-pokupke-foto.webp",
+          "alt": "Планирование ремонта и проверка списка покупок",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-sostavit-marshrut-poezdki-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-sostavit-marshrut-poezdki-s-pomoshchyu-ii/marshrut-poezdki-hero.webp",
+          "alt": "Планирование многодневного маршрута поездки по карте, списку мест и календарю",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-sostavit-marshrut-poezdki-s-pomoshchyu-ii/mesta-po-rayonam-foto.webp",
+          "alt": "Планирование маршрута поездки с картой и заметками",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-sostavit-marshrut-poezdki-s-pomoshchyu-ii/plan-po-dnyam-i-zapas-foto.webp",
+          "alt": "Подготовка плана поездки по дням с запасом времени",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "neyroseti-posle-45-pervyy-rezultat/index.html",
+      "images": [
+        {
+          "src": "/neyroseti-posle-45-pervyy-rezultat/neyroseti-posle-45-pervyy-rezultat-foto.webp",
+          "alt": "Нейросети после 45: как начать с нуля и получить первый результат",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/index.html",
+      "images": [
+        {
+          "src": "/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey/kak-polzovatsya-ii-s-telefona-golosom-i-fotografiey-foto.webp",
+          "alt": "Как разговаривать с ИИ на телефоне голосом и без печати",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-prevratit-opyt-v-konsultatsiyu-ili-produkt-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-prevratit-opyt-v-konsultatsiyu-ili-produkt-s-pomoshchyu-ii/opyt-v-produkt-hero.webp",
+          "alt": "Взрослый специалист разбирает накопленный профессиональный опыт за рабочим столом",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-prevratit-opyt-v-konsultatsiyu-ili-produkt-s-pomoshchyu-ii/opyt-problema-rezultat-format-foto.webp",
+          "alt": "Подготовка консультации на основе профессионального опыта",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-prevratit-opyt-v-konsultatsiyu-ili-produkt-s-pomoshchyu-ii/pyat-formatov-foto.webp",
+          "alt": "Работа над форматом консультации или небольшого учебного продукта",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti/kak-vesti-bolshoy-proekt-s-pomoshchyu-neyroseti-foto.webp",
+          "alt": "Как вести большой проект с помощью ChatGPT и не потерять контекст",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "lichnaya-sistema-doveriya-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/lichnaya-sistema-doveriya-neyroseti/tri-urovnya-riska-foto.webp",
+          "alt": "Проверка рекомендаций ИИ по первоисточникам",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/lichnaya-sistema-doveriya-neyroseti/lichnyy-spisok-isklyucheniy-foto.webp",
+          "alt": "Подготовка личного списка проверки ответов нейросети",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "semeynaya-tsifrovaya-instruktsiya-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/semeynaya-tsifrovaya-instruktsiya-s-pomoshchyu-neyroseti/semeynaya-instruktsiya-hero.webp",
+          "alt": "Мать и взрослая дочь вместе проверяют семейную цифровую инструкцию",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/semeynaya-tsifrovaya-instruktsiya-s-pomoshchyu-neyroseti/pyat-razdelov-instruktsii-foto.webp",
+          "alt": "Подготовка документов и контактов для семейной инструкции",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/semeynaya-tsifrovaya-instruktsiya-s-pomoshchyu-neyroseti/instruktsiya-i-sekrety-foto.webp",
+          "alt": "Раздельное хранение семейной инструкции и секретных данных",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/vybor-filma-vecherom.webp",
+          "alt": "Человек выбирает фильм с помощью нейросети вечером",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/pyat-elementov-zaprosa-foto.webp",
+          "alt": "Выбор фильма или книги по личным предпочтениям",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-podobrat-film-ili-knigu-s-pomoshchyu-neyroseti/slishkom-mrachno-dialog-foto.webp",
+          "alt": "Уточнение предпочтений при выборе фильма на вечер",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-sravnit-tovary-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-sravnit-tovary-s-pomoshchyu-neyroseti/kak-sravnit-tovary-s-pomoshchyu-neyroseti-foto.webp",
+          "alt": "Как сравнить товары с помощью ChatGPT и не утонуть в характеристиках",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-rasshifrovat-analizy-po-foto-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/blank-analizov-obezlichennyy.webp",
+          "alt": "Фото бланка анализов с закрытыми личными данными",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/zaklyuchenie-vracha-rasshifrovka.webp",
+          "alt": "Таблица показателей анализов после распознавания нейросетью",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/voprosy-vrachu-spisok.webp",
+          "alt": "Список вопросов врачу после разбора результатов анализов",
+          "width": "1536",
+          "height": "1024"
+        }
+      ]
+    },
+    {
+      "page": "kak-podobrat-podarok-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-podobrat-podarok-s-pomoshchyu-neyroseti/vybor-podarka-s-ii.webp",
+          "alt": "Человек подбирает подарок с помощью нейросети",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-podobrat-podarok-s-pomoshchyu-neyroseti/formula-podbora-podarka-foto.webp",
+          "alt": "Подбор подарка с учётом интересов человека",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-podobrat-podarok-s-pomoshchyu-neyroseti/ot-banalnogo-k-tochnomu-foto.webp",
+          "alt": "Сравнение вариантов подарка по интересам человека",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "dve-neyroseti-v-pare-vtoroe-mnenie/index.html",
+      "images": [
+        {
+          "src": "/dve-neyroseti-v-pare-vtoroe-mnenie/dve-ikonki-ryadom-foto.webp",
+          "alt": "Сравнение ответов двух нейросетей на одну задачу",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/dve-neyroseti-v-pare-vtoroe-mnenie/avtor-i-redaktor-foto.webp",
+          "alt": "Редактирование черновика с помощью второго мнения нейросети",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/dve-neyroseti-v-pare-vtoroe-mnenie/raskhozhdenie-otvetov-foto.webp",
+          "alt": "Проверка противоречий в двух ответах нейросетей",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-pomoch-roditelyam-razobratsya-so-smartfonom-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-pomoch-roditelyam-razobratsya-so-smartfonom-s-pomoshchyu-neyroseti/smartfon-roditeli-hero.webp",
+          "alt": "Пожилая женщина сама выполняет действие на смартфоне рядом со взрослым сыном",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-pomoch-roditelyam-razobratsya-so-smartfonom-s-pomoshchyu-neyroseti/chetyre-shaga-smartfon-foto.webp",
+          "alt": "Помощь пожилому родителю в работе со смартфоном",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-pomoch-roditelyam-razobratsya-so-smartfonom-s-pomoshchyu-neyroseti/sam-ili-ostanovitsya-foto.webp",
+          "alt": "Проверка подозрительного сообщения на смартфоне",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "chto-nelzya-doveryat-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/chto-nelzya-doveryat-neyroseti/granitsy-neyroseti-foto.webp",
+          "alt": "Проверка ответа нейросети по документам и первоисточникам",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/chto-nelzya-doveryat-neyroseti/priznaki-pereshli-chertu-foto.webp",
+          "alt": "Повторная проверка текста перед отправкой от своего имени",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "svoe-delo-posle-50-s-neyrosetyami/index.html",
+      "images": [
+        {
+          "src": "/svoe-delo-posle-50-s-neyrosetyami/chto-neyroset-zakryvaet-v-dele.webp",
+          "alt": "Задачи в своём деле, которые реально закрывает нейросеть",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/svoe-delo-posle-50-s-neyrosetyami/pervyy-klient-bez-sayta.webp",
+          "alt": "Первый платящий клиент без сайта и рекламы",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/svoe-delo-posle-50-s-neyrosetyami/schet-dohodov-i-raskhodov.webp",
+          "alt": "Простой учёт доходов и расходов для небольшого дела",
+          "width": "1536",
+          "height": "1024"
+        }
+      ]
+    },
+    {
+      "page": "kak-splanirovat-semeynuyu-poezdku-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-splanirovat-semeynuyu-poezdku-s-pomoshchyu-ii/semeynaya-poezdka-hero.webp",
+          "alt": "Семья из трёх поколений вместе планирует поездку по карте",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-splanirovat-semeynuyu-poezdku-s-pomoshchyu-ii/potrebnosti-semii-foto.webp",
+          "alt": "Подготовка семейного маршрута с учётом отдыха и ограничений",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-splanirovat-semeynuyu-poezdku-s-pomoshchyu-ii/obshchiy-i-raznye-marshruty-foto.webp",
+          "alt": "Согласование семейной поездки с учётом пожеланий близких",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-nauchit-blizkogo-polzovatsya-neyrosetyu/index.html",
+      "images": [
+        {
+          "src": "/kak-nauchit-blizkogo-polzovatsya-neyrosetyu/pokazyvaem-neyroset-vmeste.webp",
+          "alt": "Совместный разбор задачи с нейросетью за одним столом",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-nauchit-blizkogo-polzovatsya-neyrosetyu/kartochka-tri-shaga-foto.webp",
+          "alt": "Первое знакомство со смартфоном и нейросетью с помощью близкого",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "ii-kak-domashniy-repetitor-dlya-rebenka/index.html",
+      "images": [
+        {
+          "src": "/ii-kak-domashniy-repetitor-dlya-rebenka/ii-kak-domashniy-repetitor-dlya-rebenka-foto.webp",
+          "alt": "ИИ как домашний репетитор: как объяснить ребёнку сложную тему",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "rasshifrovka-audio-neyrosetyu/index.html",
+      "images": [
+        {
+          "src": "/rasshifrovka-audio-neyrosetyu/golosovoe-v-chat-rasshifrovka-foto.webp",
+          "alt": "Проверка расшифровки голосового сообщения по записи",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/rasshifrovka-audio-neyrosetyu/nadiktovka-v-tekst-foto.webp",
+          "alt": "Диктовка заметок в смартфон для последующей расшифровки",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/rasshifrovka-audio-neyrosetyu/protokol-vstrechi-iz-zapisi-foto.webp",
+          "alt": "Подготовка письменного протокола по записи встречи",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "ii-v-poezdke-perevod-menyu-marshrut/index.html",
+      "images": [
+        {
+          "src": "/ii-v-poezdke-perevod-menyu-marshrut/perevod-menyu-kameroy.webp",
+          "alt": "Перевод меню в ресторане камерой телефона",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/ii-v-poezdke-perevod-menyu-marshrut/vyveska-perevod-poezdka.webp",
+          "alt": "Перевод вывески и указателя в поездке",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/ii-v-poezdke-perevod-menyu-marshrut/plan-dnya-na-meste.webp",
+          "alt": "План дня, составленный нейросетью прямо в поездке",
+          "width": "1536",
+          "height": "1024"
+        }
+      ]
+    },
+    {
+      "page": "kak-perenesti-istoriyu-chatgpt-iz-odnogo-chata-v-drugoy/index.html",
+      "images": [
+        {
+          "src": "/kak-perenesti-istoriyu-chatgpt-iz-odnogo-chata-v-drugoy/perenos-konteksta-chatgpt-foto.webp",
+          "alt": "Продолжение проекта в новом чате ChatGPT",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-perenesti-istoriyu-chatgpt-iz-odnogo-chata-v-drugoy/rezume-konteksta-chatgpt-foto.webp",
+          "alt": "Подготовка резюме переписки для нового чата ChatGPT",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-ne-poteryat-perepiski-s-ii/pamyat-neyroseti-nastroyki-foto.webp",
+          "alt": "Проверка настроек памяти нейросети на компьютере",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "razbor-neponyatnogo-dokumenta/index.html",
+      "images": [
+        {
+          "src": "/razbor-neponyatnogo-dokumenta/razbor-neponyatnogo-dokumenta-foto.webp",
+          "alt": "Как разобрать непонятный документ с помощью ChatGPT",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "telefon-vmesto-klaviatury/index.html",
+      "images": [
+        {
+          "src": "/telefon-vmesto-klaviatury/telefon-vmesto-klaviatury-foto.webp",
+          "alt": "Телефон вместо клавиатуры: 3 задания за 20 минут",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/index.html",
+      "images": [
+        {
+          "src": "/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/razgovornaya-praktika-neyroset-foto.webp",
+          "alt": "Разговорная практика иностранного языка с нейросетью",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/proverka-znaniy-voprosami-foto.webp",
+          "alt": "Самостоятельная проверка знаний после занятий с нейросетью",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/uchitsya-s-neyrosetyu-yazyk-professiya-tehnika/plan-osvoeniya-navyka-foto.webp",
+          "alt": "Подготовка практического плана обучения с помощью ИИ",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-ponyat-analizy-i-zaklyuchenie-vracha/index.html",
+      "images": [
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/blank-analizov-obezlichennyy.webp",
+          "alt": "Бланк анализов с закрытыми личными данными перед отправкой в нейросеть",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/zaklyuchenie-vracha-rasshifrovka.webp",
+          "alt": "Расшифровка заключения врача простыми словами",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/voprosy-vrachu-spisok.webp",
+          "alt": "Список вопросов к врачу, составленный с помощью нейросети",
+          "width": "1536",
+          "height": "1024"
+        }
+      ]
+    },
+    {
+      "page": "kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/lichnaya-baza-znaniy-hero.webp",
+          "alt": "Мужчина разбирает заметки и статьи для личной базы знаний",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/istochniki-v-zametki-foto.webp",
+          "alt": "Подготовка заметок из книг и других источников",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-sobrat-lichnuyu-bazu-znaniy-s-pomoshchyu-neyroseti/cikl-bazy-znaniy-foto.webp",
+          "alt": "Работа с личной базой знаний и исходными материалами",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "dlinnye-dokumenty-dogovor-otchet-kniga/index.html",
+      "images": [
+        {
+          "src": "/dlinnye-dokumenty-dogovor-otchet-kniga/karta-dokumenta-primer-foto.webp",
+          "alt": "Разбор длинного документа с ноутбуком и заметками по разделам",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/dlinnye-dokumenty-dogovor-otchet-kniga/narezka-dokumenta-po-chastyam-foto.webp",
+          "alt": "Подготовка отдельных частей длинного документа для разбора",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/dlinnye-dokumenty-dogovor-otchet-kniga/proverka-chto-prochitala-foto.webp",
+          "alt": "Сверка ответа ChatGPT с исходным текстом документа",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "rezyume-i-sobesedovanie-posle-45/index.html",
+      "images": [
+        {
+          "src": "/rezyume-i-sobesedovanie-posle-45/rezyume-posle-45-do-i-posle.webp",
+          "alt": "Резюме после 45: формулировка обязанностей и переписанная в результат",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/rezyume-i-sobesedovanie-posle-45/repetitsiya-sobesedovaniya-neyroset.webp",
+          "alt": "Репетиция собеседования с нейросетью в чате",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/rezyume-i-sobesedovanie-posle-45/chek-list-rezyume.webp",
+          "alt": "Чек-лист проверки резюме перед отправкой",
+          "width": "1536",
+          "height": "1024"
+        }
+      ]
+    },
+    {
+      "page": "kak-rasshifrovat-retsept-ili-naznachenie-vracha-po-foto/index.html",
+      "images": [
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/voprosy-vrachu-spisok.webp",
+          "alt": "Назначение врача и список вопросов по лекарствам",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/zaklyuchenie-vracha-rasshifrovka.webp",
+          "alt": "Распознавание текста медицинского назначения по фотографии",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-rasshifrovat-retsept-ili-naznachenie-vracha-po-foto/foto-naznacheniya-vracha.webp",
+          "alt": "Фотографирование назначения врача с закрытыми личными данными",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "10-zadach-dlya-chatgpt-na-kazhdyy-den/index.html",
+      "images": [
+        {
+          "src": "/10-zadach-dlya-chatgpt-na-kazhdyy-den/10-zadach-dlya-chatgpt-na-kazhdyy-den-foto.webp",
+          "alt": "10 полезных задач для ChatGPT на каждый день",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-sravnit-tarify-s-pomoshchyu-neyroseti/index.html",
+      "images": [
+        {
+          "src": "/kak-sravnit-tarify-s-pomoshchyu-neyroseti/sravnenie-tarifov-hero.webp",
+          "alt": "Сравнение тарифов связи, интернета, страховки и подписок по полной стоимости",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-sravnit-tarify-s-pomoshchyu-neyroseti/reklamnaya-i-polnaya-stoimost-foto.webp",
+          "alt": "Расчёт полной стоимости тарифа по условиям договора",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-sravnit-tarify-s-pomoshchyu-neyroseti/reviziya-podpisok-foto.webp",
+          "alt": "Проверка платных подписок и регулярных списаний",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-nauchit-neyroset-pisat-v-svoem-stile/index.html",
+      "images": [
+        {
+          "src": "/kak-nauchit-neyroset-pisat-v-svoem-stile/primery-v-golosovoy-profil-foto.webp",
+          "alt": "Примеры собственных текстов для настройки стиля ChatGPT",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-nauchit-neyroset-pisat-v-svoem-stile/chuzhoy-i-svoy-tekst-foto.webp",
+          "alt": "Сравнение черновика со своим привычным стилем письма",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-nauchit-neyroset-pisat-v-svoem-stile/cikl-pravok-profilya-foto.webp",
+          "alt": "Редактирование текста и уточнение задания для нейросети",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "moshenniki-dipfeyki-golos-rodstvennika/index.html",
+      "images": [
+        {
+          "src": "/moshenniki-dipfeyki-golos-rodstvennika/moshenniki-dipfeyk-zvonok.webp",
+          "alt": "Звонок мошенника с поддельным голосом родственника",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/moshenniki-dipfeyki-golos-rodstvennika/kod-iz-sms-moshenniki.webp",
+          "alt": "Как мошенники выманивают код из СМС от Госуслуг",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/moshenniki-dipfeyki-golos-rodstvennika/kak-raspoznat-dipfeyk-videozvonok.webp",
+          "alt": "Как распознать дипфейк на видеозвонке",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/moshenniki-dipfeyki-golos-rodstvennika/pamyatka-ot-moshennikov-foto.webp",
+          "alt": "Независимый обратный звонок для проверки подозрительного обращения",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/neispravnost-po-foto-hero.webp",
+          "alt": "Фотографирование протечки стиральной машины для описания неисправности",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/shema-bezopasnoy-proverki-foto.webp",
+          "alt": "Фотографирование бытовой техники для безопасного описания неисправности",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-nayti-prichinu-neispravnosti-po-fotografii-s-pomoshchyu-ii/kogda-ostanovitsya-foto.webp",
+          "alt": "Остановка самостоятельной проверки неисправной техники",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-proverit-ne-sovrala-li-neyroset/index.html",
+      "images": [
+        {
+          "src": "/kak-proverit-ne-sovrala-li-neyroset/kak-proverit-ne-sovrala-li-neyroset-foto.webp",
+          "alt": "Как проверить ответ ChatGPT и понять, не выдумала ли нейросеть факты",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-pomoch-rebenku-podgotovitsya-k-kontrolnoy-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/kak-pomoch-rebenku-podgotovitsya-k-kontrolnoy-s-pomoshchyu-ii/podgotovka-k-kontrolnoy-hero.webp",
+          "alt": "Ребёнок самостоятельно решает задание, а отец помогает сверяться с планом повторения",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-pomoch-rebenku-podgotovitsya-k-kontrolnoy-s-pomoshchyu-ii/karta-probelov-foto.webp",
+          "alt": "Подготовка заданий по темам, которые ребёнку нужно повторить",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-pomoch-rebenku-podgotovitsya-k-kontrolnoy-s-pomoshchyu-ii/tsikl-proverki-znaniy-foto.webp",
+          "alt": "Самостоятельное решение учебной задачи с проверкой понимания",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "pochemu-neyroset-daet-skuchnye-otvety/index.html",
+      "images": [
+        {
+          "src": "/pochemu-neyroset-daet-skuchnye-otvety/pervyy-otvet-i-tretiy-foto.webp",
+          "alt": "Проверка и редактирование первого черновика ответа ИИ",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/pochemu-neyroset-daet-skuchnye-otvety/shest-priemov-foto.webp",
+          "alt": "Уточнение задания и проверка нового ответа ChatGPT",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/pochemu-neyroset-daet-skuchnye-otvety/dialog-vmesto-zaprosa-foto.webp",
+          "alt": "Уточнение вопроса для более полезного ответа нейросети",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/index.html",
+      "images": [
+        {
+          "src": "/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety/kak-razgovarivat-s-ii-chtoby-poluchat-luchshie-otvety-foto.webp",
+          "alt": "Как правильно задавать вопросы ChatGPT, чтобы получать полезные ответы",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-sdelat-neyroset-lichnym-pomoshchnikom/index.html",
+      "images": [
+        {
+          "src": "/kak-sdelat-neyroset-lichnym-pomoshchnikom/kak-sdelat-neyroset-lichnym-pomoshchnikom-foto.webp",
+          "alt": "Как сделать ChatGPT личным помощником и не усложнять систему",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "semeynyy-arhiv-vospominaniya-neyroset/index.html",
+      "images": [
+        {
+          "src": "/semeynyy-arhiv-vospominaniya-neyroset/razgovor-s-roditelyami-zapis.webp",
+          "alt": "Запись разговора с родителями о жизни семьи",
+          "width": "1774",
+          "height": "887"
+        },
+        {
+          "src": "/semeynyy-arhiv-vospominaniya-neyroset/staroe-pismo-rasshifrovka.webp",
+          "alt": "Расшифровка старого рукописного письма",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/semeynyy-arhiv-vospominaniya-neyroset/kniga-vospominaniy-struktura.webp",
+          "alt": "Структура книги семейных воспоминаний по главам",
+          "width": "1536",
+          "height": "1024"
+        }
+      ]
+    },
+    {
+      "page": "svoy-arhiv-dokumentov-neyroset/index.html",
+      "images": [
+        {
+          "src": "/svoy-arhiv-dokumentov-neyroset/nazvanie-fayla-primer-foto.webp",
+          "alt": "Понятные названия файлов в личном архиве документов",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/svoy-arhiv-dokumentov-neyroset/papki-arhiva-foto.webp",
+          "alt": "Сортировка документов по папкам перед созданием цифрового архива",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/svoy-arhiv-dokumentov-neyroset/poisk-po-arhivu-foto.webp",
+          "alt": "Поиск нужного документа в личном архиве",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kak-rasshifrovat-zaklyuchenie-vracha-po-foto/index.html",
+      "images": [
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/zaklyuchenie-vracha-rasshifrovka.webp",
+          "alt": "Расшифровка медицинского заключения врача по фотографии простыми словами",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/blank-analizov-obezlichennyy.webp",
+          "alt": "Медицинский документ с закрытыми личными данными перед загрузкой в ИИ",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-ponyat-analizy-i-zaklyuchenie-vracha/voprosy-vrachu-spisok.webp",
+          "alt": "Список вопросов врачу после расшифровки медицинского заключения",
+          "width": "1536",
+          "height": "1024"
+        }
+      ]
+    },
+    {
+      "page": "kak-razobratsya-s-dengami-tarify-kredity-kommunalka/index.html",
+      "images": [
+        {
+          "src": "/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/razbor-kvitantsii-zhkh.webp",
+          "alt": "Разбор квитанции за коммунальные услуги по строкам",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/audit-podpisok-spisaniya-foto.webp",
+          "alt": "Проверка подписок и регулярных списаний",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/kak-razobratsya-s-dengami-tarify-kredity-kommunalka/pereplata-po-kreditu-raschet-foto.webp",
+          "alt": "Расчёт полной стоимости кредита по договору и калькулятору",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "kartinki-neyrosetyu-otkrytki-avatarka/index.html",
+      "images": [
+        {
+          "src": "/kartinki-neyrosetyu-otkrytki-avatarka/promt-do-i-posle-sravnenie.webp",
+          "alt": "Сравнение результата по короткому и подробному запросу",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kartinki-neyrosetyu-otkrytki-avatarka/otkrytka-den-rozhdeniya-neyroset.webp",
+          "alt": "Открытка на день рождения, созданная нейросетью",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kartinki-neyrosetyu-otkrytki-avatarka/nadpis-na-otkrytke.webp",
+          "alt": "Надпись, добавленная на открытку после генерации",
+          "width": "1536",
+          "height": "1024"
+        },
+        {
+          "src": "/kartinki-neyrosetyu-otkrytki-avatarka/avatarka-neyrosetyu.webp",
+          "alt": "Аватарка, созданная нейросетью по описанию",
+          "width": "1254",
+          "height": "1254"
+        }
+      ]
+    },
+    {
+      "page": "smeta-na-remont-s-pomoshchyu-ii/index.html",
+      "images": [
+        {
+          "src": "/smeta-na-remont-s-pomoshchyu-ii/smeta-na-remont-s-pomoshchyu-ii-foto.webp",
+          "alt": "Как рассчитать смету на ремонт или крупную покупку без сложных таблиц",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    },
+    {
+      "page": "tablitsy-i-tsifry-neyroset/index.html",
+      "images": [
+        {
+          "src": "/tablitsy-i-tsifry-neyroset/formula-vmesto-otveta-foto.webp",
+          "alt": "Проверка формулы таблицы по исходным данным",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/tablitsy-i-tsifry-neyroset/tekst-v-tablitsu-foto.webp",
+          "alt": "Перенос исходных данных из текста в таблицу",
+          "width": "1200",
+          "height": "800"
+        },
+        {
+          "src": "/tablitsy-i-tsifry-neyroset/proverka-rascheta-foto.webp",
+          "alt": "Сверка расчёта нейросети с калькулятором и документами",
+          "width": "1200",
+          "height": "800"
+        }
+      ]
+    }
+  ],
+  "static_image_nodes_checked": 255,
+  "removed_runtime_diagrams": true,
+  "validation": {
+    "local_img_nodes": 255,
+    "content_images": 176,
+    "pages_with_images": 73,
+    "sitemap_image_urls": 176,
+    "missing_files": 0,
+    "invalid_images": 0,
+    "metadata_errors": 0
+  }
+}

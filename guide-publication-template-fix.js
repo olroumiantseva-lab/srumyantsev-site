@@ -9,31 +9,6 @@
     else fn();
   };
 
-  const convertGeneratedIllustrations = () => {
-    document.querySelectorAll('.publication-illustration[data-publication-illustration]').forEach((figure) => {
-      if (figure.querySelector('.guide-visual')) return;
-      const caption = figure.querySelector('figcaption')?.textContent.trim() || 'Ситуация → Разбор → Вывод';
-      const labels = caption.split('→').map((part) => part.trim()).filter(Boolean);
-      while (labels.length < 3) labels.push(labels.length === 1 ? 'Разбор' : 'Вывод');
-
-      const oldImage = figure.querySelector('img');
-      const visual = document.createElement('div');
-      visual.className = 'guide-visual';
-      visual.setAttribute('role', 'img');
-      visual.setAttribute('aria-label', caption);
-
-      labels.slice(0, 3).forEach((label) => {
-        const card = document.createElement('span');
-        card.className = 'guide-art-card';
-        card.textContent = label;
-        visual.appendChild(card);
-      });
-
-      if (oldImage) oldImage.replaceWith(visual);
-      figure.classList.add('guide-inline-illustration');
-    });
-  };
-
   const wrapQuestionHeading = (heading, compact = false) => {
     if (!heading || heading.closest('details, .faq-section, .ded-block')) return;
     const parentSection = heading.closest('.seo-body > section');
@@ -79,7 +54,6 @@
   };
 
   onReady(() => {
-    convertGeneratedIllustrations();
     normalizeQuestionSections();
   });
 })();
