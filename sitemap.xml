@@ -996,4 +996,10 @@
       <image:loc>https://srumyantsev.ru/gde-arhiv-v-chatgpt-kak-nayti-arhivirovannye-chaty/arhiv-chatgpt-poisk-foto.webp</image:loc>
     </image:image>
   </url>
+  <url>
+    <loc>https://srumyantsev.ru/tools/ai-helper/</loc>
+    <lastmod>2026-10-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
