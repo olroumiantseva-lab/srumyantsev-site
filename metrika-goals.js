@@ -29,6 +29,28 @@
       anchor: link.textContent.trim().slice(0, 120)
     };
 
+    if (link.hasAttribute('data-guide-product')) {
+      const destination = new URL(href, window.location.origin);
+      const goals = {
+        '/tools/ai-helper/': 'ai_helper_product_click',
+        '/tools/answer-check/': 'answer_check_product_click',
+        '/tools/document/': 'document_product_click',
+        '/tools/important-letter/': 'important_letter_product_click'
+      };
+      const goal = goals[destination.pathname];
+      if (goal) sendGoal(goal, {
+        ...params,
+        source: destination.searchParams.get('from') || from,
+        placement: destination.searchParams.get('placement') || 'guide_link'
+      });
+      return;
+    }
+
+    if (link.hasAttribute('data-guide-link')) {
+      sendGoal('related_guide_click', params);
+      return;
+    }
+
     if (link.closest('#priority-related-guides')) {
       sendGoal('related_guide_click', params);
       return;
