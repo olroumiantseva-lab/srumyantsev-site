@@ -1,4 +1,6 @@
 (() => {
+  if (window.__dedGuideGoalsInitialized) return;
+  window.__dedGuideGoalsInitialized = true;
   const COUNTER_ID = 111385663;
 
   const sendGoal = (goal, params = {}) => {
