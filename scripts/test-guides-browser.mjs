@@ -1,13 +1,19 @@
 import fs from "node:fs";
 import http from "node:http";
 import path from "node:path";
-import { chromium } from "playwright";
+import { createRequire } from "node:module";
+import { inspectCatalog } from "./guide-catalog-contract.mjs";
+
+const require = createRequire(import.meta.url);
+const { chromium } = require(process.env.PLAYWRIGHT_MODULE || "playwright");
 
 const root = path.resolve(import.meta.dirname, "..");
-const artifacts = path.join(root, "artifacts");
+const artifacts = path.resolve(process.env.GUIDE_TEST_ARTIFACTS || path.join(root, "artifacts"));
 const registry = JSON.parse(fs.readFileSync(path.join(root, "guides", "guides-registry.json"), "utf8"));
-const expectedGuideCount = registry.length;
-const expectedLifeGuides = registry.filter((guide) => guide.CATEGORY === "Для жизни").length;
+const catalog = fs.readFileSync(path.join(root, "guides", "index.html"), "utf8");
+const { cards } = inspectCatalog(registry, catalog, (url) => fs.existsSync(path.join(root, url.slice(1), "index.html")) && fs.statSync(path.join(root, url.slice(1), "index.html")).isFile());
+const expectedGuideCount = cards.length;
+const expectedLifeGuides = cards.filter((guide) => guide.category === "Для жизни").length;
 const practicumUrls = [
   "/neyroseti-posle-45-pervyy-rezultat/",
   "/razbor-neponyatnogo-dokumenta/",
@@ -31,8 +37,13 @@ const server = http.createServer((request, response) => {
 
 await new Promise((resolve) => server.listen(4173, "127.0.0.1", resolve));
 const browser = await chromium.launch({ headless: true });
+// Project browser checks are local-only: do not emit production analytics/backend requests.
+const localOnly = route => new URL(route.request().url()).origin === "http://127.0.0.1:4173"
+  ? route.continue()
+  : route.fulfill({ status: 200, contentType: "application/javascript", body: "window.ym=function(){};" });
 try {
   const desktop = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
+  await desktop.route("**/*", localOnly);
   const errors = [];
   desktop.on("pageerror", (error) => errors.push(error.message));
   await desktop.goto("http://127.0.0.1:4173/guides/", { waitUntil: "networkidle" });
@@ -51,6 +62,7 @@ try {
   await desktop.screenshot({ path: path.join(artifacts, "guides-desktop.png"), fullPage: true });
 
   const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1 });
+  await mobile.route("**/*", localOnly);
   mobile.on("pageerror", (error) => errors.push(error.message));
   await mobile.goto("http://127.0.0.1:4173/guides/", { waitUntil: "networkidle" });
   const overflow = await mobile.evaluate(() => document.documentElement.scrollWidth > document.documentElement.clientWidth);
@@ -58,6 +70,7 @@ try {
   await mobile.screenshot({ path: path.join(artifacts, "guides-mobile.png"), fullPage: true });
 
   const noJs = await browser.newContext({ javaScriptEnabled: false, viewport: { width: 390, height: 844 } });
+  await noJs.route("**/*", localOnly);
   const noJsPage = await noJs.newPage();
   await noJsPage.goto("http://127.0.0.1:4173/guides/", { waitUntil: "load" });
   if (await noJsPage.locator("[data-guide-card]:visible").count() !== expectedGuideCount) throw new Error(`All ${expectedGuideCount} cards are not available without JavaScript`);
