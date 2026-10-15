@@ -64,15 +64,63 @@ function pageUrlPath(rel) {
   return '/' + p.split('/').map(encodeURIComponent).join('/');
 }
 
+// First <meta http-equiv=refresh> with a target; null when absent or unparsable.
+function parseRefresh(metas) {
+  const tag = metas.find((m) => (m['http-equiv'] || '').toLowerCase() === 'refresh');
+  if (!tag) return null;
+  const m = /^\s*(\d+(?:\.\d+)?)\s*(?:[;,]\s*(?:url\s*=\s*)?(?:"([^"]*)"|'([^']*)'|(.*?)))?\s*$/i.exec(tag.content || '');
+  if (!m) return null;
+  const target = (m[2] ?? m[3] ?? m[4] ?? '').trim();
+  if (!target) return null;
+  return { delay: Number(m[1]), target };
+}
+
+// Legacy redirect stub: noindex + immediate meta refresh. Returns null when the page is not a
+// stub candidate, otherwise { target, problems }. Caller must only pass noindex pages.
+function evalStub({ metas, links, pageUrl, origin }) {
+  const r = parseRefresh(metas);
+  if (!r || r.delay !== 0) return null;
+  const problems = [];
+  let target = null;
+  try {
+    target = new URL(r.target, pageUrl);
+    if (!/^https?:$/.test(target.protocol)) throw new Error('scheme');
+  } catch {
+    target = null;
+    problems.push(`redirect stub target is not a valid URL: ${r.target}`);
+  }
+  if (target) {
+    if (origin && target.origin !== origin) problems.push(`redirect stub target is external: ${r.target}`);
+    if (target.search || target.hash) problems.push(`redirect stub target has query or fragment: ${r.target}`);
+    if (target.pathname === pageUrl.pathname) problems.push('redirect stub target is the page itself');
+  }
+  if (links.length !== 1) problems.push('redirect stub requires exactly one canonical link');
+  else if (target) {
+    const raw = links[0].href || '';
+    let c = null;
+    try {
+      if (/^https?:\/\//i.test(raw)) c = new URL(raw);
+    } catch {
+      c = null;
+    }
+    if (!c || c.href !== target.href) {
+      problems.push(`redirect stub canonical does not match refresh target: ${raw} vs ${r.target}`);
+    }
+  }
+  return { target, problems };
+}
+
 export function checkSite({ root = '.', siteUrl } = {}) {
   const errors = [];
+  const warnings = [];
   const err = (f, m) => errors.push(`${f}: ${m}`);
+  const warn = (f, m) => warnings.push(`${f}: ${m}`);
   let files;
   try {
     files = walk(root);
   } catch (e) {
     err(root, `cannot read directory: ${e.message}`);
-    return { errors, pages: 0 };
+    return { errors, warnings, pages: 0 };
   }
 
   // sitemap.xml
@@ -123,8 +171,10 @@ export function checkSite({ root = '.', siteUrl } = {}) {
 
   // pages
   const base = origin || 'http://site.invalid';
+  const baseOrigin = new URL(base).origin;
   const titles = new Map();
-  const pagePaths = new Set();
+  const pageInfo = new Map();
+  const stubs = [];
   for (const rel of files) {
     const service = SERVICE_PAGES.has(rel);
     let html;
@@ -134,27 +184,8 @@ export function checkSite({ root = '.', siteUrl } = {}) {
       err(rel, `unreadable: ${e.code || e.message}`);
       continue;
     }
-    const pathname = new URL(pageUrlPath(rel), base).pathname;
-    pagePaths.add(pathname);
-
-    const ts = textsOf(html, 'title');
-    if (!ts.length) err(rel, 'missing <title>');
-    else {
-      if (ts.length > 1) err(rel, 'multiple <title> tags');
-      if (!ts[0]) err(rel, 'empty <title>');
-      else if (!service) {
-        const list = titles.get(ts[0]) ?? [];
-        list.push(rel);
-        titles.set(ts[0], list);
-      }
-    }
-
-    const hs = textsOf(html, 'h1');
-    if (!hs.length) err(rel, 'missing <h1>');
-    else {
-      if (hs.length > 1) err(rel, 'multiple <h1> tags');
-      if (hs.some((h) => !h)) err(rel, 'empty <h1>');
-    }
+    const pageUrl = new URL(pageUrlPath(rel), base);
+    const pathname = pageUrl.pathname;
 
     const metas = tagsOf(html, 'meta');
     const named = (n) => metas.filter((m) => (m.name || '').toLowerCase() === n).map((m) => m.content || '');
@@ -181,13 +212,46 @@ export function checkSite({ root = '.', siteUrl } = {}) {
       }
     }
 
+    const info = { service, noindex, selfCanonical: false };
+    pageInfo.set(pathname, info);
+
+    const links = tagsOf(html, 'link').filter((l) => (l.rel || '').toLowerCase().split(/\s+/).includes('canonical'));
+
+    const stub = !service && noindex ? evalStub({ metas, links, pageUrl, origin }) : null;
+    if (stub) for (const p of stub.problems) err(rel, p);
+    const isStub = !!stub && !stub.problems.length;
+    if (isStub) stubs.push({ rel, dest: stub.target.pathname });
+
+    const ts = textsOf(html, 'title');
+    if (!ts.length) err(rel, 'missing <title>');
+    else {
+      if (ts.length > 1) {
+        if (service && noindex && !sm.has(pathname)) warn(rel, 'multiple <title> tags');
+        else err(rel, 'multiple <title> tags');
+      }
+      if (!ts[0]) err(rel, 'empty <title>');
+      else if (!service && !isStub) {
+        const list = titles.get(ts[0]) ?? [];
+        list.push(rel);
+        titles.set(ts[0], list);
+      }
+    }
+
+    if (!isStub) {
+      const hs = textsOf(html, 'h1');
+      if (!hs.length) err(rel, 'missing <h1>');
+      else {
+        if (hs.length > 1) err(rel, 'multiple <h1> tags');
+        if (hs.some((h) => !h)) err(rel, 'empty <h1>');
+      }
+    }
+
     if (service) {
       if (!noindex) err(rel, 'service page requires noindex robots meta');
       if (sm.has(pathname)) err(rel, 'service page listed in sitemap');
       continue;
     }
 
-    const links = tagsOf(html, 'link').filter((l) => (l.rel || '').toLowerCase().split(/\s+/).includes('canonical'));
     if (!links.length) {
       if (!noindex) err(rel, 'missing canonical');
     } else {
@@ -204,8 +268,10 @@ export function checkSite({ root = '.', siteUrl } = {}) {
         }
         if (u) {
           if (origin && u.origin !== origin) err(rel, `canonical origin mismatch: ${href}`);
-          if (u.pathname !== pathname) err(rel, `canonical path mismatch: ${href} vs ${pathname}`);
+          if (u.pathname !== pathname && !isStub) err(rel, `canonical path mismatch: ${href} vs ${pathname}`);
           if (u.search || u.hash) err(rel, `canonical has query or fragment: ${href}`);
+          info.selfCanonical =
+            links.length === 1 && u.origin === baseOrigin && u.pathname === pathname && !u.search && !u.hash;
         }
       }
     }
@@ -219,12 +285,24 @@ export function checkSite({ root = '.', siteUrl } = {}) {
   for (const [t, list] of titles) {
     if (list.length > 1) err(list.join(', '), `duplicate title: ${t}`);
   }
+
+  for (const { rel, dest } of stubs) {
+    const d = pageInfo.get(dest);
+    if (!d) {
+      err(rel, `redirect stub destination has no page: ${dest}`);
+      continue;
+    }
+    if (d.service || d.noindex) err(rel, `redirect stub destination is not indexable: ${dest}`);
+    if (!d.selfCanonical) err(rel, `redirect stub destination is not self-canonical: ${dest}`);
+    if (smOk && !sm.has(dest)) err(rel, `redirect stub destination missing from sitemap: ${dest}`);
+  }
+
   if (smOk) {
     for (const [p, loc] of sm) {
-      if (!pagePaths.has(p)) err('sitemap.xml', `sitemap URL has no page (404): ${loc}`);
+      if (!pageInfo.has(p)) err('sitemap.xml', `sitemap URL has no page (404): ${loc}`);
     }
   }
-  return { errors, pages: files.length };
+  return { errors, warnings, pages: files.length };
 }
 
 export function main(argv, out = console) {
@@ -239,11 +317,24 @@ export function main(argv, out = console) {
         out.error('--site requires a value');
         return 2;
       }
-    } else if (a.startsWith('--site=')) site = a.slice(7);
-    else if (a.startsWith('-')) {
+    } else if (a.startsWith('--site=')) {
+      site = a.slice(7);
+      if (!site) {
+        out.error('--site requires a value');
+        return 2;
+      }
+    } else if (a.startsWith('-')) {
       out.error(`unknown option: ${a}\nusage: seo-check.mjs [root] [--site https://example.com]`);
       return 2;
     } else root = a;
+  }
+  if (site !== undefined) {
+    try {
+      if (!/^https?:$/.test(new URL(site).protocol)) throw new Error('scheme');
+    } catch {
+      out.error(`invalid --site URL: ${site}`);
+      return 2;
+    }
   }
   try {
     if (!fs.statSync(root).isDirectory()) throw new Error('not a directory');
@@ -251,13 +342,15 @@ export function main(argv, out = console) {
     out.error(`cannot use root ${root}: ${e.message}`);
     return 2;
   }
-  const { errors, pages } = checkSite({ root, siteUrl: site });
+  const { errors, warnings, pages } = checkSite({ root, siteUrl: site });
+  const warnOut = (out.warn || out.error).bind(out);
+  if (warnings.length) warnOut(warnings.map((w) => `WARN ${w}`).join('\n'));
   if (errors.length) {
     out.error(errors.map((e) => `FAIL ${e}`).join('\n'));
     out.error(`${errors.length} problem(s) in ${pages} page(s)`);
     return 1;
   }
-  out.log(`OK: ${pages} page(s) checked`);
+  out.log(`OK: ${pages} page(s) checked${warnings.length ? `, ${warnings.length} warning(s)` : ''}`);
   return 0;
 }
 

@@ -22,6 +22,17 @@ const page = ({ title = 'Title', h1 = 'Heading', robots = 'index, follow', canon
 
 const svc = (o = {}) => page({ title: '404', robots: 'noindex, follow', ...o });
 
+// legacy redirect stub: noindex, immediate meta refresh, canonical = refresh target, no h1
+const stub = (target, o = {}) =>
+  page({
+    title: 'Old',
+    h1: null,
+    robots: 'noindex, follow',
+    canonical: target,
+    extra: `<meta http-equiv='refresh' content='0; url=${target}'>`,
+    ...o,
+  });
+
 const sitemap = (...paths) =>
   `<?xml version='1.0'?><urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>` +
   paths.map((p) => `<url><loc>${p.startsWith('http') ? p : SITE + p}</loc></url>`).join('') +
@@ -48,9 +59,14 @@ const mk = (files) => {
 
 const run = (over = {}) => checkSite({ root: mk({ ...valid(), ...over }), siteUrl: SITE });
 const has = (r, s) => assert.ok(r.errors.some((e) => e.includes(s)), `expected '${s}' in ${JSON.stringify(r.errors)}`);
+const hasNot = (r, s) => assert.ok(!r.errors.some((e) => e.includes(s)), `unexpected '${s}' in ${JSON.stringify(r.errors)}`);
+const hasWarn = (r, s) =>
+  assert.ok(r.warnings.some((w) => w.includes(s)), `expected warning '${s}' in ${JSON.stringify(r.warnings)}`);
 
 test('valid fixture has no errors', () => {
-  assert.deepEqual(run().errors, []);
+  const r = run();
+  assert.deepEqual(r.errors, []);
+  assert.deepEqual(r.warnings, []);
 });
 
 test('sitemap image:loc entries are not treated as page URLs', () => {
@@ -121,6 +137,15 @@ test('noindex pages: no canonical needed, must stay out of sitemap', () => {
   has(run(none), 'noindex page listed in sitemap');
 });
 
+test('noindex page without refresh still needs h1 and self canonical (not treated as redirect)', () => {
+  const noidx = (o) => ({
+    'about/index.html': page({ title: 'About', robots: 'noindex, follow', ...o }),
+    'sitemap.xml': sitemap('/'),
+  });
+  has(run(noidx({ h1: null })), 'missing <h1>');
+  has(run(noidx({ canonical: SITE + '/other/' })), 'canonical path mismatch');
+});
+
 test('sitemap: missing, empty, duplicate, membership, invalid, origin, 404 url', () => {
   has(run({ 'sitemap.xml': null }), 'sitemap.xml unreadable');
   has(run({ 'sitemap.xml': sitemap() }), 'sitemap has no <url>');
@@ -132,6 +157,13 @@ test('sitemap: missing, empty, duplicate, membership, invalid, origin, 404 url',
   );
   has(run({ 'sitemap.xml': sitemap('/', 'https://other.test/about/') }), 'sitemap URL origin mismatch');
   has(run({ 'sitemap.xml': sitemap('/', '/about/', '/gone/') }), 'sitemap URL has no page');
+});
+
+test('indexable /cases/ page: listed ok, missing from sitemap is blocking error', () => {
+  const cases = { 'cases/index.html': page({ title: 'Cases', canonical: SITE + '/cases/' }) };
+  assert.deepEqual(run({ ...cases, 'sitemap.xml': sitemap('/', '/about/', '/cases/') }).errors, []);
+  const r = run(cases);
+  has(r, 'cases/index.html: indexable page missing from sitemap');
 });
 
 for (const [file, url] of [
@@ -148,15 +180,168 @@ for (const [file, url] of [
   test(`service page ${file}: excluded from sitemap`, () => {
     has(run({ 'sitemap.xml': sitemap('/', '/about/', url) }), 'service page listed in sitemap');
   });
+  test(`service page ${file}: multiple titles is warning when noindex and not in sitemap`, () => {
+    const r = run({ [file]: svc({ extra: '<title>second</title>' }) });
+    assert.deepEqual(r.errors, []);
+    hasWarn(r, 'multiple <title>');
+  });
+  test(`service page ${file}: multiple titles stays error when indexable`, () => {
+    const r = run({ [file]: svc({ robots: 'index, follow', extra: '<title>second</title>' }) });
+    has(r, 'multiple <title>');
+    has(r, 'service page requires noindex');
+  });
+  test(`service page ${file}: multiple titles stays error when listed in sitemap`, () => {
+    const r = run({ [file]: svc({ extra: '<title>second</title>' }), 'sitemap.xml': sitemap('/', '/about/', url) });
+    has(r, 'multiple <title>');
+    has(r, 'service page listed in sitemap');
+  });
+  test(`service page ${file}: other checks still blocking with multiple titles`, () => {
+    const r = run({ [file]: svc({ title: '', extra: '<title>second</title>' }) });
+    has(r, 'empty <title>');
+    hasWarn(r, 'multiple <title>');
+  });
 }
+
+test('non-service noindex page with multiple titles stays an error', () => {
+  const r = run({
+    'about/index.html': page({ title: 'About', robots: 'noindex, follow', extra: '<title>x</title>' }),
+    'sitemap.xml': sitemap('/'),
+  });
+  has(r, 'multiple <title>');
+  assert.deepEqual(r.warnings, []);
+});
+
+test('redirect stub: valid stub passes without h1 or self canonical', () => {
+  const r = run({ 'old/index.html': stub(SITE + '/about/') });
+  assert.deepEqual(r.errors, []);
+});
+
+test('redirect stub: relative refresh target equal to canonical passes', () => {
+  const r = run({
+    'old/index.html': stub(SITE + '/about/', {
+      extra: `<meta http-equiv='Refresh' content='0;URL=/about/'>`,
+    }),
+  });
+  assert.deepEqual(r.errors, []);
+});
+
+test('redirect stub: title shared with destination is not a duplicate', () => {
+  const r = run({ 'old/index.html': stub(SITE + '/about/', { title: 'About' }) });
+  assert.deepEqual(r.errors, []);
+});
+
+test('redirect stub: external target rejected', () => {
+  const t = 'https://evil.test/about/';
+  const r = run({ 'old/index.html': stub(t) });
+  has(r, 'redirect stub target is external');
+  has(r, 'missing <h1>');
+});
+
+test('redirect stub: invalid target URL rejected', () => {
+  const r = run({
+    'old/index.html': stub(SITE + '/about/', { extra: `<meta http-equiv='refresh' content='0; url=http://'>` }),
+  });
+  has(r, 'redirect stub target is not a valid URL');
+  has(r, 'missing <h1>');
+});
+
+test('redirect stub: non-http scheme rejected', () => {
+  const r = run({
+    'old/index.html': stub(SITE + '/about/', { extra: `<meta http-equiv='refresh' content='0; url=javascript:alert(1)'>` }),
+  });
+  has(r, 'redirect stub target is not a valid URL');
+});
+
+test('redirect stub: canonical differing from refresh target rejected', () => {
+  const r = run({
+    'old/index.html': stub(SITE + '/about/', { canonical: SITE + '/' }),
+  });
+  has(r, 'redirect stub canonical does not match refresh target');
+  has(r, 'missing <h1>');
+});
+
+test('redirect stub: missing canonical rejected', () => {
+  const r = run({ 'old/index.html': stub(SITE + '/about/', { canonical: null }) });
+  has(r, 'redirect stub requires exactly one canonical');
+});
+
+test('redirect stub: listed in sitemap rejected', () => {
+  const r = run({ 'old/index.html': stub(SITE + '/about/'), 'sitemap.xml': sitemap('/', '/about/', '/old/') });
+  has(r, 'noindex page listed in sitemap');
+});
+
+test('redirect stub: delayed refresh is not a stub', () => {
+  const r = run({
+    'old/index.html': stub(SITE + '/about/', { extra: `<meta http-equiv='refresh' content='5; url=${SITE}/about/'>` }),
+  });
+  has(r, 'missing <h1>');
+  has(r, 'canonical path mismatch');
+});
+
+test('redirect stub: indexable page with refresh is not exempt', () => {
+  const r = run({
+    'old/index.html': stub(SITE + '/about/', { robots: 'index, follow' }),
+    'sitemap.xml': sitemap('/', '/about/', '/old/'),
+  });
+  has(r, 'missing <h1>');
+  has(r, 'canonical path mismatch');
+});
+
+test('redirect stub: destination must exist', () => {
+  const r = run({ 'old/index.html': stub(SITE + '/gone/') });
+  has(r, 'redirect stub destination has no page');
+});
+
+test('redirect stub: destination must be indexable', () => {
+  const r = run({
+    'about/index.html': page({ title: 'About', robots: 'noindex, follow', canonical: SITE + '/about/' }),
+    'old/index.html': stub(SITE + '/about/'),
+    'sitemap.xml': sitemap('/'),
+  });
+  has(r, 'redirect stub destination is not indexable');
+});
+
+test('redirect stub: destination must be self canonical', () => {
+  const r = run({
+    'about/index.html': page({ title: 'About', canonical: SITE + '/' }),
+    'old/index.html': stub(SITE + '/about/'),
+  });
+  has(r, 'redirect stub destination is not self-canonical');
+});
+
+test('redirect stub: destination must be in sitemap', () => {
+  const r = run({ 'old/index.html': stub(SITE + '/about/'), 'sitemap.xml': sitemap('/') });
+  has(r, 'redirect stub destination missing from sitemap');
+});
+
+test('redirect stub: destination cannot be another stub', () => {
+  const r = run({
+    'old/index.html': stub(SITE + '/older/'),
+    'older/index.html': stub(SITE + '/about/'),
+  });
+  has(r, 'redirect stub destination is not indexable');
+});
 
 test('CLI exit status', () => {
   const cli = (...a) => spawnSync(process.execPath, [SCRIPT, ...a], { encoding: 'utf8' });
   assert.equal(cli(mk(valid()), '--site', SITE).status, 0);
+  assert.equal(cli(mk(valid()), `--site=${SITE}`).status, 0);
   const bad = { ...valid(), 'about/index.html': page({ title: null, canonical: SITE + '/about/' }) };
   const r = cli(mk(bad), '--site', SITE);
   assert.equal(r.status, 1);
   assert.match(r.stderr, /missing <title>/);
   assert.equal(cli(mk(valid()), '--bogus').status, 2);
+  assert.equal(cli(mk(valid()), '--site').status, 2);
+  assert.equal(cli(mk(valid()), '--site', 'not a url').status, 2);
   assert.equal(cli(path.join(os.tmpdir(), 'seo-does-not-exist-xyz')).status, 2);
+});
+
+test('CLI: warnings alone exit 0, errors alongside warnings exit 1', () => {
+  const cli = (...a) => spawnSync(process.execPath, [SCRIPT, ...a], { encoding: 'utf8' });
+  const warnOnly = { ...valid(), '404.html': svc({ extra: '<title>second</title>' }) };
+  const r = cli(mk(warnOnly), '--site', SITE);
+  assert.equal(r.status, 0);
+  assert.match(r.stderr, /WARN 404\.html: multiple <title> tags/);
+  const both = { ...warnOnly, 'about/index.html': page({ title: null, canonical: SITE + '/about/' }) };
+  assert.equal(cli(mk(both), '--site', SITE).status, 1);
 });
