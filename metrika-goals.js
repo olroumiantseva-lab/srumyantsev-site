@@ -31,16 +31,18 @@
       anchor: link.textContent.trim().slice(0, 120)
     };
 
-    if (link.hasAttribute('data-guide-product')) {
-      const destination = new URL(href, window.location.origin);
-      const goals = {
-        '/tools/ai-helper/': 'ai_helper_product_click',
-        '/tools/answer-check/': 'answer_check_product_click',
-        '/tools/document/': 'document_product_click',
-        '/tools/important-letter/': 'important_letter_product_click'
-      };
-      const goal = goals[destination.pathname];
-      if (goal) sendGoal(goal, {
+    // Product links are tracked by their destination, not by an optional
+    // data attribute. New editorial guides also contain ordinary CTA links.
+    const destination = new URL(href, window.location.origin);
+    const goals = {
+      '/tools/ai-helper/': 'ai_helper_product_click',
+      '/tools/answer-check/': 'answer_check_product_click',
+      '/tools/document/': 'document_product_click',
+      '/tools/important-letter/': 'important_letter_product_click'
+    };
+    const goal = destination.origin === window.location.origin ? goals[destination.pathname] : null;
+    if (goal) {
+      sendGoal(goal, {
         ...params,
         source: destination.searchParams.get('from') || from,
         placement: destination.searchParams.get('placement') || 'guide_link'
