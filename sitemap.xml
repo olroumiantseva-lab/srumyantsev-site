@@ -1008,4 +1008,16 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://srumyantsev.ru/pochemu-utochnyayushchiy-vopros-luchshe-zadavat-v-tom-zhe-dialoge/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://srumyantsev.ru/kak-proverit-ssylku-i-istochnik-v-otvete-neyroseti/</loc>
+    <lastmod>2026-10-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
 </urlset>
